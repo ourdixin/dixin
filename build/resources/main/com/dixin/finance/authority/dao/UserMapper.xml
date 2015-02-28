@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.authority.dao.UserMapper">
+
+  <cache />
+
+  <select id="getUserById" parameterType="string" resultType="com.dixin.finance.authority.vo.UserVO">
+    SELECT ID, NAME, MOBILE_PHONE_NO, ADDRESS 
+     FROM USER 
+    WHERE ID = #{ID}
+  </select>
+
+</mapper>
