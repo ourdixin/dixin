@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.product.dao.ProductMapper">
+
+  <cache />
+
+  <select id="queryProductList" resultType="com.dixin.finance.product.vo.ProductVO">
+		SELECT 
+		  id id
+<!-- 		    id id, -->
+<!-- 		    code code, -->
+<!-- 		    name name, -->
+<!-- 		    release_date releaseDate, -->
+<!-- 		    term term, -->
+<!-- 		    percent_a percentA, -->
+<!-- 		    rate_a rateA, -->
+<!-- 		    percent_b percentB, -->
+<!-- 		    rate_b rateB, -->
+<!-- 		    amount amount, -->
+<!-- 		    mina_mount minaMount, -->
+<!-- 		    pay_type payType, -->
+<!-- 		    ad_file adFile, -->
+<!-- 		    guide_file guideFile, -->
+<!-- 		    state state, -->
+<!-- 		    star star, -->
+<!-- 		    catogry_id catogryId, -->
+<!-- 		    profit_id profitId, -->
+<!-- 		    bonus_type bonusType, -->
+<!-- 		    info info -->
+		FROM
+		    product
+  </select>
+
+</mapper>
