@@ -24,6 +24,23 @@ USE `dixin`;
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `acttion`, 操作日志表
+--
+
+CREATE TABLE IF NOT EXISTS `acttion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
+  `act_time` datetime NOT NULL COMMENT '操作时间',
+  `user_id` int(11) NOT NULL COMMENT '操作人员',
+  `action` tinyint(4) NOT NULL COMMENT '动作',
+  `object_type` tinyint(4) NOT NULL COMMENT '被操作对象类型',
+  `object_id` int(11) NOT NULL COMMENT '对象ID',
+  `info` varchar(1024) NOT NULL COMMENT '操作描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `area`, 地区表
 --
 
@@ -31,6 +48,10 @@ CREATE TABLE IF NOT EXISTS `area` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
   `name` varchar(64) NOT NULL COMMENT '地区名称',
   `pid` int(11) NOT NULL DEFAULT '-1' COMMENT '父节点ID',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -42,31 +63,39 @@ CREATE TABLE IF NOT EXISTS `area` (
 
 CREATE TABLE IF NOT EXISTS `assignment` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
-  `userid` int(11) NOT NULL COMMENT '转让用户',
-  `assigndate` date NOT NULL COMMENT '转让日期',
+  `user_id` int(11) NOT NULL COMMENT '转让用户',
+  `assign_date` date NOT NULL COMMENT '转让日期',
   `amount` double NOT NULL COMMENT '转让金额',
-  `productid` int(11) NOT NULL COMMENT '转让产品',
-  `paytype` int(11) NOT NULL COMMENT '付息方式',
-  `assigntype` int(11) NOT NULL COMMENT '转让条件',
+  `product_id` int(11) NOT NULL COMMENT '转让产品',
+  `pay_type` int(11) NOT NULL COMMENT '付息方式',
+  `assign_type` int(11) NOT NULL COMMENT '转让条件',
   `contactor` varchar(32) NOT NULL COMMENT '联系人',
   `tel` varchar(11) NOT NULL COMMENT '联系电话',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `calllogs`，电话联系记录
+-- 表的结构 `call_logs`，电话联系记录
 --
 
-CREATE TABLE IF NOT EXISTS `calllogs` (
+CREATE TABLE IF NOT EXISTS `call_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
-  `calltime` datetime NOT NULL COMMENT '联系日期时间',
-  `callfrom` int(11) NOT NULL COMMENT '来电用户',
-  `callto` int(11) NOT NULL COMMENT '去电用户',
+  `call_time` datetime NOT NULL COMMENT '联系日期时间',
+  `call_from` int(11) NOT NULL COMMENT '来电用户',
+  `call_to` int(11) NOT NULL COMMENT '去电用户',
   `msg` varchar(1024) NOT NULL COMMENT '通话信息',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `datetime` (`calltime`,`callfrom`,`callto`)
+  KEY `call_time` (`call_time`,`call_from`,`call_to`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -79,6 +108,10 @@ CREATE TABLE IF NOT EXISTS `catogry` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
   `name` varchar(64) NOT NULL COMMENT '产品分类名称',
   `type` tinyint(4) NOT NULL COMMENT '分类类型，根据字典表',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `type` (`type`)
@@ -101,7 +134,12 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (35, '信托', 2),
 (36, '资管', 2),
 (42, '固定收益', 3),
-(43, '浮动收益', 3);
+(43, '浮动收益', 3),
+(44, '添加', 5),
+(45, '删除', 5),
+(46, '更新', 5),
+(47, '产品表', 6),
+(48, '用户表', 6);
 
 -- --------------------------------------------------------
 
@@ -112,6 +150,10 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 CREATE TABLE IF NOT EXISTS `dict` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
   `name` varchar(64) NOT NULL COMMENT '产品分类名称 ',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -123,38 +165,48 @@ INSERT INTO `dict` (`id`, `name`) VALUES
 (1, '用户权限分类'),
 (2, '产品分类'),
 (3, '收益分类'),
-(4, '留言问题分类');
+(4, '留言问题分类'),
+(5, '操作分类'),
+(6, '操作对象分类');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `financialinstitution`，金融机构表
+-- 表的结构 `financial_institution`，金融机构表
 --
 
-CREATE TABLE IF NOT EXISTS `financialinstitution` (
+CREATE TABLE IF NOT EXISTS `financial_institution` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
   `name` varchar(64) NOT NULL COMMENT '机构名称',
   `tel` varchar(11) NOT NULL COMMENT '联系电话',
   `info` varchar(256) NOT NULL COMMENT '简介',
-  `catogryid` int(11) NOT NULL COMMENT '金融机构类别',
+  `catogry_id` int(11) NOT NULL COMMENT '金融机构类别',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `financialmanager`，专属金融经理表
+-- 表的结构 `financial_manager`，专属金融经理表
 --
 
-CREATE TABLE IF NOT EXISTS `financialmanager` (
-  `userid` int(11) NOT NULL COMMENT '用户ID',
+CREATE TABLE IF NOT EXISTS `financial_manager` (
+  `user_id` int(11) NOT NULL COMMENT '用户ID',
   `info` varchar(256) NOT NULL COMMENT '专属财务经理介绍',
   `title` varchar(64) NOT NULL COMMENT '职务',
   `education` varchar(64) NOT NULL COMMENT '学历',
   `certificate` varchar(32) NOT NULL COMMENT '证书编号',
-  `fiid` int(11) NOT NULL COMMENT '所属金融机构',
+  `institution_id` int(11) NOT NULL COMMENT '所属金融机构',
   `tel` varchar(11) NOT NULL COMMENT '电话',
-  PRIMARY KEY (`userid`)
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -165,11 +217,15 @@ CREATE TABLE IF NOT EXISTS `financialmanager` (
 
 CREATE TABLE IF NOT EXISTS `message` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
-  `msgid` int(11) NOT NULL COMMENT '维护留言ID',
-  `userid` int(11) NOT NULL COMMENT '用户',
-  `msgtime` datetime NOT NULL COMMENT '留言日期',
-  `catogryid` int(11) NOT NULL COMMENT '问题类别',
+  `msg_id` int(11) NOT NULL COMMENT '维护留言ID',
+  `user_id` int(11) NOT NULL COMMENT '用户',
+  `msg_time` datetime NOT NULL COMMENT '留言日期',
+  `catogry_id` int(11) NOT NULL COMMENT '问题类别',
   `msg` varchar(1024) NOT NULL COMMENT '留言',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -181,8 +237,12 @@ CREATE TABLE IF NOT EXISTS `message` (
 
 CREATE TABLE IF NOT EXISTS `permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
-  `userid` int(11) NOT NULL COMMENT '用户id',
-  `permission` int(11) NOT NULL COMMENT '权限id',
+  `user_id` int(11) NOT NULL COMMENT ' 用户id',
+  `permission` int(11) NOT NULL COMMENT '用户权限',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -215,6 +275,10 @@ CREATE TABLE IF NOT EXISTS `product` (
   `profit_id` int(11) NOT NULL COMMENT '收益类型',
   `bonus_type` int(11) NOT NULL COMMENT '分红方式',
   `info` varchar(256) NOT NULL COMMENT '资管要素HTML文件',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `code` (`code`,`name`),
   KEY `catogry_id` (`catogry_id`)
@@ -228,12 +292,16 @@ CREATE TABLE IF NOT EXISTS `product` (
 
 CREATE TABLE IF NOT EXISTS `purchase` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
-  `userid` int(11) NOT NULL COMMENT '购买用户',
-  `buydate` date NOT NULL COMMENT '购买日期',
-  `productid` int(11) NOT NULL COMMENT '购买产品',
+  `user_id` int(11) NOT NULL COMMENT '购买用户',
+  `buy_date` date NOT NULL COMMENT '购买日期',
+  `product_id` int(11) NOT NULL COMMENT '购买产品',
   `volume` int(11) NOT NULL COMMENT '购买数量',
   `amount` int(11) NOT NULL COMMENT '购买金额',
-  `fiid` int(11) NOT NULL COMMENT '营销机构',
+  `institution_id` int(11) NOT NULL COMMENT '营销机构',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -245,13 +313,17 @@ CREATE TABLE IF NOT EXISTS `purchase` (
 
 CREATE TABLE IF NOT EXISTS `reservation` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
-  `userid` int(11) NOT NULL COMMENT '预约用户',
-  `reservedate` date NOT NULL COMMENT '预约日期',
-  `productid` int(11) NOT NULL COMMENT '预约产品',
+  `user_id` int(11) NOT NULL COMMENT '预约用户',
+  `reserve_date` date NOT NULL COMMENT '预约日期',
+  `product_id` int(11) NOT NULL COMMENT '预约产品',
   `amount` double NOT NULL COMMENT '预约金额',
   `msg` varchar(1024) NOT NULL COMMENT '预约留言',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `userid` (`userid`)
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -262,23 +334,27 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
-  `username` varchar(64) NOT NULL COMMENT '用户名',
+  `user_name` varchar(64) NOT NULL COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '密码',
-  `type` int(11) NOT NULL COMMENT '是客户还是后台管理用户',
+  `user_type` int(11) NOT NULL COMMENT '是客户还是后台管理用户',
   `enabled` tinyint(1) NOT NULL COMMENT '是否有效',
-  `regdate` date NOT NULL COMMENT '注册日期',
+  `reg_date` date NOT NULL COMMENT '注册日期',
   `name` int(11) NOT NULL COMMENT '姓名',
   `mobile` varchar(11) NOT NULL COMMENT '手机号',
-  `areaid` int(11) NOT NULL COMMENT '地区ID',
+  `area_id` int(11) NOT NULL COMMENT '地区ID',
   `address` varchar(256) NOT NULL COMMENT '地址',
-  `zipcode` varchar(32) NOT NULL COMMENT '邮编',
-  `QQ` varchar(32) NOT NULL COMMENT 'QQ号码',
-  `idcard` varchar(128) NOT NULL COMMENT '身份证照片',
+  `zip_code` varchar(32) NOT NULL COMMENT '邮编',
+  `qq` varchar(32) NOT NULL COMMENT 'QQ号码',
+  `id_card` varchar(128) NOT NULL COMMENT '身份证照片',
   `account` varchar(64) NOT NULL COMMENT '资金账号',
-  `fiid` int(11) NOT NULL COMMENT '证券公司',
-  `startdate` date NOT NULL COMMENT '认证开始日期',
+  `institution_id` int(11) NOT NULL COMMENT '证券公司',
+  `start_date` date NOT NULL COMMENT '认证开始日期',
   `term` int(11) NOT NULL COMMENT '期限',
-  `authtype` int(11) NOT NULL COMMENT '认证类别',
+  `auth_type` int(11) NOT NULL COMMENT '认证类别',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
