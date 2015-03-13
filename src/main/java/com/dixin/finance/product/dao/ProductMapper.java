@@ -2,10 +2,11 @@ package com.dixin.finance.product.dao;
 
 import java.util.List;
 
-import com.dixin.finance.product.vo.ProductVO;
-import com.dixin.framework.annotation.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
 
-@Mapper
+import com.dixin.finance.product.vo.ProductVO;
+
+@MapperScan
 public interface ProductMapper {
 	
 	/**

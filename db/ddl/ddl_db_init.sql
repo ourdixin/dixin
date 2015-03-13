@@ -126,7 +126,7 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (10, '注册用户', 1),
 (20, '认证用户', 1),
 (25, '后台用户', 1),
-(30, '后台超级管理员', 1),
+(0, '后台超级管理员', 1),
 (31, '债券', 2),
 (32, '银行理财', 2),
 (33, '基金', 2),
@@ -334,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
-  `user_name` varchar(64) NOT NULL COMMENT '用户名',
+  `user_name` varchar(64) COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '密码',
   `user_type` int(11) NOT NULL COMMENT '是客户还是后台管理用户',
   `enabled` tinyint(1) NOT NULL COMMENT '是否有效',
@@ -358,6 +358,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
+--
+-- 初始化超管用户
+--
+
+insert into `user`(user_name, password, user_type, enabled, reg_date, mobile, create_user, create_time, update_user, update_time) values('root', PASSWORD('ourdixn521'), 0, 0, SYSDATE(), 0, 0, SYSDATE(), 0, SYSDATE());
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

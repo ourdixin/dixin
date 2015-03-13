@@ -2,7 +2,10 @@ package com.dixin.finance.authentication.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.dixin.framework.base.vo.BaseVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserVO extends BaseVO {
 
@@ -16,6 +19,9 @@ public class UserVO extends BaseVO {
 	private String password; // 密码
 	private int userType; // 是客户还是后台管理用户
 	private int enabled; // 是否有效
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date regDate; // 注册日期
 	private int name; // 姓名
 	private String mobile; // 手机号
@@ -63,9 +69,11 @@ public class UserVO extends BaseVO {
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
+	
 	public Date getRegDate() {
 		return regDate;
 	}
+
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}

@@ -7,7 +7,78 @@
   <cache />
   
   <insert id="insert" parameterType="com.dixin.finance.authentication.vo.UserVO">
-    insert into User(user_name, password, user_type, enabled, date) values(#userName#, PASSWORD(#password#), #type#, #enabled#, sysdate())
+    insert into User(
+		user_name,
+		password,
+		user_type,
+		enabled,
+		reg_date,
+		name,
+		mobile,
+		area_id,
+		address,
+		zip_code,
+		qq,
+		id_card,
+		account,
+		institution_id,
+		start_date,
+		term,
+		auth_type,
+		create_user,
+		create_time,
+		update_user,
+		update_time)
+	values(
+		#{userName},
+		#{password},
+		#{userType},
+		#{enabled},
+		SYSDATE(),
+		#{name},
+		#{mobile},
+		#{areaId},
+		#{address},
+		#{zipCode},
+		#{qq},
+		#{idCard},
+		#{account},
+		#{institutionId},
+		#{startDate},
+		#{term},
+		#{authType},
+		0,
+		SYSDATE(),
+		0,
+		SYSDATE()
+	)
   </insert>
+    
+  <select id="query" parameterType="com.dixin.finance.authentication.vo.UserVO" resultType="com.dixin.finance.authentication.vo.UserVO">
+    SELECT 
+	    user_name userName,
+	    password password,
+	    user_type userType,
+	    enabled enabled,
+	    reg_date regDate,
+	    name name,
+	    mobile mobile,
+	    area_id areaId,
+	    address address,
+	    zip_code zipCode,
+	    qq qq,
+	    id_card idCard,
+	    account account,
+	    institution_id institutionId,
+	    start_date startDate,
+	    term term,
+	    auth_type authType,
+	    create_user createUser,
+	    create_time createTime,
+	    update_user updateUser,
+	    update_time updateTime
+	FROM
+	    user
+  </select>
 
 </mapper>

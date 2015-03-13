@@ -7,5 +7,5 @@ public interface IUserService {
 	/**
 	 * 插入用户
 	 */
-	void insert(UserVO userVO);
+	void register(UserVO userVO);
 }

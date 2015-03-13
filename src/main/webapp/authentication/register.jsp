@@ -6,20 +6,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/register.js"></script>
+
 </head>
 
 <body>
 <!---TOP头部共用部份---->
  <div class="header_top">
    <div class="body_width"><i>欢迎进入121金融个人理财中心</i><span>李东伟【普通会员】 | 我的121金融 | 安全退出</span></div></div>
-<div id="top"><div class="main_top"><a href="index.html"><img src="images/index_03.jpg" width="408" height="50" /></a></div></div>
+<div id="top"><div class="main_top"><a href="index.html"><img src="<%=request.getContextPath() %>/images/index_03.jpg" width="408" height="50" /></a></div></div>
 <!---TOP结束---->
 <div id="main_body">
 <div id="title_xi"></div>
 <div id="title_font">注册121金融</div>
 <div class="register">
 <div class="info_frm">
-<form action="<%=request.getContextPath() %>/authentication/register">
+<form action="<%=request.getContextPath() %>/authentication/user" method="post" id="regForm">
 <table>
 	          <tbody><tr>
 	            <td class="t" width="15%">手机号码： </td>

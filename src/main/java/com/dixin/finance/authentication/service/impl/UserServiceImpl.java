@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.dixin.finance.authentication.constant.UserStatusConstant;
+import com.dixin.finance.authentication.constant.UserTypeConstant;
 import com.dixin.finance.authentication.dao.UserMapper;
 import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserVO;
@@ -15,7 +17,9 @@ public class UserServiceImpl implements IUserService {
 	private UserMapper userMapper;
 
 	@Override
-	public void insert(UserVO userVO) {
+	public void register(UserVO userVO) {
+		userVO.setUserType(UserTypeConstant.REGISTER);
+		userVO.setEnabled(UserStatusConstant.ENABLED_YES);
 		userMapper.insert(userVO);
 	};
 	
