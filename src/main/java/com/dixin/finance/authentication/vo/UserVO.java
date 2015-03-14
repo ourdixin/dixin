@@ -32,12 +32,21 @@ public class UserVO extends BaseVO {
 	private String idCard; // 身份证照片
 	private String account; // 资金账号
 	private int institutionId; // 证券公司
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date startDate; // 认证开始日期
 	private int term; // 期限
 	private int authType; // 认证类别
 	private int createUser; // 创建人
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date createTime; // 创建时间
 	private int updateUser; // 更新人
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date updateTime; // 更新时间
 	public int getId() {
 		return id;
