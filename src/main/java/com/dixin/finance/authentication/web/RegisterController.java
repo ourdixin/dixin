@@ -38,6 +38,33 @@ public class RegisterController {
 		return webResult;
 	}
 
+	
+	@RequestMapping(value="/authentication/login", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult login(String username,String password, HttpSession session){
+		
+		BaseWebResult webResult = new BaseWebResult();
+		logger.info("用户" + username + "登陆开始");
+		UserVO userVO = userServiceImpl.login(username,password);
+		if(userVO != null)
+		{
+			logger.info("用户" + username + "登陆成功");
+			webResult.setSucess(true);
+			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
+		}
+		else
+		{
+			logger.info("用户" + userVO.getUserName() + "登陆失败");
+			webResult.setSucess(false);
+
+		}
+		
+		webResult.setResult(userVO);	
+		
+		return webResult;
+	}	
+	
+	
+	
 	public IUserService getUserServiceImpl() {
 		return userServiceImpl;
 	}

@@ -80,5 +80,33 @@
 	FROM
 	    user
   </select>
-
+  
+  <select id="selectLoginUser" parameterType="map" resultType="com.dixin.finance.authentication.vo.UserVO">
+    SELECT 
+	    user_name userName,
+	    password password,
+	    user_type userType,
+	    enabled enabled,
+	    reg_date regDate,
+	    name name,
+	    mobile mobile,
+	    area_id areaId,
+	    address address,
+	    zip_code zipCode,
+	    qq qq,
+	    id_card idCard,
+	    account account,
+	    institution_id institutionId,
+	    start_date startDate,
+	    term term,
+	    auth_type authType,
+	    create_user createUser,
+	    create_time createTime,
+	    update_user updateUser,
+	    update_time updateTime
+	FROM
+	    user
+	WHERE 
+		password=#{password} and (user_name = #{userName} or mobile= #{userName} )
+  </select>
 </mapper>
