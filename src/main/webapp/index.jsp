@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link href="css/LTT_define.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/pptBox.js"></script>
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/js.js"></script>
-<script type="text/javascript" src="js/popwindow.js"></script>
+<link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/pptBox.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/js.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/popwindow.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/product/product.js"></script>
 </head>
 
 <body>
@@ -57,12 +59,24 @@
             </ul>
             <div class="index_serch">
               <div class="serch_a"><a href="#" style="color:#F60">固定收益</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" style="color:#F00">浮动收益</a></div>
-           <div class="serch_b"><input name="" type="text"  class="serch_text"/><a href="#" >查</a> </div>
+           <div class="serch_b"><input name="bnt_search1" type="text"  class="serch_text"/><a href="#" >查询</a> </div>
            <div class="senior"><a href="#">理财产品高级筛选</a></div>
-      
            </div>
+        
+           
+           <form action="" method="post" id="searchForm">
+            <table class="gridtable" style="width:100%;">
+                <tr>
+                    <th>页码：</th>
+                    <td><input type="text" name="pageNum"/></td>
+                    <th>页面大小：</th>
+                    <td><input type="text" name="pageSize"/></td>
+                    <td><a href="#" id="bnt_search" >查询</a></td>
+                </tr>
+            </table>
+        </form>
             <div id="tab1_con_1" class="con" style=" display:block">
-               <table class="ui compact table segment">
+               <table id="bond_table"class="ui compact table segment">
               <thead>
               <tr><th>产品代码</th>
               <th>产品名称</th>
@@ -74,108 +88,6 @@
               <th>操作</th>
               </tr>
               </thead>
-              <tbody>
-                  <tr>
-                  <td>201412050937</td>
-                  <td>鑫泰山1号</td>
-                  <td>2014-12-5</td>
-                  <td>3月</td>
-                  <td>15.00%</td>
-                  <td>已发行</td>
-                  <td><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /></td>
-                  <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-                </tr>
-              <tr>
-                  <td>201412220020</td>
-                  <td>小金库</td>
-                  <td>2014-10-3</td>
-                  <td>3月</td>
-                  <td>1.95%</td>
-                  <td>未发行</td>
-                  <td><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /></td>
-                  <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-              </tr>
-              <tr>
-                  <td>201412160029</td>
-                  <td>白石20号基金 </td>
-                  <td>2014-11-5</td>
-                  <td>2月</td>
-                  <td>0.24%</td>
-                  <td>已发行</td>
-                  <td><img src="images/xx.png" width="16" height="13" /></td>
-                  <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-              </tr>
-              <tr>
-                <td>201412050937</td>
-                <td>鑫泰山1号</td>
-                <td>2014-12-5</td>
-                <td>3月</td>
-                <td>15.00%</td>
-                <td>已发行</td>
-                <td><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /></td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-              </tr>
-              <tr>
-                <td>201412220020</td>
-                <td>小金库</td>
-                <td>2014-10-3</td>
-                <td>3月</td>
-                <td>1.95%</td>
-                <td>未发行</td>
-                <td><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /></td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-              </tr>
-              <tr>
-                <td>201412160029</td>
-                <td>白石20号基金 </td>
-                <td>2014-11-5</td>
-                <td>2月</td>
-                <td>0.24%</td>
-                <td>已发行</td>
-                <td><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /></td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-              </tr>
-              <tr>
-                <td>201412050937</td>
-                <td>鑫泰山1号</td>
-                <td>2014-12-5</td>
-                <td>3月</td>
-                <td>15.00%</td>
-                <td>已发行</td>
-                <td><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /><img src="images/xx.png" width="16" height="13" /></td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-              </tr>
-              <tr>
-                <td>201412220020</td>
-                <td>小金库</td>
-                <td>2014-10-3</td>
-                <td>3月</td>
-                <td>1.95%</td>
-                <td>未发行</td>
-                <td><img src="images/xx.png" width="16" height="13" /></td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-              </tr>
-              <tr>
-                <td>201412160029</td>
-                <td>白石20号基金 </td>
-                <td>2014-11-5</td>
-                <td>2月</td>
-                <td>0.24%</td>
-                <td>已发行</td>
-                <td><img src="images/xx.png" width="16" height="13" /></td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-              </tr>
-              <tr>
-                <td>201412050937</td>
-                <td>鑫泰山1号</td>
-                <td>2014-12-5</td>
-                <td>3月</td>
-                <td>15.00%</td>
-                <td>已发行</td>
-                <td><img src="images/xx.png" width="16" height="13" /></td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
-              </tr>
-              </tbody>
         </table> 
         <div class="page_menu">
           <a class="item">  <  </a>

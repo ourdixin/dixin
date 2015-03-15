@@ -5,6 +5,14 @@
 <configuration>
 	<properties resource="/config/db/dbConfig.properties">
 	</properties>
+	
+	<plugins>
+	  <plugin interceptor="com.github.pagehelper.PageHelper">
+	    <property name="dialect" value="mysql"/>
+	    <property name="pageSizeZero" value="true"/>
+	    <property name="reasonable" value="true"/>
+	  </plugin>
+	</plugins>
 
 	<environments default="development">
 		<environment id="development">
@@ -20,9 +28,12 @@
 		</environment>
 	</environments>
 
+
+
 <!-- 	<mappers> -->
 <!-- 		<mapper resource="org/mybatis/builder/AuthorMapper.xml" /> -->
 <!-- 		<mapper resource="org/mybatis/builder/BlogMapper.xml" /> -->
 <!-- 		<mapper resource="org/mybatis/builder/PostMapper.xml" /> -->
 <!-- 	</mappers> -->
+
 </configuration>
