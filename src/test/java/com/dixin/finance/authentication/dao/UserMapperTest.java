@@ -1,6 +1,5 @@
 package com.dixin.finance.authentication.dao;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.dixin.finance.authentication.vo.UserVO;

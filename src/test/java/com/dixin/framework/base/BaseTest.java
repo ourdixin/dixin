@@ -2,13 +2,8 @@ package com.dixin.framework.base;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.joran.JoranConfigurator;
-import ch.qos.logback.core.joran.spi.JoranException;
 
 public abstract class BaseTest {
 	
@@ -24,19 +19,6 @@ public abstract class BaseTest {
 			}
 			this.context = new ClassPathXmlApplicationContext(configLocation);
 		}
-		
-		// 初始化日志
-//		LoggerContext lc = (LoggerContext)LoggerFactory.getILoggerFactory();
-//		JoranConfigurator config = new JoranConfigurator();
-//		config.setContext(lc);
-//		lc.reset();
-//		try {
-//			config.doConfigure("/config/log/logback.xml");
-//		} catch (JoranException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
 	}
 	
 	protected abstract String getConfigLocation();
