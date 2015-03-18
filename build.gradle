@@ -35,6 +35,8 @@ dependencies {
    compile 'com.fasterxml.jackson.core:jackson-annotations:2.5.1'
    compile 'com.github.pagehelper:pagehelper:3.6.3'
    compile 'com.github.jsqlparser:jsqlparser:0.9.1'
+   compile 'org.apache.commons:commons-lang3:3.3.2'
+   compile 'junit:junit:4.12'
    runtime 'javax.servlet:jstl:1.1.2'
    runtime 'taglibs:standard:1.1.2'
 }
