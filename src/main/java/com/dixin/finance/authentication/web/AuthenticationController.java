@@ -18,7 +18,7 @@ import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
 
 @Controller
-public class RegisterController {
+public class AuthenticationController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	

@@ -1,0 +1,29 @@
+﻿@charset "utf-8";
+/**定义整个页面大小 默认为1002px*/
+.user_serch{
+	border:1px solid #e1e1e1;
+	margin:20px 0;
+	}
+.user_serch p{
+	margin:40px 0 40px 180px;
+	font-size:18px;
+	line-height:44px;
+	height:44px;}
+.user_serch .text{
+	border:1px solid #f79122;
+	width:350px;
+	line-height:40px;
+	height:40px;
+	text-indent:10px;
+	vertical-align:middle;
+	font-size:18px;
+	color:#666;
+	font-family:微软雅黑;}
+.user_serch span{
+	background:#f79122;
+	color:#fff;
+	padding:10px 20px;
+	line-height:44px;
+	height:44px;
+	font-size:18px;
+	vertical-align:middle;}
