@@ -2,7 +2,10 @@ package com.dixin.finance.product.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.dixin.framework.base.vo.BaseVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * 产品信息
@@ -34,6 +37,8 @@ public class ProductVO extends BaseVO {
 	/**
 	 * 发行时间
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date releaseDate;
 	
 	/**
@@ -62,6 +67,16 @@ public class ProductVO extends BaseVO {
 	private float rateB;
 	
 	/**
+	 * B类份额
+	 */
+	private float percentC;
+	
+	/**
+	 * B类年化收益率
+	 */
+	private float rateC;
+	
+	/**
 	 * 产品规模
 	 */
 	private double amount;
@@ -88,6 +103,19 @@ public class ProductVO extends BaseVO {
 	private int profitId;
 	private int bonusType;
 	private String info;
+	
+	private String createUser; // 创建人',
+
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date createTime; // 创建时间',
+	private String updateUser; // 更新人',
+
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date updateTime; // 更新时间',
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -207,6 +235,42 @@ public class ProductVO extends BaseVO {
 	}
 	public void setInfo(String info) {
 		this.info = info;
+	}
+	public float getPercentC() {
+		return percentC;
+	}
+	public void setPercentC(float percentC) {
+		this.percentC = percentC;
+	}
+	public float getRateC() {
+		return rateC;
+	}
+	public void setRateC(float rateC) {
+		this.rateC = rateC;
+	}
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 	
 	

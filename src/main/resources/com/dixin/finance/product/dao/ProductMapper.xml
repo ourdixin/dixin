@@ -7,7 +7,33 @@
   <cache />
 
   <select id="queryProductList" resultType="com.dixin.finance.product.vo.ProductVO">
-		SELECT * FROM product
+		select id id,
+			code code, 
+			name name, 
+			release_date releaseDate, 
+			term term, 
+			part_a partA, 
+			rate_a rateA, 
+			rate_a rateA, 
+			rate_b rateB, 
+			part_c partC, 
+			rate_c rateC, 
+			amount amount, 
+			mina_mount minaMount, 
+			pay_type payType, 
+			ad_file adFile, 
+			guide_file guideFile, 
+			state state, 
+			star star, 
+			catogry_id catogryId, 
+			profit_id profitId, 
+			bonus_type bonusType, 
+			info info, 
+			create_user createUser, 
+			create_time createTime, 
+			update_user updateUser, 
+			update_time updateTime
+		from product
   </select>
 
 </mapper>

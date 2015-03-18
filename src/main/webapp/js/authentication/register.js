@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	success: function success(data){
+	function success(data){
 		alert("注册成功！")
 	};
 	

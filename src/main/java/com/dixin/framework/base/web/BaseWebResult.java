@@ -2,18 +2,18 @@ package com.dixin.framework.base.web;
 
 public class BaseWebResult {
 	
-	private boolean isSucess = true;
+	private boolean isSuccess = true;
 	
 	private String msg;
 	
 	private Object result;
 
-	public boolean isSucess() {
-		return isSucess;
+	public boolean isSuccess() {
+		return isSuccess;
 	}
 
-	public void setSucess(boolean isSucess) {
-		this.isSucess = isSucess;
+	public void setSuccess(boolean isSuccess) {
+		this.isSuccess = isSuccess;
 	}
 
 	public String getMsg() {

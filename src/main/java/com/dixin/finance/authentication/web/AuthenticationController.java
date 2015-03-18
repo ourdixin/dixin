@@ -33,7 +33,7 @@ public class AuthenticationController {
 		logger.info("用户" + userVO.getUserName() + "注册成功");
 		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		BaseWebResult webResult = new BaseWebResult();
-		webResult.setSucess(true);
+		webResult.setSuccess(true);
 		webResult.setResult(userVO);
 		return webResult;
 	}
@@ -48,13 +48,13 @@ public class AuthenticationController {
 		if(userVO != null)
 		{
 			logger.info("用户" + username + "登陆成功");
-			webResult.setSucess(true);
+			webResult.setSuccess(true);
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		}
 		else
 		{
-			logger.info("用户" + userVO.getUserName() + "登陆失败");
-			webResult.setSucess(false);
+			logger.info("用户" + username + "不存在或密码错误！");
+			webResult.setSuccess(false);
 
 		}
 		
