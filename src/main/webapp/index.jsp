@@ -25,17 +25,17 @@
       </thead>
       <tbody>
       <# if(success){ #>
-		    <# for(i = 0; i < result.length; i++){ #> 
+		    <# for(i = 0; i < result.list.length; i++){ #> 
             <tr>
-              <td><#=result[i].code#></td>
-              <td><#=result[i].name#></td>
-              <td><#=result[i].releaseDate#></td>
-              <td><#=term#>月</td>
+              <td><#=result.list[i].code#></td>
+              <td><#=result.list[i].name#></td>
+              <td><#=result.list[i].releaseDate#></td>
+              <td><#=result.list[i].term#>月</td>
               <# // TODO 设计确实 #>
               <td>缺失</td>
-              <td><#=result[i].state#></td>
+              <td><#=result.list[i].state#></td>
               <td>
-              	<# for(j = 0; j < result[i].star; j ++){ #> 
+              	<# for(j = 0; j < result.list[i].star; j ++){ #> 
               		<img src="images/xx.png" width="16" height="13" />
               	<# } #>
               </td>
@@ -46,13 +46,10 @@
       </tbody>
 </table> 
         <div class="page_menu">
-          <a class="item">  <  </a>
-          <a class="item">1</a>
-          <a class="item">2</a>
-          <a class="item">3</a>
-          <a class="item">4</a>
-          <a class="item">5</a>
-          <a class="item">6</a>
+		<a class="item">  <  </a>
+		<# for(i = 0; i < result.pages; i++){ #> 
+          <a class="item"><#=i+1#></a>
+		<# } #>
           <a class="item"> >  </a>
         </div>
 </script>

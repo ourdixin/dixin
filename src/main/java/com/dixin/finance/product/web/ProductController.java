@@ -19,6 +19,8 @@ import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.framework.base.web.BaseWebResult;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 /**
  * @author Administrator
@@ -33,13 +35,28 @@ public class ProductController {
 	private IProductService productService;
 
 	@RequestMapping(value="/products", method=RequestMethod.GET)
-	public @ResponseBody BaseWebResult queryProductList(UserVO userVO, HttpSession session){
+	public @ResponseBody BaseWebResult queryProductList(UserVO userVO, Integer pageNum, Integer pageSize, HttpSession session){
 		
-		List<ProductVO> products = productService.queryProductList();
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		
+	    PageHelper.startPage(pageNum, pageSize);
+	    List<ProductVO> products = productService.queryProductList();
+	    PageInfo<ProductVO> page = new PageInfo(products);
 		logger.info("queryProductList 查询产品列表完成");
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(true);
-		webResult.setResult(products);
+		webResult.setResult(page);
 		return webResult;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
