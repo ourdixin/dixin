@@ -845,6 +845,14 @@ li {
 	font-size:12px;
 	
 	}
+.page_menu .itemhot {
+	border-radius:4px;
+	border:1px solid #ffff00;
+	padding:2px 8px;
+	background:#f5f5f5;
+	font-size:12px;
+	
+	}	
 	
  .jg{
 	background:#e1e1e1;

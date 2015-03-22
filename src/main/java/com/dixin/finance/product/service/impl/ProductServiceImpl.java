@@ -3,7 +3,9 @@
  */
 package com.dixin.finance.product.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -27,8 +29,11 @@ public class ProductServiceImpl implements IProductService{
 	 * @see com.dixin.finance.product.service.impl.IProductService#queryProductList()
 	 */
 	@Override
-	public List<ProductVO> queryProductList() {
-		return productMapper.queryProductList();
+	public List<ProductVO> queryProductList(int productType) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("productType", productType);		
+		return productMapper.queryProductList(map);
 	}
 	
 }

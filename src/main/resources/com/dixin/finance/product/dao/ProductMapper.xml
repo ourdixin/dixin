@@ -6,7 +6,7 @@
 
   <cache />
 
-  <select id="queryProductList" resultType="com.dixin.finance.product.vo.ProductVO">
+  <select id="queryProductList" parameterType="map" resultType="com.dixin.finance.product.vo.ProductVO">
 		select id id,
 			code code, 
 			name name, 
@@ -34,6 +34,12 @@
 			update_user updateUser, 
 			update_time updateTime
 		from product
+		<if test="productType != null and productType != 30">  
+            <![CDATA[  
+              WHERE catogry_id=#{productType} 
+            ]]>  
+        </if>  
+		
   </select>
 
 </mapper>
