@@ -339,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_type` int(11) NOT NULL COMMENT '是客户还是后台管理用户',
   `enabled` tinyint(1) NOT NULL COMMENT '是否有效',
   `reg_date` date NOT NULL COMMENT '注册日期',
-  `name` int(11) COMMENT '姓名',
+  `name` varchar(64) COMMENT '姓名',
   `mobile` varchar(11) NOT NULL COMMENT '手机号',
   `area_id` int(11) COMMENT '地区ID',
   `address` varchar(256) COMMENT '地址',
