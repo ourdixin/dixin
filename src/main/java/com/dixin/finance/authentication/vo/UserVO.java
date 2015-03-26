@@ -23,7 +23,7 @@ public class UserVO extends BaseVO {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date regDate; // 注册日期
-	private int name; // 姓名
+	private String name; // 姓名
 	private String mobile; // 手机号
 	private int areaId; // 地区ID
 	private String address; // 地址
@@ -86,10 +86,10 @@ public class UserVO extends BaseVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public int getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	public String getMobile() {

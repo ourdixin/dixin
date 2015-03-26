@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dixin.finance.authentication.service.IUserService;
+import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
@@ -47,8 +48,10 @@ public class AuthenticationController {
 		UserVO userVO = userServiceImpl.login(username,password);
 		if(userVO != null)
 		{
+			UserInfo userInfo = new UserInfo(userVO);
 			logger.info("用户" + username + "登陆成功");
 			webResult.setSuccess(true);
+			webResult.setResult(userInfo);
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		}
 		else

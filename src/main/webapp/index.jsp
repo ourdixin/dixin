@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/popwindow.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/login.js"></script>
 <script type="text/html" id="product_item">
 
 	<table class="ui compact table segment">
@@ -72,21 +73,34 @@
 	<# } #>
 </script>
 
+<script type="text/html" id="login_span_tpl">
+	<#=result.name#>
+<# if( result.userType == 10 ) {#>
+	【普通会员】
+<#} else {#>
+	【认证会员】
+<# }  #>
+ 	| <a href="<%=request.getContextPath() %>/user.jsp">我的121金融</a> | <a href="<%=request.getContextPath() %>/logout.jsp">安全退出</a>
+</script>
+
 </head>
 
 <body>
 <!---TOP头部共用部份---->
  <div class="header_top">
-   <div class="body_width"><i>欢迎进入121金融个人理财中心</i><span>李东伟【普通会员】 | 我的121金融 | 安全退出</span></div></div>
+   <div class="body_width"><i>欢迎进入121金融个人理财中心</i><span id='login_span'> <a href="login.html">登陆 </a>| <a href="registration.html">免费注册</a></span></div></div>
 <div id="top"><div class="main_top"><a href="index.html"><img src="images/index_03.jpg" width="408" height="50" /></a></div></div>
 <!---TOP结束---->
 <div id="main_body" style="padding:0; width:1002px;">
 <div class="index_login">
 <div>登录121金融帐户</div>
-<div><input name="" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}"  class="log_user"/>
-<input name="" type="password" value="" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" class="log_pass" /></div>
+<div>
+<form id="loginForm">
+<input id="username" name="username"  type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}"  class="log_user"/>
+<input name="password" id="pass" type="password" value="" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" class="log_pass" /></div>
 <dt><a href="forget_pass.html">忘记密码？</a> <input type="checkbox" name="checkbox" id="checkbox" />记住手机号码</dt>
-<span><a href="#">登录</a></span>
+<span><a class="bnt_ok" href="#none">登录</a></span>
+</form>
 <del><a href="registration.html">点击这里注册</a>还没有注册过？</del>
 
 </div>

@@ -26,7 +26,7 @@
 <table>
               <tbody><tr>
                 <td class="t" width="15%">您的帐号： </td>
-                <td width="85%"><input maxlength="11" id="userName" name="userName" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ><div class="input-r-tips lt"></div></td>
+                <td width="85%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ><div class="input-r-tips lt"></div></td>
               </tr>
               <tr>
                 <td class="t">登录密码：</td>
