@@ -9,14 +9,17 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.constant.ProductTypeConstant;
@@ -24,6 +27,7 @@ import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.vo.PageDataItem;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.framework.base.web.BaseWebResult;
+import com.dixin.framework.constant.WebConstants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -40,12 +44,15 @@ public class ProductController {
 	private IProductService productService;
 
 	@RequestMapping(value="/products", method=RequestMethod.GET)
-	public @ResponseBody BaseWebResult queryProductList(UserVO userVO, Integer pageNum, Integer pageSize, Integer productType, HttpSession session){
+	public @ResponseBody BaseWebResult queryProductList(UserVO userVO, Integer pageNum, Integer pageSize, Integer productType,String  searchText, HttpSession session){
 		
 		if(pageNum == null)
 			pageNum = 1;
 		if(pageSize == null)
 			pageSize = 10;
+		
+		if(searchText==null)
+			searchText = "";
 		
 		if(productType == null )
 			productType = ProductTypeConstant.ALL;
@@ -62,7 +69,7 @@ public class ProductController {
 			{
 				PageDataItem item = new PageDataItem();
 				item.setId(i - ProductTypeConstant.ALL);
-				item.setProducts(GetProducts(pageNum,pageSize,i));
+				item.setProducts(GetProducts(pageNum,pageSize,i,searchText));
 			    result.add(item);
 			}
 		}
@@ -70,7 +77,7 @@ public class ProductController {
 		{
 			PageDataItem item = new PageDataItem();
 			item.setId(productType - ProductTypeConstant.ALL);
-			item.setProducts(GetProducts(pageNum,pageSize,productType));
+			item.setProducts(GetProducts(pageNum,pageSize,productType,searchText));
 		    result.add(item);
 		}
 		
@@ -82,10 +89,26 @@ public class ProductController {
 		return webResult;
 	}
 	
-	public PageInfo<ProductVO> GetProducts(int pageNum, int pageSize,int productType){
+	public PageInfo<ProductVO> GetProducts(int pageNum, int pageSize,int productType,String searchText){
 	    PageHelper.startPage(pageNum, pageSize);
-	    List<ProductVO> products = productService.queryProductList(productType);
+	    List<ProductVO> products = productService.queryProductList(productType,searchText);
 	    return new PageInfo(products);
+	}
+
+	@RequestMapping(value="/product/view", method=RequestMethod.GET)
+	public String productView(int productId,HttpSession session,Model model,HttpServletRequest request){
+	
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "authentication/login";
+		}
+		
+		return "product/view";
 	}
 	
 }

@@ -1,11 +1,13 @@
 package com.dixin.finance.authentication.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,9 +28,27 @@ public class AuthenticationController {
 	@Resource
 	private IUserService userServiceImpl;
 
+	/*
+	@RequestMapping(value="/index")
+	public String index(HttpSession session,Model model,HttpServletRequest request){
+	
+		logger.info("首页被访问!");
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			model.addAttribute("user", userVO);
+		}
+		
+		return "index1";
+	}	
+	*/
+	
 	@RequestMapping(value="/authentication/user", method=RequestMethod.POST)
-	public @ResponseBody BaseWebResult register(UserVO userVO, HttpSession session){
-
+	public @ResponseBody BaseWebResult register(UserVO userVO, String backurl, HttpSession session,HttpServletRequest request){
+		
+		if(backurl == null || backurl=="")
+			backurl=request.getContextPath();
+		
 		logger.info("用户" + userVO.getUserName() + "注册开始");
 		userServiceImpl.register(userVO);
 		logger.info("用户" + userVO.getUserName() + "注册成功");
@@ -36,12 +56,14 @@ public class AuthenticationController {
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(true);
 		webResult.setResult(userVO);
+		webResult.setMsg(backurl);
+		
 		return webResult;
 	}
 
 	
 	@RequestMapping(value="/authentication/login", method=RequestMethod.POST)
-	public @ResponseBody BaseWebResult login(String username,String password, HttpSession session){
+	public @ResponseBody BaseWebResult login(String username,String password,String backurl, HttpSession session,HttpServletRequest request){
 		
 		BaseWebResult webResult = new BaseWebResult();
 		logger.info("用户" + username + "登陆开始");
@@ -52,13 +74,17 @@ public class AuthenticationController {
 			logger.info("用户" + username + "登陆成功");
 			webResult.setSuccess(true);
 			webResult.setResult(userInfo);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath();
+			webResult.setMsg(backurl);
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		}
 		else
 		{
-			logger.info("用户" + username + "不存在或密码错误！");
+			String msg= "用户" + username + "不存在或密码错误！";
+			logger.info(msg);
+			webResult.setMsg(msg);
 			webResult.setSuccess(false);
-
 		}
 		
 		webResult.setResult(userVO);	

@@ -34,9 +34,10 @@
 			update_user updateUser, 
 			update_time updateTime
 		from product
+		 WHERE name like '%${searchText}%' 
 		<if test="productType != null and productType != 30">  
             <![CDATA[  
-              WHERE catogry_id=#{productType} 
+               and catogry_id=#{productType} 
             ]]>  
         </if>  
 		

@@ -7,6 +7,6 @@ import com.dixin.finance.product.vo.ProductVO;
 
 public interface IProductService {
 
-	public abstract List<ProductVO> queryProductList(int productType);
+	public abstract List<ProductVO> queryProductList(int productType,String searchText);
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,22 +24,24 @@
 <div class="register">
 <div class="info_frm">
 <form id="loginForm">
+<input type="hidden" name="backurl" value="${backurl}" />
 <table>
-              <tbody><tr>
-                <td class="t" width="15%">您的帐号： </td>
-                <td width="85%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ><div class="input-r-tips lt"></div></td>
-              </tr>
-              <tr>
-                <td class="t">登录密码：</td>
-                <td><input maxlength="12" class="itstyle lt it" name="password" id="pass" type="password"><div class="input-r-tips"></div></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>
-                  <span class="bnt_ok">立即登陆</span>
-                </td>
-              </tr>
-            </tbody></table>
+      <tbody><tr>
+        <td class="t" width="15%">您的帐号： </td>
+        <td width="85%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ><div class="input-r-tips lt"></div></td>
+      </tr>
+      <tr>
+        <td class="t">登录密码：</td>
+        <td><input maxlength="12" class="itstyle lt it" name="password" id="pass" type="password"><div class="input-r-tips"></div></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <span class="bnt_ok">立即登陆</span>
+        </td>
+      </tr>
+    </tbody>
+</table>
 </form>
 </div>
 

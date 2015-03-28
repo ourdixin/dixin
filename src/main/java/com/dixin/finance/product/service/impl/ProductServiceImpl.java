@@ -29,10 +29,11 @@ public class ProductServiceImpl implements IProductService{
 	 * @see com.dixin.finance.product.service.impl.IProductService#queryProductList()
 	 */
 	@Override
-	public List<ProductVO> queryProductList(int productType) {
+	public List<ProductVO> queryProductList(int productType,String searchText) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("productType", productType);		
+		map.put("productType", productType);	
+		map.put("searchText", searchText);
 		return productMapper.queryProductList(map);
 	}
 	
