@@ -1,7 +1,11 @@
 package com.dixin.finance.authentication.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
@@ -28,8 +33,10 @@ public class AuthenticationController {
 	@Resource
 	private IUserService userServiceImpl;
 
-	/*
-	@RequestMapping(value="/index")
+	@Resource
+	private ISmsService smsServiceImpl;
+	
+	@RequestMapping(value="/")
 	public String index(HttpSession session,Model model,HttpServletRequest request){
 	
 		logger.info("首页被访问!");
@@ -39,9 +46,9 @@ public class AuthenticationController {
 			model.addAttribute("user", userVO);
 		}
 		
-		return "index1";
+		return "index";
 	}	
-	*/
+	
 	
 	@RequestMapping(value="/authentication/user", method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult register(UserVO userVO, String backurl, HttpSession session,HttpServletRequest request){
@@ -92,7 +99,27 @@ public class AuthenticationController {
 		return webResult;
 	}	
 	
+	@RequestMapping(value="/authentication/sendsms")
+	public @ResponseBody BaseWebResult register(String phone, HttpSession session,HttpServletRequest request){
+		
+		List<String>	phoneList = new ArrayList<String>();
+		phoneList.add(phone);
+		String strMsg = "121金融短信验证码:123456";
+		smsServiceImpl.sendSms(strMsg, phoneList);
+		
+		BaseWebResult webResult = new BaseWebResult();
+		return webResult;
+	}
 	
+	@RequestMapping(value="/authentication/validatecode", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult register(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		
+		
+		
+		
+		BaseWebResult webResult = new BaseWebResult();
+		return webResult;
+	}
 	
 	public IUserService getUserServiceImpl() {
 		return userServiceImpl;
@@ -101,5 +128,12 @@ public class AuthenticationController {
 	public void setUserServiceImpl(IUserService userServiceImpl) {
 		this.userServiceImpl = userServiceImpl;
 	}
+	
+	public ISmsService getSmsServiceImpl() {
+		return smsServiceImpl;
+	}
 
+	public void setSmsServiceImpl(ISmsService smsServiceImpl) {
+		this.smsServiceImpl = smsServiceImpl;
+	}
 }
