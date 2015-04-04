@@ -41,12 +41,12 @@ public class AuthenticationController {
 	
 		logger.info("首页被访问!");
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
-		if(userVO == null)
+		if(userVO != null)
 		{
 			model.addAttribute("user", userVO);
 		}
 		
-		return "index";
+		return "main";
 	}	
 	
 	
