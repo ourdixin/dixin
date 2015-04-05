@@ -19,5 +19,4 @@ public class AssignmentServceImpl implements IAssignmentService {
 	public void insertAssignment(AssignmentVO assignment) {
 		assignmentMapper.insert(assignment);
 	}
-
 }
