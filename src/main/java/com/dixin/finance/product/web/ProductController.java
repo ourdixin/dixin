@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.constant.ProductTypeConstant;
+import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.service.IProductService;
+import com.dixin.finance.product.vo.AssignmentVO;
 import com.dixin.finance.product.vo.PageDataItem;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.framework.base.web.BaseWebResult;
@@ -42,6 +45,9 @@ public class ProductController {
 	
 	@Resource(name="productServiceImpl")
 	private IProductService productService;
+	
+	@Resource(name="assignmentServiceImpl")
+	private IAssignmentService assignmentService;
 
 	@RequestMapping(value="/products", method=RequestMethod.GET)
 	public @ResponseBody BaseWebResult queryProductList(UserVO userVO, Integer pageNum, Integer pageSize, Integer productType,String  searchText, HttpSession session){
@@ -109,6 +115,16 @@ public class ProductController {
 		}
 		
 		return "product/view";
+	}
+	
+	@RequestMapping(value="/product/assignment", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,String backurl, HttpSession session,HttpServletRequest request){
+		assignmentService.insertAssignment(assignment);
+		BaseWebResult webResult = new BaseWebResult();
+		webResult.setSuccess(true);
+		webResult.setResult(assignment);
+		webResult.setMsg(backurl);
+		return webResult;
 	}
 	
 }

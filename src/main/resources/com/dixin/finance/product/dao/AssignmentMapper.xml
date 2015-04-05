@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.authentication.dao.UserMapper">
+
+  <!-- cache / 暂时去掉缓存，等后台可以操作的时候再加上缓存 -->
+  
+  <insert id="insert" parameterType="com.dixin.finance.product.vo.AssignmentVO" >
+    insert into Assignmnet(
+		user_id,
+		assign_data,
+		amount,
+		product_id,
+		pay_type,
+		assign_type,
+		contactor,
+		tel,
+		create_user,
+		create_time,
+		update_user,
+		update_time)
+	values(
+		#{user_id},
+		#{assign_data},
+		#{amount},
+		#{product_id},
+		#{pay_type},
+		#{assign_type},
+		#{contactor},
+		#{tel},
+		0，
+		SYSDATE(),
+		0，
+		SYSDATE()
+	)
+  </insert>  
+</mapper>
