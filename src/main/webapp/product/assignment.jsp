@@ -85,7 +85,5 @@
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 <!---foot底部结束---->
-
-ddd
 </body>
 </html>
