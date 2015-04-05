@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 import com.dixin.finance.product.dao.AssignmentMapper;
 import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.vo.AssignmentVO;
-@Service
+
+@Service("assignmentServiceImpl")
 public class AssignmentServceImpl implements IAssignmentService {
 	
 	@Resource
