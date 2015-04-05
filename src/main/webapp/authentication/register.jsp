@@ -14,9 +14,7 @@
 
 <body>
 <!---TOP头部共用部份---->
- <div class="header_top">
-   <div class="body_width"><i>欢迎进入121金融个人理财中心</i><span>李东伟【普通会员】 | 我的121金融 | 安全退出</span></div></div>
-<div id="top"><div class="main_top"><a href="index.html"><img src="<%=request.getContextPath() %>/images/index_03.jpg" width="408" height="50" /></a></div></div>
+<c:import url="/framework/header.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
 <div id="main_body">
 <div id="title_xi"></div>
@@ -70,10 +68,7 @@
 </div>
 
 <!---foot底部---->
-<div class="footer">
-<div class="footer_text">21金融 Copyright © 2014  All rights reserved  | 京ICP证20158984号  |  使用121金融前必读 </div>
-
-</div>
+<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 <!---foot底部结束---->
 </body>
 </html>

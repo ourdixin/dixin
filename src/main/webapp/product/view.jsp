@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!---TOP头部共用部份---->
+<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+<!---TOP结束---->
 
+
+
+<!---foot底部---->
+<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
+<!---foot底部结束---->
 </body>
 </html>

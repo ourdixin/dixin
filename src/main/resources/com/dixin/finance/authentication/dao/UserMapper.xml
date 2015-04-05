@@ -31,7 +31,7 @@
 		update_time)
 	values(
 		#{userName},
-		#{password},
+		PASSWORD(#{password}),
 		#{userType},
 		#{enabled},
 		SYSDATE(),
@@ -107,7 +107,7 @@
 	FROM
 	    user
 	WHERE 
-		password=#{password} and (user_name = #{userName} or mobile= #{userName} )
+		password=PASSWORD(#{password}) and (user_name = #{userName} or mobile= #{userName} )
   </select>
   
 	<!-- 更新用户信息 -->

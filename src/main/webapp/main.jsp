@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link href="css/LTT_define.css" rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/pptBox.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/js.js"></script>
@@ -86,28 +86,11 @@
 </head>
 
 <body>
-<!---TOP头部共用部份---->
- <div class="header_top">
-   <div class="body_width">
-   <i>欢迎进入121金融个人理财中心</i>
-   <span id='login_span'> 
-   	
-   	
 
-   <c:if  test="${null == user}" >  
-   		<a href="<%=request.getContextPath() %>/authentication/login.jsp">登陆 </a>
-   	  | <a href="<%=request.getContextPath() %>/authentication/register.jsp">免费注册</a>  
-	</c:if>
-<c:if  test="${null != user}" > 
-   ${user.name}【普通会员】  	
-	| <a href="<%=request.getContextPath() %>/user.jsp">我的121金融</a> | <a href="<%=request.getContextPath() %>/logout.jsp">安全退出</a>
-</c:if>
-   	   	  
-   </span>
-   </div>
-</div>
-<div id="top"><div class="main_top"><a href="index.html"><img src="images/index_03.jpg" width="408" height="50" /></a></div></div>
+<!---TOP头部共用部份---->
+<c:import url="/framework/header.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
+
 <div id="main_body" style="padding:0; width:1002px;">
 <div class="index_login">
 <div>登录121金融帐户</div>
@@ -187,10 +170,7 @@
 <div class="index_about"><a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.baidu.com/');" href="#"> <img src="images/index_28.jpg" width="151" height="29" /></a><a href="about.html"><img src="images/index_30.jpg" width="124" height="29" /></a></div>
 </div>
 <!---foot底部---->
-<div class="footer">
-<div class="footer_text">21金融 Copyright © 2014  All rights reserved  | 京ICP证20158984号  |  使用121金融前必读 </div>
-
-</div>
+<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 <!---foot底部结束---->
 </body>
 </html>
