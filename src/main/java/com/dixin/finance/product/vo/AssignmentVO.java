@@ -19,19 +19,19 @@ public class AssignmentVO extends BaseVO {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
-	private Date assign_data; //
+	private Date assign_data; //转让日期
 	
-	private double amount;
+	private double amount; //转让金额
 	
 	private int product_id;
 	
-	private int pay_type;
+	private int pay_type; //支付方式
 	
-	private int assign_type;
+	private int assign_type; //转让条件
 	
-	private String contactor;
+	private String contactor; //联系人
 	
-	private String tel;
+	private String tel;  //电话
 	
 	private String createUser; // 创建人',
 	private String updateUser; // 更新人',

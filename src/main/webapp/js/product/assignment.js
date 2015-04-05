@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	
 	function success(data){
 		alert("发布成功！")
 		location.href = data.msg;
