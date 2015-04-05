@@ -7,7 +7,7 @@ $(document).ready(function(){
 		if(data.result.length == 1 )
 		{
 			var htmlStr = template('product_item', data.result[0]);
-			$('#tab_con_' + data.result[0].id).html(htmlStr);
+			$('#tab1_con_' + data.result[0].id).html(htmlStr);
 			//$('.index_serch').after(htmlStr);
 		}
 		else

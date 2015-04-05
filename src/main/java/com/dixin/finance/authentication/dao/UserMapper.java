@@ -25,8 +25,20 @@ public interface UserMapper {
 	
 	/**
 	 * 
-	 * @param userVO
+	 * @param map
 	 */
 	List<UserVO> selectLoginUser(Map<String, Object> map);	
+
+	/**
+	 * 
+	 * @param userVO
+	 */
+	void updateUser(UserVO userVO);		
+	
+	/**
+	 * 
+	 * @param userId 
+	 */
+	void deleteUser(int userId);	
 	
 }

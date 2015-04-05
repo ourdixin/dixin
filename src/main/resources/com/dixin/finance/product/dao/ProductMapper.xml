@@ -4,9 +4,9 @@
 
 <mapper namespace="com.dixin.finance.product.dao.ProductMapper">
 
-  <cache />
+  <!--  cache /  如果加缓存的话，手动改动数据后就不会显示了 -->
 
-  <select id="queryProductList" parameterType="map" resultType="com.dixin.finance.product.vo.ProductVO">
+  <select id="queryProductList" parameterType="map" resultType="com.dixin.finance.product.vo.ProductVO" useCache="false" >
 		select id id,
 			code code, 
 			name name, 

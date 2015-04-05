@@ -36,6 +36,7 @@ dependencies {
    compile 'com.github.pagehelper:pagehelper:3.6.3'
    compile 'com.github.jsqlparser:jsqlparser:0.9.1'
    compile 'org.apache.commons:commons-lang3:3.3.2'
+   compile 'org.aspectj:aspectjweaver:1.7.4'
    compile 'junit:junit:4.12'
    compile 'org.apache.httpcomponents:httpclient:4.4'
    runtime 'javax.servlet:jstl:1.1.2'

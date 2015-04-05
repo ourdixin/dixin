@@ -4,9 +4,9 @@
 
 <mapper namespace="com.dixin.finance.authentication.dao.UserMapper">
 
-  <cache />
+  <!-- cache / 暂时去掉缓存，等后台可以操作的时候再加上缓存 -->
   
-  <insert id="insert" parameterType="com.dixin.finance.authentication.vo.UserVO">
+  <insert id="insert" parameterType="com.dixin.finance.authentication.vo.UserVO" >
     insert into User(
 		user_name,
 		password,
@@ -109,4 +109,40 @@
 	WHERE 
 		password=#{password} and (user_name = #{userName} or mobile= #{userName} )
   </select>
+  
+	<!-- 更新用户信息 -->
+	<update id="updateUser" parameterType="com.dixin.finance.authentication.vo.UserVO">
+		UPDATE user SET 
+		user_name=#{userName}
+		,password=#{password}
+		,user_type=#{userType}
+		,enabled=#{enabled}
+		,name=#{name}
+		,mobile=#{mobile}
+		,area_id=#{areaId}
+		,address=#{address}
+		,zip_code=#{zipCode}
+		,qq=#{qq}
+		,id_card=#{idCard}
+		,account=#{account}
+		,institution_id=#{institutionId}
+		,start_date=#{startDate}
+		,term=#{term}
+		,auth_type=#{authType}
+		,update_user=0
+		,update_time=0
+		WHERE id=#{id}
+	</update>
+  
+  
+  
+	<!-- 删除用户 -->
+	<delete id="deleteStudent" parameterType="int">
+			DELETE FROM user WHERE id = #{id}
+	</delete>
+  
+  
+  
+  
+  
 </mapper>
