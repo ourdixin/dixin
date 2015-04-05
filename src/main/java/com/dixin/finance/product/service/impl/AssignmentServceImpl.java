@@ -8,6 +8,7 @@ import com.dixin.finance.product.dao.AssignmentMapper;
 import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.vo.AssignmentVO;
 
+
 @Service("assignmentServiceImpl")
 public class AssignmentServceImpl implements IAssignmentService {
 	
