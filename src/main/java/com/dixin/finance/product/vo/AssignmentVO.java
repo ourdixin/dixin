@@ -19,7 +19,7 @@ public class AssignmentVO extends BaseVO {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
-	private Date assign_data; //转让日期
+	private Date assign_date; //转让日期
 	
 	private double amount; //转让金额
 	
@@ -56,11 +56,12 @@ public class AssignmentVO extends BaseVO {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	public Date getAssign_data() {
-		return assign_data;
+	
+	public Date getAssign_date() {
+		return assign_date;
 	}
-	public void setAssign_data(Date assign_data) {
-		this.assign_data = assign_data;
+	public void setAssign_data(Date assign_date) {
+		this.assign_date = assign_date;
 	}
 	public double getAmount() {
 		return amount;

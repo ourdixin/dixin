@@ -39,39 +39,41 @@
 					<tbody>
 						  <tr>
 						      <td width="18%" height="30" align="right">产品名称：</td>
-						      <td width="82%"><input maxlength="11" id="product_id" name="product_id" class="itstyle lt it" type="text" /></td>
+						      <td width="82%"><input maxlength="" id="product_id" name="product_id" class="itstyle lt it" type="text" /></td>
 						   </tr>
 						  <tr>
 						    <td height="30" align="right">产品类型/信托/资管：</td>
-						    <td><input maxlength="11" id="" name="" class="itstyle lt it" type="text" /></td>
+						    <td><input maxlength="" id="" name="" class="itstyle lt it" type="text" /></td>
 						  </tr>
 						  <tr>
 						    <td height="30" align="right">成立时间：</td>
-						    <td><input maxlength="11" id="" name="" class="itstyle lt it" type="text" /></td>
+						    <td><input maxlength="" id="" name="" class="itstyle lt it" type="text" /></td>
 						  </tr>
 						  <tr>
 						    <td height="30" align="right">期限：</td>
-						    <td><input maxlength="11" id="" name="" class="itstyle lt it" type="text" /></td>
+						    <td><input maxlength="" id="" name="" class="itstyle lt it" type="text" /></td>
 						  </tr>
 						  <tr>
 						    <td height="30" align="right">收益分配：</td>
-						    <td><input maxlength="11" id="" name="" class="itstyle lt it" type="text" /></td>
+						    <td><input maxlength="" id="" name="" class="itstyle lt it" type="text" /></td>
 						  </tr>
+						  <!--
 						  <tr>
 						    <td height="30" align="right">金额：</td>
-						    <td><input maxlength="11" id="amount" name="amount" class="itstyle lt it" type="text" /></td>
+						    <td><input maxlength="" id="amount" name="amount" class="itstyle lt it" type="text" /></td>
 						  </tr>
+						  -->
 						  <tr>
 						    <td height="30" align="right">联系人：</td>
-						    <td><input maxlength="11" id="contactor" name="contactor" class="itstyle lt it" type="text" /></td>
+						    <td><input maxlength="" id="contactor" name="contactor" class="itstyle lt it" type="text" /></td>
 						  </tr>
 						  <tr>
 						    <td height="30" align="right">联系电话：</td>
-						    <td><input maxlength="11" id="tel" name="tel" class="itstyle lt it" type="text" /></td>
+						    <td><input maxlength="" id="tel" name="tel" class="itstyle lt it" type="text" /></td>
 						  </tr>
 						  <tr>
 						    <td height="30" align="right">转让时间：</td>
-						    <td><input maxlength="11" id="assign_data" name="assign_data" class="itstyle lt it" type="text" /></td>
+						    <td><input  id="assign_date" name="assign_date" class="itstyle lt it" type="date" /></td>
 						  </tr>
 						  <tr>
 						    <td height="55" align="right">&nbsp;</td>

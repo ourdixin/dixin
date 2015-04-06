@@ -4,6 +4,7 @@
 package com.dixin.finance.product.web;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -117,9 +118,9 @@ public class ProductController {
 		return "product/view";
 	}
 	
-	@RequestMapping(value="/product/assignment", method=RequestMethod.POST)
+	@RequestMapping(value="/product/assignment",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,String backurl, HttpSession session,HttpServletRequest request){
-		System.out.println("test");
+		assignment.setAssign_data(new Date());
 		assignmentService.insertAssignment(assignment);
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(true);
@@ -128,4 +129,17 @@ public class ProductController {
 		return webResult;
 	}
 	
+	@RequestMapping(value="/product/queryAssignment")
+	public String queryAssignmentList(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		
+		PageHelper.startPage(pageNum, pageSize);
+		List<AssignmentVO> assignments = assignmentService.queryAssignmentList();
+		PageInfo<AssignmentVO> pageinfoList = new PageInfo(assignments);
+		model.addAttribute("assignmentList", pageinfoList);
+		return "/product/assignmentShow";
+	}
 }

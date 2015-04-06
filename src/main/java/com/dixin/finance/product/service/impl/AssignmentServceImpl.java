@@ -1,5 +1,7 @@
 package com.dixin.finance.product.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -18,5 +20,11 @@ public class AssignmentServceImpl implements IAssignmentService {
 	@Override
 	public void insertAssignment(AssignmentVO assignment) {
 		assignmentMapper.insert(assignment);
+	}
+
+	@Override
+	public List<AssignmentVO> queryAssignmentList() {
+		List<AssignmentVO> list = assignmentMapper.query();
+		return list;
 	}
 }

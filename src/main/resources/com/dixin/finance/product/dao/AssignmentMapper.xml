@@ -7,9 +7,9 @@
   <!-- cache / 暂时去掉缓存，等后台可以操作的时候再加上缓存 -->
   
   <insert id="insert" parameterType="com.dixin.finance.product.vo.AssignmentVO" >
-    insert into Assignmnet(
+    insert into Assignment(
 		user_id,
-		assign_data,
+		assign_date,
 		amount,
 		product_id,
 		pay_type,
@@ -22,18 +22,35 @@
 		update_time)
 	values(
 		#{user_id},
-		#{assign_data},
+		#{assign_date},
 		#{amount},
 		#{product_id},
 		#{pay_type},
 		#{assign_type},
 		#{contactor},
 		#{tel},
-		0，
+		0,
 		SYSDATE(),
-		0，
+		0,
 		SYSDATE()
 	)
   </insert>  
+  
+   <select id="query"  resultType="com.dixin.finance.product.vo.AssignmentVO" useCache="false" >
+		select id id,
+			user_id user_id,
+			assign_date assign_date,
+			amount amount,
+			product_id,product_id,
+			pay_type pay_type,
+			assign_type assign_type,
+			contactor contactor,
+			tel tel,
+			create_user createUser, 
+			create_time createTime, 
+			update_user updateUser, 
+			update_time updateTime
+		from assignment
+  </select>
 
 </mapper>

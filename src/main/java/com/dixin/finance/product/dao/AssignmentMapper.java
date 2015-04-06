@@ -1,5 +1,7 @@
 package com.dixin.finance.product.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.annotation.MapperScan;
 
 import com.dixin.finance.product.vo.AssignmentVO;
@@ -11,4 +13,10 @@ public interface AssignmentMapper {
 	 * @param assignment
 	 */
 	public void insert(AssignmentVO assignment);
+	
+	/**
+	 * 查询产品转让信息
+	 * @return 
+	 */
+	public List<AssignmentVO> query();
 }
