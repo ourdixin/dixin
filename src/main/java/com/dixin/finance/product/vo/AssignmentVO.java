@@ -60,9 +60,10 @@ public class AssignmentVO extends BaseVO {
 	public Date getAssign_date() {
 		return assign_date;
 	}
-	public void setAssign_data(Date assign_date) {
+	public void setAssign_date(Date assign_date) {
 		this.assign_date = assign_date;
 	}
+	
 	public double getAmount() {
 		return amount;
 	}

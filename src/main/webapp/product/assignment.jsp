@@ -57,12 +57,10 @@
 						    <td height="30" align="right">收益分配：</td>
 						    <td><input maxlength="" id="" name="" class="itstyle lt it" type="text" /></td>
 						  </tr>
-						  <!--
 						  <tr>
 						    <td height="30" align="right">金额：</td>
 						    <td><input maxlength="" id="amount" name="amount" class="itstyle lt it" type="text" /></td>
 						  </tr>
-						  -->
 						  <tr>
 						    <td height="30" align="right">联系人：</td>
 						    <td><input maxlength="" id="contactor" name="contactor" class="itstyle lt it" type="text" /></td>

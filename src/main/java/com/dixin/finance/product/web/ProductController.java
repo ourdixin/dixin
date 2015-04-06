@@ -120,7 +120,6 @@ public class ProductController {
 	
 	@RequestMapping(value="/product/assignment",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,String backurl, HttpSession session,HttpServletRequest request){
-		assignment.setAssign_data(new Date());
 		assignmentService.insertAssignment(assignment);
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(true);
