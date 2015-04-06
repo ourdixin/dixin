@@ -4,50 +4,58 @@
 
 $(document).ready(function(){
 	
+	template.config('openTag', '<#');
+	template.config('closeTag', '#>');	
+	
 	searchsuccess: function searchsuccess(data){
-		$("#bond_table tr:gt(0):not(:eq(0))").remove();
-		var tbody = "<tbody>";  
-		$.each(data.result,function(n,value) {   
-	           //alert(n+' '+value);  
-	           var trs = "";  
-	             trs += "<tr><td>" 
-	            	 + value.code 
-	            	 +"</td> <td>" 
-	            	 + value.name 
-	            	 +"</td> <td>" 
-	            	 +value.release_date
-	            	 +"</td> <td>" 
-                     +value.term
-                     +"</td> <td>" 
-                     +value.rate_a
-                     +"</td>" +
-                    " <td>已发行</td>" +
-                    "<td><img src=\"images/xx.png\" width=\"16\" height=\"13\" /><img src=\"images/xx.png\" width=\"16\" height=\"13\" /></td>" +
-                    "<td><span class=\"sg_tab\"><a href=\"#none\" onclick=\"testMessageBox(event);\">详细</a></span></td></tr>";  
-	             tbody += trs;         
-	           });  
-		tbody += "</tbody>";  
-	    $("#bond_table").append(tbody); 
+		if(data.result.length == 1 )
+		{
+			var htmlStr = template('product_item', data.result[0]);
+			$('#tab_products').html(htmlStr);
+		}
+		/*
+		else
+		{
+			var htmlStr = template('product_list', data);
+			$('.con').remove();
+			$('.index_serch').after(htmlStr);
+		}
+		*/	
+		$("a[class='item']").click(function(){
+			//$.post("/dixin/products/advance?pageNum="+this.text+"&productType="+this.name, null, success);
+			searchProducts(this.text);
+		});		
+		
 	};
 	
-	function SearchProduct(){ 
-		$.post("/dixin/product/search", $("#searchForm").serialize(), searchsuccess);
-	}	
 	
-	$('#bnt_search').click(function(){
+	function searchProducts(pageNum)
+	{	
+		var data = "";
+		$('div span:has(a[href^=javascript])').each(function(){
+			   data += this.id + "&";
+		 });
+		data += "pageNum=" +  pageNum;
+		$.post("/dixin/products/advance",data, searchsuccess);		
+	}
+	
+	$('dd a ').click(function(){
+		var name = this.parentNode.parentNode.firstElementChild.innerText;
+		var type = this.parentNode.parentNode.firstElementChild.id;
 		
-		SearchProduct();
+		$('span[id^=' + type + '] ').remove();
+		
+		$('.t').append(" <span id='" + type + "=" + this.id + "' > " + name + this.text + "<a href='javascript:void(0)' >X</a></span>");
+
+		$('span a[href^=javascript] ').click(function(){
+			this.parentNode.remove();
+			searchProducts();
+		});		
+		
+		searchProducts(1);
+		
 	});
 	
-	
-	loginsuccess: function loginsuccess(data){
-		alert(data);
-	};
 
 	
-	$('#btn_login').click(function(){
-		$.post("/dixin/authentication/login", $("#loginForm").serialize(), loginsuccess);
-	});	
-	
-	SearchProduct();
 });

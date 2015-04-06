@@ -40,7 +40,7 @@
               <td><#=products.list[i].state#></td>
               <td>
               	<# for(j = 0; j < products.list[i].star; j ++){ #> 
-              		<img src="images/xx.png" width="16" height="13" />
+              		<img src="<%=request.getContextPath()%>/images/xx.png" width="16" height="13" />
               	<# } #>
               </td>
               <td><span class="sg_tab"><a href="<%=request.getContextPath()%>/product/view?productId=<#=products.list[i].id#>" >详细</a></span></td>
@@ -92,18 +92,21 @@
 <!---TOP结束---->
 
 <div id="main_body" style="padding:0; width:1002px;">
-<div class="index_login">
-<div>登录121金融帐户</div>
-<div>
-<form id="loginForm">
-<input id="username" name="username"  type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}"  class="log_user"/>
-<input name="password" id="pass" type="password" value="" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" class="log_pass" /></div>
-<dt><a href="<%=request.getContextPath() %>/authentication/forget_pass.html">忘记密码？</a> <input type="checkbox" name="checkbox" id="checkbox" />记住手机号码</dt>
-<span><a class="bnt_ok" href="#none">登录</a></span>
-</form>
-<del><a href="<%=request.getContextPath() %>/authentication/register.jsp">点击这里注册</a>还没有注册过？</del>
+<c:if test="${null == user}">
+	<div class="index_login">
+	<div>登录121金融帐户</div>
+	<div>
+	
+	<form id="loginForm">
+	<input id="username" name="username"  type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}"  class="log_user"/>
+	<input name="password" id="pass" type="password" value="" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" class="log_pass" /></div>
+	<dt><a href="<%=request.getContextPath() %>/authentication/forget_pass.html">忘记密码？</a> <input type="checkbox" name="checkbox" id="checkbox" />记住手机号码</dt>
+	<span><a class="bnt_ok" href="#none">登录</a></span>
+	</form>
+	<del><a href="<%=request.getContextPath() %>/authentication/register.jsp">点击这里注册</a>还没有注册过？</del>
 
-</div>
+	</div>
+</c:if>
 <div id="xxx" style="width:1002px; height:358px;" >
      <script>
      var box =new PPTBox();

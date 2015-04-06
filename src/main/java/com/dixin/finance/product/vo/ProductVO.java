@@ -49,7 +49,7 @@ public class ProductVO extends BaseVO {
 	/**
 	 * A类份额
 	 */
-	private float percentA;
+	private float partA;
 	
 	/**
 	 * A类年华收益率
@@ -59,7 +59,7 @@ public class ProductVO extends BaseVO {
 	/**
 	 * B类份额
 	 */
-	private float percentB;
+	private float partB;
 	
 	/**
 	 * B类年化收益率
@@ -69,8 +69,9 @@ public class ProductVO extends BaseVO {
 	/**
 	 * B类份额
 	 */
-	private float percentC;
+	private float partC;
 	
+
 	/**
 	 * B类年化收益率
 	 */
@@ -84,7 +85,7 @@ public class ProductVO extends BaseVO {
 	/**
 	 * 投资起点
 	 */
-	private double minaMount;
+	private double minAmount;
 	
 	/**
 	 * 利益分配方式
@@ -102,6 +103,7 @@ public class ProductVO extends BaseVO {
 	private int catogryId;
 	private int profitId;
 	private int bonusType;
+	private int direction;
 	private String info;
 	
 	private String createUser; // 创建人',
@@ -146,11 +148,11 @@ public class ProductVO extends BaseVO {
 	public void setTerm(int term) {
 		this.term = term;
 	}
-	public float getPercentA() {
-		return percentA;
+	public float getPartA() {
+		return partA;
 	}
-	public void setPercentA(float percentA) {
-		this.percentA = percentA;
+	public void setPartA(float partA) {
+		this.partA = partA;
 	}
 	public float getRateA() {
 		return rateA;
@@ -158,11 +160,11 @@ public class ProductVO extends BaseVO {
 	public void setRateA(float rateA) {
 		this.rateA = rateA;
 	}
-	public float getPercentB() {
-		return percentB;
+	public float getPartB() {
+		return partB;
 	}
-	public void setPercentB(float percentB) {
-		this.percentB = percentB;
+	public void setPartB(float partB) {
+		this.partB = partB;
 	}
 	public float getRateB() {
 		return rateB;
@@ -170,17 +172,18 @@ public class ProductVO extends BaseVO {
 	public void setRateB(float rateB) {
 		this.rateB = rateB;
 	}
+
 	public double getAmount() {
 		return amount;
 	}
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public double getMinaMount() {
-		return minaMount;
+	public double getMinAmount() {
+		return minAmount;
 	}
-	public void setMinaMount(double minaMount) {
-		this.minaMount = minaMount;
+	public void setMinAmount(double minAmount) {
+		this.minAmount = minAmount;
 	}
 	public int getPayType() {
 		return payType;
@@ -230,17 +233,23 @@ public class ProductVO extends BaseVO {
 	public void setBonusType(int bonusType) {
 		this.bonusType = bonusType;
 	}
+	public int getDirection() {
+		return direction;
+	}
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
 	public String getInfo() {
 		return info;
 	}
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	public float getPercentC() {
-		return percentC;
+	public float getPartC() {
+		return partC;
 	}
-	public void setPercentC(float percentC) {
-		this.percentC = percentC;
+	public void setPartC(float partC) {
+		this.partC = partC;
 	}
 	public float getRateC() {
 		return rateC;

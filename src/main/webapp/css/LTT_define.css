@@ -1,6 +1,7 @@
 ﻿@charset "utf-8";
 /**定义整个页面大小 默认为1002px*/
 .red{ color:#F00}
+.blue{ color:#39F}
 body {
 	margin:0 ;
 	padding:0;
@@ -500,6 +501,7 @@ tr {
     border-collapse: collapse;
 	border-left: 1px solid #e1e1e1;
 	margin-bottom:10px;
+	width:100%
 	}
 
 .con_table table thead th {
@@ -844,14 +846,6 @@ li {
 	font-size:12px;
 	
 	}
-.page_menu .itemhot {
-	border-radius:4px;
-	border:1px solid #ffff00;
-	padding:2px 8px;
-	background:#f5f5f5;
-	font-size:12px;
-	
-	}	
 	
  .jg{
 	background:#e1e1e1;
@@ -867,6 +861,20 @@ li {
 	}
 .jg img,.jg2 img{ vertical-align:middle; margin-right:5px; margin-left:5px;}
 
+
+
+.box14_c{padding:0px;background:#fff; margin-bottom:20px;}
+.box14_c .t{ display:block;height:40px;border-bottom:1px solid #e5eaee;font-size:14px;font-family:"Simsun", SimHei;color:#8f99a0; line-height:28px;}
+.box14_c .t b{float:left;margin:0 5px 0 0;font-size:24px;font-family:"Microsoft YaHei";color:#0377b0;}
+.box14_c .t  span{display:line-block;float:left;height:25px;border:1px solid #e1e4e9;margin:0 5px;padding:0 10px; line-height: 25px;}
+.box14_c .t  span a{display:line-block;width:7px;height:7px;margin:10px 0 0 5px ;font-size:11px;color:#c8c6c6;font-weight:bold;}
+.box14_c .t i{float:left;font-family:"Simsun";}
+.box14_c .box_d{margin-top:20px;padding:20px;border:1px solid #e1e4e9;background:#f2f5f9;font-size:14px;font-family:"Microsoft YaHei";}
+.box14_c .box_d dl{margin:3px 0;overflow:hidden;_zoom:1;}
+.box14_c .box_d dt{float:left;width:85px;font-weight:bold;color:#4d5a64;line-height:32px;}
+.box14_c .box_d dd{float:right:825px;line-height:26px;}
+.box14_c .box_d dd a{display:inline-block;margin:3px 5px;padding:0 5px;color:#8f99a0;}
+.box14_c .box_d dd a:hover{color:#fff;text-decoration:none;background:#728491; }
 /**--------------------------------------/弹了窗口*css-----------------------------------*/	
 .mesWindow{border:#666 1px solid;background:#fff; padding:10px;}
 .mesWindowTop{border-bottom:#eee 1px solid;margin-left:4px;padding:3px;font-weight:bold;text-align:left;font-size:12px;}

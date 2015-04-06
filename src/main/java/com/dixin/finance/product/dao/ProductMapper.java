@@ -16,4 +16,9 @@ public interface ProductMapper {
 	 */
 	List<ProductVO> queryProductList(Map<String, Object> map);
 	
+	/**
+	 * 查询单个产品
+	 * @return
+	 */	
+	ProductVO queryProduct(int productId);
 }

@@ -29,6 +29,7 @@ import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.vo.AssignmentVO;
 import com.dixin.finance.product.vo.PageDataItem;
+import com.dixin.finance.product.vo.ProductQueryParameter;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
@@ -51,19 +52,10 @@ public class ProductController {
 	private IAssignmentService assignmentService;
 
 	@RequestMapping(value="/products", method=RequestMethod.GET)
-	public @ResponseBody BaseWebResult queryProductList(UserVO userVO, Integer pageNum, Integer pageSize, Integer productType,String  searchText, HttpSession session){
-		
-		if(pageNum == null)
-			pageNum = 1;
-		if(pageSize == null)
-			pageSize = 10;
-		
-		if(searchText==null)
-			searchText = "";
-		
-		if(productType == null )
-			productType = ProductTypeConstant.ALL;
-		else
+	public @ResponseBody BaseWebResult queryProductList(ProductQueryParameter parameter, HttpSession session){
+
+		int productType = parameter.getProductType();
+		if(productType != ProductTypeConstant.ALL)
 		{
 			productType += ProductTypeConstant.ALL;
 			if(productType < ProductTypeConstant.ALL || productType > ProductTypeConstant.ASSET_MANAGEMENT)
@@ -76,7 +68,8 @@ public class ProductController {
 			{
 				PageDataItem item = new PageDataItem();
 				item.setId(i - ProductTypeConstant.ALL);
-				item.setProducts(GetProducts(pageNum,pageSize,i,searchText));
+				parameter.setProductType(i);
+				item.setProducts(GetProducts(parameter));
 			    result.add(item);
 			}
 		}
@@ -84,7 +77,8 @@ public class ProductController {
 		{
 			PageDataItem item = new PageDataItem();
 			item.setId(productType - ProductTypeConstant.ALL);
-			item.setProducts(GetProducts(pageNum,pageSize,productType,searchText));
+			parameter.setProductType(productType);
+			item.setProducts(GetProducts(parameter));
 		    result.add(item);
 		}
 		
@@ -96,9 +90,38 @@ public class ProductController {
 		return webResult;
 	}
 	
-	public PageInfo<ProductVO> GetProducts(int pageNum, int pageSize,int productType,String searchText){
-	    PageHelper.startPage(pageNum, pageSize);
-	    List<ProductVO> products = productService.queryProductList(productType,searchText);
+	@RequestMapping(value="/products/advance", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult queryProductAdance(ProductQueryParameter parameter, HttpSession session){
+
+		int productType = parameter.getProductType();
+		if(productType != ProductTypeConstant.ALL)
+		{
+			productType += ProductTypeConstant.ALL;
+			if(productType < ProductTypeConstant.ALL || productType > ProductTypeConstant.ASSET_MANAGEMENT)
+				productType = ProductTypeConstant.ALL; 
+		}
+		
+		List<PageDataItem> result = new ArrayList<PageDataItem>();
+		
+		PageDataItem item = new PageDataItem();
+		item.setId(productType - ProductTypeConstant.ALL);
+		parameter.setProductType(productType);
+		item.setProducts(GetProducts(parameter));
+	    result.add(item);
+		
+		
+		logger.info("queryProductList 查询产品列表完成");
+		
+		BaseWebResult webResult = new BaseWebResult();
+		webResult.setSuccess(true);
+		webResult.setResult(result);
+		return webResult;
+	}
+	
+	
+	public PageInfo<ProductVO> GetProducts(ProductQueryParameter parameter){
+	    PageHelper.startPage(parameter.getPageNum(), parameter.getPageSize());
+	    List<ProductVO> products = productService.queryProductList(parameter);
 	    return new PageInfo(products);
 	}
 
@@ -114,6 +137,11 @@ public class ProductController {
 			model.addAttribute("backurl", url);
 			return "authentication/login";
 		}
+		
+		ProductVO product = productService.queryProduct(productId);
+		
+		model.addAttribute("product", product);
+		model.addAttribute("user", userVO);
 		
 		return "product/view";
 	}

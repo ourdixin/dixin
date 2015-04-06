@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `part_c` int(11) NOT NULL COMMENT 'C类份额',
   `rate_c` float NOT NULL COMMENT 'C类年华收益率',
   `amount` double NOT NULL COMMENT '产品规模',
-  `mina_mount` double NOT NULL COMMENT '投资起点',
+  `min_amount` double NOT NULL COMMENT '投资起点',
   `pay_type` int(11) NOT NULL COMMENT '利益分配方式',
   `ad_file` varchar(256) NOT NULL COMMENT '产品推荐单页下载文件',
   `guide_file` varchar(256) NOT NULL COMMENT '定向客户认购指南文件',

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.dixin.finance.product.dao.ProductMapper;
 import com.dixin.finance.product.service.IProductService;
+import com.dixin.finance.product.vo.ProductQueryParameter;
 import com.dixin.finance.product.vo.ProductVO;
 
 /**
@@ -29,12 +30,21 @@ public class ProductServiceImpl implements IProductService{
 	 * @see com.dixin.finance.product.service.impl.IProductService#queryProductList()
 	 */
 	@Override
-	public List<ProductVO> queryProductList(int productType,String searchText) {
+	public List<ProductVO> queryProductList(ProductQueryParameter parameter) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("productType", productType);	
-		map.put("searchText", searchText);
+		map.put("productType", parameter.getProductType());	
+		map.put("searchText", parameter.getSearchText());
+		map.put("state", parameter.getState());
+		map.put("minAmount", parameter.getMinAmount());
+		map.put("term", parameter.getTerm());
+		map.put("rate", parameter.getRate());
+		map.put("direction", parameter.getDirection());
 		return productMapper.queryProductList(map);
 	}
 	
+	public ProductVO queryProduct(int productId)
+	{
+		return productMapper.queryProduct(productId);
+	}
 }
