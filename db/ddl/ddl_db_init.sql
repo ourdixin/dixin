@@ -139,8 +139,21 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (45, '删除', 5),
 (46, '更新', 5),
 (47, '产品表', 6),
-(48, '用户表', 6);
-
+(48, '用户表', 6),
+(49, '金融市场', 7),
+(50, '公益', 7),
+(51, '金融机构', 7),
+(52, '房地产', 7),
+(53, '工商企业', 7),
+(54, '基础设施', 7),
+(55, '实业企业', 7),
+(56, '保障房', 7),
+(57, '酒店类', 7),
+(58, '其它', 7),
+(59, '在售', 8),
+(60, '在售', 8),
+(61, '预约', 8),
+(62, '售罄', 8);
 -- --------------------------------------------------------
 
 --
@@ -167,8 +180,9 @@ INSERT INTO `dict` (`id`, `name`) VALUES
 (3, '收益分类'),
 (4, '留言问题分类'),
 (5, '操作分类'),
-(6, '操作对象分类');
-
+(6, '操作对象分类'),
+(7, '资金投向'),
+(8, '产品状态');
 -- --------------------------------------------------------
 
 --
@@ -274,6 +288,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `catogry_id` int(11) NOT NULL COMMENT '产品类别',
   `profit_id` int(11) NOT NULL COMMENT '收益类型',
   `bonus_type` int(11) NOT NULL COMMENT '分红方式',
+  `direction` int(11) NOT NULL COMMENT '投资方向',
   `info` varchar(256) NOT NULL COMMENT '资管要素HTML文件',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
