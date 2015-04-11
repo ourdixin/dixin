@@ -49,7 +49,7 @@ $(document).ready(function(){
 
 		$('span a[href^=javascript] ').click(function(){
 			this.parentNode.remove();
-			searchProducts();
+			searchProducts(1);
 		});		
 		
 		searchProducts(1);

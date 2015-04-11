@@ -36,7 +36,7 @@
               <td><#=products.list[i].releaseDate#></td>
               <td><#=products.list[i].term#>月</td>
               <# // TODO 设计确实 #>
-              <td>缺失</td>
+              <td><#=products.list[i].rateA#></td>
               <td><#=products.list[i].state#></td>
               <td>
               	<# for(j = 0; j < products.list[i].star; j ++){ #> 

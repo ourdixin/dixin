@@ -55,7 +55,9 @@ public class AuthenticationController {
 		
 		if(backurl == null || backurl=="")
 			backurl=request.getContextPath();
-		
+		userVO.setUserName(userVO.getMobile());
+		userVO.setName(userVO.getMobile());
+		userVO.setEnabled(1);
 		logger.info("用户" + userVO.getUserName() + "注册开始");
 		userServiceImpl.register(userVO);
 		logger.info("用户" + userVO.getUserName() + "注册成功");
@@ -98,6 +100,24 @@ public class AuthenticationController {
 		
 		return webResult;
 	}	
+	
+	@RequestMapping(value="/authentication/logout")
+	public String logout(String backurl, HttpSession session,HttpServletRequest request){
+		
+		BaseWebResult webResult = new BaseWebResult();
+		
+		
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO != null)
+			logger.info("用户" + userVO.getUserName() + "登出");
+		session.removeAttribute(WebConstants.SESSION_KEY_USER);
+		
+		if(backurl == null || backurl=="")
+			backurl="/";		
+		
+		
+		return "redirect:"+backurl;
+	}
 	
 	@RequestMapping(value="/authentication/sendsms")
 	public @ResponseBody BaseWebResult register(String phone, HttpSession session,HttpServletRequest request){

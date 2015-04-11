@@ -17,7 +17,7 @@
 				</c:if> <c:if test="${null != user}"> 
    ${user.name}【普通会员】  	
 	| <a href="<%=request.getContextPath()%>/user.jsp">我的121金融</a> | <a
-						href="<%=request.getContextPath()%>/logout.jsp">安全退出</a>
+						href="<%=request.getContextPath()%>/authentication/logout">安全退出</a>
 				</c:if>
 
 			</span>
