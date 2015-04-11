@@ -150,10 +150,22 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (56, '保障房', 7),
 (57, '酒店类', 7),
 (58, '其它', 7),
-(59, '在售', 8),
+(59, '暂停', 8),
 (60, '在售', 8),
 (61, '预约', 8),
-(62, '售罄', 8);
+(62, '售罄', 8),
+(63, '年', 10),
+(64, '月', 10),
+(65, '日', 10),
+(66, '自然季度付息', 9),
+(67, '自然半年度付息', 9),
+(68, '自然年度付息', 9),
+(69, '季度付息', 9),
+(70, '半年度付息', 9),
+(71, '年度付息', 9),
+(72, '到期还本付息', 9),
+(73, '其他付息方式', 9);
+
 -- --------------------------------------------------------
 
 --
@@ -182,7 +194,10 @@ INSERT INTO `dict` (`id`, `name`) VALUES
 (5, '操作分类'),
 (6, '操作对象分类'),
 (7, '资金投向'),
-(8, '产品状态');
+(8, '产品状态'),
+(9, '利益分配方式'),
+(10, '期限单位分类');
+
 -- --------------------------------------------------------
 
 --
@@ -271,32 +286,38 @@ CREATE TABLE IF NOT EXISTS `product` (
   `code` varchar(64) NOT NULL COMMENT '产品代码',
   `name` varchar(128) NOT NULL COMMENT '产品名称',
   `release_date` date NOT NULL COMMENT '发行时间',
+  `end_date` date NOT NULL COMMENT '销售截止日期',
   `term` int(11) NOT NULL COMMENT '期限',
+  `term_unit` tinyint(4) NOT NULL COMMENT '期限显示单位',
   `part_a` int(11) NOT NULL COMMENT 'A类份额',
   `rate_a` float NOT NULL COMMENT 'A类年华收益率',
   `part_b` int(11) NOT NULL COMMENT 'B类份额',
   `rate_b` float NOT NULL COMMENT 'B类年华收益率',
   `part_c` int(11) NOT NULL COMMENT 'C类份额',
   `rate_c` float NOT NULL COMMENT 'C类年华收益率',
+  `part_d` int(11) NOT NULL COMMENT 'D类份额',
+  `rate_d` float NOT NULL COMMENT 'D类收益率',
   `amount` double NOT NULL COMMENT '产品规模',
   `min_amount` double NOT NULL COMMENT '投资起点',
   `pay_type` int(11) NOT NULL COMMENT '利益分配方式',
+  `pay_type_info` varchar(256) NOT NULL COMMENT '其他分配方式，在此以文字保存',
   `ad_file` varchar(256) NOT NULL COMMENT '产品推荐单页下载文件',
   `guide_file` varchar(256) NOT NULL COMMENT '定向客户认购指南文件',
-  `state` int(2) NOT NULL COMMENT '状态',
   `star` int(1) NOT NULL COMMENT '推荐指数',
   `catogry_id` int(11) NOT NULL COMMENT '产品类别',
   `profit_id` int(11) NOT NULL COMMENT '收益类型',
   `bonus_type` int(11) NOT NULL COMMENT '分红方式',
   `direction` int(11) NOT NULL COMMENT '投资方向',
   `info` varchar(256) NOT NULL COMMENT '资管要素HTML文件',
+  `view_num` int(11) NOT NULL COMMENT '查看次数',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',
   `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `code` (`code`,`name`),
-  KEY `catogry_id` (`catogry_id`)
+  KEY `catogry_id` (`catogry_id`),
+  KEY `direction` (`direction`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------

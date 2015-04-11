@@ -35,7 +35,14 @@
               <td><#=products.list[i].code#></td>
               <td><#=products.list[i].name#></td>
               <td><#=products.list[i].releaseDate#></td>
-              <td><#=products.list[i].term#>月</td>		  
+              <td><#=products.list[i].term#>
+				<#if(63==products.list[i].termUnit){#>
+				年<#}else if(64==products.list[i].termUnit){#>
+				月
+				<#}else{#>
+				日
+				<#}#>
+				</td>		  
               <td><#=products.list[i].rateA*10000/100#>%</td>
 			   <#if(products.list[i].state == 59){#>
               <td>暂停</td>

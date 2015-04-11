@@ -21,4 +21,8 @@ public interface ProductMapper {
 	 * @return
 	 */	
 	ProductVO queryProduct(int productId);
+	
+	
+	void updateViewNum(int productId);
 }
+

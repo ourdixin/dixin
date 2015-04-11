@@ -138,8 +138,8 @@ public class ProductController {
 			return "authentication/login";
 		}
 		
+		productService.updateViewNum(productId);
 		ProductVO product = productService.queryProduct(productId);
-		
 		model.addAttribute("product", product);
 		model.addAttribute("user", userVO);
 		

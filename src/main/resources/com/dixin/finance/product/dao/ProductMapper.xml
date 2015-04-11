@@ -10,26 +10,31 @@
 		select id id,
 			code code, 
 			name name, 
-			release_date releaseDate, 
+			release_date releaseDate,
+			end_date endDate, 
 			term term, 
+			term_unit termUnit,
 			part_a partA, 
 			rate_a rateA, 
 			part_b partB, 
 			rate_b rateB, 
 			part_c partC, 
 			rate_c rateC, 
+			part_d partD, 
+			rate_d rateD, 
 			amount amount, 
 			min_amount minAmount, 
 			pay_type payType, 
+			pay_type_info payTypeInfo,
 			ad_file adFile, 
-			guide_file guideFile, 
-			state state, 
+			guide_file guideFile,  
 			star star, 
 			catogry_id catogryId, 
 			profit_id profitId, 
 			bonus_type bonusType, 
 			direction direction,
-			info info, 
+			info info,
+			view_num viewNum,
 			create_user createUser, 
 			create_time createTime, 
 			update_user updateUser, 
@@ -41,11 +46,21 @@
                and catogry_id=#{productType} 
             ]]>  
         </if>  
-		<if test="state != -1">  
+		<if test="state == 60">  
             <![CDATA[  
-               and state=#{state} 
+               and CURDATE() >= release_date and CURDATE() <=endDate 
             ]]>  
         </if>
+		<if test="state == 61">  
+            <![CDATA[  
+               and release_date > CURDATE()
+            ]]>  
+        </if>
+ 		<if test="state == 62">  
+            <![CDATA[  
+               and CURDATE() > endDate
+            ]]>  
+        </if>       
 		<if test="direction != -1">  
             <![CDATA[  
                and direction >= #{direction} 
@@ -124,26 +139,31 @@
 		select id id,
 			code code, 
 			name name, 
-			release_date releaseDate, 
+			release_date releaseDate,
+			end_date endDate, 
 			term term, 
+			term_unit termUnit,
 			part_a partA, 
 			rate_a rateA, 
 			part_b partB,  
 			rate_b rateB, 
 			part_c partC, 
 			rate_c rateC, 
+			part_d partD, 
+			rate_c rateD, 
 			amount amount, 
 			min_amount minAmount, 
 			pay_type payType, 
+			pay_type_info payTypeInfo,
 			ad_file adFile, 
-			guide_file guideFile, 
-			state state, 
+			guide_file guideFile,  
 			star star, 
 			catogry_id catogryId, 
 			profit_id profitId, 
 			bonus_type bonusType, 
 			direction direction,
 			info info, 
+			view_num viewNum,
 			create_user createUser, 
 			create_time createTime, 
 			update_user updateUser, 
@@ -151,5 +171,11 @@
 		from product
 			WHERE id=#{productId} 
 	</select>
-	
+
+	<!-- 更新 产品查看次数-->
+	<update id="updateViewNum" parameterType="int" >
+		UPDATE product SET 
+		view_num = view_num + 1
+		WHERE id=#{productId}
+	</update>	
 </mapper>

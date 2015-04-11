@@ -15,5 +15,5 @@ public interface ProductStateConstant {
 	/**
 	 * 售罄
 	 */
-	final int None = 62;
+	final int Sold = 62;
 }
