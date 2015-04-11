@@ -23,7 +23,7 @@ public class AssignmentVO extends BaseVO {
 	
 	private double amount; //转让金额
 	
-	private int product_id;
+	private ProductVO product; 
 	
 	private int pay_type; //支付方式
 	
@@ -70,11 +70,11 @@ public class AssignmentVO extends BaseVO {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public int getProduct_id() {
-		return product_id;
+	public ProductVO getProduct() {
+		return product;
 	}
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
+	public void setProduct(ProductVO product) {
+		this.product = product;
 	}
 	public int getPay_type() {
 		return pay_type;

@@ -147,12 +147,19 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/product/assignment",method=RequestMethod.POST)
-	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,String backurl, HttpSession session,HttpServletRequest request){
+	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,int productId,String backurl, HttpSession session,HttpServletRequest request){
+		
+		ProductVO product = new ProductVO();
+		product.setId(String.valueOf(productId));
+		assignment.setProduct(product);
 		assignmentService.insertAssignment(assignment);
+		String url = request.getRequestURI();
+		 if(request.getQueryString()!=null)   
+			   url+="?"+request.getQueryString(); 
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(true);
 		webResult.setResult(assignment);
-		webResult.setMsg(backurl);
+		webResult.setMsg(url);
 		return webResult;
 	}
 	

@@ -38,8 +38,8 @@
 				<table width="100%" >
 					<tbody>
 						  <tr>
-						      <td width="18%" height="30" align="right">产品名称：</td>
-						      <td width="82%"><input maxlength="" id="product_id" name="product_id" class="itstyle lt it" type="text" /></td>
+						      <td width="18%" height="30" align="right">产品ID：</td>
+						      <td width="82%"><input maxlength="" id="productId" name="productId" class="itstyle lt it" type="text" /></td>
 						   </tr>
 						  <tr>
 						    <td height="30" align="right">产品类型/信托/资管：</td>
