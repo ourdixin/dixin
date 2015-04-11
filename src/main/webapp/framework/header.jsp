@@ -16,7 +16,7 @@
 						href="<%=request.getContextPath()%>/authentication/register.jsp">免费注册</a>
 				</c:if> <c:if test="${null != user}"> 
    ${user.name}【普通会员】  	
-	| <a href="<%=request.getContextPath()%>/user.jsp">我的121金融</a> | <a
+	| <a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a> | <a
 						href="<%=request.getContextPath()%>/authentication/logout">安全退出</a>
 				</c:if>
 

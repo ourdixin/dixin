@@ -44,12 +44,25 @@
       <tr>
         <td width="0%" height="50" align="center" bgcolor="#FFFFFF">预期年化收益率</td>
         <td colspan="5" align="center" bgcolor="#FFFFFF">
-        <div>${product.partA/10000}万元≤认购/参与金额＜${product.partB/10000}万元（A1类）
-        	 <fmt:formatNumber value="${product.rateA*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>
-        	 %<br />
-          	 ${product.partB/10000}万元≤认购/参与金额（A2类）
-          	 <fmt:formatNumber value="${product.rateB*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
-          	 %</div>
+        <div>
+        	
+	        	${product.partA/10000}万元≤认购/参与金额＜${product.partB/10000}万元（A1类）
+	        	 <fmt:formatNumber value="${product.rateA*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>
+	        	 %
+	        	 
+	       	 <c:if test="${0 != product.partB}"> 
+	        	 <br />
+	          	 ${product.partB/10000}万元≤认购/参与金额（A2类）
+	          	 <fmt:formatNumber value="${product.rateB*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 %
+          	 </c:if>
+          	 <c:if test="${0 != product.partC}"> 
+	          	 <br />
+	          	 ${product.partC/10000}万元≤认购/参与金额（A3类）
+	          	 <fmt:formatNumber value="${product.rateC*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 %
+          	 </c:if>
+          	 </div>
           </td>
       </tr>
     </tbody>

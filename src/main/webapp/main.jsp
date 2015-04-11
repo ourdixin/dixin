@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,10 +35,17 @@
               <td><#=products.list[i].code#></td>
               <td><#=products.list[i].name#></td>
               <td><#=products.list[i].releaseDate#></td>
-              <td><#=products.list[i].term#>月</td>
-              <# // TODO 设计确实 #>
-              <td><#=products.list[i].rateA#></td>
-              <td><#=products.list[i].state#></td>
+              <td><#=products.list[i].term#>月</td>		  
+              <td><#=products.list[i].rateA*10000/100#>%</td>
+			   <#if(products.list[i].state == 59){#>
+              <td>暂停</td>
+				<#}else if(products.list[i].state == 60){#>
+              <td>在售</td>
+				<#}else if(products.list[i].state == 61){#>
+              <td>预约</td>
+				<#}else{#>
+              <td>售罄</td>
+				<#}#>
               <td>
               	<# for(j = 0; j < products.list[i].star; j ++){ #> 
               		<img src="<%=request.getContextPath()%>/images/xx.png" width="16" height="13" />

@@ -79,7 +79,7 @@
 			</dl>
 			<dl>
 				<dt id="state">产品状态：</dt>
-				<dd><a id="-1" href="#" target="_self">不限</a><a id="60" href="#" target="_self">在售</a><a id="61" href="#" target="_self">预约</a><a id="62" href="#" target="_self">售星</a></dd>
+				<dd><a id="-1" href="#" target="_self">不限</a><a id="60" href="#" target="_self">在售</a><a id="61" href="#" target="_self">预约</a><a id="62" href="#" target="_self">售罄</a></dd>
 			</dl>
 			<dl>
 				<dt id="minAmount">投资起点：</dt>
