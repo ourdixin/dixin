@@ -115,7 +115,7 @@
 	<form id="loginForm">
 	<input id="username" name="username"  type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}"  class="log_user"/>
 	<input name="password" id="pass" type="password" value="" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" class="log_pass" /></div>
-	<dt><a href="<%=request.getContextPath() %>/authentication/forget_pass.html">忘记密码？</a> <input type="checkbox" name="checkbox" id="checkbox" />记住手机号码</dt>
+	<dt><a href="<%=request.getContextPath() %>/authentication/forgetpassword.jsp">忘记密码？</a> <input type="checkbox" name="checkbox" id="checkbox" />记住手机号码</dt>
 	<span><a class="bnt_ok" href="#none">登录</a></span>
 	</form>
 	<del><a href="<%=request.getContextPath() %>/authentication/register.jsp">点击这里注册</a>还没有注册过？</del>
