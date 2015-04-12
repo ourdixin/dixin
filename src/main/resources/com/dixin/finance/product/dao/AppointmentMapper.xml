@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.product.dao.AppointmentMapper">
+
+  <!-- cache / 暂时去掉缓存，等后台可以操作的时候再加上缓存 -->
+  
+  <insert id="insert" parameterType="com.dixin.finance.product.vo.AppointmentVO" >
+    insert into reservation(
+		user_id,
+		reserve_date,
+		amount,
+		product_id,
+		msg,
+		tel,
+		create_user,
+		create_time,
+		update_user,
+		update_time)
+	values(
+		#{user_id},
+		#{reserve_date},
+		#{amount},
+		#{product.id},
+		#{msg},
+		#{tel},
+		0,
+		SYSDATE(),
+		0,
+		SYSDATE()
+	)
+  </insert>  
+  
+  <resultMap  id="selectProduct" type="com.dixin.finance.product.vo.ProductVO">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="code" property="code"/>
+  </resultMap>
+  
+  <resultMap id="appointmentResult" type="com.dixin.finance.product.vo.AppointmentVO">  
+		<id column="id" property="id"/>
+		<result column="user_id" property="user_id"/>
+		<result column="reserve_date" property="reserve_date"/>
+		<result column="amount" property="amount"/>
+		<result column="tel" property="tel"/>
+		<result column="msg" property="msg"/>
+		<result column="create_user" property="create_user"/>
+		<result column="create_time" property="create_time"/>
+		<result column="update_user" property="update_user"/>
+		<result column="update_time" property="update_time"/>
+		<association property="product" column="product_id" resultMap="selectProduct"/>  
+	</resultMap>  
+	
+   <select id="query"  resultMap="appointmentResult" useCache="false" >
+		select reservation.id id,
+			reservation.user_id user_id,
+			reservation.reserve_date reserve_date,
+			reservation.amount amount,
+			product.id product,
+			product.name name,
+			product.pay_type payType,
+			product.term term,
+			reservation.tel tel,
+			reservation.msg msg,
+			reservation.create_user createUser, 
+			reservation.create_time createTime, 
+			reservation.update_user updateUser, 
+			reservation.update_time updateTime
+		from reservation,product where reservation.product_id = product.id
+  </select>
+</mapper>
