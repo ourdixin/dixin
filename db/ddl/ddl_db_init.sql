@@ -352,6 +352,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `user_id` int(11) NOT NULL COMMENT '预约用户',
   `reserve_date` date NOT NULL COMMENT '预约日期',
   `product_id` int(11) NOT NULL COMMENT '预约产品',
+  `mobile` varchar(11) NOT NULL COMMENT '预约手机号码',
   `amount` double NOT NULL COMMENT '预约金额',
   `msg` varchar(1024) NOT NULL COMMENT '预约留言',
   `create_user` int(11) NOT NULL COMMENT '创建人',
