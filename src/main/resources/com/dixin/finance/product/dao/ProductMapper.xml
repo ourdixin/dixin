@@ -178,4 +178,72 @@
 		view_num = view_num + 1
 		WHERE id=#{productId}
 	</update>	
+	
+  <insert id="addProduct" parameterType="com.dixin.finance.product.vo.ProductVO" >
+    insert into product(
+		code,
+		name,
+		release_date,
+		end_date,
+		term,
+		term_unit,
+		part_a,
+		rate_a,
+		part_b,
+		rate_b,
+		part_c,
+		rate_c,
+		part_d,
+		rate_d,
+		amount,
+		min_amount,
+		pay_type,
+		pay_type_info,
+		star,
+		catogry_id,
+		direction,
+		info,
+		ad_file,
+		guide_file,
+		profit_id,
+		bonus_type,
+		create_user,
+		create_time,
+		update_user,
+		update_time)
+	values(
+		#{code},
+		#{name},
+		#{releaseDate},
+		#{endDate},
+		#{term},
+		#{termUnit},
+		#{partA},
+		#{rateA},
+		#{partB},
+		#{rateB},
+		#{partC},
+		#{rateC},
+		#{partD},
+		#{rateD},
+		#{amount},
+		#{minAmount},
+		#{payType},
+		#{payTypeInfo},
+		#{star},
+		#{catogryId},
+		#{direction},
+		#{info},
+		#{adFile},
+		#{guideFile},
+		#{profitId},
+		#{bonusType},		
+		0,
+		SYSDATE(),
+		0,
+		SYSDATE()
+	)
+  </insert>	
+	
+	
 </mapper>

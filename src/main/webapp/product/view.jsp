@@ -26,7 +26,12 @@
       <tr>
         <td width="0%" height="35" align="center" bgcolor="#FFFFFF">发布时间</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
-        <fmt:formatDate value="${product.releaseDate}" pattern="yyyy年MM月dd日 "/>      
+        <c:if test="${product.releaseDate > product.invalidDate}">
+        	<fmt:formatDate value="${product.releaseDate}" pattern="yyyy年MM月dd日 "/>      
+        </c:if>
+        <c:if test="${product.releaseDate <= product.invalidDate}">
+        	待定
+        </c:if>
         </strong></td>
         <td width="0%" align="center" bgcolor="#FFFFFF">查看次数</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.viewNum}</strong></td>

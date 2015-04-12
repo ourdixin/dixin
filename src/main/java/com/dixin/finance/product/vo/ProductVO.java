@@ -51,74 +51,83 @@ public class ProductVO extends BaseVO {
 	private Date endDate;	
 	
 	/**
+	 * 发行时间
+	 */
+	@SuppressWarnings("deprecation")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private static Date invalidDate = new Date(1970,1,1);	
+	
+	/**
 	 * 期限
 	 */
-	private int term;
+	private Integer term;
 	
+
 	/**
 	 * 期限单位 年/月/日
 	 */
-	private int termUnit;	
+	private Integer termUnit;	
 	
 	private String rate;
 	
 	/**
 	 * A类份额
 	 */
-	private float partA;
+	private Float partA;
 	
 	/**
 	 * A类年华收益率
 	 */
-	private float rateA;
+	private Float rateA;
 	
 	/**
 	 * B类份额
 	 */
-	private float partB;
+	private Float partB;
 	
 	/**
 	 * B类年化收益率
 	 */
-	private float rateB;
+	private Float rateB;
 	
 	/**
 	 * C类份额
 	 */
-	private float partC;
+	private Float partC;
 	
 
 	/**
 	 * C类年化收益率
 	 */
-	private float rateC;
+	private Float rateC;
 	
 	/**
 	 * D类份额
 	 */
-	private float partD;
+	private Float partD;
 	
 
 	/**
 	 * D类年化收益率
 	 */
-	private float rateD;	
+	private Float rateD;	
 	
 	
 	/**
 	 * 产品规模
 	 */
-	private double amount;
+	private Double amount;
 	
 	/**
 	 * 投资起点
 	 */
-	private double minAmount;
+	private Double minAmount;
 	
 	/**
 	 * 利益分配方式
 	 */
-	private int payType;
+	private Integer payType;
 	
 	/**
 	 * 其它利益分配方式，文字保存
@@ -131,18 +140,18 @@ public class ProductVO extends BaseVO {
 	private String adFile;
 	private String guideFile;
 
-	private int state;
+	private Integer state;
 	
 	
-	private int star;
-	private int catogryId;
-	private int profitId;
-	private int bonusType;
+	private Integer star;
+	private Integer catogryId;
+	private Integer profitId;
+	private Integer bonusType;
 	
 	/**
 	 * 投资方向
 	 */	
-	private int direction;
+	private Integer direction;
 	
 	/**
 	 * 产品说明的html文档
@@ -152,7 +161,7 @@ public class ProductVO extends BaseVO {
 	/**
 	 * 查看次数
 	 */
-	private int viewNum;
+	private Integer viewNum;
 	
 	private String createUser; // 创建人',
 
@@ -199,56 +208,56 @@ public class ProductVO extends BaseVO {
 	public int getTerm() {
 		return term;
 	}
-	public void setTerm(int term) {
+	public void setTerm(Integer term) {
 		this.term = term;
 	}
 	public int getTermUnit() {
 		return termUnit;
 	}
-	public void setTermUnit(int termUnit) {
+	public void setTermUnit(Integer termUnit) {
 		this.termUnit = termUnit;
 	}
 	public float getPartA() {
 		return partA;
 	}
-	public void setPartA(float partA) {
+	public void setPartA(Float partA) {
 		this.partA = partA;
 	}
 	public float getRateA() {
 		return rateA;
 	}
-	public void setRateA(float rateA) {
+	public void setRateA(Float rateA) {
 		this.rateA = rateA;
 	}
 	public float getPartB() {
 		return partB;
 	}
-	public void setPartB(float partB) {
+	public void setPartB(Float partB) {
 		this.partB = partB;
 	}
 	public float getRateB() {
 		return rateB;
 	}
-	public void setRateB(float rateB) {
+	public void setRateB(Float rateB) {
 		this.rateB = rateB;
 	}
 
 	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(double amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 	public double getMinAmount() {
 		return minAmount;
 	}
-	public void setMinAmount(double minAmount) {
+	public void setMinAmount(Double minAmount) {
 		this.minAmount = minAmount;
 	}
 	public int getPayType() {
 		return payType;
 	}
-	public void setPayType(int payType) {
+	public void setPayType(Integer payType) {
 		this.payType = payType;
 	}
 	public String getPayTypeInfo() {
@@ -275,7 +284,9 @@ public class ProductVO extends BaseVO {
 	public int getState() {
 		
 		Date curdate = new Date();
-		if( curdate.before(releaseDate))
+		if(releaseDate == null || releaseDate.getYear() < 70)
+			state = ProductStateConstant.UNDERTERMINED;
+		else if( curdate.before(releaseDate))
 			state = ProductStateConstant.OnBook;
 		else if( curdate.after(endDate))
 			state = ProductStateConstant.Sold;		
@@ -284,37 +295,37 @@ public class ProductVO extends BaseVO {
 		
 		return state;
 	}
-	public void setState(int state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 	public int getStar() {
 		return star;
 	}
-	public void setStar(int star) {
+	public void setStar(Integer star) {
 		this.star = star;
 	}
 	public int getCatogryId() {
 		return catogryId;
 	}
-	public void setCatogryId(int catogryId) {
+	public void setCatogryId(Integer catogryId) {
 		this.catogryId = catogryId;
 	}
 	public int getProfitId() {
 		return profitId;
 	}
-	public void setProfitId(int profitId) {
+	public void setProfitId(Integer profitId) {
 		this.profitId = profitId;
 	}
 	public int getBonusType() {
 		return bonusType;
 	}
-	public void setBonusType(int bonusType) {
+	public void setBonusType(Integer bonusType) {
 		this.bonusType = bonusType;
 	}
 	public int getDirection() {
 		return direction;
 	}
-	public void setDirection(int direction) {
+	public void setDirection(Integer direction) {
 		this.direction = direction;
 	}
 	public String getInfo() {
@@ -326,31 +337,31 @@ public class ProductVO extends BaseVO {
 	public float getPartC() {
 		return partC;
 	}
-	public void setPartC(float partC) {
+	public void setPartC(Float partC) {
 		this.partC = partC;
 	}
 	public float getRateC() {
 		return rateC;
 	}
-	public void setRateC(float rateC) {
+	public void setRateC(Float rateC) {
 		this.rateC = rateC;
 	}
 	public float getPartD() {
 		return partD;
 	}
-	public void setPartD(float partD) {
+	public void setPartD(Float partD) {
 		this.partD = partD;
 	}
 	public float getRateD() {
 		return rateD;
 	}
-	public void setRateD(float rateD) {
+	public void setRateD(Float rateD) {
 		this.rateD = rateD;
 	}
 	public int getViewNum() {
 		return viewNum;
 	}
-	public void setViewNum(int viewNum) {
+	public void setViewNum(Integer viewNum) {
 		this.viewNum = viewNum;
 	}	
 	public String getCreateUser() {
@@ -394,9 +405,11 @@ public class ProductVO extends BaseVO {
 		this.rate = rate;
 	}
 	
-
-
-
-
+	public Date getInvalidDate() {
+		return invalidDate;
+	}
+	public void setInvalidDate(Date invalidDate) {
+		this.invalidDate = invalidDate;
+	}
 
 }

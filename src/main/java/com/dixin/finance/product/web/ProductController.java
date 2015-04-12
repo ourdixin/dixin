@@ -125,6 +125,24 @@ public class ProductController {
 	    return new PageInfo(products);
 	}
 
+	@RequestMapping(value="/product/add")
+	public @ResponseBody BaseWebResult addProduct(ProductVO product,String editorValue,HttpSession session,Model model,HttpServletRequest request){
+	
+		BaseWebResult webResult = new BaseWebResult();
+
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			return webResult;
+		}
+		product.setInfo(editorValue);
+		productService.addProduct(product);
+		
+		webResult.setSuccess(true);
+		return webResult;		
+	}	
+	
 	@RequestMapping(value="/product/view", method=RequestMethod.GET)
 	public String productView(int productId,HttpSession session,Model model,HttpServletRequest request){
 	
