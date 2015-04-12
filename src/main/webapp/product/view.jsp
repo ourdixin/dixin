@@ -31,13 +31,33 @@
         <td width="0%" align="center" bgcolor="#FFFFFF">查看次数</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.viewNum}</strong></td>
         <td width="0%" align="center" bgcolor="#FFFFFF">产品期限</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.term}个月</strong></td>
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
+        ${product.term}
+        <c:if test="${product.termUnit == 63}">
+        	年
+        </c:if>
+        <c:if test="${product.termUnit == 64}">
+        	个月
+        </c:if>        
+        <c:if test="${product.termUnit == 65}">
+        	天
+        </c:if>         
+        </strong></td>
       </tr>
       <tr>
         <td width="0%" align="center" bgcolor="#FFFFFF" height="35">产品规模</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>预计为${product.amount/100000000}亿元</strong></td>
         <td width="0%" align="center" bgcolor="#FFFFFF">投资起点</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.minAmount/10000}万元</strong></td>
+        
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
+        <c:if test="${product.minAmount < 10000}">
+        	 ${product.minAmount}元
+        </c:if>
+        <c:if test="${product.minAmount > 10000}">
+        	${product.minAmount/10000}万元
+        </c:if>
+        </strong></td>
+        
         <td width="0%" align="center" bgcolor="#FFFFFF">利益分配方式</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.payTypeInfo}</strong></td>
       </tr>

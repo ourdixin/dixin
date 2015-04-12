@@ -34,9 +34,23 @@
               <td><#=products.list[i].name#></td>
               <td><#=products.list[i].releaseDate#></td>
               <td><#=products.list[i].term#>月</td>
-              <# // TODO 设计确实 #>
-              <td><#=products.list[i].rateA#></td>
-              <td><#=products.list[i].state#></td>
+			 <#if(63==products.list[i].termUnit){#>
+				年<#}else if(64==products.list[i].termUnit){#>
+				月
+				<#}else{#>
+				日
+				<#}#>
+				</td>		  
+	            <td><#=products.list[i].rate#></td>
+			   <#if(products.list[i].state == 59){#>
+              <td>暂停</td>
+				<#}else if(products.list[i].state == 60){#>
+              <td>在售</td>
+				<#}else if(products.list[i].state == 61){#>
+              <td>预约</td>
+				<#}else{#>
+              <td>售罄</td>
+				<#}#>
               <td>
               	<# for(j = 0; j < products.list[i].star; j ++){ #> 
               		<img src="<%=request.getContextPath()%>/images/xx.png" width="16" height="13" />
