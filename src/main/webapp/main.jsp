@@ -40,10 +40,10 @@
 				年<#}else if(64==products.list[i].termUnit){#>
 				月
 				<#}else{#>
-				日
+				天
 				<#}#>
 				</td>		  
-              <td><#=products.list[i].rateA*10000/100#>%</td>
+              <td><#=products.list[i].rate#></td>
 			   <#if(products.list[i].state == 59){#>
               <td>暂停</td>
 				<#}else if(products.list[i].state == 60){#>

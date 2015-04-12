@@ -19,33 +19,10 @@
 	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
 
-	<div id="main_body">
-		<div id="main_left">
-			<ul>
-				<dt>我的121金融</dt>
-				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_03.png" width="12" height="12" />我购买的产品</a>
-				</dd>
-				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_18.png" width="15" height="15" />我的预约</a>
-				</dd>
-				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_13.png" width="20" height="16" />产品转让</a>
-				</dd>
-				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的专属财富经理</a>
-				</dd>
-				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_10.png" width="16" height="17" />风险评估</a>
-				</dd>
-				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_17.png" width="18" height="20" />帐户设置</a>
-				</dd>
-				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_20.png" width="17" height="20" />安全退出</a>
-				</dd>
-			</ul>
-		</div>
+	<!---用户左侧共用部份---->
+	<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
+	<!---用户左侧共用部份结束---->
+	
 		<div id="main_right">
 			<div class="jg font_red">
 				<img src="<%=request.getContextPath()%>/images/ico_21.png"

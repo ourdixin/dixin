@@ -60,6 +60,8 @@ public class ProductVO extends BaseVO {
 	 */
 	private int termUnit;	
 	
+	private String rate;
+	
 	/**
 	 * A类份额
 	 */
@@ -374,6 +376,22 @@ public class ProductVO extends BaseVO {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+	public String getRate() {
+		
+		if(partD != 0 )
+			rate = String.format("%.2f",rateA*100) + "% - " + String.format("%.2f",rateD*100) + "%";
+		else if(partC != 0 )
+			rate = String.format("%.2f",rateA*100) + "% - " + String.format("%.2f",rateC*100) + "%";
+		else if(partB != 0 )
+			rate = String.format("%.2f",rateA*100) + "% - " + String.format("%.2f",rateB*100) + "%";
+		else
+			rate = String.format("%.2f",rateA*100) + "%";
+		
+		return rate;
+	}
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 	
 
