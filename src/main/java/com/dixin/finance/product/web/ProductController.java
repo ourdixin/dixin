@@ -138,8 +138,8 @@ public class ProductController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			webResult.setSuccess(false);
-			return webResult;
+			//webResult.setSuccess(false);
+			//return webResult;
 		}
 		product.setInfo(editorValue);
 		productService.addProduct(product);
