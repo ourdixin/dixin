@@ -16,10 +16,10 @@
 					<a href="boughtproduct.jsp"><img src="<%=request.getContextPath()%>/images/ico_03.png" width="12" height="12" />我购买的产品</a>
 				</dd>
 				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_18.png" width="15" height="15" />我的预约</a>
+					<a href="<%=request.getContextPath()%>/product/appointmentShow.jsp"><img src="<%=request.getContextPath()%>/images/ico_18.png" width="15" height="15" />我的预约</a>
 				</dd>
 				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_13.png" width="20" height="16" />产品转让</a>
+					<a href="<%=request.getContextPath()%>/product/assignmentShow.jsp"><img src="<%=request.getContextPath()%>/images/ico_13.png" width="20" height="16" />产品转让</a>
 				</dd>
 				<dd>
 					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的专属财富经理</a>
