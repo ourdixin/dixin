@@ -18,9 +18,11 @@
 <!---TOP头部共用部份---->
 <c:import url="/framework/header.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
-<div id="main_body">
-<div class="padding_top_10"></div>
-<div id="title_xi"></div>
+<!---用户左侧共用部份---->
+<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
+<!---用户左侧共用部份结束---->
+<div id="main_right">
+<div class="con" style="display: block">
 <div id="title_font">产品转让</div>
 <div>
 			<table class="ui compact table segment">
@@ -64,7 +66,6 @@
         </div>
 
 <br class=" clear" />
-</div>
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 <!---foot底部结束---->
