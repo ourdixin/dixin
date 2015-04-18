@@ -11,4 +11,5 @@ public interface IProductService {
 	public abstract List<ProductVO> queryProductList(ProductQueryParameter parameter);
 	public abstract ProductVO queryProduct(int productId);
 	public abstract void updateViewNum(int productId);
+	public abstract void addProduct(ProductVO product);
 }

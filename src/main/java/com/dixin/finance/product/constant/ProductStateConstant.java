@@ -3,6 +3,11 @@ package com.dixin.finance.product.constant;
 public interface ProductStateConstant {
 
 	/**
+	 * 待定
+	 */
+	final int UNDERTERMINED = 59;
+	
+	/**
 	 * 在售
 	 */
 	final int OnSell = 60;

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,19 +15,9 @@
 <!---TOP头部共用部份---->
 <c:import url="/framework/header.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
-<div id="main_body">
-<div id="main_left">
-<ul>
-<dt>我的121金融</dt>
-<dd><a href="about.html">我购买的产品</a></dd>
-<dd><a href="about.html">我的预约</a></dd>
-<dd><a href="about.html">产品转让</a></dd>
-<dd><a href="about.html">我的专属财富经理</a></dd>
-<dd><a href="about.html">风险评估</a></dd>
-<dd><a href="about.html">帐户设置</a></dd>
-<dd><a href="about.html">安全退出</a></dd>
-</ul>
-</div>
+<!---用户左侧共用部份---->
+<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
+<!---用户左侧共用部份结束---->
 <form action="<%=request.getContextPath() %>/product/assignment" method="post" id="assiForm">
 	<div id="main_right">  
 		<ul class="ul_1">

@@ -25,8 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.constant.ProductTypeConstant;
+import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.service.IProductService;
+import com.dixin.finance.product.vo.AppointmentVO;
 import com.dixin.finance.product.vo.AssignmentVO;
 import com.dixin.finance.product.vo.PageDataItem;
 import com.dixin.finance.product.vo.ProductQueryParameter;
@@ -50,6 +52,9 @@ public class ProductController {
 	
 	@Resource(name="assignmentServiceImpl")
 	private IAssignmentService assignmentService;
+	
+	@Resource(name="appointmentServiceImpl")
+	private IAppointmentService appointmentService;
 
 	@RequestMapping(value="/products", method=RequestMethod.GET)
 	public @ResponseBody BaseWebResult queryProductList(ProductQueryParameter parameter, HttpSession session){
@@ -125,6 +130,24 @@ public class ProductController {
 	    return new PageInfo(products);
 	}
 
+	@RequestMapping(value="/product/add")
+	public @ResponseBody BaseWebResult addProduct(ProductVO product,String editorValue,HttpSession session,Model model,HttpServletRequest request){
+	
+		BaseWebResult webResult = new BaseWebResult();
+
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			//webResult.setSuccess(false);
+			//return webResult;
+		}
+		product.setInfo(editorValue);
+		productService.addProduct(product);
+		
+		webResult.setSuccess(true);
+		return webResult;		
+	}	
+	
 	@RequestMapping(value="/product/view", method=RequestMethod.GET)
 	public String productView(int productId,HttpSession session,Model model,HttpServletRequest request){
 	
@@ -146,6 +169,7 @@ public class ProductController {
 		return "product/view";
 	}
 	
+	/***********************************产品转让**********************************************/
 	@RequestMapping(value="/product/assignment",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,int productId,String backurl, HttpSession session,HttpServletRequest request){
 		
@@ -175,5 +199,37 @@ public class ProductController {
 		PageInfo<AssignmentVO> pageinfoList = new PageInfo(assignments);
 		model.addAttribute("assignmentList", pageinfoList);
 		return "/product/assignmentShow";
+	}
+	
+	/***********************************产品预约**********************************************/
+	@RequestMapping(value="/product/appointment",method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult appointment(AppointmentVO appointment,int productId,String backurl, HttpSession session,HttpServletRequest request){
+		ProductVO product = new ProductVO();
+		product.setId(String.valueOf(productId));
+		appointment.setProduct(product);
+		System.out.println(appointment.getMsg());
+		appointmentService.insertAppointment(appointment);
+		String url = request.getRequestURI();
+		 if(request.getQueryString()!=null)   
+			   url+="?"+request.getQueryString(); 
+		BaseWebResult webResult = new BaseWebResult();
+		webResult.setSuccess(true);
+		webResult.setResult(appointment);
+		webResult.setMsg(url);
+		return webResult;
+	}
+	
+	@RequestMapping(value="/product/queryAppointment")
+	public String queryAppointmentList(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		
+		PageHelper.startPage(pageNum, pageSize);
+		List<AppointmentVO> appointments = appointmentService.queryAppointmentList();
+		PageInfo<AssignmentVO> pageinfoList = new PageInfo(appointments);
+		model.addAttribute("appointmentList", pageinfoList);
+		return "/product/appointmentShow";
 	}
 }

@@ -54,4 +54,9 @@ public class ProductServiceImpl implements IProductService{
 		
 		productMapper.updateViewNum(productId);
 	}
+
+	@Override
+	public void addProduct(ProductVO product) {
+		productMapper.addProduct(product);
+	}
 }

@@ -22,7 +22,17 @@ public interface ProductMapper {
 	 */	
 	ProductVO queryProduct(int productId);
 	
-	
+	/**
+	 * 添加查看次数
+	 * @return
+	 */		
 	void updateViewNum(int productId);
+	
+	
+	/**
+	 * 添加产品
+	 * @return
+	 */		
+	void addProduct(ProductVO product);	
 }
 

@@ -32,7 +32,13 @@
             <tr>
               <td><#=products.list[i].code#></td>
               <td><#=products.list[i].name#></td>
-              <td><#=products.list[i].releaseDate#></td>
+              <td>				
+				<#if(products.list[i].releaseDate > products.list[i].invalidDate) {#>
+					<#=products.list[i].releaseDate#>
+				<#}else{#>
+					待定
+				<#}#>
+				</td>
               <td><#=products.list[i].term#>月</td>
 			 <#if(63==products.list[i].termUnit){#>
 				年<#}else if(64==products.list[i].termUnit){#>
@@ -43,7 +49,7 @@
 				</td>		  
 	            <td><#=products.list[i].rate#></td>
 			   <#if(products.list[i].state == 59){#>
-              <td>暂停</td>
+              <td>待定</td>
 				<#}else if(products.list[i].state == 60){#>
               <td>在售</td>
 				<#}else if(products.list[i].state == 61){#>
