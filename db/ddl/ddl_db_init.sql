@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `profit_id` int(11) NOT NULL COMMENT '收益类型',
   `bonus_type` int(11) NOT NULL COMMENT '分红方式',
   `direction` int(11) NOT NULL COMMENT '投资方向',
-  `info` varchar(256) NOT NULL COMMENT '资管要素HTML文件',
+  `info` text NOT NULL COMMENT '资管要素HTML文件',
   `view_num` int(11) NOT NULL COMMENT '查看次数',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',

@@ -117,8 +117,7 @@ $(document).ready(function(){
 	};
 	
 	$('.bnt_ok').click(function(){
-		//$.post("/dixin/product/add", $("#addproductForm").serialize(), addsuccess);
-		$.get("/dixin/product/add", $("#addproductForm").serialize(), addsuccess);
+		$.post("/dixin/product/add", $("#addproductForm").serialize(), addsuccess);
 	});   
 	
 	/** 
