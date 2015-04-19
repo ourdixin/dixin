@@ -25,6 +25,7 @@
 		start_date,
 		term,
 		auth_type,
+		fm_id,
 		create_user,
 		create_time,
 		update_user,
@@ -47,6 +48,7 @@
 		#{startDate},
 		#{term},
 		#{authType},
+		#{fmId},
 		0,
 		SYSDATE(),
 		0,
@@ -73,6 +75,7 @@
 	    start_date startDate,
 	    term term,
 	    auth_type authType,
+	    fm_id fmId,
 	    create_user createUser,
 	    create_time createTime,
 	    update_user updateUser,
@@ -100,6 +103,7 @@
 	    start_date startDate,
 	    term term,
 	    auth_type authType,
+	    fm_id fmId,
 	    create_user createUser,
 	    create_time createTime,
 	    update_user updateUser,
@@ -129,6 +133,7 @@
 		,start_date=#{startDate}
 		,term=#{term}
 		,auth_type=#{authType}
+		,fm_id = #{fmId}
 		,update_user=0
 		,update_time=0
 		WHERE id=#{id}

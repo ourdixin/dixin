@@ -38,6 +38,9 @@ public class UserVO extends BaseVO {
 	private Date startDate; // 认证开始日期
 	private int term; // 期限
 	private int authType; // 认证类别
+	private int fmId;	//财务经理ID
+	
+
 	private int createUser; // 创建人
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -157,6 +160,12 @@ public class UserVO extends BaseVO {
 	}
 	public void setAuthType(int authType) {
 		this.authType = authType;
+	}
+	public int getFmId() {
+		return fmId;
+	}
+	public void setFmId(int fmId) {
+		this.fmId = fmId;
 	}
 	public int getCreateUser() {
 		return createUser;
