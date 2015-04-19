@@ -39,6 +39,15 @@ public interface UserMapper {
 	 * 
 	 * @param userId 
 	 */
-	void deleteUser(int userId);	
-	
+	void deleteUser(int userId);
+	/**
+	 * *@param map
+	 * 
+	 */
+	void updatePassword(Map<String,Object> map);
+	/**
+	 * @param tel
+	 * 查询手机号是否存在
+	 */
+	Integer existsTel(String mobile);
 }

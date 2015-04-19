@@ -9,7 +9,7 @@
 <link href="<%=request.getContextPath()%>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/register.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/forgetpassword.js"></script>
 
 </head>
 
@@ -22,7 +22,7 @@
 <div id="title_font">忘记密码</div>
 <div class="register">
 <div class="info_frm">
-<form action="<%=request.getContextPath() %>/authentication/user" method="post" id="regForm">
+<form action="<%=request.getContextPath() %>/authentication/user" method="post" id="forgetpasswordForm">
   <table>
     <tbody>
       <tr>

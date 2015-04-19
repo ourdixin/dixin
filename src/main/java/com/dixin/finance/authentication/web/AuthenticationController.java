@@ -134,12 +134,26 @@ public class AuthenticationController {
 	@RequestMapping(value="/authentication/validatecode", method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult register(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		
-		
-		
-		
 		BaseWebResult webResult = new BaseWebResult();
 		return webResult;
 	}
+	
+	@RequestMapping(value="/authentication/forgetpassword", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult resetPassword(String mobile,String password,String rpassword,HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		BaseWebResult webResult = new BaseWebResult();
+		int user_id =  userServiceImpl.checkWithTel(mobile);
+		if(user_id <0){
+			webResult.setMsg("请输入正确账号！");
+			webResult.setSuccess(false);
+			return webResult;
+		}
+		userServiceImpl.resetPassword(password,user_id);
+		webResult.setMsg("修改成功！");
+		webResult.setSuccess(true);
+		return webResult;
+		
+	}
+	
 	
 	public IUserService getUserServiceImpl() {
 		return userServiceImpl;

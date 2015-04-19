@@ -140,7 +140,17 @@
 	<delete id="deleteStudent" parameterType="int">
 			DELETE FROM user WHERE id = #{userId}
 	</delete>
-  
+  	
+  	
+  	<!-- 更改用户密码 -->
+  	<update id="updatePassword" parameterType="map">
+  			UPDATE user SET password = PASSWORD(#{password}) WHERE id=#{user_id}
+  	</update>
+  	
+  	<!-- 查找手机号是否存在，并返回用户 -->
+  	<select id="existsTel" parameterType="String" resultType="Integer">
+  		   SELECT id FROM user WHERE mobile = #{mobile}
+  	</select>
   
   
   

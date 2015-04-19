@@ -43,6 +43,26 @@ public class UserServiceImpl implements IUserService {
 		return user;
 	}
 	
+	@Override
+	public void resetPassword(String password, int user_id){
+		Map<String, Object> map = new HashMap<String , Object>();
+		
+		map.put("password", password);
+		map.put("user_id", user_id);
+		userMapper.updatePassword(map);
+	}
+	
+	@Override
+	public int checkWithTel(String mobile){
+		
+		Integer user_id = userMapper.existsTel(mobile);
+		if(user_id ==  null)
+			return -1;
+		
+		return user_id;
+	}
+	
+	
 	public UserMapper getUserMapper() {
 		return userMapper;
 	}
