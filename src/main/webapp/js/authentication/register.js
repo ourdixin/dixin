@@ -6,6 +6,6 @@ $(document).ready(function(){
 	};
 	
 	$('.bnt_ok').click(function(){
-		$.post("/dixin/authentication/user", $("#regForm").serialize(), success);
+		$.post(HOST_PATH+"/authentication/user", $("#regForm").serialize(), success);
 	});
 });

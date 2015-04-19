@@ -9,6 +9,6 @@ $(document).ready(function(){
 	};
 	
 	$('.bnt_ok').click(function(){
-		$.post("/dixin/authentication/login", $("#loginForm").serialize(), success);
+		$.post(HOST_PATH+"/authentication/login", $("#loginForm").serialize(), success);
 	});
 });

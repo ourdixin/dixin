@@ -2,7 +2,7 @@
  * 
  */
 $(document).ready(function(){
-	
+
 	function success(data){
 		if(data.result.length == 1 )
 		{
@@ -18,7 +18,7 @@ $(document).ready(function(){
 		}
 				
 		$("a[class='item']").click(function(){
-			$.get("/dixin/products?pageNum="+this.text+"&productType="+this.name, null, success);
+			$.get(HOST_PATH+"/products?pageNum="+this.text+"&productType="+this.name, null, success);
 		});		
 		
 	};
@@ -27,14 +27,14 @@ $(document).ready(function(){
 	template.config('closeTag', '#>');
 	
 	// 加载产品信息
-	$.get("/dixin/products", null, success);
+	$.get(HOST_PATH+"/products", null, success);
 
 	$("#query").click(function(){
-		$.get("/dixin/products?searchText="+$('#search_text').attr("value"), null, success);
+		$.get(HOST_PATH+"/products?searchText="+$('#search_text').attr("value"), null, success);
 	});	
 	
 	$(".productview").click(function(){
-		$.get("/dixin/product/view?productId="+this.id, null, null);
+		$.get(HOST_PATH+"/product/view?productId="+this.id, null, null);
 	});		
 	
 	loginsuccess: function loginsuccess(data){
@@ -49,7 +49,7 @@ $(document).ready(function(){
 	};
 	
 	$('.bnt_ok').click(function(){
-		$.post("/dixin/authentication/login", $("#loginForm").serialize(), loginsuccess);
+		$.post(HOST_PATH+"/authentication/login", $("#loginForm").serialize(), loginsuccess);
 	});	
 	
 });

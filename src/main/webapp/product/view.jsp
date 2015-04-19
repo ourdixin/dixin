@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>产品详细</title>
 <link href="<%=request.getContextPath()%>/css/LTT_define.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
 <body>
 <!---TOP头部共用部份---->

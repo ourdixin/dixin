@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function(){
-	
+
 	template.config('openTag', '<#');
 	template.config('closeTag', '#>');	
 	
@@ -22,7 +22,7 @@ $(document).ready(function(){
 		}
 		*/	
 		$("a[class='item']").click(function(){
-			//$.post("/dixin/products/advance?pageNum="+this.text+"&productType="+this.name, null, success);
+			//$.post(basePath+"/products/advance?pageNum="+this.text+"&productType="+this.name, null, success);
 			searchProducts(this.text);
 		});		
 		
@@ -36,7 +36,7 @@ $(document).ready(function(){
 			   data += this.id + "&";
 		 });
 		data += "pageNum=" +  pageNum;
-		$.post("/dixin/products/advance",data, searchsuccess);		
+		$.post(HOST_PATH+"/products/advance",data, searchsuccess);		
 	}
 	
 	$('dd a ').click(function(){

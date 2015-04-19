@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/popwindow.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/product/product.js"></script>
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 <script type="text/html" id="product_item">
 
 	<table class="ui compact table segment">

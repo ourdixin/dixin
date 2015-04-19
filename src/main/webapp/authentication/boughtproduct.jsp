@@ -12,6 +12,7 @@
      src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" 
      src="<%=request.getContextPath()%>/js/js.js"></script>
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
 <body>
 <!---TOP头部共用部份---->

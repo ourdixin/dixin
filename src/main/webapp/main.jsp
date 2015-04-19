@@ -14,6 +14,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/popwindow.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 <script type="text/html" id="product_item">
 
 	<table class="ui compact table segment">
@@ -101,7 +102,7 @@
 <#} else {#>
 	【认证会员】
 <# }  #>
- 	| <a href="<%=request.getContextPath() %>/user.jsp">我的121金融</a> | <a href="<%=request.getContextPath() %>/logout.jsp">安全退出</a>
+ 	| <a href="<%=request.getContextPath() %>/authentication/user.jsp">我的121金融</a> | <a href="<%=request.getContextPath() %>/authentication/logout.jsp">安全退出</a>
 </script>
 
 </head>
