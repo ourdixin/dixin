@@ -32,7 +32,7 @@
 					<a href="<%=request.getContextPath()%>/authentication/personaldata.jsp"><img src="<%=request.getContextPath()%>/images/ico_17.png" width="18" height="20" />帐户设置</a>
 				</dd>
 				<dd>
-					<a href="about.html"><img src="<%=request.getContextPath()%>/images/ico_20.png" width="17" height="20" />安全退出</a>
+					<a href="<%=request.getContextPath()%>/authentication/logout"><img src="<%=request.getContextPath()%>/images/ico_20.png" width="17" height="20" />安全退出</a>
 				</dd>
 			</ul>
 		</div>

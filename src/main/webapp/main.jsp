@@ -142,7 +142,7 @@
      box.show();
     </script>
 </div>
-<div><img src="images/index_14.jpg" width="333" height="103" /><a href="about.html"><img src="images/index_15.jpg" width="333" height="103" /></a><a href="transfer.html"><img src="images/index_17.jpg" width="334" height="103" /></a></div>
+<div><a href="<%=request.getContextPath() %>/product/product.jsp"><img src="images/index_14.jpg" width="333" height="103" /></a><a href="<%=request.getContextPath() %>/product/product.jsp"><img src="images/index_15.jpg" width="333" height="103" /></a><a href="<%=request.getContextPath() %>/transfer.html"><img src="images/index_17.jpg" width="334" height="103" /></a></div>
 <!---TAB部份----> 
 
 <ul class="ul_1" style="margin-top:10px;">
@@ -191,7 +191,7 @@
 		<% // p2p产品列表  %>
   </div -->
 <!---TAB结束---->
-<div class="index_about"><a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.baidu.com/');" href="#"> <img src="images/index_28.jpg" width="151" height="29" /></a><a href="about.html"><img src="images/index_30.jpg" width="124" height="29" /></a></div>
+<div class="index_about"><a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.baidu.com/');" href="#"> <img src="<%=request.getContextPath() %>/images/index_28.jpg" width="151" height="29" /></a><a href="<%=request.getContextPath() %>/authentication/regarding.jsp"><img src="<%=request.getContextPath() %>/images/index_30.jpg" width="124" height="29" /></a></div>
 </div>
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />
