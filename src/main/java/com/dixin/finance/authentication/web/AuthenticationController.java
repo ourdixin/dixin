@@ -54,19 +54,27 @@ public class AuthenticationController {
 	public @ResponseBody BaseWebResult register(UserVO userVO, String backurl, HttpSession session,HttpServletRequest request){
 		
 		if(backurl == null || backurl=="")
-			backurl=request.getContextPath();
+			backurl=request.getContextPath()+"/";
 		userVO.setUserName(userVO.getMobile());
 		userVO.setName(userVO.getMobile());
 		userVO.setEnabled(1);
 		logger.info("用户" + userVO.getUserName() + "注册开始");
-		userServiceImpl.register(userVO);
-		logger.info("用户" + userVO.getUserName() + "注册成功");
-		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		BaseWebResult webResult = new BaseWebResult();
-		webResult.setSuccess(true);
-		webResult.setResult(userVO);
-		webResult.setMsg(backurl);
-		
+		if(userServiceImpl.checkWithTel(userVO.getMobile()) > 0)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("此手机号码已被注册!");
+		}
+		else
+		{
+			userServiceImpl.register(userVO);
+			logger.info("用户" + userVO.getUserName() + "注册成功");
+			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
+			
+			webResult.setSuccess(true);
+			webResult.setResult(userVO);
+			webResult.setMsg(backurl);
+		}
 		return webResult;
 	}
 
@@ -84,7 +92,7 @@ public class AuthenticationController {
 			webResult.setSuccess(true);
 			webResult.setResult(userInfo);
 			if(backurl == null || backurl=="")
-				backurl=request.getContextPath();
+				backurl=request.getContextPath()+"/";
 			webResult.setMsg(backurl);
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		}

@@ -102,7 +102,7 @@
 <#} else {#>
 	【认证会员】
 <# }  #>
- 	| <a href="<%=request.getContextPath() %>/authentication/user.jsp">我的121金融</a> | <a href="<%=request.getContextPath() %>/authentication/logout.jsp">安全退出</a>
+ 	| <a href="<%=request.getContextPath() %>/authentication/user.jsp">我的121金融</a> | <a href="<%=request.getContextPath() %>/authentication/logout">安全退出</a>
 </script>
 
 </head>
