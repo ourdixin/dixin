@@ -224,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `financial_institution` (
 --
 
 CREATE TABLE IF NOT EXISTS `financial_manager` (
-  `user_id` int(11) NOT NULL COMMENT '用户ID',
+  `id` int(11) NOT NULL COMMENT '内部唯一ID',
   `info` varchar(256) NOT NULL COMMENT '专属财务经理介绍',
   `title` varchar(64) NOT NULL COMMENT '职务',
   `education` varchar(64) NOT NULL COMMENT '学历',
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `financial_manager` (
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',
   `update_time` datetime NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `profit_id` int(11) NOT NULL COMMENT '收益类型',
   `bonus_type` int(11) NOT NULL COMMENT '分红方式',
   `direction` int(11) NOT NULL COMMENT '投资方向',
-  `info` varchar(256) NOT NULL COMMENT '资管要素HTML文件',
+  `info` text NOT NULL COMMENT '资管要素HTML文件',
   `view_num` int(11) NOT NULL COMMENT '查看次数',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
@@ -388,11 +388,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `start_date` date COMMENT '认证开始日期',
   `term` int(11) COMMENT '期限',
   `auth_type` int(11) COMMENT '认证类别',
+  `fm_id` int(11) NOT NULL COMMENT '财务经理ID',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',
   `update_time` datetime NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fm_id` (`fm_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
