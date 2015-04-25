@@ -32,6 +32,12 @@ $(document).ready(function(){
              alert("两次密码输入不一致");
              return;
          }         
+         
+         var bagree = $("input[id='agree']").attr("checked");
+         if (bagree == false) {
+             alert("请先阅读并同意《121金融注册协议》才能注册用户！");
+             return;
+         }         
 		
 		$.post(HOST_PATH+"/authentication/user", $("#regForm").serialize(), success);
 	});

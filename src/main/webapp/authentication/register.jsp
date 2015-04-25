@@ -54,7 +54,7 @@
 	            <td></td>
 	            <td>
 	              <div style="position:relative;" class="mtop25 clearfix">
-	               <span class="bnt_ok">立即注册</span><span class="input-r-tips">已有账号，直接<a href="login.htm" style="color:#F60">登录</a></span>
+	               <span class="bnt_ok">立即注册</span><span class="input-r-tips">已有账号，直接<a href="<%=request.getContextPath()%>/authentication/login.jsp" style="color:#F60">登录</a></span>
 	              </div>
 	            </td>
 	          </tr>

@@ -28,7 +28,7 @@
         <td width="0%" height="35" align="center" bgcolor="#FFFFFF">发布时间</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
         <c:if test="${product.releaseDate < product.invalidDate}">
-        	<fmt:formatDate value="${product.releaseDate}" pattern="yyyy年MM月dd日 "/>      
+        	<fmt:formatDate value="${product.releaseDate}" pattern="yyyy年MM月dd日  HH:mm"/>      
         </c:if>
         <c:if test="${product.releaseDate >= product.invalidDate}">
         	待定
