@@ -38,8 +38,8 @@ public class UserVO extends BaseVO {
 	private Date startDate; // 认证开始日期
 	private int term; // 期限
 	private int authType; // 认证类别
-	private int fmId;	//财务经理ID
-	
+	//private int fmId;	//财务经理ID
+	private FinancialManagerVO fmanagerVO;//财富经理id;	
 
 	private int createUser; // 创建人
 	
@@ -161,12 +161,7 @@ public class UserVO extends BaseVO {
 	public void setAuthType(int authType) {
 		this.authType = authType;
 	}
-	public int getFmId() {
-		return fmId;
-	}
-	public void setFmId(int fmId) {
-		this.fmId = fmId;
-	}
+	
 	public int getCreateUser() {
 		return createUser;
 	}
@@ -190,5 +185,17 @@ public class UserVO extends BaseVO {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+	/**
+	 * @return the fmanagerVO
+	 */
+	public FinancialManagerVO getFmanagerVO() {
+		return fmanagerVO;
+	}
+	/**
+	 * @param fmanagerVO the fmanagerVO to set
+	 */
+	public void setFmanagerVO(FinancialManagerVO fmanagerVO) {
+		this.fmanagerVO = fmanagerVO;
 	}
 }

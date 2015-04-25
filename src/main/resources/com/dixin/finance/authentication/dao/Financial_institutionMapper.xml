@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.authentication.dao.Financial_institutionMapper">
+	<!--  -->
+	<insert id="insert" parameterType="com.dixin.finance.authentication.vo.Financial_institutionVO">
+		INSERT INTO 
+				financial_institution(
+				id,
+				name,
+				tel,
+				info,
+				catogry_id,
+				create_user,
+				create_time,
+				update_user,
+				update_time
+				)
+		VALUES
+				#{id},
+				#{name},
+				#{tel}.
+				#{info},
+				#{catogry_id},
+				#{create_user},
+				SYSDATE(),
+				#{update_user},
+				SYSDATE()
+				
+	</insert>
+		
+	<select id="query" resultType="com.dixin.finance.authentication.vo.Financial_institutionVO">
+		SELECT 
+				id,
+				name,
+				tel,
+				info,
+				catogry_id,
+				create_user,
+				create_time,
+				update_user,
+				update_time
+		FROM
+				financial_institution	
+	</select>
+</mapper>

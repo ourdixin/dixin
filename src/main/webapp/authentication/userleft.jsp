@@ -23,7 +23,7 @@
 					<a href="<%=request.getContextPath()%>/product/queryAssignment"><img src="<%=request.getContextPath()%>/images/ico_13.png" width="20" height="16" />产品转让</a>
 				</dd>
 				<dd>
-					<a href="<%=request.getContextPath()%>/authentication/myselfwealthers.jsp"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的专属财富经理</a>
+					<a href="<%=request.getContextPath()%>/authentication/myselfwealthers"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的专属财富经理</a>
 				</dd>
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/RiskAppraisal.jsp"><img src="<%=request.getContextPath()%>/images/ico_10.png" width="16" height="17" />风险评估</a>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -32,19 +33,19 @@
                   <tr>
                   <td width="16%" rowspan="3" align="center"><img src="<%=request.getContextPath()%>/images/pic.jpg" width="88" height="110"  style="padding:3px; border:1px solid #e1e1e1"/></td>
                   <td width="14%" align="right"><strong>姓名：</strong></td>
-                  <td width="12%">李杰</td>
+                  <td width="12%">${fmanager.info}</td>
                   <td width="11%" align="right"><strong>职务：</strong></td>
-                  <td width="22%">经理</td>
+                  <td width="22%">${fmanager.title}</td>
                   <td width="7%" align="right"><strong>学历：</strong></td>
-                  <td width="18%">本科</td>
+                  <td width="18%">${fmanager.education}</td>
                 </tr>
                   <tr>
                     <td align="right"><strong>执业证书编号：</strong></td>
-                    <td>01221452</td>
+                    <td>${fmanager.certificate}</td>
                     <td align="right"><strong>所属部门：</strong></td>
-                    <td>中信证券北京分公司</td>
+                    <td>${finVO.name}</td>
                     <td align="right"><strong>电话：</strong></td>
-                    <td>010-83022345</td>
+                    <td>${fmanager.tel}</td>
                   </tr>
                   <tr>
                     <td align="right"><strong>当前状态：</strong></td>

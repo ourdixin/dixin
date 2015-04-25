@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.authentication.dao.FinancialManagerMapper">
+	<!-- 实现我的专属财务经理的数据库存取操作 -->
+	<resultMap  id="userResult" type="com.dixin.finance.authentication.vo.UserVO">
+		<id column="id" property="id"/>
+		<result column="user_name" property="user_name"/>
+		<result column="fm_id" property="fm_id"/>
+		<association property="fmanagerVO" column="fm_id" resultMap="fManagerResult"/>
+	</resultMap>
+	
+	<resultMap  id="f_inResult" type="com.dixin.finance.authentication.vo.Financial_institutionVO">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="tel" property="tel"/>
+	</resultMap>
+	
+	<resultMap id="fManagerResult" type="com.dixin.finance.authentication.vo.FinancialManagerVO">  
+		<id column="id" property="id"/>
+		<result column="info" property="info"/>
+		<result column="title" property="title"/>
+		<result column="education" property="education"/>
+		<result column="certificate" property="certificate"/>
+		<result column="tel" property="tel"/>
+		<result column="create_user" property="create_user"/>
+		<result column="create_time" property="create_time"/>
+		<result column="update_user" property="update_user"/>
+		<result column="update_time" property="update_time"/>
+		<association property="financialInstitution" column="institution_id" resultMap="f_inResult"/>
+	</resultMap>  
+	
+    <select id="queryFmanager" parameterType="int"  resultMap="fManagerResult">
+    	SELECT a.*,  b.*   FROM 
+    								financial_manager a, 	financial_institution b,	user c
+    						  WHERE 
+    						  		a.institution_id=b.id 	AND 	c.fm_id=a.id	 AND 	c.id=#{id}
+    				
+     </select>
+</mapper>

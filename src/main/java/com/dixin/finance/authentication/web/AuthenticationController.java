@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,13 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
+import com.dixin.finance.authentication.vo.FinancialManagerVO;
+import com.dixin.finance.authentication.vo.Financial_institutionVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
+
 
 @Controller
 public class AuthenticationController {
@@ -35,6 +40,9 @@ public class AuthenticationController {
 
 	@Resource
 	private ISmsService smsServiceImpl;
+	
+	@Resource
+	private IFmrService fmrServiceImpl;
 	
 	@RequestMapping(value="/")
 	public String index(HttpSession session,Model model,HttpServletRequest request){
@@ -154,7 +162,30 @@ public class AuthenticationController {
 		
 	}
 	
+	@RequestMapping(value="/authentication/myselfwealthers", method=RequestMethod.POST)
+	public @ResponseBody String showFinancialManager(Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response){
+		
+		logger.info("本页被访问！");
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			return "login";
+		}
+		int id = userVO.getId();
+		
+		FinancialManagerVO fmanager = fmrServiceImpl.selectFmanager(id);
+		Financial_institutionVO finVO = fmanager.getFinancialInstitution();
+		model.addAttribute("fmanager", fmanager);
+		model.addAttribute("user", userVO);
+		model.addAttribute("finVO", finVO);
+		
+		return "/authentication/myselfwealthers";
+		
+	}
 	
+	
+	
+
+
 	public IUserService getUserServiceImpl() {
 		return userServiceImpl;
 	}
