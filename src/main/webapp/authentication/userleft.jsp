@@ -11,7 +11,7 @@
 	<div id="main_body">
 		<div id="main_left">
 			<ul>
-				<dt>我的121金融</dt>
+				<dt><a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a></dt>
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/boughtproduct.jsp"><img src="<%=request.getContextPath()%>/images/ico_03.png" width="12" height="12" />我购买的产品</a>
 				</dd>

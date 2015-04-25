@@ -34,7 +34,7 @@
 	          </tr>
 	          <tr>
 	            <td class="t">登录密码：</td>
-	            <td><input maxlength="12" class="itstyle lt it" name="password" id="pass" type="password"><div class="input-r-tips"></div></td>
+	            <td><input maxlength="12" class="itstyle lt it" name="password" id="password" type="password"><div class="input-r-tips"></div></td>
 	          </tr>
 	          <tr>
 	            <td class="t">密码强度：</td>
@@ -44,7 +44,7 @@
 	          </tr>
 	          <tr>
 	            <td class="t">确认密码：</td>
-	            <td><input maxlength="12" class="itstyle lt it" id="rpassword" value="" type="password"><div class="input-r-tips"></div></td>
+	            <td><input maxlength="12" class="itstyle lt it" name="rpassword" id="rpassword" value="" type="password"><div class="input-r-tips"></div></td>
 	          </tr>
 	          <tr>
 	            <td></td>

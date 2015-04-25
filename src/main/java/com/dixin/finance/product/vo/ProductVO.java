@@ -43,23 +43,56 @@ public class ProductVO extends BaseVO {
 	 * 发行时间
 	 */
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date releaseDate=getDefalutInvalidDate();
 	
 	/**
 	 * 发行结束时间
 	 */
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date endDate = getDefalutInvalidDate();	
 	
 	/**
-	 * 发行时间
+	 * 产品是否可以延期
+	 */
+	private Boolean bDelay = false;
+	
+	/**
+	 * 延期条件
+	 */
+	private String delayCondition;	
+	
+	/**
+	 * 延期期限
+	 */
+	private Integer delayTerm=0;	
+	
+	/**
+	 * 延期期限单位
+	 */
+	private Integer delayTermUnit=64;	
+	
+
+	/**
+	 * 无效时间
 	 */
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date invalidDate = getDefalutInvalidDate();
 	
+	/*
+	 * 续存期限
+	 */
+	private Integer appendTerm = 0;
+	
+
+	/**
+	 * 续存期限单位  年/月/日
+	 */
+	private Integer appendTermUnit = 64; //月	
+	
+
 	/*
 	 * 期限
 	 */
@@ -69,7 +102,8 @@ public class ProductVO extends BaseVO {
 	/**
 	 * 期限单位 年/月/日
 	 */
-	private Integer termUnit = 64; //月	
+	private Integer termUnit = 64; //月		
+	
 	
 	private String rate= "";
 	
@@ -127,6 +161,11 @@ public class ProductVO extends BaseVO {
 	private Double minAmount = 0d;
 	
 	/**
+	 * 投资追加金额
+	 */
+	private Double appendAmount = 0d;	
+	
+	/**
 	 * 利益分配方式
 	 */
 	private Integer payType = 0;
@@ -167,13 +206,13 @@ public class ProductVO extends BaseVO {
 	
 	private String createUser=""; // 创建人',
 
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")//存日期时使用 
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")//取日期时使用 
 	private Date createTime = new Date(); // 创建时间',
 	private String updateUser=""; // 更新人',
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date updateTime= new Date(); // 更新时间',
 	
 	
@@ -212,6 +251,39 @@ public class ProductVO extends BaseVO {
 		if(endDate !=null)
 			this.endDate = endDate;
 	}
+	
+	public Boolean getbDelay() {
+		return bDelay;
+	}
+	
+	public void setbDelay(Boolean bDelay) {
+		this.bDelay = bDelay;
+	}
+	
+	public String getDelayCondition() {
+		return delayCondition;
+	}
+	
+	public void setDelayCondition(String delayCondition) {
+		this.delayCondition = delayCondition;
+	}
+	
+	public Integer getDelayTerm() {
+		return delayTerm;
+	}
+	
+	public void setDelayTerm(Integer delayTerm) {
+		this.delayTerm = delayTerm;
+	}
+	
+	public Integer getDelayTermUnit() {
+		return delayTermUnit;
+	}
+	
+	public void setDelayTermUnit(Integer delayTermUnit) {
+		this.delayTermUnit = delayTermUnit;
+	}	
+	
 	public int getTerm() {
 		return term;
 	}
@@ -226,6 +298,23 @@ public class ProductVO extends BaseVO {
 		if(termUnit !=null)
 			this.termUnit = termUnit;
 	}
+	
+	public Integer getAppendTerm() {
+		return appendTerm;
+	}
+	
+	public void setAppendTerm(Integer appendTerm) {
+		this.appendTerm = appendTerm;
+	}
+	
+	public Integer getAppendTermUnit() {
+		return appendTermUnit;
+	}
+	
+	public void setAppendTermUnit(Integer appendTermUnit) {
+		this.appendTermUnit = appendTermUnit;
+	}
+	
 	public float getPartA() {
 		return partA;
 	}
@@ -269,6 +358,13 @@ public class ProductVO extends BaseVO {
 		if(minAmount != null)
 			this.minAmount = minAmount;
 	}
+	public Double getAppendAmount() {
+		return appendAmount;
+	}
+	public void setAppendAmount(Double appendAmount) {
+		this.appendAmount = appendAmount;
+	}
+	
 	public int getPayType() {
 		return payType;
 	}
@@ -301,11 +397,16 @@ public class ProductVO extends BaseVO {
 			this.guideFile = guideFile;
 	}
 	public int getState() {
-		
-		Date curdate = new Date();
+	
 		Calendar cal = Calendar.getInstance();
+		cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		Date curdate = cal.getTime();
 		cal.setTime(releaseDate);
-		if(releaseDate == null || cal.get(Calendar.YEAR) < 1970)
+		if(releaseDate == null || cal.get(Calendar.YEAR) <= 1970)
 			state = ProductStateConstant.UNDERTERMINED;
 		else if( curdate.before(releaseDate))
 			state = ProductStateConstant.OnBook;
@@ -445,7 +546,7 @@ public class ProductVO extends BaseVO {
 	
 	public Date getDefalutInvalidDate() {
 		Calendar cal = Calendar.getInstance();
-		cal.set(1970, 1, 1);
+		cal.set(1970, 0, 1);
 		return cal.getTime();
 	}	
 	

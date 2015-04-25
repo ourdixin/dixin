@@ -12,8 +12,14 @@
 			name name, 
 			release_date releaseDate,
 			end_date endDate, 
+			b_delay bDelay,
+			delay_condition delayCondition,
+			delay_term delayTerm,
+			delay_term_unit delayTermUnit,
 			term term, 
 			term_unit termUnit,
+			append_term appendTerm, 
+			append_term_unit appendTermUnit,			
 			part_a partA, 
 			rate_a rateA, 
 			part_b partB, 
@@ -23,7 +29,8 @@
 			part_d partD, 
 			rate_d rateD, 
 			amount amount, 
-			min_amount minAmount, 
+			min_amount minAmount,
+			append_amount appendAmount,
 			pay_type payType, 
 			pay_type_info payTypeInfo,
 			ad_file adFile, 
@@ -46,9 +53,14 @@
                and catogry_id=#{productType} 
             ]]>  
         </if>  
+		<if test="state == 59">  
+            <![CDATA[  
+               and release_date <= '1970-01-01'
+            ]]>  
+        </if>        
 		<if test="state == 60">  
             <![CDATA[  
-               and CURDATE() >= release_date and CURDATE() <=endDate 
+               and release_date > '1970-01-01' and CURDATE() >= release_date and CURDATE() <=end_date 
             ]]>  
         </if>
 		<if test="state == 61">  
@@ -58,7 +70,7 @@
         </if>
  		<if test="state == 62">  
             <![CDATA[  
-               and CURDATE() > endDate
+               and CURDATE() > end_date
             ]]>  
         </if>       
 		<if test="direction != -1">  
@@ -131,7 +143,7 @@
                and rate_a >= 0.15
             ]]>  
         </if>         
-        
+        order by release_date desc
                        		
   </select>
 
@@ -141,8 +153,14 @@
 			name name, 
 			release_date releaseDate,
 			end_date endDate, 
+			b_delay bDelay,
+			delay_condition delayCondition,
+			delay_term delayTerm,
+			delay_term_unit delayTermUnit,
 			term term, 
 			term_unit termUnit,
+			append_term appendTerm, 
+			append_term_unit appendTermUnit,
 			part_a partA, 
 			rate_a rateA, 
 			part_b partB,  
@@ -153,6 +171,7 @@
 			rate_c rateD, 
 			amount amount, 
 			min_amount minAmount, 
+			append_amount appendAmount,
 			pay_type payType, 
 			pay_type_info payTypeInfo,
 			ad_file adFile, 
@@ -185,8 +204,14 @@
 		name,
 		release_date,
 		end_date,
+		b_delay,
+		delay_condition,
+		delay_term,
+		delay_term_unit,
 		term,
 		term_unit,
+		append_term, 
+		append_term_unit,
 		part_a,
 		rate_a,
 		part_b,
@@ -197,6 +222,7 @@
 		rate_d,
 		amount,
 		min_amount,
+		append_amount,
 		pay_type,
 		pay_type_info,
 		star,
@@ -217,8 +243,14 @@
 		#{name},
 		#{releaseDate},
 		#{endDate},
+		#{bDelay},
+		#{delayCondition},
+		#{delayTerm},
+		#{delayTermUnit},		
 		#{term},
 		#{termUnit},
+		#{appendTerm}, 
+		#{appendTermUnit},
 		#{partA},
 		#{rateA},
 		#{partB},
@@ -229,6 +261,7 @@
 		#{rateD},
 		#{amount},
 		#{minAmount},
+		#{appendAmount},
 		#{payType},
 		#{payTypeInfo},
 		#{star},

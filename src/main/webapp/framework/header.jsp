@@ -25,7 +25,7 @@
 	</div>
 	<div id="top">
 		<div class="main_top">
-			<a href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/images/index_03.jpg" width="408"
+			<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/index_03.jpg" width="408"
 				height="50" /></a>
 		</div>
 	</div>

@@ -96,11 +96,11 @@
 	<div class="box_d">
 			<dl>
 				<dt id="productType">金融机构：</dt>
-				<dd><a id="-1" href="#" target="_self">不限</a><a id="2" href="#" target="_self">银行</a><a id="3" href="#" target="_self">基金公司</a><a id="4" href="#" target="_self">证券公司</a><a id="5" href="#" target="_self">信托公司</a><a id="6" href="#" target="_self">资产管理公司</a></dd>
+				<dd><a id="-1" href="#" target="_self">不限</a><a id="1" href="#" target="_self">债券</a><a id="2" href="#" target="_self">银行</a><a id="3" href="#" target="_self">基金公司</a><a id="4" href="#" target="_self">证券公司</a><a id="5" href="#" target="_self">信托公司</a><a id="6" href="#" target="_self">资产管理公司</a></dd>
 			</dl>
 			<dl>
 				<dt id="state">产品状态：</dt>
-				<dd><a id="-1" href="#" target="_self">不限</a><a id="60" href="#" target="_self">在售</a><a id="61" href="#" target="_self">预约</a><a id="62" href="#" target="_self">售罄</a></dd>
+				<dd><a id="-1" href="#" target="_self">不限</a><a id="59" href="#" target="_self">待定</a><a id="60" href="#" target="_self">在售</a><a id="61" href="#" target="_self">预约</a><a id="62" href="#" target="_self">售罄</a></dd>
 			</dl>
 			<dl>
 				<dt id="minAmount">投资起点：</dt>
