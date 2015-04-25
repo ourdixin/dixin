@@ -106,8 +106,12 @@ div {
 										<option value="64" selected>月</option>
 										<option value="65">天</option>
 								</select></td>
-								<td class="t"></td>
-								<td></td>
+								<td class="t">收益类型：</td>
+								<td><select class="itstyle"
+									name="profitId" id="profitId">
+										<option value="42" selected>固定</option>
+										<option value="43">浮动</option>
+								</select></td>
 							</tr>
 							<tr>
 								<td class="t">产品类别：</td>
