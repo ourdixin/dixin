@@ -86,8 +86,19 @@ div {
 								<td><input class="itstyle lt it" id="amount" name="amount"
 									value="" type="text" />(单位:亿)</td>
 								<td class="t">资金投向：</td>
-								<td><input class="itstyle lt it" id="direction"
-									name="direction" value="" type="text" />(单位:万)</td>
+								<td><select class="itstyle"
+									name="direction" id="direction">
+										<option value="49" selected>金融市场</option>
+										<option value="50">公益</option>
+										<option value="51">金融机构</option>
+										<option value="52">房地产</option>
+										<option value="53">工商企业</option>
+										<option value="54">基础设施</option>
+										<option value="55">实业企业</option>
+										<option value="56">保障房</option>
+										<option value="57">酒店类</option>
+										<option value="58">其它</option>
+								</select></td>
 							</tr>
 							<tr>
 								<td class="t">投资起点：</td>
