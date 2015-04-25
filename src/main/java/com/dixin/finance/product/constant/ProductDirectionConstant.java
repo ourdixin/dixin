@@ -8,6 +8,8 @@ package com.dixin.finance.product.constant;
  *
  */
 public interface ProductDirectionConstant {
+	final String[] DirectionTypeString = new String[]{"金融市场","公益","金融机构","房地产","工商企业","基础设施","实业企业","保障房","酒店类","其它"};
+
 	/**
 	 * 所有
 	 */

@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+<title>121金融</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/pptBox.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-1.4.2.min.js"></script>
@@ -22,8 +22,13 @@
       <tr><th>产品代码</th>
       <th>产品名称</th>
       <th>发行时间</th>
+	  <# if(getprofitType() == 42) {#>
       <th>期限</th>
+	  <# }#>
       <th>利率</th>
+	  <th>认购起点</th>
+	  <th>付息方式</th>
+	  <th>资金投向</th>
       <th>状态</th>
       <th>推荐指数</th>
       <th>操作</th>
@@ -36,21 +41,38 @@
               <td><#=products.list[i].code#></td>
               <td><#=products.list[i].name#></td>
               <td>
-				<#if(products.list[i].releaseDate > products.list[i].invalidDate) {#>
-					<#=products.list[i].releaseDate#>
-				<#}else{#>
+				<#if(products.list[i].releaseDate >= products.list[i].invalidDate) {#>
 					待定
+				<#}else{#>
+					<#=products.list[i].releaseDate#>
 				<#}#>
 			  </td>
-              <td><#=products.list[i].term#>
-				<#if(63==products.list[i].termUnit){#>
-				年<#}else if(64==products.list[i].termUnit){#>
-				月
-				<#}else{#>
-				天
+			<# if(getprofitType() == 42) {#>
+              <td>
+				<#if(products.list[i].term > 0 ){#>
+					<#=products.list[i].term#>
+					<#if(63==products.list[i].termUnit){#>
+						年
+					<#}else if(64==products.list[i].termUnit){#>
+						月
+					<#}else{#>
+						天
+					<#}#>
 				<#}#>
-				</td>		  
+				</td>	
+			<#}#>	  
               <td><#=products.list[i].rate#></td>
+			  <td>
+				<#if(products.list[i].minAmount>10000) {#>
+				 <#=products.list[i].minAmount/10000#>万元
+				<#}else{#>
+				 <#=products.list[i].minAmount#>元
+				<#}#>
+			  </td>
+			  <td><#=products.list[i].payTypeInfo#> </td>
+
+			  <td><#=products.list[i].directionInfo#></td>
+
 			   <#if(products.list[i].state == 59){#>
               <td>待定</td>
 				<#}else if(products.list[i].state == 60){#>
@@ -154,11 +176,9 @@
                 <li class="tab1_5_off" id="tab1_5" onMouseOver="set_tab('tab1', 5 ,7)">信托</li>
                 <li class="tab1_6_off"  id="tab1_6" onMouseOver="set_tab('tab1', 6 ,7)">资管</li>
                 <!-- li class="tab1_7_off" id="tab1_7" onMouseOver="set_tab('tab1', 7 ,7)">p2p</li -->
-          
-         
             </ul>
             <div class="index_serch">
-              <!-- div class="serch_a"><a href="#" style="color:#F60">固定收益</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" style="color:#F00">浮动收益</a></div -->
+              <div class="serch_a"><a id="fixIncome" href="#" style="color:#F60">固定收益</a>&nbsp;&nbsp;&nbsp;&nbsp; <a id="UnfixIncome" href="#" style="color:#F00">浮动收益</a></div>
           <form id="searchForm">
            <div class="serch_b">
            	<input id="search_text" type="text" class="serch_text"/>

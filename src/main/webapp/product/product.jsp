@@ -34,10 +34,10 @@
               <td><#=products.list[i].code#></td>
               <td><#=products.list[i].name#></td>
               <td>				
-				<#if(products.list[i].releaseDate > products.list[i].invalidDate) {#>
-					<#=products.list[i].releaseDate#>
-				<#}else{#>
+				<#if(products.list[i].releaseDate >= products.list[i].invalidDate) {#>
 					待定
+				<#}else{#>
+					<#=products.list[i].releaseDate#>
 				<#}#>
 				</td>
               <td><#=products.list[i].term#>月</td>

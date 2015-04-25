@@ -193,7 +193,16 @@ public class ProductVO extends BaseVO {
 	 * 投资方向
 	 */	
 	private Integer direction = ProductDirectionConstant.FinacalMarket;
-	
+	private String directionInfo = "";
+	public String getDirectionInfo() {
+		if(direction >= ProductDirectionConstant.FinacalMarket &&  direction < ProductDirectionConstant.Others)
+			return ProductDirectionConstant.DirectionTypeString[direction - ProductDirectionConstant.FinacalMarket];
+		
+		return directionInfo;
+	}
+	public void setDirectionInfo(String directionInfo) {
+		this.directionInfo = directionInfo;
+	}
 	/**
 	 * 产品说明的html文档
 	 */		
@@ -406,7 +415,7 @@ public class ProductVO extends BaseVO {
 		cal.set(Calendar.MILLISECOND, 0);
 		Date curdate = cal.getTime();
 		cal.setTime(releaseDate);
-		if(releaseDate == null || cal.get(Calendar.YEAR) <= 1970)
+		if(releaseDate == null || cal.get(Calendar.YEAR) >= 2100)
 			state = ProductStateConstant.UNDERTERMINED;
 		else if( curdate.before(releaseDate))
 			state = ProductStateConstant.OnBook;
@@ -546,7 +555,7 @@ public class ProductVO extends BaseVO {
 	
 	public Date getDefalutInvalidDate() {
 		Calendar cal = Calendar.getInstance();
-		cal.set(1970, 0, 1);
+		cal.set(2100, 0, 1);
 		return cal.getTime();
 	}	
 	
