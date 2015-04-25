@@ -82,6 +82,18 @@ public class ProductVO extends BaseVO {
 	private Date invalidDate = getDefalutInvalidDate();
 	
 	/*
+	 * 续存期限
+	 */
+	private Integer appendTerm = 0;
+	
+
+	/**
+	 * 续存期限单位  年/月/日
+	 */
+	private Integer appendTermUnit = 64; //月	
+	
+
+	/*
 	 * 期限
 	 */
 	private Integer term = 0;
@@ -90,7 +102,8 @@ public class ProductVO extends BaseVO {
 	/**
 	 * 期限单位 年/月/日
 	 */
-	private Integer termUnit = 64; //月	
+	private Integer termUnit = 64; //月		
+	
 	
 	private String rate= "";
 	
@@ -285,6 +298,23 @@ public class ProductVO extends BaseVO {
 		if(termUnit !=null)
 			this.termUnit = termUnit;
 	}
+	
+	public Integer getAppendTerm() {
+		return appendTerm;
+	}
+	
+	public void setAppendTerm(Integer appendTerm) {
+		this.appendTerm = appendTerm;
+	}
+	
+	public Integer getAppendTermUnit() {
+		return appendTermUnit;
+	}
+	
+	public void setAppendTermUnit(Integer appendTermUnit) {
+		this.appendTermUnit = appendTermUnit;
+	}
+	
 	public float getPartA() {
 		return partA;
 	}

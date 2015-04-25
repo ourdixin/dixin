@@ -18,6 +18,8 @@
 			delay_term_unit delayTermUnit,
 			term term, 
 			term_unit termUnit,
+			append_term appendTerm, 
+			append_term_unit appendTermUnit,			
 			part_a partA, 
 			rate_a rateA, 
 			part_b partB, 
@@ -141,7 +143,7 @@
                and rate_a >= 0.15
             ]]>  
         </if>         
-        
+        order by release_date desc
                        		
   </select>
 
@@ -157,6 +159,8 @@
 			delay_term_unit delayTermUnit,
 			term term, 
 			term_unit termUnit,
+			append_term appendTerm, 
+			append_term_unit appendTermUnit,
 			part_a partA, 
 			rate_a rateA, 
 			part_b partB,  
@@ -206,6 +210,8 @@
 		delay_term_unit,
 		term,
 		term_unit,
+		append_term, 
+		append_term_unit,
 		part_a,
 		rate_a,
 		part_b,
@@ -243,6 +249,8 @@
 		#{delayTermUnit},		
 		#{term},
 		#{termUnit},
+		#{appendTerm}, 
+		#{appendTermUnit},
 		#{partA},
 		#{rateA},
 		#{partB},
