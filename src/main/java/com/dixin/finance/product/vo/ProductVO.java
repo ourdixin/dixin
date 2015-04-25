@@ -43,14 +43,14 @@ public class ProductVO extends BaseVO {
 	 * 发行时间
 	 */
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date releaseDate=getDefalutInvalidDate();
 	
 	/**
 	 * 发行结束时间
 	 */
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date endDate = getDefalutInvalidDate();	
 	
 	/**
@@ -78,7 +78,7 @@ public class ProductVO extends BaseVO {
 	 * 无效时间
 	 */
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date invalidDate = getDefalutInvalidDate();
 	
 	/*
@@ -206,13 +206,13 @@ public class ProductVO extends BaseVO {
 	
 	private String createUser=""; // 创建人',
 
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")//存日期时使用 
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")//取日期时使用 
 	private Date createTime = new Date(); // 创建时间',
 	private String updateUser=""; // 更新人',
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date updateTime= new Date(); // 更新时间',
 	
 	
