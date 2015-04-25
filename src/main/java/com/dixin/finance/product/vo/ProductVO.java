@@ -42,8 +42,8 @@ public class ProductVO extends BaseVO {
 	/**
 	 * 发行时间
 	 */
-	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm")
-	@JsonFormat(pattern="yyyy-MM-dd hh:mm",timezone="GMT+8")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
 	private Date releaseDate=getDefalutInvalidDate();
 	
 	/**
