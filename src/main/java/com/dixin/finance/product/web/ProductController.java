@@ -141,6 +141,12 @@ public class ProductController {
 			//webResult.setSuccess(false);
 			//return webResult;
 		}
+		double amount = product.getAmount() * 100000000;
+		double minAmount = product.getMinAmount() * 10000;
+		double appendAmount = product.getAppendAmount() * 10000;
+		product.setAmount(amount);
+		product.setMinAmount(minAmount);
+		product.setAppendAmount(appendAmount);
 		product.setInfo(editorValue);
 		productService.addProduct(product);
 		
