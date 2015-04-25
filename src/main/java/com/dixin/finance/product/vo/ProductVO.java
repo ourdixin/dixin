@@ -538,13 +538,13 @@ public class ProductVO extends BaseVO {
 	public String getRate() {
 		
 		if(partD != 0 )
-			rate = String.format("%.2f",rateA*100) + "% - " + String.format("%.2f",rateD*100) + "%";
+			rate = String.format("%.2f",rateA) + "% - " + String.format("%.2f",rateD) + "%";
 		else if(partC != 0 )
-			rate = String.format("%.2f",rateA*100) + "% - " + String.format("%.2f",rateC*100) + "%";
+			rate = String.format("%.2f",rateA) + "% - " + String.format("%.2f",rateC) + "%";
 		else if(partB != 0 )
-			rate = String.format("%.2f",rateA*100) + "% - " + String.format("%.2f",rateB*100) + "%";
+			rate = String.format("%.2f",rateA) + "% - " + String.format("%.2f",rateB) + "%";
 		else
-			rate = String.format("%.2f",rateA*100) + "%";
+			rate = String.format("%.2f",rateA) + "%";
 		
 		return rate;
 	}

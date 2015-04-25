@@ -25,7 +25,7 @@
         <td colspan="5" align="center"><font style="color:#F90; font-size:18px; font-weight:bold;">${product.name}</font></td>
       </tr>
       <tr>
-        <td width="0%" height="35" align="center" bgcolor="#FFFFFF">发布时间</td>
+        <td width="0%" height="35" align="center" bgcolor="#FFFFFF">发行时间</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
         <c:if test="${product.releaseDate < product.invalidDate}">
         	<fmt:formatDate value="${product.releaseDate}" pattern="yyyy年MM月dd日  HH:mm"/>      
@@ -48,13 +48,29 @@
 	        </c:if>        
 	        <c:if test="${product.termUnit == 65}">
 	        	天
-	        </c:if>  
+	        </c:if>
+	        
+	        <c:if test="${product.appendTerm > 0}">
+		        + ${product.appendTerm}
+		        <c:if test="${product.appendTermUnit == 63}">
+		        	年
+		        </c:if>
+		        <c:if test="${product.appendTermUnit == 64}">
+		        	个月
+		        </c:if>        
+		        <c:if test="${product.appendTermUnit == 65}">
+		        	天
+		        </c:if>
+	        </c:if> 	        
+	          
         </c:if> 
         </strong></td>
       </tr>
       <tr>
         <td width="0%" align="center" bgcolor="#FFFFFF" height="35">产品规模</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>预计为${product.amount/100000000}亿元</strong></td>
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>预计为
+        <fmt:formatNumber value="${product.amount/100000000}" pattern="#"/> 
+                           亿元</strong></td>
         <td width="0%" align="center" bgcolor="#FFFFFF">投资起点</td>
         
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
@@ -62,7 +78,7 @@
         	 ${product.minAmount}元
         </c:if>
         <c:if test="${product.minAmount > 10000}">
-        	${product.minAmount/10000}万元
+        	<fmt:formatNumber value="${product.minAmount/10000}" pattern="#"/> 万元
         </c:if>
         </strong></td>
         
@@ -85,40 +101,40 @@
         		</c:if>
         		
         		 
-	        	 <fmt:formatNumber value="${product.rateA*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>
+	        	 <fmt:formatNumber value="${product.rateA}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>
 	        	 %
 	        	 
 	       	 <c:if test="${0 != product.partB and 0 == product.partC}"> 
 	        	 <br />
 	          	 ${product.partB/10000}万元及以上认购/参与金额（A2类）
-	          	 <fmt:formatNumber value="${product.rateB*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 <fmt:formatNumber value="${product.rateB}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
 	          	 %
           	 </c:if>	        	 
 	       	 <c:if test="${0 != product.partB and 0 != product.partC}"> 
 	        	 <br />
 	          	 ${product.partB/10000}万元≤认购/参与金额＜${product.partC/10000}万元（A2类）
-	          	 <fmt:formatNumber value="${product.rateB*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 <fmt:formatNumber value="${product.rateB}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
 	          	 %
           	 </c:if>
           	 
           	 <c:if test="${0 != product.partC and 0 == product.partD}"> 
 	          	 <br />
 	          	 ${product.partC/10000}万元及以上认购/参与金额（A3类）
-	          	 <fmt:formatNumber value="${product.rateC*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 <fmt:formatNumber value="${product.rateC}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
 	          	 %
           	 </c:if>
           	 
            	 <c:if test="${0 != product.partC and 0 != product.partD}"> 
 	          	 <br />
 	          	 ${product.partC/10000}万元≤认购/参与金额<${product.partD/10000}万元（A3类）
-	          	 <fmt:formatNumber value="${product.rateC*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 <fmt:formatNumber value="${product.rateC}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
 	          	 %
           	 </c:if>         	 
           	 
           	 <c:if test="${0 != product.partD}"> 
 	          	 <br />
 	          	 ${product.partD/10000}万元及以上认购/参与金额（A4类）
-	          	 <fmt:formatNumber value="${product.rateD*100}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 <fmt:formatNumber value="${product.rateD}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
 	          	 %
           	 </c:if>          	 
           	 </div>

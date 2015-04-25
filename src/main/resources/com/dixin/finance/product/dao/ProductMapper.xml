@@ -125,22 +125,22 @@
         </if>                 
 		<if test="rate == 1">  
             <![CDATA[  
-               and rate_a <= 0.06 
+               and rate_a <= 6 
             ]]>  
         </if>         
 		<if test="rate == 2">  
             <![CDATA[  
-               and rate_a >= 0.06 and rate_a <= 0.1
+               and rate_a >= 6 and rate_a <= 10
             ]]>  
         </if>         
  		<if test="rate == 3">  
             <![CDATA[  
-               and rate_a >= 0.1 and rate_a <= 0.15
+               and rate_a >= 10 and rate_a <= 15
             ]]>  
         </if>       
  		<if test="rate == 4">  
             <![CDATA[  
-               and rate_a >= 0.15
+               and rate_a >= 15
             ]]>  
         </if>
   		<if test="profitType != -1">  
