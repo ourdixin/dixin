@@ -288,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `release_date` datetime NOT NULL COMMENT '发行时间,精确到分钟',
   `end_date` date NOT NULL COMMENT '销售截止日期',
   `b_delay` tinyint(1) NOT NULL COMMENT '产品是否延期',
-  `delay_condition` text NOT NULL COMMENT '延期条件',
+  `delay_condition` text COMMENT '延期条件',
   `delay_term` int(11) NOT NULL COMMENT '延期期限',
   `delay_term_unit` tinyint(4) NOT NULL COMMENT '延期期限单位',
   `term` int(11) NOT NULL COMMENT '期限',
