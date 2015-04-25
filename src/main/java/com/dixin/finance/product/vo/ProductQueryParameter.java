@@ -56,6 +56,12 @@ public class ProductQueryParameter {
 	 */	
 	private	int direction = -1;	
 	
+	/**
+	 * 收益类型
+	 */	
+	private	int profitType = -1;		
+	
+
 	public int getPageNum() {
 		return pageNum;
 	}
@@ -128,6 +134,12 @@ public class ProductQueryParameter {
 		this.direction = direction;
 	}
 	
+	public int getProfitType() {
+		return profitType;
+	}
 
+	public void setProfitType(int profitType) {
+		this.profitType = profitType;
+	}
 
 }

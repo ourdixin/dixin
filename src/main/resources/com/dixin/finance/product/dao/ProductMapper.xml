@@ -55,7 +55,7 @@
         </if>  
 		<if test="state == 59">  
             <![CDATA[  
-               and release_date <= '1970-01-01'
+               and release_date <= '2100-01-01'
             ]]>  
         </if>        
 		<if test="state == 60">  
@@ -142,9 +142,14 @@
             <![CDATA[  
                and rate_a >= 0.15
             ]]>  
-        </if>         
+        </if>
+  		<if test="profitType != -1">  
+            <![CDATA[  
+                and profit_id = #{profitType} 
+            ]]>
+        </if>       
+        
         order by release_date desc
-                       		
   </select>
 
   <select id="queryProduct" parameterType="int" resultType="com.dixin.finance.product.vo.ProductVO" useCache="false" >

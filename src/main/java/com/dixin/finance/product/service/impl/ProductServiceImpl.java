@@ -40,6 +40,7 @@ public class ProductServiceImpl implements IProductService{
 		map.put("term", parameter.getTerm());
 		map.put("rate", parameter.getRate());
 		map.put("direction", parameter.getDirection());
+		map.put("profitType", parameter.getProfitType());
 		return productMapper.queryProductList(map);
 	}
 	

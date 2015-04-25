@@ -27,10 +27,10 @@
       <tr>
         <td width="0%" height="35" align="center" bgcolor="#FFFFFF">发布时间</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
-        <c:if test="${product.releaseDate > product.invalidDate}">
+        <c:if test="${product.releaseDate < product.invalidDate}">
         	<fmt:formatDate value="${product.releaseDate}" pattern="yyyy年MM月dd日 "/>      
         </c:if>
-        <c:if test="${product.releaseDate <= product.invalidDate}">
+        <c:if test="${product.releaseDate >= product.invalidDate}">
         	待定
         </c:if>
         </strong></td>
@@ -38,16 +38,18 @@
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.viewNum}</strong></td>
         <td width="0%" align="center" bgcolor="#FFFFFF">产品期限</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
-        ${product.term}
-        <c:if test="${product.termUnit == 63}">
-        	年
-        </c:if>
-        <c:if test="${product.termUnit == 64}">
-        	个月
-        </c:if>        
-        <c:if test="${product.termUnit == 65}">
-        	天
-        </c:if>         
+        <c:if test="${product.term > 0}">
+	        ${product.term}
+	        <c:if test="${product.termUnit == 63}">
+	        	年
+	        </c:if>
+	        <c:if test="${product.termUnit == 64}">
+	        	个月
+	        </c:if>        
+	        <c:if test="${product.termUnit == 65}">
+	        	天
+	        </c:if>  
+        </c:if> 
         </strong></td>
       </tr>
       <tr>
@@ -68,8 +70,10 @@
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.payTypeInfo}</strong></td>
       </tr>
       <tr>
+        <td width="0%" align="center" bgcolor="#FFFFFF">资金投向</td>
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.directionInfo}</strong></td>
         <td width="0%" height="50" align="center" bgcolor="#FFFFFF">预期年化收益率</td>
-        <td colspan="5" align="center" bgcolor="#FFFFFF">
+        <td colspan="3" align="center" bgcolor="#FFFFFF">
         <div>
         
         		<c:if test="${0 != product.partA and 0 == product.partB}">
