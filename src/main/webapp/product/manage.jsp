@@ -150,7 +150,7 @@ div {
 									value="" type="text" /></td>
 								<td class="t" nowrap>A类年华收益率：</td>
 								<td><input class="itstyle lt it" id="rateA" name="rateA"
-									value="" type="text" /></td>
+									value="" type="text" />%</td>
 							</tr>
 
 							<tr>
@@ -159,7 +159,7 @@ div {
 									value="" type="text" /></td>
 								<td class="t" nowrap>B类年华收益率：</td>
 								<td><input class="itstyle lt it" id="rateB" name="rateB"
-									value="" type="text" /></td>
+									value="" type="text" />%</td>
 							</tr>
 
 
@@ -169,7 +169,7 @@ div {
 									value="" type="text" /></td>
 								<td class="t" nowrap>C类年华收益率：</td>
 								<td><input class="itstyle lt it" id="rateC" name="rateC"
-									value="" type="text" /></td>
+									value="" type="text" />%</td>
 							</tr>
 
 
@@ -179,7 +179,7 @@ div {
 									value="" type="text" /></td>
 								<td class="t" nowrap>D类年华收益率：</td>
 								<td><input class="itstyle lt it" id="rateD" name="rateD"
-									value="" type="text" /></td>
+									value="" type="text" />%</td>
 							</tr>
 
 							<tr>
