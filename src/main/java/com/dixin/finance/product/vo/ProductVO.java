@@ -54,7 +54,28 @@ public class ProductVO extends BaseVO {
 	private Date endDate = getDefalutInvalidDate();	
 	
 	/**
-	 * 发行时间
+	 * 产品是否可以延期
+	 */
+	private Boolean bDelay = false;
+	
+	/**
+	 * 延期条件
+	 */
+	private String delayCondition;	
+	
+	/**
+	 * 延期期限
+	 */
+	private Integer delayTerm=0;	
+	
+	/**
+	 * 延期期限单位
+	 */
+	private Integer delayTermUnit=64;	
+	
+
+	/**
+	 * 无效时间
 	 */
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -125,6 +146,11 @@ public class ProductVO extends BaseVO {
 	 * 投资起点
 	 */
 	private Double minAmount = 0d;
+	
+	/**
+	 * 投资追加金额
+	 */
+	private Double appendAmount = 0d;	
 	
 	/**
 	 * 利益分配方式
@@ -212,6 +238,39 @@ public class ProductVO extends BaseVO {
 		if(endDate !=null)
 			this.endDate = endDate;
 	}
+	
+	public Boolean getbDelay() {
+		return bDelay;
+	}
+	
+	public void setbDelay(Boolean bDelay) {
+		this.bDelay = bDelay;
+	}
+	
+	public String getDelayCondition() {
+		return delayCondition;
+	}
+	
+	public void setDelayCondition(String delayCondition) {
+		this.delayCondition = delayCondition;
+	}
+	
+	public Integer getDelayTerm() {
+		return delayTerm;
+	}
+	
+	public void setDelayTerm(Integer delayTerm) {
+		this.delayTerm = delayTerm;
+	}
+	
+	public Integer getDelayTermUnit() {
+		return delayTermUnit;
+	}
+	
+	public void setDelayTermUnit(Integer delayTermUnit) {
+		this.delayTermUnit = delayTermUnit;
+	}	
+	
 	public int getTerm() {
 		return term;
 	}
@@ -269,6 +328,13 @@ public class ProductVO extends BaseVO {
 		if(minAmount != null)
 			this.minAmount = minAmount;
 	}
+	public Double getAppendAmount() {
+		return appendAmount;
+	}
+	public void setAppendAmount(Double appendAmount) {
+		this.appendAmount = appendAmount;
+	}
+	
 	public int getPayType() {
 		return payType;
 	}
