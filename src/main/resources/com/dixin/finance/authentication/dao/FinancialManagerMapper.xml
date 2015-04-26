@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dixin.finance.authentication.dao.FinancialManagerMapper">
+<mapper namespace="com.dixin.finance.authentication.dao.Financial_ManagerMapper">
 	<!-- 实现我的专属财务经理的数据库存取操作 -->
 	<resultMap  id="userResult" type="com.dixin.finance.authentication.vo.UserVO">
 		<id column="id" property="id"/>

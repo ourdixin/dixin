@@ -58,6 +58,7 @@
     
   <select id="query" parameterType="com.dixin.finance.authentication.vo.UserVO" resultType="com.dixin.finance.authentication.vo.UserVO">
     SELECT 
+    	id id,
 	    user_name userName,
 	    password password,
 	    user_type userType,
@@ -86,6 +87,7 @@
   
   <select id="selectLoginUser" parameterType="map" resultType="com.dixin.finance.authentication.vo.UserVO">
     SELECT 
+    	id id,
 	    user_name userName,
 	    password password,
 	    user_type userType,
