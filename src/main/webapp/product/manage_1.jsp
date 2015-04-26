@@ -58,20 +58,6 @@ div {
 								<td><input class="itstyle lt it" id="endDate"
 									name="endDate" value="" type="date" /></td>
 							</tr>
-							<tr>
-								<td class="t">利益分配方式：</td>
-								<td><select class="itstyle" name="payType" id="payType">
-										<option value="66" selected>自然季度付息</option>
-										<option value="67">自然半年度付息</option>
-										<option value="68">自然年度付息</option>
-										<option value="69">季度付息</option>
-										<option value="70">半年度付息</option>
-										<option value="71">年度付息</option>
-										<option value="72">到期还本付息</option>
-										<option value="73">其他付息方式</option>
-								</select> <input id="payTypeInfo" name="payTypeInfo" value="" type="text"
-									style="display: none;" /></td>
-							</tr>
 
 							<tr>
 								<td class="t">产品规模：</td>
@@ -80,15 +66,14 @@ div {
 								<td class="t">资金投向：</td>
 								<td><select class="itstyle"
 									name="direction" id="direction">
-										<option value="49" selected>金融市场</option>
-										<option value="50">公益</option>
-										<option value="51">金融机构</option>
-										<option value="52">房地产</option>
-										<option value="53">工商企业</option>
-										<option value="54">基础设施</option>
-										<option value="55">实业企业</option>
-										<option value="56">保障房</option>
-										<option value="57">酒店类</option>
+										<option value="77" selected>货币型</option>
+										<option value="78">债券型</option>
+										<option value="79">股票型</option>
+										<option value="80">私募股权</option>
+										<option value="81">定向增发</option>
+										<option value="82">海外市场</option>
+										<option value="83">量化对冲</option>
+										<option value="84">指数型</option>
 										<option value="58">其它</option>
 								</select></td>
 							</tr>
@@ -100,20 +85,19 @@ div {
 								<td><input class="itstyle lt it" id="appendAmount"
 									name="appendAmount" value="" type="text" />(单位:万)</td>
 							</tr>
-							<tr>
-								<td class="t">续存：</td>
+							<tr hidden>
+								<!--  td class="t">续存：</td>
 								<td><input class="itstyle lt it" id="appendTerm" name="appendTerm"
 									value="" type="text" width="80" /> <select class="itstyle"
 									name="appendTermUnit" id="appendTermUnit">
 										<option value="63">年</option>
 										<option value="64" selected>月</option>
 										<option value="65">天</option>
-								</select></td>
-								<td class="t">收益类型：</td>
-								<td><select class="itstyle"
+								</select></td -->
+								<td hidden class="t">收益类型：</td>
+								<td hidden><select class="itstyle"
 									name="profitId" id="profitId">
-										<option value="42" selected>固定</option>
-										<option value="43">浮动</option>
+										<option value="43" selected>浮动</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -138,7 +122,7 @@ div {
 							<tr>
 								<td class="t" width="100">产品认购费：</td>
 								<td><input class="itstyle lt it" id="buyFee" name="buyFee"
-									value="" type="text" /></td>
+									value="" type="text" />(文本型描述)</td>
 								<td class="t" width="100">封闭期限：</td>
 								<td><input class="itstyle lt it" id="closeTerm" name="closeTerm"
 									value="" type="text" /><select class="itstyle"
@@ -160,18 +144,26 @@ div {
 								<tr>
 								<td class="t" width="100">管理费：</td>
 								<td><input class="itstyle lt it" id="manageFee" name="manageFee"
-									value="" type="text" /></td>
+									value="" type="text" />%</td>
 								<td class="t" width="100">开放日：</td>
 								<td><input class="itstyle lt it" id="openDay" name="openDay"
-									value="" type="text" /></td>
+									value="" type="text" />(文本型描述)</td>
 							</tr>
 							</tr>
 								<tr>
 								<td class="t" width="100">业绩提成：</td>
 								<td><input class="itstyle lt it" id="bonus" name="bonus"
-									value="" type="text" /></td>
+									value="" type="text" />(文本型描述)</td>
 								<td class="t" width="100">退出费用：</td>
 								<td><input class="itstyle lt it" id="sellFee" name="sellFee"
+									value="" type="text" />(文本型描述)</td>
+							</tr>
+							<tr>
+								<td class="t">产品推介单页：</td>
+								<td><input class="itstyle lt it" id="adFile" name="adFile"
+									value="" type="text" /></td>
+								<td class="t" nowrap>定向客户指南：</td>
+								<td><input class="itstyle lt it" id="guideFile" name="guideFile"
 									value="" type="text" /></td>
 							</tr>
 							<tr>

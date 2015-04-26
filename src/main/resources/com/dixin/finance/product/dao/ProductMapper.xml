@@ -182,7 +182,7 @@
 			part_c partC, 
 			rate_c rateC, 
 			part_d partD, 
-			rate_c rateD, 
+			rate_d rateD, 
 			amount amount, 
 			min_amount minAmount, 
 			append_amount appendAmount,

@@ -24,10 +24,15 @@
       <th>发行时间</th>
 	  <# if(getprofitType() == 42) {#>
       <th>期限</th>
-	  <# }#>
       <th>利率</th>
+	  <# }#>
 	  <th>认购起点</th>
-	  <th>付息方式</th>
+	  <# if(getprofitType() == 42) {#>
+	   <th>付息方式</th>
+	  <# }else{#>
+	  <th>认购费</th>
+	  <th>基金经理</th>
+	  <# }#>
 	  <th>资金投向</th>
       <th>状态</th>
       <th>推荐指数</th>
@@ -60,8 +65,8 @@
 					<#}#>
 				<#}#>
 				</td>	
-			<#}#>	  
-              <td><#=products.list[i].rate#></td>
+				<td><#=products.list[i].rate#></td>
+			<#}#>	                
 			  <td>
 				<#if(products.list[i].minAmount>10000) {#>
 				 <#=products.list[i].minAmount/10000#>万元
@@ -69,8 +74,12 @@
 				 <#=products.list[i].minAmount#>元
 				<#}#>
 			  </td>
+ 			  <# if(getprofitType() == 42) {#>
 			  <td><#=products.list[i].payTypeInfo#> </td>
-
+			  <#}else{#>
+			  <td><#=products.list[i].buyFee#></td>
+			  <td><a href="<#=products.list[i].fundManagerUrl#>" target="_blank">  <#=products.list[i].fundManager#></a> </td>
+			  <#}#>
 			  <td><#=products.list[i].directionInfo#></td>
 
 			   <#if(products.list[i].state == 59){#>

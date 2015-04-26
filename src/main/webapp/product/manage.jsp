@@ -117,11 +117,11 @@ div {
 										<option value="64" selected>月</option>
 										<option value="65">天</option>
 								</select></td>
-								<td class="t">收益类型：</td>
-								<td><select class="itstyle"
+								<td hidden class="t">收益类型：</td>
+								<td hidden ><select class="itstyle"
 									name="profitId" id="profitId">
 										<option value="42" selected>固定</option>
-										<option value="43">浮动</option>
+										<!-- option value="43">浮动</option -->
 								</select></td>
 							</tr>
 							<tr>
@@ -148,7 +148,7 @@ div {
 								<td class="t">A类份额：</td>
 								<td><input class="itstyle lt it" id="partA" name="partA"
 									value="" type="text" /></td>
-								<td class="t" nowrap>A类年华收益率：</td>
+								<td class="t" nowrap>A类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateA" name="rateA"
 									value="" type="text" />%</td>
 							</tr>
@@ -157,7 +157,7 @@ div {
 								<td class="t">B类份额：</td>
 								<td><input class="itstyle lt it" id="partB" name="partB"
 									value="" type="text" /></td>
-								<td class="t" nowrap>B类年华收益率：</td>
+								<td class="t" nowrap>B类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateB" name="rateB"
 									value="" type="text" />%</td>
 							</tr>
@@ -167,7 +167,7 @@ div {
 								<td class="t">C类份额：</td>
 								<td><input class="itstyle lt it" id="partC" name="partC"
 									value="" type="text" /></td>
-								<td class="t" nowrap>C类年华收益率：</td>
+								<td class="t" nowrap>C类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateC" name="rateC"
 									value="" type="text" />%</td>
 							</tr>
@@ -177,11 +177,18 @@ div {
 								<td class="t">D类份额：</td>
 								<td><input class="itstyle lt it" id="partD" name="partD"
 									value="" type="text" /></td>
-								<td class="t" nowrap>D类年华收益率：</td>
+								<td class="t" nowrap>D类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateD" name="rateD"
 									value="" type="text" />%</td>
 							</tr>
-
+							<tr>
+								<td class="t">产品推介单页：</td>
+								<td><input class="itstyle lt it" id="adFile" name="adFile"
+									value="" type="text" /></td>
+								<td class="t" nowrap>定向客户指南：</td>
+								<td><input class="itstyle lt it" id="guideFile" name="guideFile"
+									value="" type="text" /></td>
+							</tr>
 							<tr>
 								<td colspan="4"><script id="editor" type="text/plain"
 										style="width:980px;height:500px;"></script></td>

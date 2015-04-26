@@ -2,6 +2,7 @@ package com.dixin.finance.product.vo;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -198,6 +199,9 @@ public class ProductVO extends BaseVO {
 		if(direction >= ProductDirectionConstant.FinacalMarket &&  direction < ProductDirectionConstant.Others)
 			return ProductDirectionConstant.DirectionTypeString[direction - ProductDirectionConstant.FinacalMarket];
 		
+		if(direction >= ProductDirectionConstant.Currency &&  direction <= ProductDirectionConstant.Index)
+			return ProductDirectionConstant.DirectionTypeString[10 + direction - ProductDirectionConstant.Currency];
+		
 		return directionInfo;
 	}
 	public void setDirectionInfo(String directionInfo) {
@@ -216,7 +220,7 @@ public class ProductVO extends BaseVO {
 	/**
 	 * 产品认购费
 	 */	
-	private Float buyFee = 0F;
+	private String buyFee ;
 	
 	/**
 	 * 封闭期限
@@ -452,6 +456,8 @@ public class ProductVO extends BaseVO {
 	public int getState() {
 	
 		Calendar cal = Calendar.getInstance();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		cal.setTimeZone(zone);
 		cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
 		cal.set(Calendar.HOUR_OF_DAY, 0);
 		cal.set(Calendar.MINUTE, 0);
@@ -599,7 +605,13 @@ public class ProductVO extends BaseVO {
 	
 	public Date getDefalutInvalidDate() {
 		Calendar cal = Calendar.getInstance();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		cal.setTimeZone(zone);
 		cal.set(2100, 0, 1);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
 		return cal.getTime();
 	}	
 	
@@ -611,10 +623,10 @@ public class ProductVO extends BaseVO {
 		if(invalidDate != null)
 			this.invalidDate = invalidDate;
 	}
-	public Float getBuyFee() {
+	public String getBuyFee() {
 		return buyFee;
 	}
-	public void setBuyFee(Float buyFee) {
+	public void setBuyFee(String buyFee) {
 		this.buyFee = buyFee;
 	}
 	public Integer getCloseTerm() {
