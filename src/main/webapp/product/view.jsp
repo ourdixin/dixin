@@ -99,10 +99,10 @@
         <c:if test="${product.minAmount > 10000}">
         	<fmt:formatNumber value="${product.minAmount/10000}" pattern="#"/> 万元
         </c:if>
-        <c:if test="${product.appendAmount > 10000}">
+        <c:if test="${product.appendAmount >= 10000}">
         	+<fmt:formatNumber value="${product.appendAmount/10000}" pattern="#"/>万元的整数倍
         </c:if>        
-        <c:if test="${product.appendAmount < 10000 and product.appendAmount > 0}">
+        <c:if test="${product.appendAmount < 10000 && product.appendAmount > 0}">
         	+<fmt:formatNumber value="${product.appendAmount}" pattern="#"/>元的整数倍
         </c:if>           
         

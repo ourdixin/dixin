@@ -196,7 +196,7 @@ public class ProductVO extends BaseVO {
 	private Integer direction = ProductDirectionConstant.FinacalMarket;
 	private String directionInfo = "";
 	public String getDirectionInfo() {
-		if(direction >= ProductDirectionConstant.FinacalMarket &&  direction <= ProductDirectionConstant.Others)
+		if(direction >= ProductDirectionConstant.FinacalMarket &&  direction < ProductDirectionConstant.Others)
 			return ProductDirectionConstant.DirectionTypeString[direction - ProductDirectionConstant.FinacalMarket];
 		
 		if(direction >= ProductDirectionConstant.Currency &&  direction <= ProductDirectionConstant.Index)
@@ -587,11 +587,11 @@ public class ProductVO extends BaseVO {
 	}
 	public String getRate() {
 		
-		if(partD != 0 )
+		if(rateD != 0 )
 			rate = String.format("%.2f",rateA) + "% - " + String.format("%.2f",rateD) + "%";
-		else if(partC != 0 )
+		else if(rateC != 0 )
 			rate = String.format("%.2f",rateA) + "% - " + String.format("%.2f",rateC) + "%";
-		else if(partB != 0 )
+		else if(rateB != 0 )
 			rate = String.format("%.2f",rateA) + "% - " + String.format("%.2f",rateB) + "%";
 		else
 			rate = String.format("%.2f",rateA) + "%";
