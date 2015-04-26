@@ -99,6 +99,13 @@
         <c:if test="${product.minAmount > 10000}">
         	<fmt:formatNumber value="${product.minAmount/10000}" pattern="#"/> 万元
         </c:if>
+        <c:if test="${product.appendAmount > 10000}">
+        	+<fmt:formatNumber value="${product.appendAmount/10000}" pattern="#"/>万元的整数倍
+        </c:if>        
+        <c:if test="${product.appendAmount < 10000 and product.appendAmount > 0}">
+        	+<fmt:formatNumber value="${product.appendAmount}" pattern="#"/>元的整数倍
+        </c:if>           
+        
         </strong></td>
         <c:if test="${product.profitId == 42}">
         	<td width="0%" align="center" bgcolor="#FFFFFF">利益分配方式</td>
@@ -128,9 +135,10 @@
         		</c:if>
         		
         		 
-	        	 <fmt:formatNumber value="${product.rateA}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>
-	        	 %
-	        	 
+	        	 <fmt:formatNumber value="${product.rateA}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
+		       	 <c:if test="${0 == product.partB and 0 == product.partA}"> 
+		        	 - <fmt:formatNumber value="${product.rateB}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
+	          	 </c:if>	        	 
 	       	 <c:if test="${0 != product.partB and 0 == product.partC}"> 
 	        	 <br />
 	          	 ${product.partB/10000}万元及以上认购/参与金额（A2类）
@@ -192,8 +200,8 @@
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td height="60" align="center"><span class="single">产品推介单页下载<i><a href="<%=request.getContextPath()%>/${product.adFile}">下载</a></i></span>
-    <span class="guide">定向客户指南下载<i><a href="<%=request.getContextPath()%>/${product.guideFile}">下载</a></i></span></td>
+    <td height="60" align="center"><span class="single">产品推介单页下载<i><a href="<%=request.getContextPath()%>/${product.adFile}" target="_blank">下载</a></i></span>
+    <span class="guide">定向客户指南下载<i><a href="<%=request.getContextPath()%>/${product.guideFile}" target="_blank">下载</a></i></span></td>
   </tr>
   <tr>
     <td>${product.info}</td>

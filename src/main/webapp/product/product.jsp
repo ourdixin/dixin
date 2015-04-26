@@ -120,7 +120,8 @@
 			</dl>	
             <dl>
 				<dt id="direction">资金投向：</dt>
-				<dd><a id="-1" style="color:#F60" href="#" target="_self">不限</a><a id="49" href="#" target="_self">金融市场</a><a id="50" href="#" target="_self">公益</a><a id="51" href="#" target="_self">金融机构</a><a id="52" href="#" target="_self">房地产</a><a id="53" href="#" target="_self">工商企业</a><a id="54" href="#" target="_self">基础设施</a><a id="55" href="#" target="_self">实业企业</a><a id="56" href="#" target="_self">保障房</a><a id="57" href="#" target="_self">酒店类</a><a id="58" href="#" target="_self">其它</a></dd>
+				<dd><a id="-1" style="color:#F60" href="#" target="_self">不限</a><a id="49" href="#" target="_self">金融市场</a><a id="50" href="#" target="_self">公益</a><a id="51" href="#" target="_self">金融机构</a><a id="52" href="#" target="_self">房地产</a><a id="53" href="#" target="_self">工商企业</a><a id="54" href="#" target="_self">基础设施</a><a id="55" href="#" target="_self">实业企业</a><a id="56" href="#" target="_self">保障房</a><a id="57" href="#" target="_self">酒店类</a>
+				<a id="77" href="#" target="_self">货币型</a><a id="78" href="#" target="_self">债券型</a><a id="79" href="#" target="_self">股票型</a><span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a id="80" href="#" target="_self">私募股权</a><a id="81" href="#" target="_self">定向增发</a><a id="82" href="#" target="_self">海外市场</a><a id="83" href="#" target="_self">量化对冲</a><a id="84" href="#" target="_self">指数型</a><a id="58" href="#" target="_self">其它</a></dd>
 			</dl>		
 	
 

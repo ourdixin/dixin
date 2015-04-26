@@ -84,7 +84,7 @@
         </if>       
 		<if test="direction != -1">  
             <![CDATA[  
-               and direction >= #{direction} 
+               and direction = #{direction} 
             ]]>  
         </if>         
 		<if test="minAmount == 1">  

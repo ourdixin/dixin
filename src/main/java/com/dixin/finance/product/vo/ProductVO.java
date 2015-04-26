@@ -196,7 +196,7 @@ public class ProductVO extends BaseVO {
 	private Integer direction = ProductDirectionConstant.FinacalMarket;
 	private String directionInfo = "";
 	public String getDirectionInfo() {
-		if(direction >= ProductDirectionConstant.FinacalMarket &&  direction < ProductDirectionConstant.Others)
+		if(direction >= ProductDirectionConstant.FinacalMarket &&  direction <= ProductDirectionConstant.Others)
 			return ProductDirectionConstant.DirectionTypeString[direction - ProductDirectionConstant.FinacalMarket];
 		
 		if(direction >= ProductDirectionConstant.Currency &&  direction <= ProductDirectionConstant.Index)
