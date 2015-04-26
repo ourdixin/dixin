@@ -213,6 +213,51 @@ public class ProductVO extends BaseVO {
 	 */
 	private Integer viewNum = 0;
 	
+	/**
+	 * 产品认购费
+	 */	
+	private Float buyFee = 0F;
+	
+	/**
+	 * 封闭期限
+	 */	
+	private Integer closeTerm = 0;	
+	
+	/**
+	 * 封闭期限单位，年月日
+	 */	
+	private Integer closeTermUnit = 64;	
+	
+	/**
+	 * 基金经理姓名
+	 */	
+	private String fundManager ;		
+	
+	/**
+	 * 基金经理介绍的网页链接
+	 */	
+	private String fundManagerUrl;		
+	
+	/**
+	 * 管理费
+	 */	
+	private Float manageFee = 0F;		
+	
+	/**
+	 * 开放日
+	 */	
+	private String openDay;		
+	
+	/**
+	 * 业绩提成
+	 */	
+	private String bonus;		
+	
+	/**
+	 * 退出费用
+	 */	
+	private String sellFee;		
+	
 	private String createUser=""; // 创建人',
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")//存日期时使用 
@@ -223,7 +268,6 @@ public class ProductVO extends BaseVO {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date updateTime= new Date(); // 更新时间',
-	
 	
 	public String getId() {
 		return id;
@@ -567,5 +611,58 @@ public class ProductVO extends BaseVO {
 		if(invalidDate != null)
 			this.invalidDate = invalidDate;
 	}
-
+	public Float getBuyFee() {
+		return buyFee;
+	}
+	public void setBuyFee(Float buyFee) {
+		this.buyFee = buyFee;
+	}
+	public Integer getCloseTerm() {
+		return closeTerm;
+	}
+	public void setCloseTerm(Integer closeTerm) {
+		this.closeTerm = closeTerm;
+	}
+	public Integer getCloseTermUnit() {
+		return closeTermUnit;
+	}
+	public void setCloseTermUnit(Integer closeTermUnit) {
+		this.closeTermUnit = closeTermUnit;
+	}
+	public String getFundManager() {
+		return fundManager;
+	}
+	public void setFundManager(String fundManager) {
+		this.fundManager = fundManager;
+	}
+	public String getFundManagerUrl() {
+		return fundManagerUrl;
+	}
+	public void setFundManagerUrl(String fundManagerUrl) {
+		this.fundManagerUrl = fundManagerUrl;
+	}
+	public Float getManageFee() {
+		return manageFee;
+	}
+	public void setManageFee(Float manageFee) {
+		this.manageFee = manageFee;
+	}
+	public String getOpenDay() {
+		return openDay;
+	}
+	public void setOpenDay(String openDay) {
+		this.openDay = openDay;
+	}
+	public String getBonus() {
+		return bonus;
+	}
+	public void setBonus(String bonus) {
+		this.bonus = bonus;
+	}
+	public String getSellFee() {
+		return sellFee;
+	}
+	public void setSellFee(String sellFee) {
+		this.sellFee = sellFee;
+	}
 }
