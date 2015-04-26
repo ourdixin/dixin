@@ -170,16 +170,21 @@ public class AuthenticationController {
 		
 	}
 	
-	@RequestMapping(value="/authentication/myselfwealthers", method=RequestMethod.POST)
-	public @ResponseBody String showFinancialManager(Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(value="/authentication/myselfwealthers")
+	public  String showFinancialManager(Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response){
 		
 		logger.info("本页被访问！");
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
-		if(userVO==null){
-			return "login";
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "authentication/login";
 		}
 		int id = userVO.getId();
-		
+		logger.info("ID为："+id+"的用户访问了我的专属财富经理页面！");
 		FinancialManagerVO fmanager = fmrServiceImpl.selectFmanager(id);
 		Financial_institutionVO finVO = fmanager.getFinancialInstitution();
 		model.addAttribute("fmanager", fmanager);
