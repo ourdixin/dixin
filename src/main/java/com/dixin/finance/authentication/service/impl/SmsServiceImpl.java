@@ -8,12 +8,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
- 
-
-
-
-
-
 
 import org.apache.http.NameValuePair;  
 import org.apache.http.HttpEntity;
@@ -33,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dixin.finance.authentication.service.ISmsService;
-import com.dixin.finance.tools.ConfigInfo;
+import com.dixin.framework.tools.ConfigInfo;
 
 @Service
 public class SmsServiceImpl implements ISmsService {
@@ -66,19 +60,19 @@ public class SmsServiceImpl implements ISmsService {
 	}
 
 	/** 
-     * 执行一个HTTP GET请求，返回请求响应的HTML 
+     * 鎵ц涓�涓狧TTP GET璇锋眰锛岃繑鍥炶姹傚搷搴旂殑HTML 
      * 
-     * @param url                 请求的URL地址 
-     * @param queryString 请求的查询参数,可以为null 
-     * @return 返回请求响应的HTML 
+     * @param url                 璇锋眰鐨刄RL鍦板潃 
+     * @param queryString 璇锋眰鐨勬煡璇㈠弬鏁�,鍙互涓簄ull 
+     * @return 杩斿洖璇锋眰鍝嶅簲鐨凥TML 
      */ 
 	
-	//发送短信
+	//鍙戦�佺煭淇�
 	
-	//发送短信
+	//鍙戦�佺煭淇�
 	public void doPost(String strMsg, String phoneList) { 
 		try{
-			//发送POST请求
+			//鍙戦�丳OST璇锋眰
             URL url = new URL(m_configInfo.getSmsUrl());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -86,8 +80,8 @@ public class SmsServiceImpl implements ISmsService {
             conn.setRequestProperty("Connection", "Keep-Alive");
             conn.setUseCaches(false);
             conn.setDoOutput(true);
-           	//String postData = "account=" + m_configInfo.getSmsAccount() + "&password=" + m_configInfo.getSmsPassword() + "&phonelist=" + phoneList + "&subject=" + java.net.URLEncoder.encode( strMsg + "【" + m_configInfo.getSmsSign() + "】","utf-8");
-           	String postData = "account=" + m_configInfo.getSmsAccount() + "&password=" + m_configInfo.getSmsPassword() + "&phonelist=" + phoneList + "&subject=" + java.net.URLEncoder.encode( strMsg + "【的信金融】","utf-8");
+           	//String postData = "account=" + m_configInfo.getSmsAccount() + "&password=" + m_configInfo.getSmsPassword() + "&phonelist=" + phoneList + "&subject=" + java.net.URLEncoder.encode( strMsg + "銆�" + m_configInfo.getSmsSign() + "銆�","utf-8");
+           	String postData = "account=" + m_configInfo.getSmsAccount() + "&password=" + m_configInfo.getSmsPassword() + "&phonelist=" + phoneList + "&subject=" + java.net.URLEncoder.encode( strMsg + "銆愮殑淇￠噾铻嶃��","utf-8");
            	System.out.println(postData);
             conn.setRequestProperty("Content-Length", "" + postData.length());
             OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
@@ -95,11 +89,11 @@ public class SmsServiceImpl implements ISmsService {
             out.flush();
             out.close();
 
-            //获取响应状态
+            //鑾峰彇鍝嶅簲鐘舵��
             if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 System.out.println("connect failed!");
             }
-            //获取响应内容体
+            //鑾峰彇鍝嶅簲鍐呭浣�
             String line, result = "";
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
             while ((line = in.readLine()) != null) {
@@ -123,7 +117,7 @@ public class SmsServiceImpl implements ISmsService {
                 nvps.add(new BasicNameValuePair("account", "zxzq"));  
                 nvps.add(new BasicNameValuePair("password", "zxzq123"));  
                 nvps.add(new BasicNameValuePair("phonelist", phoneList));  
-                strMsg += "【121金融】";
+                strMsg += "銆�121閲戣瀺銆�";
                 nvps.add(new BasicNameValuePair("subject", strMsg)); 
                 httpPost.addHeader("Content-Type", "application/x-www-form-urlencoded");
                 httpPost.setEntity(new UrlEncodedFormEntity(nvps));  

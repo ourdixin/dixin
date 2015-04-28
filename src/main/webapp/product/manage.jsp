@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="token" uri="spring/mvc/token"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,6 +27,8 @@ div {
 	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/product/manage.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/ajaxfileupload.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
 </script>
 </head>
@@ -40,6 +43,7 @@ div {
 			<div class="info_frm">
 				<form id="addproductForm" name="addproductForm" method="post"
 					action="<%=request.getContextPath()%>/product/add">
+					<!-- token:token/ -->
 					<table>
 						<tbody>
 							<tr>
@@ -181,17 +185,28 @@ div {
 								<td><input class="itstyle lt it" id="rateD" name="rateD"
 									value="" type="text" />%</td>
 							</tr>
-							<tr>
-								<td class="t">产品推介单页：</td>
-								<td><input class="itstyle lt it" id="adFile" name="adFile"
-									value="" type="text" /></td>
-								<td class="t" nowrap>定向客户指南：</td>
-								<td><input class="itstyle lt it" id="guideFile" name="guideFile"
-									value="" type="text" /></td>
+							<tr>						
+							<td class="t">产品推介单页：</td>
+							<td>
+								<input hidden class="itstyle lt it" id="adFile" name="adFile" value="" type="text" />
+								<input class="itstyle lt it" id="uploadadfile" name="uploadadfile" value="" type="file" />
+								<input id="submitad" type="button" value="上传文件">
+								<img id="adloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />
+							</td>
+							<td class="t" nowrap>定向客户指南：</td>
+							<td>
+								<input hidden class="itstyle lt it" id="guideFile" name="guideFile"	value="" type="text" />
+								<input class="itstyle lt it" id="uploadguidefile" name="uploadguidefile" value="" type="file" />
+								<input id="submitguide" type="button" value="上传文件">
+								<img id="guideloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />
+							</td>
 							</tr>
+							<!-- tr>
+							<td colspan="2"><input id="submit" type="button" value="上传文件"></td>
+							<td colspan="2"><img id="loading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" /></td>
+							</tr -->
 							<tr>
-								<td colspan="4"><script id="editor" type="text/plain"
-										style="width:980px;height:500px;"></script></td>
+								<td colspan="4"><script id="editor" type="text/plain" style="width:980px;height:500px;"></script></td>
 							</tr>
 							<tr>
 								<td colspan="4"><center>

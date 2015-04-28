@@ -1,4 +1,4 @@
-package com.dixin.finance.tools;
+package com.dixin.framework.tools;
 
 
 import java.awt.Color;
@@ -19,9 +19,9 @@ public class RandomValidateCode {
     private String randString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";//随机产生的字符串
     private String randSmsString = "0123456789";//随机产生的字符串    
     
-    private int width = 80;//图片宽
-    private int height = 26;//图片高
-    private int lineSize = 40;//干扰线数量
+    private int width = 80;//图片�?
+    private int height = 26;//图片�?
+    private int lineSize = 40;//干扰线数�?
     private int stringNum = 4;//随机产生字符数量
     /*
      * 获得字体
@@ -48,13 +48,13 @@ public class RandomValidateCode {
     public void getRandcode(HttpServletRequest request,
             HttpServletResponse response) {
         HttpSession session = request.getSession();
-        //BufferedImage类是具有缓冲区的Image类,Image类是用于描述图像信息的类
+        //BufferedImage类是具有缓冲区的Image�?,Image类是用于描述图像信息的类
         BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_BGR);
-        Graphics g = image.getGraphics();//产生Image对象的Graphics对象,改对象可以在图像上进行各种绘制操作
+        Graphics g = image.getGraphics();//产生Image对象的Graphics对象,改对象可以在图像上进行各种绘制操�?
         g.fillRect(0, 0, width, height);
         g.setFont(new Font("Times New Roman",Font.ROMAN_BASELINE,18));
         g.setColor(getRandColor(110, 133));
-        //绘制干扰线
+        //绘制干扰�?
         for(int i=0;i<=lineSize;i++){
             drowLine(g);
         }
@@ -68,13 +68,13 @@ public class RandomValidateCode {
         System.out.println(randomString);
         g.dispose();
         try {
-            ImageIO.write(image, "JPEG", response.getOutputStream());//将内存中的图片通过流动形式输出到客户端
+            ImageIO.write(image, "JPEG", response.getOutputStream());//将内存中的图片�?�过流动形式输出到客户端
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     /*
-     * 绘制字符串
+     * 绘制字符�?
      */
     private String drowString(Graphics g,String randomString,int i){
         g.setFont(getFont());
@@ -86,7 +86,7 @@ public class RandomValidateCode {
         return randomString;
     }
     /*
-     * 绘制干扰线
+     * 绘制干扰�?
      */
     private void drowLine(Graphics g){
         int x = random.nextInt(width);
@@ -96,14 +96,14 @@ public class RandomValidateCode {
         g.drawLine(x, y, x+xl, y+yl);
     }
     /*
-     * 获取随机的字符
+     * 获取随机的字�?
      */
     public String getRandomString(int num){
         return String.valueOf(randString.charAt(num));
     }
     
     /*
-     * 获取随机数字验证码
+     * 获取随机数字验证�?
      */
     public String getRandomSmsString(int num){
         return String.valueOf(randSmsString.charAt(num));
