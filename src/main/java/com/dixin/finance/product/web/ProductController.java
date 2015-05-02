@@ -3,6 +3,8 @@
  */
 package com.dixin.finance.product.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -37,7 +40,9 @@ import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
+import com.dixin.finance.product.vo.MessageVO;
+import com.dixin.finance.product.service.IMessageService;
+import com.dixin.finance.product.constant.CustomerConstant;
 /**
  * @author Administrator
  * 
@@ -55,6 +60,9 @@ public class ProductController {
 	
 	@Resource(name="appointmentServiceImpl")
 	private IAppointmentService appointmentService;
+	
+	@Resource(name="messageServiceImpl")
+	private IMessageService messageServiceImpl;
 
 	@RequestMapping(value="/products", method=RequestMethod.GET)
 	public @ResponseBody BaseWebResult queryProductList(ProductQueryParameter parameter, HttpSession session){
@@ -238,4 +246,34 @@ public class ProductController {
 		model.addAttribute("appointmentList", pageinfoList);
 		return "/product/appointmentShow";
 	}
+	/***************************************在线客服
+	 * @throws IOException ***************************************************/
+	
+	@RequestMapping(value="/product/customer" ,method=RequestMethod.POST )
+	public @ResponseBody BaseWebResult productCustomer(Model model,String select2,String questions,HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException{
+		BaseWebResult webResult = new BaseWebResult();
+		logger.info("在线客服页面被访问！");
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			webResult.setMsg("请重新登录！");
+			webResult.setSuccess(false);
+			return webResult;
+		}
+		MessageVO message = new MessageVO();
+		Integer msgId = messageServiceImpl.selectNextId();
+		Integer userId= userVO.getId();
+		message.setMsgId(msgId);//mysql自增从1开始
+		message.setUserId(userId);
+		Integer catogryId = message.switchToCatogryID(select2);
+		message.setCatogryId(catogryId);
+		message.setMsg(questions);
+		message.setCreateUser(userId);
+		message.setUpdateUser(userId);
+		messageServiceImpl.insertMessage(message);
+		webResult.setMsg("提交成功！");
+		webResult.setSuccess(true);
+		return webResult;
+		
+	}
+	
 }

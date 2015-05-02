@@ -171,7 +171,7 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value="/authentication/myselfwealthers")
-	public  String showFinancialManager(Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response){
+	public  String showFinancialManager(Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response) {
 		
 		logger.info("本页被访问！");
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
@@ -186,6 +186,9 @@ public class AuthenticationController {
 		int id = userVO.getId();
 		logger.info("ID为："+id+"的用户访问了我的专属财富经理页面！");
 		FinancialManagerVO fmanager = fmrServiceImpl.selectFmanager(id);
+		/*if(fmanager == null){
+			return "/authentication/login";
+		}*/
 		Financial_institutionVO finVO = fmanager.getFinancialInstitution();
 		model.addAttribute("fmanager", fmanager);
 		model.addAttribute("user", userVO);
