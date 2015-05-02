@@ -120,6 +120,67 @@ $(document).ready(function(){
 		$.post(HOST_PATH+"/product/add", $("#addproductForm").serialize(), addsuccess);
 	});   
 	
+	$('#submitad').click(function(){
+		$("#adloading").ajaxStart(function(){  
+            $(this).show();  
+        }).ajaxComplete(function(){  
+            $(this).hide();  
+        });  
+		
+		   $.ajaxFileUpload({  
+	            url:HOST_PATH+"/product/uploadadfile",  
+	            secureuri:false,  
+	            type: 'post',
+	            fileElementId:"uploadadfile",  
+	            dataType: 'json',
+	            success : function (data, status){
+	                if(typeof(data.success) != 'undefined'){
+	                    if(!data.success){
+	                        alert(data.error);
+	                    }else{
+	                        //alert(data.msg);
+	                    	alert("上传成功！");
+	                    	if(data.result.length > 0 )
+	                    		$("#adFile").val(data.result);
+	                    }
+	                }
+	            },
+	            error: function(data, status, e){
+	                alert(e);
+	            }
+	        });		
+		
+	});
+	$('#submitguide').click(function(){
+		$("#guideloading").ajaxStart(function(){  
+            $(this).show();  
+        }).ajaxComplete(function(){  
+            $(this).hide();  
+        });  
+		
+		   $.ajaxFileUpload({  
+	            url:HOST_PATH+"/product/uploadguidefile",  
+	            secureuri:false,  
+	            type: 'post',
+	            fileElementId:"uploadguidefile",  
+	            dataType: 'json',
+	            success : function (data, status){
+	                if(typeof(data.success) != 'undefined'){
+	                    if(!data.success){
+	                        alert(data.error);
+	                    }else{
+	                        //alert(data.msg);
+	                    	alert("上传成功！");
+	                    	$("#guideFile").val(data.result);
+	                    }
+	                }
+	            },
+	            error: function(data, status, e){
+	                alert(e);
+	            }
+	        });		
+		
+	});	
 	/** 
 	 * 时间对象的格式化; 
 	 */  

@@ -1,4 +1,4 @@
-package com.dixin.finance.tools;
+package com.dixin.framework.tools;
 
 import java.io.UnsupportedEncodingException;
 

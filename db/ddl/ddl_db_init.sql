@@ -167,7 +167,16 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (73, '其他付息方式', 9),
 (74, '浮动收益类产品', 4),
 (75, '固定收益类产品', 4),
-(76, '其他', 4);
+(76, '其他', 4),
+(77, '货币型', 7),
+(78, '债券型', 7),
+(79, '股票型', 7),
+(80, '私募股权', 7),
+(81, '定向增发', 7),
+(82, '海外市场', 7),
+(83, '量化对冲', 7),
+(84, '指数型', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -317,6 +326,15 @@ CREATE TABLE IF NOT EXISTS `product` (
   `profit_id` int(11) NOT NULL COMMENT '收益类型',
   `bonus_type` int(11) NOT NULL COMMENT '分红方式',
   `direction` int(11) NOT NULL COMMENT '投资方向',
+  `buy_fee` varchar(256) DEFAULT NULL COMMENT '产品认购费',
+  `close_term` int(11) NOT NULL DEFAULT '0' COMMENT '封闭期限',
+  `close_term_unit` tinyint(4) NOT NULL DEFAULT '0' COMMENT '封闭期限单位，年月日',
+  `fund_manager` varchar(64) DEFAULT NULL COMMENT '基金经理姓名',
+  `fund_manager_url` varchar(256) DEFAULT NULL COMMENT '基金经理介绍的网页链接',
+  `manage_fee` float NOT NULL DEFAULT '0' COMMENT '管理费',
+  `open_day` varchar(256) DEFAULT NULL COMMENT '开放日',
+  `bonus` varchar(256) DEFAULT NULL COMMENT '业绩提成',
+  `sell_fee` varchar(256) DEFAULT NULL COMMENT '退出费用',
   `info` text NOT NULL COMMENT '资管要素HTML文件',
   `view_num` int(11) NOT NULL COMMENT '查看次数',
   `create_user` int(11) NOT NULL COMMENT '创建人',

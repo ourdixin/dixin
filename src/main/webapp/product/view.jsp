@@ -36,6 +36,7 @@
         </strong></td>
         <td width="0%" align="center" bgcolor="#FFFFFF">查看次数</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.viewNum}</strong></td>
+        <c:if test="${product.profitId == 42}">
         <td width="0%" align="center" bgcolor="#FFFFFF">产品期限</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
         <c:if test="${product.term > 0}">
@@ -65,29 +66,62 @@
 	          
         </c:if> 
         </strong></td>
+        </c:if>
+        <c:if test="${product.profitId == 43}">
+			<td width="0%" align="center" bgcolor="#FFFFFF">封闭期限</td>
+        	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>
+        		${product.closeTerm}
+        		<c:if test="${product.closeTermUnit == 63}">
+		        	年
+		        </c:if>
+		        <c:if test="${product.closeTermUnit == 64}">
+		        	个月
+		        </c:if>        
+		        <c:if test="${product.closeTermUnit == 65}">
+		        	天
+		        </c:if>
+        		</strong></td>        
+        </c:if>
       </tr>
       <tr>
         <td width="0%" align="center" bgcolor="#FFFFFF" height="35">产品规模</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>预计为
-        <fmt:formatNumber value="${product.amount/100000000}" pattern="#"/> 
-                           亿元</strong></td>
+        <td width="0%" align="center" bgcolor="#FFFFFF">
+        <c:if test="${product.amount  > 0 }">
+        	<strong>预计为 <fmt:formatNumber value="${product.amount/100000000}" pattern="#"/>亿元</strong>
+        </c:if>
+        </td>
         <td width="0%" align="center" bgcolor="#FFFFFF">投资起点</td>
         
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
         <c:if test="${product.minAmount < 10000}">
-        	 ${product.minAmount}元
+        	 <fmt:formatNumber value="${product.minAmount}" pattern="#"/>元
         </c:if>
         <c:if test="${product.minAmount > 10000}">
         	<fmt:formatNumber value="${product.minAmount/10000}" pattern="#"/> 万元
         </c:if>
-        </strong></td>
+        <c:if test="${product.appendAmount >= 10000}">
+        	+<fmt:formatNumber value="${product.appendAmount/10000}" pattern="#"/>万元的整数倍
+        </c:if>        
+        <c:if test="${product.appendAmount < 10000 && product.appendAmount > 0}">
+        	+<fmt:formatNumber value="${product.appendAmount}" pattern="#"/>元的整数倍
+        </c:if>           
         
-        <td width="0%" align="center" bgcolor="#FFFFFF">利益分配方式</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.payTypeInfo}</strong></td>
+        </strong></td>
+        <c:if test="${product.profitId == 42}">
+        	<td width="0%" align="center" bgcolor="#FFFFFF">利益分配方式</td>
+        	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.payTypeInfo}</strong></td>
+        </c:if>
+        <c:if test="${product.profitId == 43}">
+        	<td width="0%" align="center" bgcolor="#FFFFFF">基金经理</td>
+        	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>
+        	<a href="${product.fundManagerUrl}" target="_blank"> ${product.fundManager}</a>
+        	</strong></td>
+        </c:if>        
       </tr>
       <tr>
         <td width="0%" align="center" bgcolor="#FFFFFF">资金投向</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.directionInfo}</strong></td>
+        <c:if test="${product.profitId == 42}">
         <td width="0%" height="50" align="center" bgcolor="#FFFFFF">预期年化收益率</td>
         <td colspan="3" align="center" bgcolor="#FFFFFF">
         <div>
@@ -101,9 +135,10 @@
         		</c:if>
         		
         		 
-	        	 <fmt:formatNumber value="${product.rateA}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>
-	        	 %
-	        	 
+	        	 <fmt:formatNumber value="${product.rateA}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
+		       	 <c:if test="${0 == product.partB and 0 == product.partA}"> 
+		        	 - <fmt:formatNumber value="${product.rateB}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
+	          	 </c:if>	        	 
 	       	 <c:if test="${0 != product.partB and 0 == product.partC}"> 
 	        	 <br />
 	          	 ${product.partB/10000}万元及以上认购/参与金额（A2类）
@@ -139,15 +174,34 @@
           	 </c:if>          	 
           	 </div>
           </td>
+          </c:if>
+          <c:if test="${product.profitId == 43}">
+			<td width="0%" align="center" bgcolor="#FFFFFF">业绩报酬</td>
+        	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>
+        		${product.bonus}
+        		</strong></td>  
+			<td width="0%" align="center" bgcolor="#FFFFFF">开放日</td>
+        	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.openDay}</strong></td>         	        
+          </c:if>
       </tr>
+      <c:if test="${product.profitId == 43}">
+        <td width="0%" align="center" bgcolor="#FFFFFF">认购费</td>
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
+        ${product.buyFee}
+        </strong></td>      
+        <td width="0%" align="center" bgcolor="#FFFFFF">管理费</td>
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong><fmt:formatNumber value="${product.manageFee}" pattern="#"/>%</strong></td>
+        <td width="0%" align="center" bgcolor="#FFFFFF">退出费用</td>
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.sellFee}</strong></td>
+      </c:if>
     </tbody>
   </table>
 </div>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td height="60" align="center"><span class="single">产品推介单页下载<i><a href="<%=request.getContextPath()%>/file/${product.adFile}">下载</a></i></span>
-    <span class="guide">定向客户指南下载<i><a href="<%=request.getContextPath()%>/file/${product.guideFile}">下载</a></i></span></td>
+    <td height="60" align="center"><span class="single">产品推介单页下载<i><a href="<%=request.getContextPath()%>/${product.adFile}" target="_blank">下载</a></i></span>
+    <span class="guide">定向客户指南下载<i><a href="<%=request.getContextPath()%>/${product.guideFile}" target="_blank">下载</a></i></span></td>
   </tr>
   <tr>
     <td>${product.info}</td>

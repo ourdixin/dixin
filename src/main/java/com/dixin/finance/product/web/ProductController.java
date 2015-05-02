@@ -22,7 +22,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dixin.finance.authentication.vo.UserInfo;
@@ -37,6 +39,8 @@ import com.dixin.finance.product.vo.PageDataItem;
 import com.dixin.finance.product.vo.ProductQueryParameter;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.framework.base.web.BaseWebResult;
+import com.dixin.framework.base.web.CheckToken;
+import com.dixin.framework.base.web.FileUpoadController;
 import com.dixin.framework.constant.WebConstants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -137,7 +141,38 @@ public class ProductController {
 	    List<ProductVO> products = productService.queryProductList(parameter);
 	    return new PageInfo(products);
 	}
-
+	
+	
+	   @RequestMapping("/product/uploadadfile")  
+	public @ResponseBody BaseWebResult uploadAdFile(HttpServletRequest request,@RequestParam("uploadadfile") MultipartFile adfile) {  
+	   BaseWebResult webResult = new BaseWebResult();
+	   String filename = "";
+	    
+	   if(adfile!=null && !adfile.isEmpty())
+	   {
+	        filename = FileUpoadController.saveFile(request,adfile); 
+	   }   
+	   
+	    webResult.setSuccess(true);
+	    webResult.setResult(filename);
+	    return webResult;  
+	}	
+	
+	   @RequestMapping("/product/uploadguidefile")  
+	public @ResponseBody BaseWebResult uploadGuideFile(HttpServletRequest request,@RequestParam("uploadguidefile") MultipartFile guidefile) {  
+	   BaseWebResult webResult = new BaseWebResult();
+	   String filename = "";
+	    
+	   if(guidefile != null && !guidefile.isEmpty())
+	   {
+	        filename = FileUpoadController.saveFile(request,guidefile); 
+	   }	   
+	   
+	    webResult.setSuccess(true);
+	    webResult.setResult(filename);
+	    return webResult;  
+	}		   
+	   
 	@RequestMapping(value="/product/add")
 	public @ResponseBody BaseWebResult addProduct(ProductVO product,String editorValue,HttpSession session,Model model,HttpServletRequest request){
 	
