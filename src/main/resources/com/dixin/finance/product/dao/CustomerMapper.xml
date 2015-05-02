@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.product.dao.CustomerMapper">
+	<insert id="insert" parameterType="com.dixin.finance.product.vo.MessageVO">
+		insert into message(
+				msg_id ,
+				user_id,
+				msg_time,
+				catogry_id,
+				msg,
+				create_user,
+				create_time,
+				update_user,
+				update_time
+			) values(
+				#{msgId},
+				#{userId},
+				SYSDATE(),
+				#{catogryId},
+				#{msg},
+				#{createUser},
+				SYSDATE(),
+				#{updateUser},
+				SYSDATE()
+			)
+	</insert>
+	<select id="selectTotal"  resultType="Integer">
+		SELECT COUNT(*) FROM message
+	</select>
+	<select id="selectNextId" resultType="Integer">
+		select AUTO_INCREMENT from INFORMATION_SCHEMA.TABLES   where TABLE_NAME='message'  
+	</select>
+</mapper>

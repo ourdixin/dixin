@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>留言回复</title>
+<title>客户产品预约（添加联系记录）</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -14,7 +14,7 @@
 	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
 	<!---管理左侧共用部份---->
-	<c:import url="/authentication/customerleft.jsp" charEncoding="utf-8" />
+	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
 	<!---管理左侧共用部份结束---->
 <div id="main_right">
 
@@ -23,27 +23,21 @@
 <table width="100%">
   <thead>
   <tr>
-    <th>留言时间</th>
-    <th>客户代码</th>
-    <th>客户姓名</th>
-    <th>分类问题</th>
-    <th>问题描述</th>
-    </tr>
+    <th>联系时间</th>
+  <th>联系人</th>
+  <th>联系记录</th>
+  </tr>
   </thead>
   <tbody>
       <tr>
-        <td>2015-3-15</td>
-        <td>12015</td>
+        <td>2015年3月5日</td>
         <td>张三</td>
-        <td>产品预约</td>
-        <td>我有100万的产品需要转让，如何转让啊</td>
+        <td>想要预约产品</td>
         </tr>
       <tr>
-        <td>2015-3-15</td>
-        <td>12015</td>
+        <td>2015年3月5日</td>
         <td>张三</td>
-        <td>产品转让</td>
-        <td>利润很高</td>
+        <td>未联系上</td>
         </tr>
       </tbody>
         </table>
@@ -63,6 +57,8 @@
 
 <br class=" clear" />
 </div>
+<blockquote>&nbsp;</blockquote>
+<blockquote>&nbsp;	</blockquote>
 
 
 <!---foot底部---->
