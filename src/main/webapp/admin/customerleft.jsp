@@ -12,9 +12,9 @@
 		<div id="main_left">
 			<ul>
 				<dt><a href="<%=request.getContextPath()%>/#">后台管理</a></dt>
-<dd><a href="<%=request.getContextPath()%>/#"><img src="<%=request.getContextPath()%>/images/ico_14.png" width="20" height="20" />客户产品预约</a></dd>
-<dd><a href="<%=request.getContextPath()%>/#"><img src="<%=request.getContextPath()%>/images/ico_16.png" width="20" height="20" />产品销售数据</a></dd>
-<dd><a href="<%=request.getContextPath()%>/authentication/message.jsp"><img src="<%=request.getContextPath()%>/images/ico_11.png" width="20" height="20" />客户在线留言</a></dd>
+<dd><a href="<%=request.getContextPath()%>/admin/appointment.jsp"><img src="<%=request.getContextPath()%>/images/ico_14.png" width="20" height="20" />客户产品预约</a></dd>
+<dd><a href="<%=request.getContextPath()%>/admin/SalesData.jsp"><img src="<%=request.getContextPath()%>/images/ico_16.png" width="20" height="20" />产品销售数据</a></dd>
+<dd><a href="<%=request.getContextPath()%>/admin/message.jsp"><img src="<%=request.getContextPath()%>/images/ico_11.png" width="20" height="20" />客户在线留言</a></dd>
 <dd><a href="<%=request.getContextPath()%>/#"><img src="<%=request.getContextPath()%>/images/ico_07.png" width="20" height="20" />客户管理</a></dd>
 <dd><a href="<%=request.getContextPath()%>/#"><img src="<%=request.getContextPath()%>/images/ico_12.png" width="20" height="20" />产品管理</a></dd>
 <dd><a href="<%=request.getContextPath()%>/#"><img src="<%=request.getContextPath()%>/images/ico_05.png" width="20" height="20" />客户产品转让</a></dd>
