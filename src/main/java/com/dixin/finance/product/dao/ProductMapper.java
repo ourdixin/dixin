@@ -34,5 +34,11 @@ public interface ProductMapper {
 	 * @return
 	 */		
 	void addProduct(ProductVO product);	
+	
+	/**
+	 * 批量添加产品
+	 * @return
+	 */			
+	void addProductList(List<ProductVO> productList);
 }
 

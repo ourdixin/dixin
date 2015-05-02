@@ -12,4 +12,6 @@ public interface IProductService {
 	public abstract ProductVO queryProduct(int productId);
 	public abstract void updateViewNum(int productId);
 	public abstract void addProduct(ProductVO product);
+	public abstract void addProductList(List<ProductVO> productList); 
+	public abstract List<ProductVO> readProductListFromExcel(String fileName); 
 }

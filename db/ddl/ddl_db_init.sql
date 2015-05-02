@@ -175,7 +175,8 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (81, '定向增发', 7),
 (82, '海外市场', 7),
 (83, '量化对冲', 7),
-(84, '指数型', 7);
+(84, '指数型', 7),
+(85, '新三版', 7);
 
 -- --------------------------------------------------------
 
@@ -297,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `code` varchar(64) NOT NULL COMMENT '产品代码',
   `name` varchar(128) NOT NULL COMMENT '产品名称',
   `release_date` datetime NOT NULL COMMENT '发行时间,精确到分钟',
-  `end_date` date NOT NULL COMMENT '销售截止日期',
+  `end_date` datetime NOT NULL COMMENT '销售截止日期',
   `b_delay` tinyint(1) NOT NULL COMMENT '产品是否延期',
   `delay_condition` text COMMENT '延期条件',
   `delay_term` int(11) NOT NULL COMMENT '延期期限',

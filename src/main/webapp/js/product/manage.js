@@ -181,6 +181,36 @@ $(document).ready(function(){
 	        });		
 		
 	});	
+	
+	$('#submitproductfile').click(function(){
+		$("#productfileloading").ajaxStart(function(){  
+            $(this).show();  
+        }).ajaxComplete(function(){  
+            $(this).hide();  
+        });  
+		
+		   $.ajaxFileUpload({  
+	            url:HOST_PATH+"/product/addProductList",  
+	            secureuri:false,  
+	            type: 'post',
+	            fileElementId:"productfile",  
+	            dataType: 'json',
+	            success : function (data, status){
+	                if(typeof(data.success) != 'undefined'){
+	                    if(!data.success){
+	                        alert(data.msg);
+	                    }else{
+	                    	alert("产品添加成功！");
+	                    }
+	                }
+	            },
+	            error: function(data, status, e){
+	                alert(e);
+	            }
+	        });		
+		
+	});		
+	
 	/** 
 	 * 时间对象的格式化; 
 	 */  

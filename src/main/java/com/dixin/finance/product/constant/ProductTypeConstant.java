@@ -3,7 +3,8 @@ package com.dixin.finance.product.constant;
 
 public interface ProductTypeConstant {
 	
-	
+	final String[] ProductTypeString = new String[]{"债券","银行理财","基金","券商理财","信托","资管"};
+
 	/**
 	 * 所有
 	 */

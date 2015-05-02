@@ -41,6 +41,7 @@ dependencies {
    compile 'org.aspectj:aspectjweaver:1.7.4'
    compile 'junit:junit:4.12'
    compile 'org.apache.httpcomponents:httpclient:4.4'
+   compile 'org.apache.poi:poi:3.11'
    runtime 'javax.servlet:jstl:1.1.2'
    runtime 'taglibs:standard:1.1.2'
 }

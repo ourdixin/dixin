@@ -160,11 +160,19 @@ div {
 							</tr>
 							<tr>
 								<td class="t">产品推介单页：</td>
-								<td><input class="itstyle lt it" id="adFile" name="adFile"
-									value="" type="text" /></td>
+								<td>
+									<input hidden class="itstyle lt it" id="adFile" name="adFile" value="" type="text" />
+									<input class="itstyle lt it" id="uploadadfile" name="uploadadfile" value="" type="file" />
+									<input id="submitad" type="button" value="上传文件">
+									<img id="adloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />
+								</td>
 								<td class="t" nowrap>定向客户指南：</td>
-								<td><input class="itstyle lt it" id="guideFile" name="guideFile"
-									value="" type="text" /></td>
+								<td>
+									<input hidden class="itstyle lt it" id="guideFile" name="guideFile"	value="" type="text" />
+									<input class="itstyle lt it" id="uploadguidefile" name="uploadguidefile" value="" type="file" />
+									<input id="submitguide" type="button" value="上传文件">
+									<img id="guideloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />
+								</td>
 							</tr>
 							<tr>
 								<td colspan="4"><script id="editor" type="text/plain"
