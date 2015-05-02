@@ -25,13 +25,13 @@ public class UserVO extends BaseVO {
 	private Date regDate; // 注册日期
 	private String name; // 姓名
 	private String mobile; // 手机号
-	private int areaId; // 地区ID
+	private AreaVO area; // 地区ID
 	private String address; // 地址
 	private String zipCode; // 邮编
 	private String qq; // QQ号码
 	private String idCard; // 身份证照片
 	private String account; // 资金账号
-	private int institutionId; // 证券公司
+	private Financial_institutionVO financialInstitution; // 证券公司
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -102,12 +102,6 @@ public class UserVO extends BaseVO {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public int getAreaId() {
-		return areaId;
-	}
-	public void setAreaId(int areaId) {
-		this.areaId = areaId;
-	}
 	public String getAddress() {
 		return address;
 	}
@@ -138,11 +132,17 @@ public class UserVO extends BaseVO {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public int getInstitutionId() {
-		return institutionId;
+	public AreaVO getArea() {
+		return area;
 	}
-	public void setInstitutionId(int institutionId) {
-		this.institutionId = institutionId;
+	public void setArea(AreaVO area) {
+		this.area = area;
+	}
+	public Financial_institutionVO getFinancialInstitution() {
+		return financialInstitution;
+	}
+	public void setFinancialInstitution(Financial_institutionVO financialInstitution) {
+		this.financialInstitution = financialInstitution;
 	}
 	public Date getStartDate() {
 		return startDate;

@@ -29,7 +29,7 @@
 					<a href="<%=request.getContextPath()%>/authentication/RiskAppraisal.jsp"><img src="<%=request.getContextPath()%>/images/ico_10.png" width="16" height="17" />风险评估</a>
 				</dd>
 				<dd>
-					<a href="<%=request.getContextPath()%>/authentication/personaldata.jsp"><img src="<%=request.getContextPath()%>/images/ico_17.png" width="18" height="20" />帐户设置</a>
+					<a href="<%=request.getContextPath()%>/authentication/accountSetting"><img src="<%=request.getContextPath()%>/images/ico_17.png" width="18" height="20" />帐户设置</a>
 				</dd>
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/logout"><img src="<%=request.getContextPath()%>/images/ico_20.png" width="17" height="20" />安全退出</a>
