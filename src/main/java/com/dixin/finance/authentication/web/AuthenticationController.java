@@ -25,6 +25,8 @@ import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.authentication.vo.FinancialManagerVO;
 import com.dixin.finance.authentication.vo.Financial_institutionVO;
+import com.dixin.finance.product.vo.AssignmentVO;
+import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
@@ -194,6 +196,16 @@ public class AuthenticationController {
 		return "/authentication/myselfwealthers";
 		
 	}
+	
+	/***********************************账户设计**********************************************/
+	@RequestMapping(value="/authentication/accountSetting",method=RequestMethod.GET)
+	public String accountSetting(Model model,HttpSession session,HttpServletRequest request){
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		model.addAttribute("user", userVO);
+		return "/authentication/personaldata";
+	}
+	
+	
 	
 	
 	
