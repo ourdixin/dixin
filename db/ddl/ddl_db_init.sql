@@ -416,6 +416,28 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `risk_assessment`，风险评测表
+--
+
+CREATE TABLE IF NOT EXISTS `risk_assessment` (
+`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
+  `user_id` int(11) NOT NULL COMMENT '用户id',
+  `option1` int(11) NOT NULL COMMENT '问题1',
+  `option2` int(11) NOT NULL COMMENT '问题2',
+  `option3` int(11) NOT NULL COMMENT '问题3',
+  `option4` int(11) NOT NULL COMMENT '问题4',
+  `option5` int(11) NOT NULL COMMENT '问题5',
+  `option6` int(11) NOT NULL COMMENT '问题6',
+  `option7` int(11) NOT NULL COMMENT '问题7',
+  `option8` int(11) NOT NULL COMMENT '问题8',
+  `option9` int(11) NOT NULL COMMENT '问题9',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `grade` int(11) NOT NULL COMMENT '总分'
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='风险评测表;
+
+
+-- --------------------------------------------------------
+--
 -- 表的结构 `user`，用户表
 --
 
