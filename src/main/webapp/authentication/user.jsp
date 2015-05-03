@@ -8,12 +8,112 @@
 <title>用户中心</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css"
 	rel="stylesheet" type="text/css" />
-
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/authentication/user.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
+<script type="text/html" id="product_item">
+
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <thead>
+      <tr>
+      <th>产品名称</th>
+      <th>发行时间</th>
+	  <# if(getprofitType() == 42) {#>
+      <th>期限</th>
+      <th>利率</th>
+	  <# }#>
+	  <th>认购起点</th>
+	  <# if(getprofitType() == 42) {#>
+	   <th>付息方式</th>
+	  <# }else{#>
+	  <th>认购费</th>
+	  <th>基金经理</th>
+	  <# }#>
+	  <th>资金投向</th>
+      <th>状态</th>
+      <th>推荐指数</th>
+      <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      
+		    <# for(i = 0; i < products.list.length; i++){ #> 
+            <tr>
+              <td><#=products.list[i].name#></td>
+              <td>
+				<#if(products.list[i].releaseDate >= products.list[i].invalidDate) {#>
+					待定
+				<#}else{#>
+					<#=products.list[i].releaseDate#>
+				<#}#>
+			  </td>
+			<# if(getprofitType() == 42) {#>
+              <td>
+				<#if(products.list[i].term > 0 ){#>
+					<#=products.list[i].term#>
+					<#if(63==products.list[i].termUnit){#>
+						年
+					<#}else if(64==products.list[i].termUnit){#>
+						月
+					<#}else{#>
+						天
+					<#}#>
+				<#}#>
+				</td>	
+				<td><#=products.list[i].rate#></td>
+			<#}#>	                
+			  <td>
+				<#if(products.list[i].minAmount>10000) {#>
+				 <#=products.list[i].minAmount/10000#>万元
+				<#}else{#>
+				 <#=products.list[i].minAmount#>元
+				<#}#>
+			  </td>
+ 			  <# if(getprofitType() == 42) {#>
+			  <td><#=products.list[i].payTypeInfo#> </td>
+			  <#}else{#>
+			  <td><#=products.list[i].buyFee#></td>
+			  <td><a href="<#=products.list[i].fundManagerUrl#>" target="_blank">  <#=products.list[i].fundManager#></a> </td>
+			  <#}#>
+			  <td><#=products.list[i].directionInfo#></td>
+
+			   <#if(products.list[i].state == 59){#>
+              <td>待定</td>
+				<#}else if(products.list[i].state == 60){#>
+              <td>在售</td>
+				<#}else if(products.list[i].state == 61){#>
+              <td>预约</td>
+				<#}else{#>
+              <td>售罄</td>
+				<#}#>
+              <td>
+              	<# for(j = 0; j < products.list[i].star; j ++){ #> 
+              		<img src="<%=request.getContextPath()%>/images/xx.png" width="16" height="13" />
+              	<# } #>
+              </td>
+              <td><span class="sg_tab"><a href="<%=request.getContextPath()%>/product/view?productId=<#=products.list[i].id#>" >详细</a></span></td>
+            </tr>
+		    <# } #>
+
+      </tbody>
+</table> 
+        <div class="page_menu">
+		<a class="item">  <  </a>
+		<# for(i = 0; i < products.pages; i++){ #> 
+			<# if(products.pages.pageNum == i){ #>
+				<a class="item" name="<#=id#>" href="#none"  ><#=i+1#></a>
+			<#} else {#>
+            	<a class="item" name="<#=id#>" href="#none" ><#=i+1#></a>
+		<# } } #>
+          <a class="item"> >  </a>
+        </div>
+</script>
+
+
+
 </head>
 <body>
 	<!---TOP头部共用部份---->
@@ -41,7 +141,7 @@
 			</div>
 			<div class="con_table" style="display: block">
 
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<!-- table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
 							<th width="13%">产品名称</th>
@@ -57,88 +157,19 @@
 							<td>12个月</td>
 							<td>1000万元</td>
 							<td>9%-9.3%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
+							<td><span name="view" style="padding: 3px 15px; background: #F90"><a
+									href="#">详细</a></span><span name="reservation" style="padding: 3px 15px; background: #F90"><a
 									href="#">预约</a></span></td>
 						</tr>
-						<tr>
-							<td>太丰华砝码</td>
-							<td>6个月</td>
-							<td>500万元</td>
-							<td>9.5%-10%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
-						</tr>
-						<tr>
-							<td>华东西南城保</td>
-							<td>3个月</td>
-							<td>1000万元</td>
-							<td>12%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
-						</tr>
-						<tr>
-							<td>衡阳城投二期</td>
-							<td>12个月</td>
-							<td>1000万元</td>
-							<td>9%-9.3%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
-						</tr>
-						<tr>
-							<td>太丰华砝码</td>
-							<td>6个月</td>
-							<td>500万元</td>
-							<td>9.5%-10%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
-						</tr>
-						<tr>
-							<td>华东西南城保</td>
-							<td>3个月</td>
-							<td>1000万元</td>
-							<td>12%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
-						</tr>
-						<tr>
-							<td>衡阳城投二期</td>
-							<td>12个月</td>
-							<td>1000万元</td>
-							<td>9%-9.3%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
-						</tr>
-						<tr>
-							<td>太丰华砝码</td>
-							<td>6个月</td>
-							<td>500万元</td>
-							<td>9.5%-10%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
-						</tr>
-						<tr>
-							<td>华东西南城保</td>
-							<td>3个月</td>
-							<td>1000万元</td>
-							<td>12%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
-						</tr>
-						<tr>
-							<td>衡阳城投二期</td>
-							<td>12个月</td>
-							<td>1000万元</td>
-							<td>9%-9.3%</td>
-							<td><span style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
-						</tr>
+
 					</tbody>
 				</table>
 				<div class="page_menu">
 					<a class="item"> < </a> <a class="item">1</a> <a class="item">2</a>
 					<a class="item">3</a> <a class="item">4</a> <a class="item">5</a> <a
 						class="item">6</a> <a class="item"> > </a>
-				</div>
+				</div -->
+				
 			</div>
 
 		</div>

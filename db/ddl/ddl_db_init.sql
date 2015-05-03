@@ -122,11 +122,11 @@ CREATE TABLE IF NOT EXISTS `catogry` (
 --
 
 INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
+(0, '后台超级管理员', 1),
 (1, '游客', 1),
 (10, '注册用户', 1),
 (20, '认证用户', 1),
 (25, '后台用户', 1),
-(0, '后台超级管理员', 1),
 (31, '债券', 2),
 (32, '银行理财', 2),
 (33, '基金', 2),
@@ -176,7 +176,13 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (82, '海外市场', 7),
 (83, '量化对冲', 7),
 (84, '指数型', 7),
-(85, '新三版', 7);
+(85, '新三版', 7),
+(86, '结构型', 7),
+(87, '混合型', 7),
+(100, '银行', 11),
+(101, '证券', 11),
+(102, '保险', 11),
+(103, '信托', 11);
 
 -- --------------------------------------------------------
 
@@ -208,7 +214,8 @@ INSERT INTO `dict` (`id`, `name`) VALUES
 (7, '资金投向'),
 (8, '产品状态'),
 (9, '利益分配方式'),
-(10, '期限单位分类');
+(10, '期限单位分类'),
+(11, '金融机构分类');
 
 -- --------------------------------------------------------
 
@@ -219,8 +226,8 @@ INSERT INTO `dict` (`id`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `financial_institution` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
   `name` varchar(64) NOT NULL COMMENT '机构名称',
-  `tel` varchar(11) NOT NULL COMMENT '联系电话',
-  `info` varchar(256) NOT NULL COMMENT '简介',
+  `tel` varchar(16) NOT NULL COMMENT '联系电话',
+  `info` text NOT NULL COMMENT '简介',
   `catogry_id` int(11) NOT NULL COMMENT '金融机构类别',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
@@ -228,6 +235,13 @@ CREATE TABLE IF NOT EXISTS `financial_institution` (
   `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `financial_institution`
+--
+
+INSERT INTO `financial_institution` (`id`, `name`, `tel`, `info`, `catogry_id`, `create_user`, `create_time`, `update_user`, `update_time`) VALUES
+(1, '中信证券股份有限公司', '010-6083603', '中信证券股份有限公司（以下简称“中信证券”或“公司”），于1995年10月25日在北京成立。2002年12月13日，经中国证券监督管理委员会核准，中信证券向社会公开发行4亿股普通A股股票，2003年1月6日在上海证券交易所挂牌上市交易，股票简称“中信证券”，股票代码"600030"。 2011年10月6日在香港联合交易所上市交易，股票代码为"6030"。', 101, 0, '2015-05-03 11:18:06', 0, '2015-05-03 11:18:06');
 
 -- --------------------------------------------------------
 
@@ -237,18 +251,26 @@ CREATE TABLE IF NOT EXISTS `financial_institution` (
 
 CREATE TABLE IF NOT EXISTS `financial_manager` (
   `id` int(11) NOT NULL COMMENT '内部唯一ID',
-  `info` varchar(256) NOT NULL COMMENT '专属财务经理介绍',
+  `fm_name` varchar(32) NOT NULL COMMENT '财务经理姓名',
+  `info` text NOT NULL COMMENT '专属财务经理介绍',
   `title` varchar(64) NOT NULL COMMENT '职务',
   `education` varchar(64) NOT NULL COMMENT '学历',
   `certificate` varchar(32) NOT NULL COMMENT '证书编号',
   `institution_id` int(11) NOT NULL COMMENT '所属金融机构',
-  `tel` varchar(11) NOT NULL COMMENT '电话',
+  `tel` varchar(16) NOT NULL COMMENT '电话',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',
   `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `financial_manager`
+--
+
+INSERT INTO `financial_manager` (`id`, `fm_name`, `info`, `title`, `education`, `certificate`, `institution_id`, `tel`, `create_user`, `create_time`, `update_user`, `update_time`) VALUES
+(0, '李东伟', '详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介详细简介', '财务经理', '大学本科', '88888888888888', 1, '18888888888', 0, '2015-05-03 10:00:00', 0, '2015-05-03 12:00:00');
 
 -- --------------------------------------------------------
 
@@ -380,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `user_id` int(11) NOT NULL COMMENT '预约用户',
   `reserve_date` date NOT NULL COMMENT '预约日期',
   `product_id` int(11) NOT NULL COMMENT '预约产品',
-  `mobile` varchar(11) NOT NULL COMMENT '预约手机号码',
+  `mobile` varchar(16) NOT NULL COMMENT '预约手机号码',
   `amount` double NOT NULL COMMENT '预约金额',
   `msg` varchar(1024) NOT NULL COMMENT '预约留言',
   `create_user` int(11) NOT NULL COMMENT '创建人',
@@ -394,6 +416,30 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `risk_assessment`，风险评测表
+--
+
+CREATE TABLE IF NOT EXISTS `risk_assessment` (
+`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
+  `user_id` int(11) NOT NULL COMMENT '用户id',
+  `option1` int(11) NOT NULL COMMENT '问题1',
+  `option2` int(11) NOT NULL COMMENT '问题2',
+  `option3` int(11) NOT NULL COMMENT '问题3',
+  `option4` int(11) NOT NULL COMMENT '问题4',
+  `option5` int(11) NOT NULL COMMENT '问题5',
+  `option6` int(11) NOT NULL COMMENT '问题6',
+  `option7` int(11) NOT NULL COMMENT '问题7',
+  `option8` int(11) NOT NULL COMMENT '问题8',
+  `option9` int(11) NOT NULL COMMENT '问题9',
+  PRIMARY KEY (`id`),
+   KEY `user_id` (`user_id`),
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `grade` int(11) NOT NULL COMMENT '总分'
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='风险评测表';
+
+
+-- --------------------------------------------------------
+--
 -- 表的结构 `user`，用户表
 --
 
@@ -405,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `enabled` tinyint(1) NOT NULL COMMENT '是否有效',
   `reg_date` date NOT NULL COMMENT '注册日期',
   `name` varchar(64) COMMENT '姓名',
-  `mobile` varchar(11) NOT NULL COMMENT '手机号',
+  `mobile` varchar(16) NOT NULL COMMENT '手机号',
   `area_id` int(11) COMMENT '地区ID',
   `address` varchar(256) COMMENT '地址',
   `zip_code` varchar(32) COMMENT '邮编',

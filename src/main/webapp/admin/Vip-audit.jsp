@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>客户产品预约（添加联系记录）</title>
+<title>会员权限审核</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -23,21 +23,38 @@
 <table width="100%">
   <thead>
   <tr>
-    <th>联系时间</th>
-  <th>联系人</th>
-  <th>联系记录</th>
-  </tr>
+    <th>申请日期</th>
+    <th>客户姓名</th>
+    <th>权限级别</th>
+    <th>认证类型</th>
+    <th>认证内容</th>
+    <th>审核内容</th>
+    </tr>
   </thead>
   <tbody>
       <tr>
-        <td>2015年3月5日</td>
+        <td>2015-3-15</td>
         <td>张三</td>
-        <td>想要预约产品</td>
+        <td>高级</td>
+        <td>实名</td>
+        <td>152145</td>
+        <td><span><a href="#">通过</a></span><i>拒绝</i></td>
         </tr>
       <tr>
-        <td>2015年3月5日</td>
+        <td>2015-3-15</td>
         <td>张三</td>
-        <td>未联系上</td>
+        <td>高级</td>
+        <td>证券认证</td>
+        <td>494865878</td>
+        <td><span><a href="#">通过</a></span><i>拒绝</i></td>
+        </tr>
+      <tr>
+        <td>2015-3-15</td>
+        <td>张三</td>
+        <td>高级</td>
+        <td>证券认证</td>
+        <td>152145</td>
+        <td><span><a href="#">通过</a></span><i>拒绝</i></td>
         </tr>
       </tbody>
         </table>
@@ -56,10 +73,6 @@
 </div>
 
 <br class=" clear" />
-<blockquote>&nbsp;</blockquote>
-<blockquote>&nbsp;	</blockquote>
-
-
 <!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->

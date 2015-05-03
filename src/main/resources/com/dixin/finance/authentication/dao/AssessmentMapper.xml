@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.authentication.dao.AssessmentMapper">
+	<!-- 风险评估相关操作 -->
+	<insert id="insert" parameterType="com.dixin.finance.authentication.vo.AssessmentVO" >
+		insert into risk_assessment(
+					user_id,
+					option1,
+					option2,
+					option3,
+					option4,
+					option5,
+					option6,
+					option7,
+					option8,
+					option9,
+					create_time,
+					grade
+				)values(
+					#{userId},
+					#{option1},
+					#{option2},
+					#{option3},
+					#{option4},
+					#{option5},
+					#{option6},
+					#{option7},
+					#{option8},
+					#{option9},	
+					SYSDATE(),
+					#{grade}			
+				)
+			
+	</insert>
+</mapper>

@@ -19,6 +19,7 @@
 	
 	<resultMap id="fManagerResult" type="com.dixin.finance.authentication.vo.FinancialManagerVO">  
 		<id column="id" property="id"/>
+		<result column="fm_name" property="name"/>
 		<result column="info" property="info"/>
 		<result column="title" property="title"/>
 		<result column="education" property="education"/>
