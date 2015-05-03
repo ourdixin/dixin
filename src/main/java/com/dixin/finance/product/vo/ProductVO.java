@@ -595,9 +595,10 @@ public class ProductVO extends BaseVO {
 			rate = String.format("%.2f",rateA) + "% - " + String.format("%.2f",rateC) + "%";
 		else if(rateB != 0 )
 			rate = String.format("%.2f",rateA) + "% - " + String.format("%.2f",rateB) + "%";
-		else
+		else if(rateA != 0 )
 			rate = String.format("%.2f",rateA) + "%";
-		
+		else
+			rate = "浮动";
 		return rate;
 	}
 	public void setRate(String rate) {

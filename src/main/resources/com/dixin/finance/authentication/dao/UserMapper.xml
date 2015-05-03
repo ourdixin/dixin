@@ -119,25 +119,32 @@
 	<!-- 更新用户信息 -->
 	<update id="updateUser" parameterType="com.dixin.finance.authentication.vo.UserVO">
 		UPDATE user SET 
-		user_name=#{userName}
-		,password=#{password}
-		,user_type=#{userType}
-		,enabled=#{enabled}
-		,name=#{name}
-		,mobile=#{mobile}
-		,area_id=#{areaId}
-		,address=#{address}
-		,zip_code=#{zipCode}
-		,qq=#{qq}
-		,id_card=#{idCard}
-		,account=#{account}
-		,institution_id=#{institutionId}
-		,start_date=#{startDate}
-		,term=#{term}
-		,auth_type=#{authType}
-		,fm_id = #{fmId}
-		,update_user=0
-		,update_time=0
+		<if test="password!=null">
+			password=#{password},
+		</if>
+		<if test="mobile!=null">
+			mobile=#{mobile},
+		</if>
+		<if test="area!=null">
+			area_id=#{area.id},
+		</if>
+		<if test="address!=null">
+			address=#{address},
+		</if>
+		<if test="zipCode!=null">
+			zip_code=#{zipCode},
+		</if>
+		<if test="qq!=null">
+			qq=#{qq},
+		</if>
+		<if test="account!=null">
+			account=#{account},
+		</if>
+		<if test="institutionId!=null">
+			institution_id=#{institutionId},
+		</if>
+		update_user=0,
+		update_time=SYSDATE()
 		WHERE id=#{id}
 	</update>
   
@@ -148,6 +155,36 @@
 			DELETE FROM user WHERE id = #{userId}
 	</delete>
   	
+  	<resultMap  id="f_inResult" type="com.dixin.finance.authentication.vo.Financial_institutionVO">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="tel" property="tel"/>
+	</resultMap>
+	
+	<resultMap id="userResult" type="com.dixin.finance.authentication.vo.UserVO">  
+		<id column="id" property="id"/>
+		<result column="user_name" property="userName"/>
+		<result column="password" property="password"/>
+		<result column="user_type" property="userType"/>
+		<result column="name" property="name"/>
+		<result column="mobile" property="mobile"/>
+		<result column="address" property="address"/>
+		<result column="zip_code" property="zipCode"/>
+		<result column="qq" property="qq"/>
+		<result column="account" property="account"/>
+		<result column="start_date" property="startDate"/>
+		<result column="term" property="term"/>
+		<result column="update_user" property="update_user"/>
+		<result column="update_time" property="update_time"/>
+		<association property="financialInstitution" column="institution_id" resultMap="f_inResult"/>
+	</resultMap>  
+	
+	<!-- 通过id 查找用户 -->
+	<select id="findUserById" parameterType="int" resultMap="userResult">
+		SELECT u.*
+		FROM
+	    user u left join financial_institution f on u.institution_id = f.id WHERE u.id = #{userId}
+	</select>
   	
   	<!-- 更改用户密码 -->
   	<update id="updatePassword" parameterType="map">

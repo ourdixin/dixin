@@ -40,6 +40,13 @@ public interface UserMapper {
 	 * @param userId 
 	 */
 	void deleteUser(int userId);
+	
+	/**
+	 * 通过用户id查询用户信息
+	 * @param userId
+	 * @return
+	 */
+	UserVO findUserById(int userId);
 	/**
 	 * *@param map
 	 * 

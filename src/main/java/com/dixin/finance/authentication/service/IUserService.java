@@ -22,4 +22,17 @@ public interface IUserService {
 	 * 
 	 */
 	int checkWithTel(String mobile);
+	
+	/**
+	 * 通过用户id查找用户信息
+	 * @param id
+	 * @return
+	 */
+	UserVO findUserById(int user_id);
+	
+	/**
+	 * 修改用户信息
+	 * @param userVO
+	 */
+	void updateUser(UserVO userVO);
 }

@@ -81,18 +81,14 @@
 <div class="safe_grade lt">
 <p id="safetyLevel" class="on">安全等级</p>
 </div>
-<a class="rt" href="<%=request.getContextPath() %>/authentication/securityConfirm.jsp">编辑></a>
+<a class="rt" href="<%=request.getContextPath() %>/authentication/getFinanicalList">编辑></a>
 </div>
 </div>
 <div class="user_table">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-      <td width="14%" align="right">真实姓名：</td>
-      <td width="30%">${user.name}</td>
-    </tr>
-    <tr>
-      <td align="right">资金帐户：</td>
-      <td>${user.account}</td>
+      <td width="14%" align="right">资金帐户：</td>
+      <td width="30%">${user.account}</td>
     </tr>
     <tr>
       <td align="right">认证公司：</td>

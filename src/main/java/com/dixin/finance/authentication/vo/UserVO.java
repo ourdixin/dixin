@@ -32,6 +32,8 @@ public class UserVO extends BaseVO {
 	private String qq; // QQ号码
 	private String idCard; // 身份证照片
 	private String account; // 资金账号
+	private int institutionId;
+
 	private Financial_institutionVO financialInstitution; // 证券公司
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -219,5 +221,10 @@ public class UserVO extends BaseVO {
 		this.fmanagerVO = fmanagerVO;
 	}
 	
-	
+	public int getInstitutionId() {
+		return institutionId;
+	}
+	public void setInstitutionId(int institutionId) {
+		this.institutionId = institutionId;
+	}
 }

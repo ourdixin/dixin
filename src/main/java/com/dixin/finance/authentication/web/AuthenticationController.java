@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dixin.finance.authentication.service.IFinService;
 import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
@@ -33,6 +34,7 @@ import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
+import com.github.pagehelper.PageInfo;
 
 
 @Controller
@@ -51,6 +53,9 @@ public class AuthenticationController {
 	
 	@Resource
 	private IAsmService asmServiceImpl;
+	
+	@Resource
+	private IFinService finServiceImpl;
 	
 	@RequestMapping(value="/")
 	public String index(HttpSession session,Model model,HttpServletRequest request){
@@ -270,6 +275,7 @@ public class AuthenticationController {
 		return "/authentication/personaldata";
 	}
 	
+
 	@RequestMapping(value="/authentication/uppersonaldata", method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		userServiceImpl.updateUser(user);//修改
@@ -284,9 +290,9 @@ public class AuthenticationController {
 	
 	@RequestMapping(value="/authentication/getFinanicalList")
 	public String getFinanicalList(Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
-		//Financial_institutionVO financial = 
-		//model.addAttribute("finanical", financial);
-		return "/authentication/securityConfirm.jsp";
+		List<Financial_institutionVO> financialList = finServiceImpl.selectAll();
+		model.addAttribute("financialList", financialList);
+		return "/authentication/securityConfirm";
 	}
 	
 
