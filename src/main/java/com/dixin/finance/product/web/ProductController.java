@@ -301,15 +301,10 @@ public class ProductController {
 		ProductVO product = new ProductVO();
 		product.setId(String.valueOf(productId));
 		appointment.setProduct(product);
-		System.out.println(appointment.getMsg());
 		appointmentService.insertAppointment(appointment);
-		String url = request.getRequestURI();
-		 if(request.getQueryString()!=null)   
-			   url+="?"+request.getQueryString(); 
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(true);
-		webResult.setResult(appointment);
-		webResult.setMsg(url);
+		webResult.setMsg(request.getContextPath()+"/product/queryAppointment");
 		return webResult;
 	}
 	
