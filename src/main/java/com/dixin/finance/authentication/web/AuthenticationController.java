@@ -2,6 +2,7 @@ package com.dixin.finance.authentication.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.dixin.framework.tools.split;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
@@ -21,10 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
+import com.dixin.finance.authentication.service.IAsmService ;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.authentication.vo.FinancialManagerVO;
 import com.dixin.finance.authentication.vo.Financial_institutionVO;
+import com.dixin.finance.authentication.vo.AssessmentVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
@@ -43,6 +46,9 @@ public class AuthenticationController {
 	
 	@Resource
 	private IFmrService fmrServiceImpl;
+	
+	@Resource
+	private IAsmService asmServiceImpl;
 	
 	@RequestMapping(value="/")
 	public String index(HttpSession session,Model model,HttpServletRequest request){
@@ -197,6 +203,63 @@ public class AuthenticationController {
 		return "/authentication/myselfwealthers";
 		
 	}
+	
+	@RequestMapping(value="/authentication/RiskAppraisal", method=RequestMethod.POST)
+	public String Assessment(String w1,String w2,String w3,String[] w4,String w5,String w6,String w7,String w8,String w9, Model model,HttpSession session,HttpServletRequest request){
+		logger.info("风险评估页面被访问！");
+		//logger.info("w4"+w4[0].toString());
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			return "authentication/login";
+		}
+		AssessmentVO assessment = new AssessmentVO();
+		assessment.setUserId(userVO.getId());
+		String delim1 = ",";
+		String delim2 = "-";
+		int option1 = split.pickUpString(w1,delim1).get(0);
+		int grade1 = split.pickUpString(w1,delim1).get(1);
+		int option2 = split.pickUpString(w2,delim1).get(0);
+		int grade2= split.pickUpString(w2,delim1).get(1);
+		int option3 = split.pickUpString(w3,delim1).get(0);
+		int grade3 = split.pickUpString(w3,delim1).get(1);
+		int option4 = split.pickUpArray(w4,delim2).get(0);
+		int grade4 = split.pickUpArray(w4,delim2).get(1);
+		int option5 = split.pickUpString(w5,delim1).get(0);
+		int grade5= split.pickUpString(w5,delim1).get(1);
+		int option6 = split.pickUpString(w6,delim1).get(0);
+		int grade6 = split.pickUpString(w6,delim1).get(1);
+		int option7 = split.pickUpString(w7,delim1).get(0);
+		int grade7 = split.pickUpString(w7,delim1).get(1);
+		int option8 = split.pickUpString(w8,delim1).get(0);
+		int grade8 = split.pickUpString(w8,delim1).get(1);
+		int option9 = split.pickUpString(w9,delim1).get(0);
+		int grade9 = split.pickUpString(w9,delim1).get(1);
+		assessment.setOption1(option1);
+		assessment.setOption2(option2);
+		assessment.setOption3(option3);
+		assessment.setOption4(option4);
+		assessment.setOption5(option5);
+		assessment.setOption6(option6);
+		assessment.setOption7(option7);
+		assessment.setOption8(option8);
+		assessment.setOption9(option9);
+		Integer grade = grade1+grade2+grade3+grade4+grade5+grade6+grade7+grade8+grade9;
+		assessment.setGrade(grade);
+		asmServiceImpl.insert(assessment);
+		
+		//根据分数计算等级，并返回结果页面
+		model.addAttribute("user", userVO);
+		model.addAttribute("grade", grade);
+		if(grade<12){
+			model.addAttribute("level", new String("A"));
+		}else if(grade>=12&&grade<24){
+			model.addAttribute("level", new String("B"));
+		}else{
+			model.addAttribute("level", new String("C"));
+		}
+		return "/authentication/RiskAppraisal-result";
+	}
+	
 	
 	
 	
