@@ -1,5 +1,7 @@
 package com.dixin.finance.product.vo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -197,10 +199,10 @@ public class ProductVO extends BaseVO {
 	private String directionInfo = "";
 	public String getDirectionInfo() {
 		if(direction >= ProductDirectionConstant.FinacalMarket &&  direction < ProductDirectionConstant.Others)
-			return ProductDirectionConstant.DirectionTypeString[direction - ProductDirectionConstant.FinacalMarket];
+			return ProductDirectionConstant.DirectionTypeString[direction - ProductDirectionConstant.FinacalMarket].Name;
 		
-		if(direction >= ProductDirectionConstant.Currency &&  direction <= ProductDirectionConstant.Index)
-			return ProductDirectionConstant.DirectionTypeString[10 + direction - ProductDirectionConstant.Currency];
+		if(direction >= ProductDirectionConstant.Currency &&  direction <= ProductDirectionConstant.HybridFund)
+			return ProductDirectionConstant.DirectionTypeString[10 + direction - ProductDirectionConstant.Currency].Name;
 		
 		return directionInfo;
 	}
@@ -677,4 +679,340 @@ public class ProductVO extends BaseVO {
 	public void setSellFee(String sellFee) {
 		this.sellFee = sellFee;
 	}
+	
+	public boolean SetValue(String strValue,int nCol,int type){
+		boolean bRet = true;
+		switch(nCol) 
+		{
+			case 0:
+				setCode(strValue); 
+			break; 
+			case 1:
+				if(!strValue.isEmpty())
+					setName(strValue);
+				else
+					bRet = false;
+			break;
+			case 2:
+				if(!strValue.isEmpty())
+					setReleaseDate(StringToDate(strValue));
+				else
+					setReleaseDate(this.getInvalidDate());
+			break;	
+			case 3:
+				if(!strValue.isEmpty())
+					setEndDate(StringToDate(strValue));
+				else
+					setEndDate(this.getInvalidDate());
+			break;				
+			
+			default: 
+				if(type == 42)
+					bRet = SetFixValue(strValue,nCol);
+				else if(type == 43)
+					bRet = SetFloatValue(strValue,nCol);
+				else
+					bRet = false;
+			break; 
+		}
+		
+		return bRet;
+	}
+	
+	private Date StringToDate(String strDate){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = getInvalidDate();
+		if(!strDate.isEmpty()){
+			try {
+				TimeZone zone = TimeZone.getTimeZone("GMT+8");
+				sdf.setTimeZone(zone);
+				date = sdf.parse(strDate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return date;
+	}
+
+	
+	private String getFloatFromString(String strValue){
+		String strNumber = "";
+		for(int i=0;i<strValue.length();i++){
+			if(strValue.charAt(i)>='0' && strValue.charAt(i)<='9' || strValue.charAt(i) == '.'){
+				strNumber+=strValue.charAt(i);
+			}
+			else
+				break;
+		}
+		
+		return strNumber;
+	}
+	
+	private String getNumberFromString(String strValue){
+		String strNumber = "";
+		for(int i=0;i<strValue.length();i++){
+			if(strValue.charAt(i)>='0' && strValue.charAt(i)<='9'){
+				strNumber+=strValue.charAt(i);
+			}
+			else
+				break;
+		}
+		
+		return strNumber;
+	}
+	
+	public boolean SetFixValue(String strValue,int nCol){
+		boolean bRet = true;
+		boolean bFind = false;
+		switch(nCol) 
+		{
+			case 4:
+				if(!strValue.isEmpty())
+				{
+					if(strValue.contains("年"))
+						this.setTermUnit(63);
+					else if(strValue.contains("月"))
+						this.setTermUnit(64);
+					else 
+						this.setTermUnit(65);
+					setTerm(Integer.valueOf(getNumberFromString(strValue))); 
+				}
+				else
+					bRet = false;
+			break; 
+			case 5:
+				if(!strValue.isEmpty())
+				{
+					if(strValue.contains("年"))
+						this.setAppendTermUnit(63);
+					else if(strValue.contains("月"))
+						this.setAppendTermUnit(64);
+					else 
+						this.setAppendTermUnit(65);
+					setAppendTerm(Integer.valueOf(getNumberFromString(strValue))); 
+				}
+			break;
+			case 6:
+				if(!strValue.isEmpty())
+				{
+					float value = Float.valueOf(getFloatFromString(strValue));
+					if(value < 1)
+						value *= 100;
+					setRateA(value);
+				}
+				else
+					bRet = false;
+			break;			
+			case 7:
+				if(!strValue.isEmpty())
+				{
+					float value = Float.valueOf(getFloatFromString(strValue));
+					if(value < 1)
+						value *= 100;
+					setRateB(value); 
+				}
+			break;			
+			case 8:
+				if(!strValue.isEmpty())
+				{
+					float value = Float.valueOf(getFloatFromString(strValue));
+					if(value < 1)
+						value *= 100;
+					setRateC(Float.valueOf(getFloatFromString(strValue)));
+				}
+			break;			
+			case 9:
+				if(!strValue.isEmpty())
+				{
+					setPartA(Float.valueOf(getFloatFromString(strValue))*10000); 
+					setMinAmount(Double.valueOf(getFloatFromString(strValue))*10000);
+				}
+				else
+					bRet = false;
+			break;			
+			case 10:
+				if(!strValue.isEmpty())
+					setPartB(Float.valueOf(getFloatFromString(strValue))*10000); 
+			break;			
+			case 11:
+				if(!strValue.isEmpty())
+					setPartC(Float.valueOf(getFloatFromString(strValue))*10000);
+			break;
+			case 12:
+				if(!strValue.isEmpty())
+					this.setAppendAmount(Double.valueOf(getFloatFromString(strValue))*10000);
+			break;			
+			case 13:
+				if(!strValue.isEmpty())
+					this.setAmount(Double.valueOf(getFloatFromString(strValue))*100000000);
+				else
+					this.setAmount(0d);
+			break;			
+			case 14:
+				bFind = false;
+				for(int i =0; i < ProductDirectionConstant.DirectionTypeString.length; ++i)
+					if(strValue.contains(ProductDirectionConstant.DirectionTypeString[i].Name)){
+						this.setDirection(ProductDirectionConstant.DirectionTypeString[i].Id);
+						bFind = true;
+						break;
+					}
+				if(!bFind)
+				{
+					this.setDirection(ProductDirectionConstant.Others);
+					this.setDirectionInfo(strValue);
+				}
+			break;	
+			case 15:
+				bFind = false;
+				for(int i =0; i < PayTypeConstant.PayTypeString.length; ++i)
+					if(strValue.contains(PayTypeConstant.PayTypeString[i])){
+						this.setPayType(i + PayTypeConstant.CALENDAR_QUARTER);
+						bFind = true;
+						break;
+					}
+				if(!bFind)
+				{
+					this.setPayType(PayTypeConstant.OTHER);
+					this.setPayTypeInfo(strValue);
+				}
+			break;				
+			case 16:
+				if(!strValue.isEmpty())
+					this.setStar(Integer.valueOf(getNumberFromString(strValue)));
+				else
+					this.setStar(1);
+			break;			
+			case 17:
+				bFind = false;
+				for(int i =0; i < ProductTypeConstant.ProductTypeString.length; ++i)
+					if(strValue.contains(ProductTypeConstant.ProductTypeString[i])){
+						this.setCatogryId(i + ProductTypeConstant.BOND);
+						bFind = true;
+						break;
+					}
+				if(!bFind)
+				{
+					bRet = false;
+				}				
+			break;		
+			case 18:
+				this.setAdFile(strValue);
+			break;			
+			case 19:
+				this.setGuideFile(strValue);
+			break;			
+			default: 
+				bRet = false;
+			break; 
+		}
+		
+		return bRet;		
+	}
+	
+	public boolean SetFloatValue(String strValue,int nCol){
+		boolean bRet = true;
+		boolean bFind = false;
+		switch(nCol) 
+		{
+			case 4:
+				if(!strValue.isEmpty())
+				{
+					if(strValue.contains("年"))
+						this.setCloseTermUnit(63);
+					else if(strValue.contains("月"))
+						this.setCloseTermUnit(64);
+					else 
+						this.setCloseTermUnit(65);
+					setCloseTerm(Integer.valueOf(getNumberFromString(strValue))); 
+				}
+			break; 
+			case 5:
+				this.setOpenDay(strValue);
+			break;			
+			case 6:
+				if(!strValue.isEmpty())
+					this.setMinAmount(Double.valueOf(getFloatFromString(strValue))*10000);
+				else
+					bRet = false;
+			break;			
+			case 7:
+				if(!strValue.isEmpty())
+					this.setAppendAmount(Double.valueOf(getFloatFromString(strValue))*10000);
+			break;			
+			case 8:
+				this.setBuyFee(strValue);
+			break;			
+			case 9:
+				if(!strValue.isEmpty())
+					this.setManageFee(Float.valueOf(getFloatFromString(strValue)));
+				else
+					this.setManageFee(0f);
+			break;			
+			case 10:
+				this.setSellFee(strValue);
+			break;			
+			case 11:
+				this.setBonus(strValue);
+			break;
+			case 12:
+				this.setFundManager(strValue);
+			break;			
+			case 13:
+				if(!strValue.isEmpty())
+					this.setAmount(Double.valueOf(getFloatFromString(strValue))*100000000);
+				else
+					this.setAmount(0d);
+			break;			
+			case 14:
+				bFind = false;
+				for(int i =0; i < ProductDirectionConstant.DirectionTypeString.length; ++i)
+					if(strValue.contains(ProductDirectionConstant.DirectionTypeString[i].Name)){
+						this.setDirection(ProductDirectionConstant.DirectionTypeString[i].Id);
+						bFind = true;
+						break;
+					}
+				if(!bFind)
+				{
+					this.setDirection(ProductDirectionConstant.Others);
+					this.setDirectionInfo(strValue);
+				}
+			break;	
+			case 15:
+				if(!strValue.isEmpty())
+					this.setStar(Integer.valueOf(getNumberFromString(strValue)));
+				else
+					this.setStar(1);
+			break;			
+			case 16:
+				bFind = false;
+				for(int i =0; i < ProductTypeConstant.ProductTypeString.length; ++i)
+					if(strValue.contains(ProductTypeConstant.ProductTypeString[i])){
+						this.setCatogryId(i + ProductTypeConstant.BOND);
+						bFind = true;
+						break;
+					}
+				if(!bFind)
+				{
+					bRet = false;
+				}
+			break;		
+			case 17:
+				this.setAdFile(strValue);
+			break;
+			case 18:
+				this.setGuideFile(strValue);
+			break;	
+			case 19:
+				this.setFundManagerUrl(strValue);
+			break;
+			default: 
+				bRet = false;
+			break; 
+		}
+		
+		return bRet;
+	}	
+	
 }

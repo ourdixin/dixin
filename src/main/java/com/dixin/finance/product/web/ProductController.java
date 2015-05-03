@@ -197,6 +197,51 @@ public class ProductController {
 		return webResult;		
 	}	
 	
+	@RequestMapping(value="/product/addProductList")
+	public @ResponseBody BaseWebResult addProductList(HttpServletRequest request,HttpSession session,@RequestParam("productfile") MultipartFile productfile){
+	
+		BaseWebResult webResult = new BaseWebResult();
+		webResult.setSuccess(false);
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			//webResult.setSuccess(false);
+			//return webResult;
+		}
+
+		String filename = "";
+	    
+	   if(productfile != null && !productfile.isEmpty())
+	   {
+	       filename = FileUpoadController.saveFile(request,productfile); 
+	 	   if(!filename.isEmpty())
+		   {
+	 		   String LocalFileName = FileUpoadController.GetRootPath(request) + filename;
+	 		   
+	 		   List<ProductVO> products = productService.readProductListFromExcel(LocalFileName);
+	 		   if(products.size() > 0 )
+	 		   {
+	 			   productService.addProductList(products);
+	 			   webResult.setSuccess(true);
+	 		   }
+	 		   else
+	 		   {
+	 			  webResult.setMsg("文件格式或者文件内容有误，请更正后再添加!");
+	 		   }
+		   }
+	 	   else
+	 	   {
+	 		  webResult.setMsg("文件上传失败!");
+	 	   }
+	   }
+	   else
+	   {
+		   webResult.setMsg("文件上传失败!");
+	   }
+	
+		return webResult;		
+	}		
+	
 	@RequestMapping(value="/product/view", method=RequestMethod.GET)
 	public String productView(int productId,HttpSession session,Model model,HttpServletRequest request){
 	

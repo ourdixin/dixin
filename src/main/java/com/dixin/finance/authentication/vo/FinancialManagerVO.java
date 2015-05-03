@@ -13,6 +13,7 @@ public class FinancialManagerVO extends BaseVO{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;//内部ID
+	private String name;//专属财务经理姓名
 	private String info;//专属财务经理介绍
 	private String title;//职务
 	private String education;//学历
@@ -46,7 +47,15 @@ public class FinancialManagerVO extends BaseVO{
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	/**
 	 * @return the info
 	 */

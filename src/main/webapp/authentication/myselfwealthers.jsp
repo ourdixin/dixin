@@ -33,7 +33,7 @@
                   <tr>
                   <td width="16%" rowspan="3" align="center"><img src="<%=request.getContextPath()%>/images/pic.jpg" width="88" height="110"  style="padding:3px; border:1px solid #e1e1e1"/></td>
                   <td width="14%" align="right"><strong>姓名：</strong></td>
-                  <td width="12%">${fmanager.info}</td>
+                  <td width="12%">${fmanager.name}</td>
                   <td width="11%" align="right"><strong>职务：</strong></td>
                   <td width="22%">${fmanager.title}</td>
                   <td width="7%" align="right"><strong>学历：</strong></td>
@@ -55,8 +55,12 @@
                     <td align="right">&nbsp;</td>
                     <td>&nbsp;</td>
                   </tr>
+                   <tr>
+                    <td colspan="7">${fmanager.info}</td>
+                  </tr>                 
                  </tbody>
         </table>
+        
    </div>  
 
 </div>

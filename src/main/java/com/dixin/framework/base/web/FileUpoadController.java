@@ -87,7 +87,7 @@ public class FileUpoadController {
 	        if (!file.isEmpty()) {  
 	            try {  
 	                // 文件保存路径  
-	                String rootPath = request.getSession().getServletContext().getRealPath("/") ;
+	                String rootPath = GetRootPath(request);
 	                String fileName = "upload/" + token +  file.getOriginalFilename();
 	                String filePath = rootPath + fileName;
 	                // 转存文件  
@@ -101,6 +101,11 @@ public class FileUpoadController {
 	        
 	        return "";  
 	    }
+	   
+	   
+	   public static String GetRootPath(HttpServletRequest request){
+		   return request.getSession().getServletContext().getRealPath("/") ;
+	   }
 	   
 	   @RequestMapping("/list")  
 	    public ModelAndView list() {  
