@@ -174,8 +174,8 @@
 		<result column="account" property="account"/>
 		<result column="start_date" property="startDate"/>
 		<result column="term" property="term"/>
-		<result column="update_user" property="update_user"/>
-		<result column="update_time" property="update_time"/>
+		<result column="update_user" property="updateUser"/>
+		<result column="update_time" property="updateTime"/>
 		<association property="financialInstitution" column="institution_id" resultMap="f_inResult"/>
 	</resultMap>  
 	
