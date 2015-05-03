@@ -174,7 +174,7 @@
      box.show();
     </script>
 </div>
-<div><a href="<%=request.getContextPath() %>/product/product.jsp"><img src="images/index_14.jpg" width="333" height="103" /></a><a href="<%=request.getContextPath() %>/product/product.jsp"><img src="images/index_15.jpg" width="333" height="103" /></a><a href="<%=request.getContextPath() %>/transfer.html"><img src="images/index_17.jpg" width="334" height="103" /></a></div>
+<div><a href="<%=request.getContextPath() %>/product/product.jsp"><img src="images/index_14.jpg" width="333" height="103" /></a><a href="<%=request.getContextPath() %>/product/product.jsp"><img src="images/index_15.jpg" width="333" height="103" /></a><a href="<%=request.getContextPath() %>/authentication/Transfer.jsp"><img src="images/index_17.jpg" width="334" height="103" /></a></div>
 <!---TAB部份----> 
 
 <ul class="ul_1" style="margin-top:10px;">

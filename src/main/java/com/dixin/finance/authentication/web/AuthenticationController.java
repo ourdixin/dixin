@@ -270,6 +270,7 @@ public class AuthenticationController {
 		return "/authentication/personaldata";
 	}
 	
+
 	@RequestMapping(value="/authentication/uppersonaldata", method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		userServiceImpl.updateUser(user);//修改

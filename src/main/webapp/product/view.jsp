@@ -208,7 +208,7 @@
   </tr>
 </table>
 
-<p style="margin-left:420px;"><span class="bnt_ok">预约</span></p>
+<p style="margin-left:420px;"><span class="bnt_ok"><a href="<%=request.getContextPath()%>/product/appointment.jsp?productId=${product.id}>&productName=${product.name}" >预约</a></span></p>
 
 
 <br class=" clear" />
