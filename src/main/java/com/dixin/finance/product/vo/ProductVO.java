@@ -201,7 +201,7 @@ public class ProductVO extends BaseVO {
 		if(direction >= ProductDirectionConstant.FinacalMarket &&  direction < ProductDirectionConstant.Others)
 			return ProductDirectionConstant.DirectionTypeString[direction - ProductDirectionConstant.FinacalMarket].Name;
 		
-		if(direction >= ProductDirectionConstant.Currency &&  direction <= ProductDirectionConstant.Index)
+		if(direction >= ProductDirectionConstant.Currency &&  direction <= ProductDirectionConstant.HybridFund)
 			return ProductDirectionConstant.DirectionTypeString[10 + direction - ProductDirectionConstant.Currency].Name;
 		
 		return directionInfo;
@@ -882,7 +882,7 @@ public class ProductVO extends BaseVO {
 				if(!strValue.isEmpty())
 					this.setStar(Integer.valueOf(getNumberFromString(strValue)));
 				else
-					bRet = false;
+					this.setStar(1);
 			break;			
 			case 17:
 				bFind = false;
@@ -983,7 +983,7 @@ public class ProductVO extends BaseVO {
 				if(!strValue.isEmpty())
 					this.setStar(Integer.valueOf(getNumberFromString(strValue)));
 				else
-					bRet = false;
+					this.setStar(1);
 			break;			
 			case 16:
 				bFind = false;
