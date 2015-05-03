@@ -269,16 +269,24 @@ public class AuthenticationController {
 		model.addAttribute("user", userVO);
 		return "/authentication/personaldata";
 	}
-
 	
-	
-	@RequestMapping(value="/authentication/personaldata", method=RequestMethod.POST)
-	public String updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(value="/authentication/uppersonaldata", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		userServiceImpl.updateUser(user);//修改
 		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
 		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
 		model.addAttribute("user", userVO);
-		return "/authentication/personaldata";
+		BaseWebResult webResult = new BaseWebResult();
+		webResult.setMsg(request.getContextPath()+"/authentication/personaldata.jsp");
+		webResult.setSuccess(true);
+		return webResult;
+	}
+	
+	@RequestMapping(value="/authentication/getFinanicalList")
+	public String getFinanicalList(Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		//Financial_institutionVO financial = 
+		//model.addAttribute("finanical", financial);
+		return "/authentication/securityConfirm.jsp";
 	}
 	
 
