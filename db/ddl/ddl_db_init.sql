@@ -431,9 +431,11 @@ CREATE TABLE IF NOT EXISTS `risk_assessment` (
   `option7` int(11) NOT NULL COMMENT '问题7',
   `option8` int(11) NOT NULL COMMENT '问题8',
   `option9` int(11) NOT NULL COMMENT '问题9',
+  PRIMARY KEY (`id`),
+   KEY `user_id` (`user_id`),
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `grade` int(11) NOT NULL COMMENT '总分'
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='风险评测表;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='风险评测表';
 
 
 -- --------------------------------------------------------
