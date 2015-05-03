@@ -12,6 +12,7 @@ public class PageDataItem {
 	private int id;
 	
 	private PageInfo<ProductVO> products;
+	private PageInfo<PurchaseVO> purchaseList;
 	
 	public int getId() {
 		return id;
@@ -27,6 +28,14 @@ public class PageDataItem {
 	
 	public void setProducts(PageInfo<ProductVO> products) {
 		this.products = products;
+	}
+
+	public PageInfo<PurchaseVO> getPurchaseList() {
+		return purchaseList;
+	}
+
+	public void setPurchaseList(PageInfo<PurchaseVO> purchaseList) {
+		this.purchaseList = purchaseList;
 	}		
 	
 }

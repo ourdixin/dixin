@@ -30,14 +30,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.constant.ProductTypeConstant;
+import com.dixin.finance.product.constant.ProfitTypeConstant;
 import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.service.IProductService;
+import com.dixin.finance.product.service.IPurchaseService;
 import com.dixin.finance.product.vo.AppointmentVO;
 import com.dixin.finance.product.vo.AssignmentVO;
 import com.dixin.finance.product.vo.PageDataItem;
 import com.dixin.finance.product.vo.ProductQueryParameter;
 import com.dixin.finance.product.vo.ProductVO;
+import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.base.web.CheckToken;
 import com.dixin.framework.base.web.FileUpoadController;
@@ -68,6 +71,9 @@ public class ProductController {
 	@Resource(name="messageServiceImpl")
 	private IMessageService messageServiceImpl;
 
+	@Resource(name="PurchaseServiceImpl")
+	private IPurchaseService purchaseServiceImpl;	
+	
 	@RequestMapping(value="/products", method=RequestMethod.GET)
 	public @ResponseBody BaseWebResult queryProductList(ProductQueryParameter parameter, HttpSession session){
 
@@ -350,5 +356,55 @@ public class ProductController {
 		return webResult;
 		
 	}
+	
+	@RequestMapping(value="/product/queryPurchase")
+	public @ResponseBody BaseWebResult queryPurchaseList(Integer pageNum, Integer pageSize,Integer profitType,Model model,HttpSession session,HttpServletRequest request){
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		
+		BaseWebResult webResult = new BaseWebResult();
+		
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			webResult.setMsg("请重新登录！");
+			webResult.setSuccess(false);
+			return webResult;
+		}	
+		int userId = userVO.getId();
+		List<PageDataItem> result = new ArrayList<PageDataItem>();
+		if(profitType != ProfitTypeConstant.FixProduct || profitType != ProfitTypeConstant.FloatProduct)
+		{
+			PageDataItem item = new PageDataItem();
+			item.setId(ProfitTypeConstant.FixProduct);
+			item.setPurchaseList(GetPurchaseList(userId,pageNum,pageSize,ProfitTypeConstant.FixProduct));
+		    result.add(item);
+		    
+			item = new PageDataItem();
+			item.setId(ProfitTypeConstant.FloatProduct);
+			item.setPurchaseList(GetPurchaseList(userId,pageNum,pageSize,ProfitTypeConstant.FloatProduct));
+		    result.add(item);
+		}
+		else 
+		{
+			PageDataItem item = new PageDataItem();
+			item.setId(ProfitTypeConstant.FixProduct);
+			item.setPurchaseList(GetPurchaseList(userId,pageNum,pageSize,profitType));
+		    result.add(item);			
+		}
+		
+		logger.info("queryProductList 查询产品列表完成");
+		
+		webResult.setSuccess(true);
+		webResult.setResult(result);
+		return webResult;		
+	}	
+	
+	public PageInfo<PurchaseVO> GetPurchaseList(Integer userId, Integer pageNum, Integer pageSize,Integer profitType){
+	    PageHelper.startPage(pageNum, pageSize);
+	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType);
+	    return new PageInfo(purchaseList);
+	}	
 	
 }
