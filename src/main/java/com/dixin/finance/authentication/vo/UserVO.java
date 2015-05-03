@@ -25,6 +25,7 @@ public class UserVO extends BaseVO {
 	private Date regDate; // 注册日期
 	private String name; // 姓名
 	private String mobile; // 手机号
+	private int areaId;
 	private AreaVO area; // 地区ID
 	private String address; // 地址
 	private String zipCode; // 邮编
@@ -161,6 +162,13 @@ public class UserVO extends BaseVO {
 	}
 	public void setAuthType(int authType) {
 		this.authType = authType;
+	}
+	
+	public int getAreaId() {
+		return areaId;
+	}
+	public void setAreaId(int areaId) {
+		this.areaId = areaId;
 	}
 	
 	public int getCreateUser() {
