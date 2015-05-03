@@ -200,10 +200,20 @@ public class AuthenticationController {
 		
 	}
 	
-	/***********************************账户设计**********************************************/
+	/***********************************账户设置**********************************************/
 	@RequestMapping(value="/authentication/accountSetting",method=RequestMethod.GET)
 	public String accountSetting(Model model,HttpSession session,HttpServletRequest request){
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		model.addAttribute("user", userVO);
+		return "/authentication/personaldata";
+	}
+	
+	
+	@RequestMapping(value="/authentication/personaldata", method=RequestMethod.POST)
+	public String updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		userServiceImpl.updateUser(user);//修改
+		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
+		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
 		model.addAttribute("user", userVO);
 		return "/authentication/personaldata";
 	}
