@@ -21,6 +21,7 @@
 <c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
 <!---用户左侧共用部份结束---->
 <form action="<%=request.getContextPath() %>/product/appointment" method="post" id="appointForm">
+<input  name="productId" id="productId" value="${param.productId}" type="hidden" />
 <div id="main_right">
   <div class="table_c">
   <table width="100%" cellpadding="0" cellspacing="0">
@@ -28,8 +29,8 @@
       <td height="54" colspan="2" style="font-size:15px; font-weight:bold; padding-left:100px;">为了确保您预约成功，请正确填写以下信息(<font class="red">*</font>为必填项)</td>
       </tr>
     <tr>
-      <td height="60" align="right">预约产品：</td>
-      <td width="82%"><input maxlength="" id="productId" name="productId" class="itstyle lt it" type="text" /></td>
+      <td  align="right">预约产品：</td>
+      <td >${param.productName}</td>
      </tr>
     <tr>
       <td height="60" align="right">预约金额：</td>

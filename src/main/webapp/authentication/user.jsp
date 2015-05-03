@@ -57,7 +57,7 @@
 			  </td>
               <td><span style="padding: 3px 15px; background: #F90">
 				<a href="<%=request.getContextPath()%>/product/view?productId=<#=products.list[i].id#>" >详细</a></span>
-				<span name="reservation" style="padding: 3px 15px; background: #F90"><a	href="#">预约</a></span>
+				<span name="reservation" style="padding: 3px 15px; background: #F90"><a	href="<%=request.getContextPath()%>/product/appointment.jsp?productId=<#=products.list[i].id#>&productName=<#=products.list[i].name#>">预约</a></span>
 				</td>
             </tr>
 		    <# } #>
