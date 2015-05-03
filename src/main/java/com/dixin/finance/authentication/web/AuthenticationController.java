@@ -274,10 +274,10 @@ public class AuthenticationController {
 	
 	@RequestMapping(value="/authentication/personaldata", method=RequestMethod.POST)
 	public String updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
-		userServiceImpl.updateUser(user);//修改
-		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
-		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
-		model.addAttribute("user", userVO);
+		//userServiceImpl.updateUser(user);//修改
+		//UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
+		//session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
+		//model.addAttribute("user", userVO);
 		return "/authentication/personaldata";
 	}
 	
