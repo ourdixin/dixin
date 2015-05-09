@@ -14,8 +14,7 @@
 	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/js.js"></script>
-<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>
-	";
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
 </script>
 </head>
 
@@ -29,7 +28,8 @@
 		<div id="main_right">
 		<div id="tab1_con_1" style="display: block; clear: both;">
 				<div class="user_title">个人资料</div>
-				<form action="" method="post" id="persionalDataForm">
+				<form action="" method="post" id="baseInfoForm">
+					<input name="id" id="id" type = "hidden" value="${user.id}">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td width="11%" height="50" align="right">用户名：</td>
@@ -42,6 +42,7 @@
 						</tr>
 						<tr>
 							<td height="50" align="right">所在地区：</td>
+							<!-- 
 							<td width="15%"><select name="select" id="select">
 									<option>请选择</option>
 									<option>北京</option>
@@ -52,6 +53,7 @@
 							<td width="74%"><select name="select2" id="select2">
 									<option>北京</option>
 							</select></td>
+							 -->
 						</tr>
 						<tr>
 							<td height="50" align="right">邮政编码：</td>
@@ -66,7 +68,7 @@
 						</tr>
 						<tr>
 							<td height="50" align="right">&nbsp;</td>
-							<td colspan="2"><span class="bnt_ok">提交</span></td>
+							<td colspan="2"><span class="bnt_ok_person_base">提交</span></td>
 						</tr>
 					</table>
 				</form>

@@ -1,11 +1,10 @@
+
 package com.dixin.finance.authentication.web;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.dixin.framework.tools.split;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,25 +13,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dixin.finance.authentication.service.IAsmService;
+import com.dixin.finance.authentication.service.IFinService;
 import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
-import com.dixin.finance.authentication.service.IAsmService ;
-import com.dixin.finance.authentication.vo.UserInfo;
-import com.dixin.finance.authentication.vo.UserVO;
+import com.dixin.finance.authentication.vo.AssessmentVO;
 import com.dixin.finance.authentication.vo.FinancialManagerVO;
 import com.dixin.finance.authentication.vo.Financial_institutionVO;
-import com.dixin.finance.authentication.vo.AssessmentVO;
-import com.dixin.finance.product.vo.AssignmentVO;
-import com.dixin.finance.product.vo.ProductVO;
+import com.dixin.finance.authentication.vo.UserInfo;
+import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
+import com.dixin.framework.tools.split;
 
 
 @Controller
@@ -51,6 +49,9 @@ public class AuthenticationController {
 	
 	@Resource
 	private IAsmService asmServiceImpl;
+	
+	@Resource
+	private IFinService finServiceImpl;
 	
 	@RequestMapping(value="/")
 	public String index(HttpSession session,Model model,HttpServletRequest request){
@@ -269,16 +270,25 @@ public class AuthenticationController {
 		model.addAttribute("user", userVO);
 		return "/authentication/personaldata";
 	}
+	
 
+	@RequestMapping(value="/authentication/uppersonaldata", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		userServiceImpl.updateUser(user);//修改
+		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
+		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
+		model.addAttribute("user", userVO);
+		BaseWebResult webResult = new BaseWebResult();
+		webResult.setMsg(request.getContextPath()+"/authentication/personaldata.jsp");
+		webResult.setSuccess(true);
+		return webResult;
+	}
 	
-	
-	@RequestMapping(value="/authentication/personaldata", method=RequestMethod.POST)
-	public String updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
-		//userServiceImpl.updateUser(user);//修改
-		//UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
-		//session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
-		//model.addAttribute("user", userVO);
-		return "/authentication/personaldata";
+	@RequestMapping(value="/authentication/getFinanicalList")
+	public String getFinanicalList(Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		List<Financial_institutionVO> financialList = finServiceImpl.selectAll();
+		model.addAttribute("financialList", financialList);
+		return "/authentication/securityConfirm";
 	}
 	
 
@@ -298,3 +308,4 @@ public class AuthenticationController {
 		this.smsServiceImpl = smsServiceImpl;
 	}
 }
+

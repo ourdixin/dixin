@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.product.dao.PurchaseMapper">
+
+  <!--  cache /  如果加缓存的话，手动改动数据后就不会显示了 -->
+	<resultMap  id="productResult" type="com.dixin.finance.product.vo.ProductVO">
+		<id column="id" property="id"/>
+		<result column="code" property="code"/>
+		<result column="name" property="name"/>
+		<result column="release_date" property="releaseDate"/>
+		<result column="end_date" property="endDate"/>
+		<result column="b_delay" property="bDelay"/>
+		<result column="delay_condition" property="delayCondition"/>
+		<result column="delay_term" property="delayTerm"/>
+		<result column="delay_term_unit" property="delayTermUnit"/>
+		<result column="term_unit" property="termUnit"/>
+		<result column="append_term" property="appendTerm"/>
+		<result column="append_term_unit" property="appendTermUnit"/>
+		<result column="part_a" property="partA"/>
+		<result column="part_b" property="partB"/>
+		<result column="part_c" property="partC"/>
+		<result column="part_d" property="partD"/>
+		<result column="rate_a" property="rateA"/>
+		<result column="rate_b" property="rateB"/>
+		<result column="rate_c" property="rateC"/>
+		<result column="rate_d" property="rateD"/>
+		<result column="amount" property="amount"/>
+		<result column="min_amount" property="minAmount"/>
+		<result column="append_amount" property="appendAmount"/>
+		<result column="pay_type" property="payType"/>
+		<result column="pay_type_info" property="payTypeInfo"/>
+		<result column="ad_file" property="adFile"/>
+		<result column="guide_file" property="guideFile"/>
+		<result column="star" property="star"/>
+		<result column="catogry_id" property="catogryId"/>
+		<result column="profit_id" property="profitId"/>
+		<result column="bonus_type" property="bonusType"/>
+		<result column="direction" property="direction"/>
+		<result column="buy_fee" property="buyFee"/>
+		<result column="close_term" property="closeTerm"/>
+		<result column="close_term_unit" property="closeTermUnit"/>
+		<result column="fund_manager" property="fundManager"/>
+		<result column="fund_manager_url" property="fundManagerUrl"/>
+		<result column="manage_fee" property="manageFee"/>
+		<result column="open_day" property="openDay"/>
+		<result column="bonus" property="bonus"/>
+		<result column="sell_fee" property="sellFee"/>
+		<result column="info" property="info"/>
+		<result column="view_num" property="viewNum"/>
+		<result column="create_user" property="createUser"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_user" property="updateUser"/>
+		<result column="update_time" property="updateTime"/>
+	</resultMap>
+	
+	<resultMap id="PurchaseResult" type="com.dixin.finance.product.vo.PurchaseVO">
+		<id column="Id" property="id"/>
+		<result column="userId" property="userId"/>  
+		<result column="buyDate" property="buyDate"/>
+		<result column="volume" property="volume"/>  
+		<result column="amount" property="amount"/>  
+		<result column="institutionId" property="institutionId"/>  
+		<result column="pnl" property="pnl"/>
+		<result column="createUser" property="createUser"/>
+		<result column="createTime" property="createTime"/>
+		<result column="updateUser" property="updateUser"/>
+		<result column="updateTime" property="updateTime"/>
+		<association property="product" column="productId" resultMap="productResult"/>
+	</resultMap>  
+	
+  <select id="queryPurchaseList" parameterType="map" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
+		select 
+			purchase.id Id
+			,purchase.user_id userId
+			,purchase.product_id productId
+			,purchase.buy_date buyDate
+			,purchase.volume volume
+			,purchase.amount amount
+			,purchase.institution_id institutionId
+			,purchase.pnl pnl
+			,purchase.create_user createUser
+			,purchase.create_time createTime
+			,purchase.update_user updateUser
+			,purchase.update_time updateTime
+			,product.id
+			,product.name
+			,product.code
+			,product.release_date
+			,product.end_date
+			,product.b_delay
+			,product.delay_condition
+			,product.delay_term
+			,product.delay_term_unit
+			,product.term
+			,product.term_unit
+			,product.append_term
+			,product.append_term_unit
+			,product.part_a
+			,product.rate_a
+			,product.part_b
+			,product.rate_b
+			,product.part_c
+			,product.rate_c
+			,product.part_d
+			,product.rate_d
+			,product.amount
+			,product.min_amount
+			,product.append_amount
+			,product.pay_type
+			,product.pay_type_info
+			,product.star
+			,product.catogry_id
+			,product.direction
+			,product.buy_fee
+			,product.close_term
+			,product.close_term_unit
+			,product.fund_manager
+			,product.fund_manager_url
+			,product.manage_fee
+			,product.open_day
+			,product.bonus
+			,product.sell_fee
+			,product.info
+			,product.view_num
+			,product.ad_file
+			,product.guide_file
+			,product.profit_id
+			,product.bonus_type
+			,product.create_user
+			,product.create_time
+			,product.update_user
+			,product.update_time
+		from purchase 
+		join product on purchase.product_id = product.id
+		WHERE purchase.user_id = #{userId} and product.profit_id = #{profitType}  order by purchase.buy_date desc
+  </select>
+
+  <select id="queryPurchase" parameterType="int" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
+		select id id,
+			user_id userId,
+			buy_date buyDate,
+			product_id productId,
+			volume volume,
+			amount amount,
+			institution_id institutionId,
+			pnl pnl,
+			create_user createUser, 
+			create_time createTime, 
+			update_user updateUser, 
+			update_time updateTime
+		from product
+			WHERE id=#{Id} 
+	</select>
+
+	
+  <insert id="addPurchase" parameterType="com.dixin.finance.product.vo.PurchaseVO" >
+    insert into purchase(
+		user_id,
+		buy_date,
+		product_id,
+		volume,
+		amount,
+		institution_id,
+		pnl,
+		create_user,
+		create_time,
+		update_user,
+		update_time)
+	values(
+		#{userId},
+		#{buyDate},
+		#{productId},
+		#{volume},	
+		#{amount},
+		#{institutionId},
+		#{pnl},
+		0,
+		SYSDATE(),
+		0,
+		SYSDATE()
+	)
+  </insert>	
+	
+	
+</mapper>

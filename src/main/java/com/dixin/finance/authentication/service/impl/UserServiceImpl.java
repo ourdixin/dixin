@@ -62,7 +62,19 @@ public class UserServiceImpl implements IUserService {
 		return user_id;
 	}
 	
+
 	
+	
+	@Override
+	public UserVO findUserById(int userId) {
+		return userMapper.findUserById(userId);
+	}
+
+	@Override
+	public void updateUser(UserVO userVO) {
+		userMapper.updateUser(userVO);
+	}
+
 	public UserMapper getUserMapper() {
 		return userMapper;
 	}

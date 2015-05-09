@@ -815,11 +815,12 @@ li {
 	padding:6px 50px;
 	color:#fff; 
 	margin-right:20px;}
-.bnt_ok{
+.bnt_ok,.bnt_ok_person_base,.bnt_ok_pw,.bnt_ok_mobile,.bnt_ok_security{
 	background:#F79122;
 	padding:6px 50px;
 	color:#fff;
 	margin-right:20px;}
+
 .bnt_ok:hover,.cancel:hover{
 	background:#F60}	
 .bnt_cel{

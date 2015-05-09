@@ -14,8 +14,7 @@
 	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/js.js"></script>
-<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>
-	";
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
 </script>
 </head>
 
@@ -50,7 +49,7 @@
 				</tr>
 				<tr>
 					<td height="50" align="right">&nbsp;</td>
-					<td colspan="2"><span class="bnt_ok">提交</span></td>
+					<td colspan="2"><span class="bnt_ok_mobile">提交</span></td>
 				</tr>
 			</table>
 			<br /> <br />

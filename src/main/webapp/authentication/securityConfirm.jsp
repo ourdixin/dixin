@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,8 +14,7 @@
 	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/js.js"></script>
-<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>
-	";
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
 </script>
 </head>
 
@@ -29,27 +28,29 @@
 	<div id="main_right">
 		<div id="tab1_con_1" style="display: block; clear: both;">
 				<div class="user_title">证券客户认证</div>
-				<table width="100%" border="0" cellspacing="0" cellpadding="0">
-					<tr>
-						<td width="11%" height="50" align="right">姓名：</td>
-						<td><input maxlength="12" class="itstyle lt it" name="pass4"
-							id="pass5" type="password" /></td>
-					</tr>
-					<tr>
-						<td height="50" align="right">资金帐户：</td>
-						<td><input maxlength="12" class="itstyle lt it"
-							name="password" id="pass" type="password"></td>
-					</tr>
-					<tr>
-						<td height="50" align="right">认证公司：</td>
-						<td><input maxlength="12" class="itstyle lt it" name="pass5"
-							id="pass6" type="password" /></td>
-					</tr>
-					<tr>
-						<td height="50" align="right">&nbsp;</td>
-						<td><span class="bnt_ok">提交</span></td>
-					</tr>
-				</table>
+				<form action="" method="post" id="baseInfoForm">
+					<input name="id" id="id" type = "hidden" value="${user.id}">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td height="50" align="right">资金帐户：</td>
+							<td><input maxlength="12" class="itstyle lt it"
+								name="account" id="account" type="text"></td>
+						</tr>
+						<tr>
+							<td height="50" align="right">认证公司：</td>
+							<td><select name="institutionId" id="institutionId">
+									<c:forEach var="finanic" items="${financialList}">
+										<option value="${finanic.id}">${finanic.name}</option>
+									</c:forEach>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td height="50" align="right">&nbsp;</td>
+							<td><span class="bnt_ok_person_base">提交</span></td>
+						</tr>
+					</table>
+				</form>
 				<br />
 			</div>
 		</div>
