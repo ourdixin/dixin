@@ -425,4 +425,8 @@
 	    </foreach>  
 	</insert>	
 	
+	<delete id="deleteProduct" parameterType="int">
+			DELETE FROM product WHERE id = #{productId}
+	</delete>
+	
 </mapper>

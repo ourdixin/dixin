@@ -269,6 +269,69 @@ public class ProductController {
 		return "product/view";
 	}
 	
+	@RequestMapping(value="/admin/productview", method=RequestMethod.GET)
+	public String adminProductView(int productId,HttpSession session,Model model,HttpServletRequest request){
+	
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "authentication/login";
+		}
+		
+		productService.updateViewNum(productId);
+		ProductVO product = productService.queryProduct(productId);
+		model.addAttribute("product", product);
+		model.addAttribute("user", userVO);
+		
+		return "admin/productview";
+	}	
+	
+	@RequestMapping(value="/admin/changeproduct")
+	public String adminChangeProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
+	
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "authentication/login";
+		}
+		
+
+		ProductVO product = productService.queryProduct(productId);
+		model.addAttribute("product", product);
+		model.addAttribute("user", userVO);
+		if(product.getProfitId() == ProfitTypeConstant.FixProduct)
+			return "admin/changeFixproduct";
+		
+		return "admin/changeFloatproduct";
+	}	
+	
+	@RequestMapping(value="/admin/delproduct",method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult adminDeleteProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			return webResult;
+		}
+		
+		productService.deleteProduct(productId);
+		
+		webResult.setSuccess(true);
+		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");
+		return webResult;
+	}	
+	
 	/***********************************产品转让**********************************************/
 	@RequestMapping(value="/product/assignment",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,int productId,String backurl, HttpSession session,HttpServletRequest request){

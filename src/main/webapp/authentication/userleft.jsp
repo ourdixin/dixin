@@ -26,6 +26,9 @@
 					<a href="<%=request.getContextPath()%>/authentication/myselfwealthers"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的专属财富经理</a>
 				</dd>
 				<dd>
+					<a href="<%=request.getContextPath()%>/authentication/myselfwealthers"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的留言</a>
+				</dd>
+				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/RiskAppraisal.jsp"><img src="<%=request.getContextPath()%>/images/ico_10.png" width="16" height="17" />风险评估</a>
 				</dd>
 				<dd>
