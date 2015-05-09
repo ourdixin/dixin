@@ -277,13 +277,10 @@ public class ProductController {
 		product.setId(String.valueOf(productId));
 		assignment.setProduct(product);
 		assignmentService.insertAssignment(assignment);
-		String url = request.getRequestURI();
-		 if(request.getQueryString()!=null)   
-			   url+="?"+request.getQueryString(); 
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(true);
 		webResult.setResult(assignment);
-		webResult.setMsg(url);
+		webResult.setMsg(request.getContextPath()+"/product/queryAssignment");
 		return webResult;
 	}
 	
@@ -368,7 +365,7 @@ public class ProductController {
 		
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO==null){
-			webResult.setMsg("请重新登录！");
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
 			webResult.setSuccess(false);
 			return webResult;
 		}	

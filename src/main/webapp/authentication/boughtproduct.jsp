@@ -40,7 +40,9 @@
 				 <#=purchaseList.list[i].amount#>元
 				<#}#>
 			  </td>
-			  <td><#=purchaseList.list[i].volume#></td>
+			  <# if(id == 43) {#> 
+			  	<td><#=purchaseList.list[i].volume#></td>
+			  <#}#> 
 			  <td><#=purchaseList.list[i].pnl#>元</td>
               <td><span style="padding: 3px 15px; background: #F90">
 				<a href="<%=request.getContextPath()%>/product/view?productId=<#=purchaseList.list[i].product.id#>" >详细</a></span>
