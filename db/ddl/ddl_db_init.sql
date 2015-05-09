@@ -285,6 +285,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `msg_time` datetime NOT NULL COMMENT '留言日期',
   `catogry_id` int(11) NOT NULL COMMENT '问题类别',
   `msg` varchar(1024) NOT NULL COMMENT '留言',
+  `last_msg_id` int(11)  NOT NULL COMMENT '最后留言ID',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',

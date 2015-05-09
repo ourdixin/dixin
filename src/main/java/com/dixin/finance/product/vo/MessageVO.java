@@ -3,6 +3,7 @@ package com.dixin.finance.product.vo;
 
 import java.util.Date;
 
+import com.dixin.finance.authentication.vo.UserVO;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.dixin.framework.base.vo.BaseVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,20 +22,25 @@ public class MessageVO extends BaseVO{
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
-	private Date msgTime;
+	private Date msgTime;//留言时间
 	
-	private Integer catogryId;
-	private String msg;
-	private int createUser;
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
-	private Date createTime;
-	private int updateUser;
+	private Integer catogryId;//留言问题分类
+	private String msg;//留言内容
+	private Integer lastMsgId;//最后一条留言Id;
+	private Object lastMessage;//最后一条留言
+	private int createUser;//创建人
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
-	private Date updateTime;
+	private Date createTime;//创建时间
+	private int updateUser;//更新人
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+	private Date updateTime;//更新时间
+	private UserVO userVO;// 用户
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -135,6 +141,51 @@ public class MessageVO extends BaseVO{
 		return catogryId;
 		
 	}
+
+	/**
+	 * @return the userVO
+	 */
+	public UserVO getUserVO() {
+		return userVO;
+	}
+
+	/**
+	 * @param userVO the userVO to set
+	 */
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
+	}
+
+	/**
+	 * @return the lastMsgId
+	 */
+	public Integer getLastMsgId() {
+		return lastMsgId;
+	}
+
+	/**
+	 * @param lastMsgId the lastMsgId to set
+	 */
+	public void setLastMsgId(Integer lastMsgId) {
+		this.lastMsgId = lastMsgId;
+	}
+
+	/**
+	 * @return the lastMessage
+	 */
+	public MessageVO getLastMessage() {
+		return  (MessageVO)lastMessage;
+	}
+
+	/**
+	 * @param lastMessage the lastMessage to set
+	 */
+	public void setLastMessage(MessageVO lastMessage) {
+		this.lastMessage = lastMessage;
+	}
+
+	
+
 	
 	
 
