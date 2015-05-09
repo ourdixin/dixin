@@ -26,4 +26,6 @@ $(document).ready(function(){
 	
 	// 加载产品信息
 	$.post(HOST_PATH+"/products/advance?state=60", null, success);
+	
+	
 });

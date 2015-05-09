@@ -25,19 +25,12 @@ public class MessageServiceImpl implements IMessageService {
 		}
 	}
 	@Override
-	public Integer selectTotal(){
-		Integer messageTotal = customerMapper.selectTotal();
-		if(messageTotal==null){
-			messageTotal=0;
-		}
-		return messageTotal;
-	}
-	@Override
-	public Integer selectNextId(){
-		Integer nextId = customerMapper.selectNextId();
-		if(nextId==null){
-			nextId=1;
-		}
-		return nextId;
+	/**
+	 * 查询所有留言的初始留言并显示
+	 */
+	public List<MessageVO> selectFirstMessage() {
+		List<MessageVO> list = customerMapper.selectFirstMsg();
+	
+		return list;
 	}
 }

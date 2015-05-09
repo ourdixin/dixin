@@ -16,11 +16,7 @@ public interface CustomerMapper {
 	 */
 	void insert(MessageVO messageVO);
 	/**
-	 * 查询message总数
+	 * 查询所有留言的初始留言并显示
 	 */
-	Integer selectTotal();
-	/**
-	 * 查询message下一个自增ID
-	 */
-	Integer selectNextId();
+	List<MessageVO> selectFirstMsg();
 }

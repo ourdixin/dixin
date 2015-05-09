@@ -277,13 +277,10 @@ public class ProductController {
 		product.setId(String.valueOf(productId));
 		assignment.setProduct(product);
 		assignmentService.insertAssignment(assignment);
-		String url = request.getRequestURI();
-		 if(request.getQueryString()!=null)   
-			   url+="?"+request.getQueryString(); 
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(true);
 		webResult.setResult(assignment);
-		webResult.setMsg(url);
+		webResult.setMsg(request.getContextPath()+"/product/queryAssignment");
 		return webResult;
 	}
 	
@@ -341,20 +338,42 @@ public class ProductController {
 			return webResult;
 		}
 		MessageVO message = new MessageVO();
-		Integer msgId = messageServiceImpl.selectNextId();
 		Integer userId= userVO.getId();
-		message.setMsgId(msgId);//mysql自增从1开始
+		logger.info("userId"+userId);
+		logger.info("userName"+userVO.getUserName());
+		message.setMsgId(CustomerConstant.initalMsg);//用户所有留言的初始留言，第一条
 		message.setUserId(userId);
 		Integer catogryId = message.switchToCatogryID(select2);
 		message.setCatogryId(catogryId);
 		message.setMsg(questions);
+		message.setLastMsgId(-1);//第一次留言时，设置
 		message.setCreateUser(userId);
 		message.setUpdateUser(userId);
 		messageServiceImpl.insertMessage(message);
 		webResult.setMsg("提交成功！");
 		webResult.setSuccess(true);
 		return webResult;
-		
+	}
+	
+	//**************查看客户留言*********************************//
+	@RequestMapping(value="/admin/message")
+	public String showMessage(Model model,String select2,String questions,HttpSession session,HttpServletRequest request){
+		logger.info("在线留言页面被访问！");
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return "authentication/login";
+		}
+		List<MessageVO> list = messageServiceImpl.selectFirstMessage();
+		/*MessageVO message = list.get(1).getLastMessage();
+		if(message==null){
+			logger.info("message为空");
+		}*/
+		/*Integer i= list.size();
+		logger.info(i.toString());
+		*/
+		model.addAttribute("list", list);
+		return "/admin/message";
 	}
 	
 	@RequestMapping(value="/product/queryPurchase")
@@ -368,7 +387,7 @@ public class ProductController {
 		
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO==null){
-			webResult.setMsg("请重新登录！");
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
 			webResult.setSuccess(false);
 			return webResult;
 		}	

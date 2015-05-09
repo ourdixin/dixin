@@ -20,6 +20,7 @@
 <c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
 <!---用户左侧共用部份结束---->
 <form action="<%=request.getContextPath() %>/product/assignment" method="post" id="assiForm">
+<input  name="productId" id="productId" value="${param.productId}" type="hidden" />
 	<div id="main_right">  
 		<ul class="ul_1">
 			<li class="tab1_1_on"  id="tab1_1" onMouseOver="set_tab('tab1', 1 ,4)">发布产品</li>
@@ -29,10 +30,10 @@
 				<table width="100%" >
 					<tbody>
 						  <tr>
-						      <td width="18%" height="30" align="right">产品ID：</td>
-						      <td width="82%"><input maxlength="" id="productId" name="productId" class="itstyle lt it" type="text" /></td>
+						      <td width="18%" height="30" align="right">产品名称：</td>
+						      <td width="82%">${param.productName}</td>
 						   </tr>
-						  <tr>
+						  <!-- tr>
 						    <td height="30" align="right">产品类型/信托/资管：</td>
 						    <td><input maxlength="" id="" name="" class="itstyle lt it" type="text" /></td>
 						  </tr>
@@ -43,7 +44,7 @@
 						  <tr>
 						    <td height="30" align="right">期限：</td>
 						    <td><input maxlength="" id="" name="" class="itstyle lt it" type="text" /></td>
-						  </tr>
+						  </tr -->
 						  <tr>
 						    <td height="30" align="right">收益分配：</td>
 						    <td><input maxlength="" id="" name="" class="itstyle lt it" type="text" /></td>
