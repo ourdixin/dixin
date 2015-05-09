@@ -7,22 +7,29 @@ $(document).ready(function(){
 	template.config('closeTag', '#>');	
 	
 	function success(data){
-		if(data.result.length == 1 )
+		if(data.success)
 		{
-			var htmlStr = template('product_item', data.result[0]);
-			$('#tab1_con_' + data.result[0].id).html(htmlStr);
-			//$('.index_serch').after(htmlStr);
+			if(data.result.length == 1 )
+			{
+				var htmlStr = template('product_item', data.result[0]);
+				$('#tab1_con_' + data.result[0].id).html(htmlStr);
+				//$('.index_serch').after(htmlStr);
+			}
+			else
+			{
+				var htmlStr = template('product_list', data);
+				//$('.con').remove();
+				$('.ul_1').after(htmlStr);
+			}
+					
+			$("a[class='item']").click(function(){
+				$.get(HOST_PATH+"/products?pageNum="+this.text+"&productType="+this.name, null, success);
+			});		
 		}
 		else
 		{
-			var htmlStr = template('product_list', data);
-			//$('.con').remove();
-			$('.ul_1').after(htmlStr);
+			location.href = data.msg;
 		}
-				
-		$("a[class='item']").click(function(){
-			$.get(HOST_PATH+"/products?pageNum="+this.text+"&productType="+this.name, null, success);
-		});		
 		
 	};
 	
