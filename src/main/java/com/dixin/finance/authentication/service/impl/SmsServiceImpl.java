@@ -81,7 +81,7 @@ public class SmsServiceImpl implements ISmsService {
             conn.setUseCaches(false);
             conn.setDoOutput(true);
            	//String postData = "account=" + m_configInfo.getSmsAccount() + "&password=" + m_configInfo.getSmsPassword() + "&phonelist=" + phoneList + "&subject=" + java.net.URLEncoder.encode( strMsg + "銆�" + m_configInfo.getSmsSign() + "銆�","utf-8");
-           	String postData = "account=" + m_configInfo.getSmsAccount() + "&password=" + m_configInfo.getSmsPassword() + "&phonelist=" + phoneList + "&subject=" + java.net.URLEncoder.encode( strMsg + "銆愮殑淇￠噾铻嶃��","utf-8");
+           	String postData = "account=" + m_configInfo.getSmsAccount() + "&password=" + m_configInfo.getSmsPassword() + "&phonelist=" + phoneList + "&subject=" + java.net.URLEncoder.encode( strMsg + "【9点财讯】","utf-8");
            	System.out.println(postData);
             conn.setRequestProperty("Content-Length", "" + postData.length());
             OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");

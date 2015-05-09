@@ -26,34 +26,39 @@
 	<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
 	<!---用户左侧共用部份结束---->
 	<div id="main_right">
+		<form action="" method="post" id="baseInfoForm">
+		<input type="hidden" id="_vCode" name = "_vCode" value="<%=session.getAttribute("vCode") %>">
 		<div id="tab1_con_1" style="display: block; clear: both;">
 			<div class="user_title">修改手机号</div>
 			<table border="0" cellspacing="0" cellpadding="0">
+				<!--
 				<tr>
 					<td width="74" height="50" align="right">当前手机：</td>
 					<td colspan="2"><input maxlength="12" class="itstyle lt it"
 						name="pass7" id="pass8" type="password" /></td>
 				</tr>
+				-->
 				<tr>
 					<td height="50" align="right">新手机：</td>
 					<td colspan="2"><input maxlength="12" class="itstyle lt it"
-						name="pass8" id="pass9" type="password" /></td>
+						name="mobile" id="mobile" type="text" /></td>
 				</tr>
 				<tr>
 					<td height="50" align="right">验证码：</td>
 					<td width="82"><input maxlength="12" class="itstyle lt it160"
-						name="pass7" id="pass10" type="password" /></td>
+						name="vCode" id="vCode" type="text" /></td>
 					<td width="154"><font
 						style="border: 1px solid #ccc; padding: 3px 10px; background: #f1f1f1"><a
-							href="#">验证码</a></font></td>
+							href="<%=request.getContextPath()%>/authentication/verificationCode">验证码</a></font></td>
 				</tr>
 				<tr>
 					<td height="50" align="right">&nbsp;</td>
 					<td colspan="2"><span class="bnt_ok_mobile">提交</span></td>
 				</tr>
 			</table>
-			<br /> <br />
+			<br/> <br/>
 		</div>
+		</form>
 	</div>
 	<br class=" clear" />
 	<!---foot底部---->

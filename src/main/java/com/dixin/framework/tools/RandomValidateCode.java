@@ -105,8 +105,13 @@ public class RandomValidateCode {
     /*
      * 获取随机数字验证
      */
-    public String getRandomSmsString(int num){
-        return String.valueOf(randSmsString.charAt(num));
+    public String getRandomSmsString(){
+    	String str = "";
+    	for(int i = 0;  i < 6; i++) {
+    		str = str + String.valueOf(randSmsString.charAt(random.nextInt(9)));
+    	}
+       return str;
     }   
+    
     
 }
