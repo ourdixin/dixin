@@ -8,6 +8,5 @@ public interface IMessageService {
 	 * @param messageVO
 	 */
 	public void insertMessage(MessageVO messageVO);
-	public Integer selectTotal();
-	public Integer selectNextId();
+	public List<MessageVO> selectFirstMessage();
 }

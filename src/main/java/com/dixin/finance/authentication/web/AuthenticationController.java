@@ -30,6 +30,7 @@ import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
+import com.dixin.framework.tools.RandomValidateCode;
 import com.dixin.framework.tools.split;
 
 
@@ -274,6 +275,7 @@ public class AuthenticationController {
 
 	@RequestMapping(value="/authentication/uppersonaldata", method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		
 		userServiceImpl.updateUser(user);//修改
 		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
 		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
@@ -291,7 +293,22 @@ public class AuthenticationController {
 		return "/authentication/securityConfirm";
 	}
 	
-
+	/***********************************手机验证**********************************************/
+	@RequestMapping(value="/authentication/verificationCode")
+	public @ResponseBody BaseWebResult verificationCode(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){ 
+		RandomValidateCode rc = new RandomValidateCode();
+		String strMsg = rc.getRandomSmsString();
+		String mobile = ((UserVO)session.getAttribute(WebConstants.SESSION_KEY_USER)).getMobile();
+		List<String> phoneList = new ArrayList<String>();
+		phoneList.add(mobile);
+		smsServiceImpl.sendSms(strMsg, phoneList);
+		session.setAttribute("vCode", strMsg);//验证码
+		BaseWebResult webResult = new BaseWebResult();
+		webResult.setMsg(request.getContextPath()+"/authentication/mobileConfirm.jsp");
+		webResult.setSuccess(true);
+		return webResult;
+	}
+	  
 	public IUserService getUserServiceImpl() {
 		return userServiceImpl;
 	}

@@ -13,7 +13,7 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/js.js"></script>
+	src="<%=request.getContextPath()%>/js/authentication/personaldata.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
 </script>
 </head>

@@ -9,7 +9,7 @@
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath() %>/css/LTT_user.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/js.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/personaldata.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
 
@@ -25,8 +25,7 @@
 <div class="user_title">基本信息</div>
 <div class="layout_a per_data"><div class="title clearfix">
 <h3>个人资料</h3>
-<ul class="wsd_box lt"><li>资料完善度</li><li id="infoProgress" class="to0">
-  <p><em></em><span>0%</span></p></li></ul>
+<ul class="wsd_box lt"></ul>
 <a class="rt" href="<%=request.getContextPath() %>/authentication/baseInfoConfirm.jsp">编辑></a>
 </div>
 </div>
@@ -57,7 +56,6 @@
 <div class="layout_a per_data"><div class="title clearfix">
 <h3>安全中心</h3>
 <div class="safe_grade lt">
-<p id="safetyLevel" class="in">安全等级</p>
 </div>
 </div>
 </div>
@@ -65,7 +63,7 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td width="12%" align="right">登录密码：</td>
-      <td width="31%">${user.password}</td>
+      <td width="31%"><input  style="border:none;" type="password" disabled="disabled" value="${user.password}"></td>
       <td width="56%"><a href="<%=request.getContextPath() %>/authentication/pwConfirm.jsp">修改</a></td>
     </tr>
     <tr>
@@ -79,7 +77,6 @@
 <div class="layout_a per_data"><div class="title clearfix">
 <h3>会员权限</h3>
 <div class="safe_grade lt">
-<p id="safetyLevel" class="on">安全等级</p>
 </div>
 <a class="rt" href="<%=request.getContextPath() %>/authentication/getFinanicalList">编辑></a>
 </div>
