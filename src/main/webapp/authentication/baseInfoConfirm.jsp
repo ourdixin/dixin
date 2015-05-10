@@ -46,8 +46,9 @@
 								<select name="province" id="province">
 								</select>
 							</td>
+							
 							<td width="74%">
-								<select name="areaId" id="areaId">
+								<select name="areaId" id="areaId" style="width:180px">
 									<option>北京</option>
 								</select>
 							</td>
@@ -60,7 +61,7 @@
 						</tr>
 						<tr>
 							<td height="50" align="right">联系地址：</td>
-							<td colspan="2"><input maxlength="12" class="itstyle lt it"
+							<td colspan="2"><input class="itstyle lt it" style="width:300px"
 								name="address" id="address" type="text" /></td>
 						</tr>
 						<tr>

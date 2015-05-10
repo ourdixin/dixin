@@ -168,7 +168,7 @@
      box.autoplayer = 3;//自动播放间隔时间
 
      //box.add({"url":"图片地址","title":"悬浮标题","href":"链接地址"})
-     box.add({"url":"images/index_10.jpg","href":"http://www.baidu.com/","title":"悬浮提示标题1"})
+     box.add({"url":"images/index_10.jpg","href":"<%=request.getContextPath() %>","title":"悬浮提示标题1"})
      //box.add({"url":"images/tu3.jpg","href":"http://www.baidu.com/","title":"悬浮提示标题3"})
      //box.add({"url":"images/tu4.jpg","href":"http://www.baidu.com/","title":"悬浮提示标题4"})
      box.show();
