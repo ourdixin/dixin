@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>留言回复</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/MessageReply.js"></script>
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
 
 <body>
@@ -16,43 +21,54 @@
 	<!---管理左侧共用部份---->
 	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
 	<!---管理左侧共用部份结束---->
+	
+<form action="<%=request.getContextPath() %>/admin/MessageReply"  method ="post" id="messageReplyForm">
+<input type="hidden" id="id" name="id" value="${param.id}"/><br/>
+<input type="hidden" id="catogryId" name="catogryId" value="${param.catogryId}"/><br/>
 <div id="main_right">
-
 <div class="main_width">
 <div class="con_table">
-<table width="100%">
-  <thead>
-  <tr>
-    <th>留言时间</th>
-    <th>客户代码</th>
-    <th>客户姓名</th>
-    <th>分类问题</th>
-    <th>问题描述</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td>2015-3-15</td>
-        <td>12015</td>
-        <td>张三</td>
-        <td>产品预约</td>
-        <td>我有100万的产品需要转让，如何转让啊</td>
-        </tr>
-      <tr>
-        <td>2015-3-15</td>
-        <td>12015</td>
-        <td>张三</td>
-        <td>产品转让</td>
-        <td>利润很高</td>
-        </tr>
-      </tbody>
-        </table>
-
+<table>
+	<thead>
+		<tr>
+    		<th>留言时间</th>
+    		<th>客户代码</th>
+   			<th>客户姓名</th>
+   			<th>分类问题</th>
+    		<th>问题描述</th>
+    	</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="message" items="${list}">
+			<tr>
+				<td>
+					<fmt:formatDate value="${message.msgTime}" pattern="yyyy-MM-dd HH:mm"/>
+				</td>
+				<td>${message.userId}</td>
+				<td>${message.userVO.userName}</td>
+				<td>
+					<c:choose>
+  								<c:when test="${message.catogryId==74}">
+  									浮动类收益产品
+  								</c:when>
+  								<c:when test="${message.catogryId==75}">
+  									固定类收益产品
+  								</c:when>
+  								<c:otherwise>
+  									其他
+  								</c:otherwise>
+  					</c:choose>
+  				</td>
+  				<td>${message.msg}</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
 </div>
 </div>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td align="center"><textarea name="pass" rows="4"  class="tareastyle tarea" id="pass2"></textarea></td>
+    <td align="center"><textarea name="msg" rows="4"  class="tareastyle tarea" id="pass2"></textarea></td>
   </tr>
   <tr>
     <td align="center">
@@ -60,9 +76,9 @@
   </tr>
 </table>
 </div>
-
+</form>
 <br class=" clear" />
-</div>
+
 
 
 <!---foot底部---->
