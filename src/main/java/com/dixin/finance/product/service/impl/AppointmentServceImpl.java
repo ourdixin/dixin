@@ -26,6 +26,11 @@ public class AppointmentServceImpl implements IAppointmentService {
 	public List<AppointmentVO> queryAppointmentList() {
 		return appointmentMapper.query();
 	}
+
+	@Override
+	public List<AppointmentVO> queryUserAppointmentList(int userId) {
+		return appointmentMapper.queryUserAppointmentList(userId);
+	}
 	
 	
 }

@@ -6,7 +6,7 @@
 
   <!-- cache / 暂时去掉缓存，等后台可以操作的时候再加上缓存 -->
   
-  <insert id="insert" parameterType="com.dixin.finance.authentication.vo.UserVO" >
+  <insert id="insert" parameterType="com.dixin.finance.authentication.vo.UserVO" useGeneratedKeys = "true" keyProperty = "id" >
     insert into User(
 		user_name,
 		password,

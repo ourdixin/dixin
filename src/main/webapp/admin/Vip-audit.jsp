@@ -38,7 +38,7 @@
         <td>高级</td>
         <td>实名</td>
         <td>152145</td>
-        <td><span><a href="#">通过</a></span><i>拒绝</i></td>
+        <td><span><a href="javascript:void(0)">通过</a></span><i>拒绝</i></td>
         </tr>
       <tr>
         <td>2015-3-15</td>
@@ -46,7 +46,7 @@
         <td>高级</td>
         <td>证券认证</td>
         <td>494865878</td>
-        <td><span><a href="#">通过</a></span><i>拒绝</i></td>
+        <td><span><a href="javascript:void(0)">通过</a></span><i>拒绝</i></td>
         </tr>
       <tr>
         <td>2015-3-15</td>
@@ -54,7 +54,7 @@
         <td>高级</td>
         <td>证券认证</td>
         <td>152145</td>
-        <td><span><a href="#">通过</a></span><i>拒绝</i></td>
+        <td><span><a href="javascript:void(0)">通过</a></span><i>拒绝</i></td>
         </tr>
       </tbody>
         </table>

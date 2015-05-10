@@ -335,12 +335,21 @@ public class ProductController {
 	/***********************************产品转让**********************************************/
 	@RequestMapping(value="/product/assignment",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,int productId,String backurl, HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			return webResult;
+		}		
 		
 		ProductVO product = new ProductVO();
 		product.setId(String.valueOf(productId));
 		assignment.setProduct(product);
+		assignment.setUserId(userVO.getId());
 		assignmentService.insertAssignment(assignment);
-		BaseWebResult webResult = new BaseWebResult();
+		
 		webResult.setSuccess(true);
 		webResult.setResult(assignment);
 		webResult.setMsg(request.getContextPath()+"/product/queryAssignment");
@@ -349,13 +358,20 @@ public class ProductController {
 	
 	@RequestMapping(value="/product/queryAssignment")
 	public String queryAssignmentList(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return "/authentication/login";
+		}
+		
 		if(pageNum == null)
 			pageNum = 1;
 		if(pageSize == null)
 			pageSize = 10;
 		
 		PageHelper.startPage(pageNum, pageSize);
-		List<AssignmentVO> assignments = assignmentService.queryAssignmentList();
+		List<AssignmentVO> assignments = assignmentService.queryUserAssignmentList(userVO.getId());
 		PageInfo<AssignmentVO> pageinfoList = new PageInfo(assignments);
 		model.addAttribute("assignmentList", pageinfoList);
 		return "/product/assignmentShow";
@@ -364,11 +380,20 @@ public class ProductController {
 	/***********************************产品预约**********************************************/
 	@RequestMapping(value="/product/appointment",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult appointment(AppointmentVO appointment,int productId,String backurl, HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			return webResult;
+		}			
+		
 		ProductVO product = new ProductVO();
 		product.setId(String.valueOf(productId));
 		appointment.setProduct(product);
+		appointment.setUserId(userVO.getId());
 		appointmentService.insertAppointment(appointment);
-		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(true);
 		webResult.setMsg(request.getContextPath()+"/product/queryAppointment");
 		return webResult;
@@ -376,13 +401,20 @@ public class ProductController {
 	
 	@RequestMapping(value="/product/queryAppointment")
 	public String queryAppointmentList(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return "/authentication/login";
+		}
+		
 		if(pageNum == null)
 			pageNum = 1;
 		if(pageSize == null)
 			pageSize = 10;
 		
 		PageHelper.startPage(pageNum, pageSize);
-		List<AppointmentVO> appointments = appointmentService.queryAppointmentList();
+		List<AppointmentVO> appointments = appointmentService.queryUserAppointmentList(userVO.getId());
 		PageInfo<AssignmentVO> pageinfoList = new PageInfo(appointments);
 		model.addAttribute("appointmentList", pageinfoList);
 		return "/product/appointmentShow";

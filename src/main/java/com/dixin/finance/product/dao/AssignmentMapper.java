@@ -19,4 +19,10 @@ public interface AssignmentMapper {
 	 * @return 
 	 */
 	public List<AssignmentVO> query();
+	
+	/**
+	 * 查询用户产品转让信息
+	 * @return 
+	 */
+	public List<AssignmentVO> queryUserAssignmentList(int userId);	
 }

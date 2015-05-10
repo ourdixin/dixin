@@ -77,5 +77,25 @@
 			assignment.update_time updateTime
 		from assignment,product where assignment.product_id = product.id
   </select>
-	
+  
+   <select id="queryUserAssignmentList" parameterType="int" resultMap="assignmentResult" useCache="false" >
+		select assignment.id id,
+			assignment.user_id user_id,
+			assignment.assign_date assign_date,
+			assignment.amount amount,
+			product.id product,
+			product.name name,
+			product.pay_type payType,
+			product.term term,
+			assignment.pay_type pay_type,
+			assignment.assign_type assign_type,
+			assignment.contactor contactor,
+			assignment.tel tel,
+			assignment.create_user createUser, 
+			assignment.create_time createTime, 
+			assignment.update_user updateUser, 
+			assignment.update_time updateTime
+		from assignment,product where assignment.product_id = product.id and user_id = #{userId}
+  </select>	
+  
 </mapper>

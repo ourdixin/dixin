@@ -18,5 +18,9 @@ public interface IAssignmentService {
 	 */
 	public List<AssignmentVO> queryAssignmentList();
 	
-	
+	/**
+	 * 查询用户产品转让信息
+	 * @return
+	 */
+	public List<AssignmentVO> queryUserAssignmentList(int userId);	
 }

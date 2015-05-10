@@ -19,4 +19,10 @@ public interface AppointmentMapper {
 	 * @return 
 	 */
 	public List<AppointmentVO> query();
+	
+	/**
+	 * 查询用户产品预定信息
+	 * @return 
+	 */
+	public List<AppointmentVO> queryUserAppointmentList(int userId);	
 }
