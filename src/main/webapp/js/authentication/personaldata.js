@@ -18,9 +18,9 @@ $(document).ready(function(){
 	function getCitySuccess(data){		
 		if(data.success)
 		{
-			$("#city").empty();
+			$("#areaId").empty();
 			for(i=0;i < data.result.length;i++){
-				$("#city").append("<option value='" + data.result[i].id + "'>" + data.result[i].name + "</option>");  
+				$("#areaId").append("<option value='" + data.result[i].id + "'>" + data.result[i].name + "</option>");  
 			}
 		}		
 	};	

@@ -47,7 +47,7 @@
 								</select>
 							</td>
 							<td width="74%">
-								<select name="city" id="city">
+								<select name="areaId" id="areaId">
 									<option>北京</option>
 								</select>
 							</td>
