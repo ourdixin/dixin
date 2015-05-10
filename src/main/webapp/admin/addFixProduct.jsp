@@ -26,7 +26,7 @@ div {
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/product/manage.js"></script>
+	src="<%=request.getContextPath()%>/js/admin/addproduct.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/ajaxfileupload.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
