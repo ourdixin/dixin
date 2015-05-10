@@ -1,4 +1,3 @@
-
 package com.dixin.finance.authentication.web;
 
 import java.util.ArrayList;
@@ -396,4 +395,3 @@ public class AuthenticationController {
 		this.smsServiceImpl = smsServiceImpl;
 	}
 }
-

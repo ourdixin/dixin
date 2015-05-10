@@ -27,4 +27,10 @@ public class AssignmentServceImpl implements IAssignmentService {
 		List<AssignmentVO> list = assignmentMapper.query();
 		return list;
 	}
+	
+	@Override
+	public List<AssignmentVO> queryUserAssignmentList(int userId){
+		List<AssignmentVO> list = assignmentMapper.queryUserAssignmentList(userId);
+		return list;
+	}
 }

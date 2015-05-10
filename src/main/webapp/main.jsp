@@ -106,9 +106,9 @@
 		<a class="item">  <  </a>
 		<# for(i = 0; i < products.pages; i++){ #> 
 			<# if(products.pages.pageNum == i){ #>
-				<a class="item" name="<#=id#>" href="#none"  ><#=i+1#></a>
+				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
 			<#} else {#>
-            	<a class="item" name="<#=id#>" href="#none" ><#=i+1#></a>
+            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
 		<# } } #>
           <a class="item"> >  </a>
         </div>
@@ -187,11 +187,11 @@
                 <!-- li class="tab1_7_off" id="tab1_7" onMouseOver="set_tab('tab1', 7 ,7)">p2p</li -->
             </ul>
             <div class="index_serch">
-              <div class="serch_a"><a id="fixIncome" href="#" style="color:#F60">固定收益</a>&nbsp;&nbsp;&nbsp;&nbsp; <a id="UnfixIncome" href="#" style="color:#F00">浮动收益</a></div>
+              <div class="serch_a"><a id="fixIncome" href="javascript:void(0)" style="color:#F60">固定收益</a>&nbsp;&nbsp;&nbsp;&nbsp; <a id="UnfixIncome" href="javascript:void(0)" style="color:#F00">浮动收益</a></div>
           <form id="searchForm">
            <div class="serch_b">
            	<input id="search_text" type="text" class="serch_text"/>
-           	<a id="query" href="#" >查询</a> 
+           	<a id="query" href="javascript:void(0)" >查询</a> 
            </div>
            </form>
            <div id="tab_search" class="senior"><a href="<%=request.getContextPath() %>/product/product.jsp">理财产品高级筛选</a></div>
@@ -221,7 +221,7 @@
 		<% // p2p产品列表  %>
   </div -->
 <!---TAB结束---->
-<div class="index_about"><a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.baidu.com/');" href="#"> <img src="<%=request.getContextPath() %>/images/index_28.jpg" width="151" height="29" /></a><a href="<%=request.getContextPath() %>/authentication/regarding.jsp"><img src="<%=request.getContextPath() %>/images/index_30.jpg" width="124" height="29" /></a></div>
+<div class="index_about"><a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.baidu.com/');" href="javascript:void(0)"> <img src="<%=request.getContextPath() %>/images/index_28.jpg" width="151" height="29" /></a><a href="<%=request.getContextPath() %>/authentication/regarding.jsp"><img src="<%=request.getContextPath() %>/images/index_30.jpg" width="124" height="29" /></a></div>
 </div>
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />

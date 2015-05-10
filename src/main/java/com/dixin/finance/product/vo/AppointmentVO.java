@@ -15,7 +15,7 @@ public class AppointmentVO extends BaseVO {
 	
 	private int id;
 	
-	private int user_id;
+	private int userId;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -44,11 +44,11 @@ public class AppointmentVO extends BaseVO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public Date getReserve_date() {
 		return reserve_date;

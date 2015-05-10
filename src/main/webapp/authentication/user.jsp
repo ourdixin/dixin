@@ -124,8 +124,8 @@
 							<td>1000万元</td>
 							<td>9%-9.3%</td>
 							<td><span name="view" style="padding: 3px 15px; background: #F90"><a
-									href="#">详细</a></span><span name="reservation" style="padding: 3px 15px; background: #F90"><a
-									href="#">预约</a></span></td>
+									href="javascript:void(0)">详细</a></span><span name="reservation" style="padding: 3px 15px; background: #F90"><a
+									href="javascript:void(0)">预约</a></span></td>
 						</tr>
 
 					</tbody>

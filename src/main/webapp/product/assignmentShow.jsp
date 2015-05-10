@@ -56,16 +56,13 @@
         </table></div>
         
           <div class="page_menu">
-          <a class="item">  <  </a>
-          <a class="item">1</a>
-          <a class="item">2</a>
-          <a class="item">3</a>
-          <a class="item">4</a>
-          <a class="item">5</a>
-          <a class="item">6</a>
-          <a class="item"></a>
+          <a class="item"> < </a>
+          <c:forEach var="assignment" items= "${assignmentList.pages}" varStatus="i">
+         	 <a class="item">${i.index}</a>
+          </c:forEach>
         </div>
-
+     </div>
+</div>
 <br class=" clear" />
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />

@@ -69,4 +69,23 @@
 			reservation.update_time updateTime
 		from reservation,product where reservation.product_id = product.id
   </select>
+  
+   <select id="queryUserAppointmentList" parameterType="int" resultMap="appointmentResult" useCache="false" >
+		select reservation.id id,
+			reservation.user_id user_id,
+			reservation.reserve_date reserve_date,
+			reservation.amount amount,
+			product.id product,
+			product.name name,
+			product.pay_type payType,
+			product.term term,
+			reservation.tel tel,
+			reservation.msg msg,
+			reservation.create_user createUser, 
+			reservation.create_time createTime, 
+			reservation.update_user updateUser, 
+			reservation.update_time updateTime
+		from reservation,product where reservation.product_id = product.id and user_id = #{userId}
+  </select>
+    
 </mapper>

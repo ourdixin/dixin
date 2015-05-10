@@ -18,5 +18,9 @@ public interface IAppointmentService {
 	 */
 	public List<AppointmentVO> queryAppointmentList();
 	
-	
+	/**
+	 * 查询用户产品预定信息
+	 * @return
+	 */
+	public List<AppointmentVO> queryUserAppointmentList(int userId);	
 }
