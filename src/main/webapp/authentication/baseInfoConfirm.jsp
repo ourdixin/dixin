@@ -42,7 +42,6 @@
 						</tr>
 						<tr>
 							<td height="50" align="right">所在地区：</td>
-							<!-- 
 							<td width="15%"><select name="select" id="select">
 									<option>请选择</option>
 									<option>北京</option>
@@ -53,7 +52,6 @@
 							<td width="74%"><select name="select2" id="select2">
 									<option>北京</option>
 							</select></td>
-							 -->
 						</tr>
 						<tr>
 							<td height="50" align="right">邮政编码：</td>

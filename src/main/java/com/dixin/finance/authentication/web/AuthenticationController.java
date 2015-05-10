@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dixin.finance.authentication.service.IAreaService;
 import com.dixin.finance.authentication.service.IAsmService;
 import com.dixin.finance.authentication.service.IFinService;
 import com.dixin.finance.authentication.service.IFmrService;
@@ -53,6 +54,9 @@ public class AuthenticationController {
 	
 	@Resource
 	private IFinService finServiceImpl;
+	
+	@Resource
+	private IAreaService areaServiceImpl;
 	
 	@RequestMapping(value="/")
 	public String index(HttpSession session,Model model,HttpServletRequest request){
@@ -308,6 +312,7 @@ public class AuthenticationController {
 		webResult.setSuccess(true);
 		return webResult;
 	}
+	
 	  
 	public IUserService getUserServiceImpl() {
 		return userServiceImpl;
@@ -323,6 +328,44 @@ public class AuthenticationController {
 
 	public void setSmsServiceImpl(ISmsService smsServiceImpl) {
 		this.smsServiceImpl = smsServiceImpl;
+	}
+	public IFmrService getFmrServiceImpl() {
+		return fmrServiceImpl;
+	}
+
+
+	public void setFmrServiceImpl(IFmrService fmrServiceImpl) {
+		this.fmrServiceImpl = fmrServiceImpl;
+	}
+
+
+	public IAsmService getAsmServiceImpl() {
+		return asmServiceImpl;
+	}
+
+
+	public void setAsmServiceImpl(IAsmService asmServiceImpl) {
+		this.asmServiceImpl = asmServiceImpl;
+	}
+
+
+	public IFinService getFinServiceImpl() {
+		return finServiceImpl;
+	}
+
+
+	public void setFinServiceImpl(IFinService finServiceImpl) {
+		this.finServiceImpl = finServiceImpl;
+	}
+
+
+	public IAreaService getAreaServiceImpl() {
+		return areaServiceImpl;
+	}
+
+
+	public void setAreaServiceImpl(IAreaService areaServiceImpl) {
+		this.areaServiceImpl = areaServiceImpl;
 	}
 }
 
