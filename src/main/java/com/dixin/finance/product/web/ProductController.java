@@ -420,7 +420,7 @@ public class ProductController {
 	
 	//**************查看客户留言*********************************//
 	@RequestMapping(value="/admin/message")
-	public String showMessage(Model model,String select2,String questions,HttpSession session,HttpServletRequest request){
+	public String showMessage(Model model,HttpSession session,HttpServletRequest request){
 		logger.info("在线留言页面被访问！");
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)

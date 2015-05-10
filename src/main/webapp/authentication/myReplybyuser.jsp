@@ -10,7 +10,7 @@
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/MessageReply.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/myReplybyuser.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
 
@@ -18,11 +18,11 @@
 <!---TOP头部共用部份---->
 	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
-	<!---管理左侧共用部份---->
-	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
-	<!---管理左侧共用部份结束---->
+	<!---用户左侧共用部份---->
+	<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
+	<!---用户左侧共用部份结束---->
 	
-<form action="<%=request.getContextPath() %>/admin/MessageReply"  method ="post" id="messageReplyForm">
+<form action="<%=request.getContextPath() %>/authentication/myReplybyuser"  method ="post" id="myReplyForm">
 <input type="hidden" id="id" name="id" value="${param.id}"/><br/>
 <input type="hidden" id="catogryId" name="catogryId" value="${param.catogryId}"/><br/>
 <div id="main_right">
@@ -44,7 +44,7 @@
 				<td>
 					<fmt:formatDate value="${message.msgTime}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
-				<%-- <td>${message.userId}</td>  --%>
+				<%-- <td>${message.userId}</td> --%>
 				<td>${message.userVO.userName}</td>
 				<td>
 					<c:choose>
@@ -85,4 +85,3 @@
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->
 </body>
-</html>

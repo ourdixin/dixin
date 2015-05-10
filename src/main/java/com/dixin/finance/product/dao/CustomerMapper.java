@@ -32,5 +32,9 @@ public interface CustomerMapper {
 	 * 查找下一条自增id
 	 */
 	Integer selectNextId();
+	/**
+	 * 通过用户的id查询它的所有初始留言
+	 */
+	List<MessageVO> selectFirstMsgByUserId(Integer id);
 }
 

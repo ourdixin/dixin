@@ -22,16 +22,19 @@ import com.dixin.finance.authentication.service.IFinService;
 import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
+import com.dixin.finance.product.service.IMessageService;
 import com.dixin.finance.authentication.vo.AssessmentVO;
 import com.dixin.finance.authentication.vo.FinancialManagerVO;
 import com.dixin.finance.authentication.vo.Financial_institutionVO;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
+import com.dixin.finance.product.vo.MessageVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
 import com.dixin.framework.tools.RandomValidateCode;
 import com.dixin.framework.tools.split;
+import com.dixin.finance.product.constant.CustomerConstant;
 
 
 @Controller
@@ -53,6 +56,9 @@ public class AuthenticationController {
 	
 	@Resource
 	private IFinService finServiceImpl;
+	
+	@Resource
+	private IMessageService messageServiceImpl;
 	
 	@RequestMapping(value="/")
 	public String index(HttpSession session,Model model,HttpServletRequest request){
@@ -310,6 +316,69 @@ public class AuthenticationController {
 		webResult.setSuccess(true);
 		return webResult;
 	}
+	
+	/*************************************根据用户id查找所有的初始留言*************************************/
+	@RequestMapping(value="/authentication/myReply")
+	public String showMessageByUserId(Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response){
+		logger.info("前台我的留言页面被访问！");
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return "authentication/login";
+		}
+		Integer id = userVO.getId();
+		List<MessageVO> list = messageServiceImpl.selectFirstMsgByUserId(id);
+		model.addAttribute("list", list);
+		return "/authentication/myReply";
+		
+	}
+	
+	/************************************根据用户初始留言id查找初始留言相关所有留言*****************/
+	@RequestMapping(value="/authentication/myReplybyuser")
+	public String showMessageByInitialId(Model model,Integer id,HttpSession session,HttpServletRequest request){
+		logger.info("后台留言回复页面被访问!");
+		logger.info("id="+id);
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return "authentication/login";
+		}
+		List<MessageVO> list = messageServiceImpl.selectMsgsByInitialId(id);
+		model.addAttribute("list", list);
+		return "/authentication/myReplybyuser";
+	}
+	
+	/***************************后台用户回复普通用户留言并更新初始留言last_msg_id属性************************/
+	@RequestMapping(value="/authentication/myReplybyuser" ,method=RequestMethod.POST )
+	public @ResponseBody BaseWebResult replyMessageByUser(Model model,Integer id,String msg,Integer catogryId,HttpSession session,HttpServletRequest request){
+		logger.info("前台留言回复页面被访问+1!");
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setSuccess(false);
+			return webResult;
+		}
+		MessageVO message = new MessageVO();
+		logger.info("id"+id);
+		logger.info("catogryId"+catogryId);
+		message.setMsgId(id);//初次留言的id作为后面同组留言的msg_id
+		Integer userId = userVO.getId();
+		message.setUserId(userId);
+		message.setCatogryId(catogryId);
+		message.setMsg(msg);
+		Integer thisLastMsgId = messageServiceImpl.selectNextId();
+		message.setLastMsgId(thisLastMsgId);
+		message.setCreateUser(userId);
+		message.setUpdateUser(userId);
+		messageServiceImpl.insertMessage(message);
+		final Integer lastMsgId = -1;//用户回复后设置lastMsg为-1
+		messageServiceImpl.updateLastMsgId(id,lastMsgId);//设置初始留言
+		webResult.setMsg("提交成功！");
+		webResult.setSuccess(true);
+		return webResult;	
+	}
+	
 	  
 	public IUserService getUserServiceImpl() {
 		return userServiceImpl;
