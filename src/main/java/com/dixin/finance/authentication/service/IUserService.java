@@ -35,4 +35,7 @@ public interface IUserService {
 	 * @param userVO
 	 */
 	void updateUser(UserVO userVO);
+	
+	
+	void setRiskTested(int userId);
 }

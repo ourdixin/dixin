@@ -57,4 +57,9 @@ public interface UserMapper {
 	 * 查询手机号是否存在
 	 */
 	Integer existsTel(String mobile);
+	
+	/*
+	 * 评测问卷
+	 */
+	void setRiskTested(int userId);
 }

@@ -269,6 +269,69 @@ public class ProductController {
 		return "product/view";
 	}
 	
+	@RequestMapping(value="/admin/productview", method=RequestMethod.GET)
+	public String adminProductView(int productId,HttpSession session,Model model,HttpServletRequest request){
+	
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "authentication/login";
+		}
+		
+		productService.updateViewNum(productId);
+		ProductVO product = productService.queryProduct(productId);
+		model.addAttribute("product", product);
+		model.addAttribute("user", userVO);
+		
+		return "admin/productview";
+	}	
+	
+	@RequestMapping(value="/admin/changeproduct")
+	public String adminChangeProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
+	
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "authentication/login";
+		}
+		
+
+		ProductVO product = productService.queryProduct(productId);
+		model.addAttribute("product", product);
+		model.addAttribute("user", userVO);
+		if(product.getProfitId() == ProfitTypeConstant.FixProduct)
+			return "admin/changeFixproduct";
+		
+		return "admin/changeFloatproduct";
+	}	
+	
+	@RequestMapping(value="/admin/delproduct",method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult adminDeleteProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			return webResult;
+		}
+		
+		productService.deleteProduct(productId);
+		
+		webResult.setSuccess(true);
+		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");
+		return webResult;
+	}	
+	
 	/***********************************产品转让**********************************************/
 	@RequestMapping(value="/product/assignment",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,int productId,String backurl, HttpSession session,HttpServletRequest request){
@@ -425,5 +488,55 @@ public class ProductController {
 	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType);
 	    return new PageInfo(purchaseList);
 	}	
+	/***********************************根据初始留言ID显示相关所有留言****************************************/
+	
+	
+	@RequestMapping(value="/admin/MessageReply")
+	public String showMessageByInitialId(Model model,Integer id,HttpSession session,HttpServletRequest request){
+		logger.info("后台留言回复页面被访问!");
+		logger.info("id="+id);
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return "authentication/login";
+		}
+		List<MessageVO> list = messageServiceImpl.selectMsgsByInitialId(id);
+		model.addAttribute("list", list);
+		return "/admin/MessageReply";
+			
+	}
+	
+	/*******************************后台用户回复普通用户留言并更新初始留言last_msg_id属性**************************/
+	@RequestMapping(value="/admin/MessageReply" ,method=RequestMethod.POST )
+	public @ResponseBody BaseWebResult replyMessageBySupporter(Model model,Integer id,String msg,Integer catogryId,HttpSession session,HttpServletRequest request){
+		logger.info("后台留言回复页面被访问+1!");
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setSuccess(false);
+			return webResult;
+		}
+		MessageVO message = new MessageVO();
+		logger.info("id"+id);
+		logger.info("catogryId"+catogryId);
+		message.setMsgId(id);//初次留言的id作为后面同组留言的msg_id
+		Integer userId = userVO.getId();
+		message.setUserId(userId);
+		message.setCatogryId(catogryId);
+		message.setMsg(msg);
+		Integer lastMsgId = messageServiceImpl.selectNextId();
+		logger.info("lastMsgId"+lastMsgId.toString());
+		message.setLastMsgId(lastMsgId);
+		message.setCreateUser(userId);
+		message.setUpdateUser(userId);
+		messageServiceImpl.insertMessage(message);
+		messageServiceImpl.updateLastMsgId(id,lastMsgId);
+		webResult.setMsg("提交成功！");
+		webResult.setSuccess(true);
+		return webResult;	
+	}
+	
+
 	
 }
