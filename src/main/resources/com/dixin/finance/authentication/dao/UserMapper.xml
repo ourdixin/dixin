@@ -129,8 +129,8 @@
 		<if test="mobile!=null">
 			mobile=#{mobile},
 		</if>
-		<if test="area!=null">
-			area_id=#{area.id},
+		<if test="areaId > 0">
+			area_id=#{areaId},
 		</if>
 		<if test="address!=null">
 			address=#{address},
@@ -165,6 +165,11 @@
 		<result column="tel" property="tel"/>
 		<result column="info" property="info"/>
 	</resultMap>
+	
+	<resultMap id="areaResult" type="com.dixin.finance.authentication.vo.AreaVO">
+		<id column="aid" property="id"/>
+		<result column="aname" property="name"/>
+	</resultMap>
 
 	<resultMap id="userResult" type="com.dixin.finance.authentication.vo.UserVO">  
 		<id column="uid" property="id"/>
@@ -181,7 +186,8 @@
 		<result column="term" property="term"/>
 		<result column="update_user" property="updateUser"/>
 		<result column="update_time" property="updateTime"/>
-		<association property="financialInstitution" column="institution_id" resultMap="f_inResult"/>  
+		<association property="financialInstitution" column="institution_id" resultMap="f_inResult"/> 
+		<association property="area" column="area_id" resultMap="areaResult"/>  
 	</resultMap>  
 	
 	<!-- 通过id 查找用户 -->
@@ -200,10 +206,14 @@
 	    financialInstitution.id id,
 	    financialInstitution.name name,
 	    financialInstitution.tel tel,
+	    area.id aid,
+	    area.name aname,
 	    u.start_date startDate,
 	    u.term term
 		FROM
-	    user u left join financial_institution financialInstitution on u.institution_id = financialInstitution.id WHERE u.id = #{userId}
+	    user u left join financial_institution financialInstitution on u.institution_id = financialInstitution.id 
+	    left join area  on u.area_id = area.id 
+	    WHERE u.id = #{userId}
 	</select>
   	
   	<!-- 更改用户密码 -->
