@@ -57,9 +57,9 @@
 		<a class="item">  <  </a>
 		<# for(i = 0; i < purchaseList.pages; i++){ #> 
 			<# if(purchaseList.pages.pageNum == i){ #>
-				<a class="item" name="<#=id#>" href="#none"  ><#=i+1#></a>
+				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
 			<#} else {#>
-            	<a class="item" name="<#=id#>" href="#none" ><#=i+1#></a>
+            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
 		<# } } #>
           <a class="item"> >  </a>
         </div>

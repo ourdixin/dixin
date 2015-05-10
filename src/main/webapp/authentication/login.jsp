@@ -36,7 +36,7 @@
       <tr>
         <td></td>
         <td>
-          <span class="bnt_ok">立即登陆</span>
+          <span class="bnt_ok">立即登录</span>
         </td>
       </tr>
     </tbody>

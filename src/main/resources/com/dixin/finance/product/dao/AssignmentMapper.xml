@@ -21,7 +21,7 @@
 		update_user,
 		update_time)
 	values(
-		#{user_id},
+		#{userId},
 		#{assign_date},
 		#{amount},
 		#{product.id},
@@ -44,7 +44,7 @@
 	
 	<resultMap id="assignmentResult" type="com.dixin.finance.product.vo.AssignmentVO">  
 		<id column="id" property="id"/>
-		<result column="user_id" property="user_id"/>
+		<result column="user_id" property="userId"/>
 		<result column="assign_date" property="assign_date"/>
 		<result column="amount" property="amount"/>
 		<result column="pay_type" property="pay_type"/>

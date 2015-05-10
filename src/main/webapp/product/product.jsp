@@ -40,7 +40,7 @@
 					<#=products.list[i].releaseDate#>
 				<#}#>
 				</td>
-              <td><#=products.list[i].term#>月</td>
+              <td><#=products.list[i].term#>
 			 <#if(63==products.list[i].termUnit){#>
 				年<#}else if(64==products.list[i].termUnit){#>
 				月
@@ -73,9 +73,9 @@
 		<a class="item">  <  </a>
 		<# for(i = 0; i < products.pages; i++){ #> 
 			<# if(products.pages.pageNum == i){ #>
-				<a class="item" name="<#=id#>" href="#none"  ><#=i+1#></a>
+				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
 			<#} else {#>
-            	<a class="item" name="<#=id#>" href="#none" ><#=i+1#></a>
+            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
 		<# } } #>
           <a class="item"> >  </a>
         </div>
