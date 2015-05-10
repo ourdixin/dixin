@@ -9,4 +9,7 @@ public interface IMessageService {
 	 */
 	public void insertMessage(MessageVO messageVO);
 	public List<MessageVO> selectFirstMessage();
+	public List<MessageVO> selectMsgsByInitialId(Integer id);
+	public Integer selectNextId();
+	public void updateLastMsgId(Integer id , Integer lastMsgId);
 }
