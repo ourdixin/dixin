@@ -15,6 +15,9 @@ public class AreaVO extends BaseVO{
 	
 	private Integer id;//内部唯一ID
 	private String name;//机构名称
+	private Integer pid;//父id
+	
+
 	
 
 	private Integer create_user;//创建人
@@ -40,6 +43,14 @@ public class AreaVO extends BaseVO{
 
 	public String getName() {
 		return name;
+	}
+	
+	public Integer getPid() {
+		return pid;
+	}
+
+	public void setPid(Integer pid) {
+		this.pid = pid;
 	}
 
 	public void setName(String name) {

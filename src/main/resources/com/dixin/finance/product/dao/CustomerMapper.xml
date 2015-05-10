@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dixin.finance.product.dao.CustomerMapper">
+	<!-- 插入message信息 -->
 	<insert id="insert" parameterType="com.dixin.finance.product.vo.MessageVO">
 		insert into message(
 				msg_id ,
@@ -28,13 +29,13 @@
 				SYSDATE()
 			)
 	</insert>
-	<!--  -->
+	<!-- 查找下一条自增id -->
 	<select id="selectNextId" resultType="Integer">
 		select AUTO_INCREMENT from INFORMATION_SCHEMA.TABLES   where TABLE_NAME='message'  
 	</select>
 	
 	
-	<!--  -->
+	<!-- 查找所有初始留言信息 -->
 	<resultMap id="lastMessage" type="com.dixin.finance.product.vo.MessageVO">
 		<id column="b_id" property="id"/>
 		<result column="b_msg" property="msg"/>
@@ -83,5 +84,36 @@
 			   	from 
 			   	(message a left join message b on a.last_msg_id = b.id ) inner join user c on a.user_id = c.id and a.msg_id =-1
 	</select>
+	
+	<!-- 根据初始留言的id 查找相关留言 -->
+	<resultMap  id="userMap" type="com.dixin.finance.authentication.vo.UserVO">
+		<id column="id" property="id"/>
+		<result column="user_name" property="userName"/>
+		<result column="user_type" property="userType"/>
+	</resultMap>
+	
+	<resultMap id="selectSameMessage" type="com.dixin.finance.product.vo.MessageVO">  
+		<id column="id" property="id"/>
+		<result column="msg_id" property="msgId"/>
+		<result column="user_id" property="userId"/>
+		<result column="msg_time" property="msgTime"/>
+		<result column="catogry_id" property="catogryId"/>
+		<result column="msg" property="msg"/>
+		<result column="last_msg_id" property="lastMsgId"/>
+		<result column="create_user" property="createUser"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_user" property="updateUser"/>
+		<result column="update_time" property="updateTime"/>
+		<association property="userVO" column="user_id" resultMap="userMap"/> 
+	</resultMap> 
+	
+	<select id="selectMsgsByInitialId"  parameterType="Integer" resultMap="selectSameMessage">
+		select a.* ,b.* from message a, user b where a.user_id = b.id and (a.id=#{id} || a.msg_id = #{id})
+	</select>
+	
+	<!-- 更新初始留言的last_msg_id 状态 -->
+	<update id="updateLastMsgId" parameterType="map">
+		update message set last_msg_id = #{lastMsgId} where id = #{id}
+	</update>
 	
 </mapper>

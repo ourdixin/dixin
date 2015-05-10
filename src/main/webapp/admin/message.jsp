@@ -63,10 +63,10 @@
   						<td>${message.lastMessage.msg}</td>
   						<c:choose>
   							<c:when test="${empty message.lastMessage}">
-  								<td><i><a href="<%=request.getContextPath()%>/admin/MessageReply.jsp?id=${message.id}">回复</a></i></td>
+  								<td><i><a href="<%=request.getContextPath()%>/admin/MessageReply?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
   							</c:when>
   							<c:otherwise>
-  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/admin/MessageReply.jsp?id=${message.id}">回复</a></i></td>
+  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/admin/MessageReply?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
   							</c:otherwise>
   						</c:choose>	
   					</tr>
