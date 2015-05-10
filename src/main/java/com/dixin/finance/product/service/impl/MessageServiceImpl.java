@@ -58,5 +58,10 @@ public class MessageServiceImpl implements IMessageService {
 		map.put("lastMsgId",lastMsgId);
 		customerMapper.updateLastMsgId(map);
 	}
+	@Override
+	public List<MessageVO> selectFirstMsgByUserId(Integer id) {
+		List<MessageVO> list = customerMapper.selectFirstMsgByUserId(id);
+		return list;
+	}
 }
 

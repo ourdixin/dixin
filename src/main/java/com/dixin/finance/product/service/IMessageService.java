@@ -12,5 +12,6 @@ public interface IMessageService {
 	public List<MessageVO> selectMsgsByInitialId(Integer id);
 	public Integer selectNextId();
 	public void updateLastMsgId(Integer id , Integer lastMsgId);
+	public List<MessageVO> selectFirstMsgByUserId(Integer id);
 }
 

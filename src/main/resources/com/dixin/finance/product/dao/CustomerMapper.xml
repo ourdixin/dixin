@@ -82,7 +82,9 @@
 				b.last_msg_id as b_last_msg_id,
 			   	c.*  
 			   	from 
-			   	(message a left join message b on a.last_msg_id = b.id ) inner join user c on a.user_id = c.id and a.msg_id =-1
+			   	(message a left join message b on a.last_msg_id = b.id )
+			   	 inner join user c on a.user_id = c.id and a.msg_id =-1
+			   	 order by a.msg_time desc
 	</select>
 	
 	<!-- 根据初始留言的id 查找相关留言 -->
@@ -108,12 +110,71 @@
 	</resultMap> 
 	
 	<select id="selectMsgsByInitialId"  parameterType="Integer" resultMap="selectSameMessage">
-		select a.* ,b.* from message a, user b where a.user_id = b.id and (a.id=#{id} || a.msg_id = #{id})
+		select 
+				a.* ,
+				b.* from message a, user b where a.user_id = b.id and (a.id=#{id} || a.msg_id = #{id}) 
+		order by a.msg_time desc
 	</select>
+	
+	
 	
 	<!-- 更新初始留言的last_msg_id 状态 -->
 	<update id="updateLastMsgId" parameterType="map">
 		update message set last_msg_id = #{lastMsgId} where id = #{id}
 	</update>
+	
+	
+	
+	<!-- 通过用户的id查看它的所有初始留言 -->
+		<resultMap id="lastMessageBy" type="com.dixin.finance.product.vo.MessageVO">
+		<id column="b_id" property="id"/>
+		<result column="b_msg" property="msg"/>
+		<result column="b_last_msg_id" property="lastMsgId"/>
+		
+	</resultMap>
+	<resultMap  id="userResultMap" type="com.dixin.finance.authentication.vo.UserVO">
+		<id column="id" property="id"/>
+		<result column="user_name" property="userName"/>
+		<result column="user_type" property="userType"/>
+	</resultMap>
+	
+	<resultMap id="selectMessageBy" type="com.dixin.finance.product.vo.MessageVO">  
+		<id column="a_id" property="id"/>
+		<result column="a_msg_id" property="msgId"/>
+		<result column="a_user_id" property="userId"/>
+		<result column="a_msg_time" property="msgTime"/>
+		<result column="a_catogry_id" property="catogryId"/>
+		<result column="a_msg" property="msg"/>
+		<result column="a_last_msg_id" property="lastMsgId"/>
+		<result column="a_create_user" property="createUser"/>
+		<result column="a_create_time" property="createTime"/>
+		<result column="a_update_user" property="updateUser"/>
+		<result column="a_update_time" property="updateTime"/>
+		<association property="userVO" column="a_user_id" resultMap="userResultMap"/> 
+		<association property="lastMessage" column="b_last_msg_id" resultMap="lastMessageBy"/> 
+	</resultMap> 
+	
+	<select id="selectFirstMsgByUserId"   resultMap="selectMessageBy">
+		SELECT 	
+				a.id as a_id,
+				a.msg_id as a_msg_id,
+				a.user_id as a_user_id,
+				a.msg_time as a_msg_time,
+				a.catogry_id as a_catogry_id,
+				a.msg as a_msg,
+				a.last_msg_id as a_last_msg_id,
+				a.create_user as a_create_user,
+				a.create_time as a_create_time,
+				a.update_user as a_update_user,
+				a.update_time as a_update_time,
+				b.id as b_id,
+				b.msg as b_msg,
+				b.last_msg_id as b_last_msg_id,
+			   	c.*  
+			   	from 
+			   	(message a left join message b on a.last_msg_id = b.id ) 
+			   	inner join user c on a.user_id = c.id and a.msg_id =-1 and c.id = #{id}
+			   	order by a.msg_time desc
+	</select>
 	
 </mapper>

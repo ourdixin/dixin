@@ -10,6 +10,6 @@ $(document).ready(function(){
 	};
 	
 	$('.bnt_ok').click(function(){
-		$.post(HOST_PATH+"/admin/MessageReply", $("#messageReplyForm").serialize(), success);
+		$.post(HOST_PATH+"/authentication/myReplybyuser", $("#myReplyForm").serialize(), success);
 	});
 });
