@@ -24,7 +24,7 @@ public class AreaServiceImpl implements IAreaService {
 	}
 
 	@Override
-	public AreaVO getCity(int pid) {
+	public List<AreaVO> getCity(int pid) {
 		return areaMapper.findAreaById(pid);
 	}
 

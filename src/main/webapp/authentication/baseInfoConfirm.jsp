@@ -42,16 +42,15 @@
 						</tr>
 						<tr>
 							<td height="50" align="right">所在地区：</td>
-							<td width="15%"><select name="select" id="select">
-									<option>请选择</option>
+							<td width="15%">
+								<select name="province" id="province">
+								</select>
+							</td>
+							<td width="74%">
+								<select name="city" id="city">
 									<option>北京</option>
-									<option>上海</option>
-									<option>深圳</option>
-									<option>广州</option>
-							</select></td>
-							<td width="74%"><select name="select2" id="select2">
-									<option>北京</option>
-							</select></td>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td height="50" align="right">邮政编码：</td>

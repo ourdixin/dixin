@@ -23,6 +23,7 @@ import com.dixin.finance.authentication.service.IFinService;
 import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
+import com.dixin.finance.authentication.vo.AreaVO;
 import com.dixin.finance.authentication.vo.AssessmentVO;
 import com.dixin.finance.authentication.vo.FinancialManagerVO;
 import com.dixin.finance.authentication.vo.Financial_institutionVO;
@@ -313,7 +314,21 @@ public class AuthenticationController {
 		return webResult;
 	}
 	
-	  
+	@RequestMapping(value="/authentication/getcitylist")
+	public @ResponseBody BaseWebResult getCityList(Integer pid, HttpServletRequest request, HttpServletResponse response){ 
+		List<AreaVO> result = null;
+		if(pid == null || pid < 0 )
+			result = areaServiceImpl.getProvince();
+		else
+			result = areaServiceImpl.getCity(pid);
+		
+		BaseWebResult webResult = new BaseWebResult();
+		webResult.setResult(result);
+		webResult.setSuccess(true);
+		return webResult;
+	}	
+	
+	
 	public IUserService getUserServiceImpl() {
 		return userServiceImpl;
 	}

@@ -8,5 +8,5 @@ public interface IAreaService {
 	
 	public List<AreaVO> getProvince();
 	
-	public AreaVO getCity(int pid);
+	public List<AreaVO> getCity(int pid);
 }

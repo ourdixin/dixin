@@ -12,6 +12,6 @@ public interface AreaMapper {
 	
 	List<AreaVO> query();
 	
-	AreaVO findAreaById(int id);
+	List<AreaVO> findAreaById(int pid);
 	
 }

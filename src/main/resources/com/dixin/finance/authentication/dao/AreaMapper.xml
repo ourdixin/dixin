@@ -13,7 +13,7 @@
 	    area where area.pid = -1
   </select>
   
-  <select id="selectByPid"  parameterType="int" resultType="com.dixin.finance.authentication.vo.AreaVO">
+  <select id="findAreaById"  parameterType="int" resultType="com.dixin.finance.authentication.vo.AreaVO">
     SELECT 
     	id id,
 	    name name
