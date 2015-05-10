@@ -250,7 +250,9 @@ public class AuthenticationController {
 		Integer grade = grade1+grade2+grade3+grade4+grade5+grade6+grade7+grade8+grade9;
 		assessment.setGrade(grade);
 		asmServiceImpl.insert(assessment);
-		
+		userServiceImpl.setRiskTested(userVO.getId());
+		userVO.setIsRiskTested(true);
+		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		//根据分数计算等级，并返回结果页面
 		model.addAttribute("user", userVO);
 		model.addAttribute("grade", grade);

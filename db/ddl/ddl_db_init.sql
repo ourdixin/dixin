@@ -465,6 +465,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `term` int(11) COMMENT '期限',
   `auth_type` int(11) COMMENT '认证类别',
   `fm_id` int(11) NOT NULL COMMENT '财务经理ID',
+  `is_risk_tested` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否做过风险测评',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',

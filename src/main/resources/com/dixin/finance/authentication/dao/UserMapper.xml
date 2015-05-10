@@ -26,6 +26,7 @@
 		term,
 		auth_type,
 		fm_id,
+		is_risk_tested,
 		create_user,
 		create_time,
 		update_user,
@@ -49,6 +50,7 @@
 		#{term},
 		#{authType},
 		#{fmId},
+		#{isRiskTested},
 		0,
 		SYSDATE(),
 		0,
@@ -77,6 +79,7 @@
 	    term term,
 	    auth_type authType,
 	    fm_id fmId,
+	    is_risk_tested isRiskTested,
 	    create_user createUser,
 	    create_time createTime,
 	    update_user updateUser,
@@ -106,6 +109,7 @@
 	    term term,
 	    auth_type authType,
 	    fm_id fmId,
+	    is_risk_tested isRiskTested,
 	    create_user createUser,
 	    create_time createTime,
 	    update_user updateUser,
@@ -211,5 +215,10 @@
   	<select id="existsTel" parameterType="String" resultType="Integer">
   		   SELECT id FROM user WHERE mobile = #{mobile}
   	</select>
+
+  	<!-- 设置用户评测 -->
+  	<update id="setRiskTested" parameterType="int">
+  			UPDATE user SET is_risk_tested = 1 WHERE id=#{user_id}
+  	</update>
 
 </mapper>

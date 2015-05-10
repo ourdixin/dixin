@@ -62,7 +62,11 @@ public class UserServiceImpl implements IUserService {
 		return user_id;
 	}
 	
-
+	@Override
+	public void setRiskTested(int userId)
+	{
+		userMapper.setRiskTested(userId);
+	}
 	
 	
 	@Override

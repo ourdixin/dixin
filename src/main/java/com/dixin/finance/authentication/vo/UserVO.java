@@ -44,7 +44,9 @@ public class UserVO extends BaseVO {
 	private int authType; // 认证类别
 	private int fmId;	//财务经理ID
 	private FinancialManagerVO fmanagerVO;//财富经理id;	
-
+	
+	private boolean isRiskTested;
+	
 	private int createUser; // 创建人
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -226,5 +228,13 @@ public class UserVO extends BaseVO {
 	}
 	public void setInstitutionId(int institutionId) {
 		this.institutionId = institutionId;
+	}
+	
+	public boolean getIsRiskTested() {
+		return isRiskTested;
+	}
+	
+	public void setIsRiskTested(boolean isRiskTested) {
+		this.isRiskTested = isRiskTested;
 	}
 }
