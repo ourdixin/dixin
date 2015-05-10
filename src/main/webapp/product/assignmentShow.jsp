@@ -57,9 +57,10 @@
         
           <div class="page_menu">
           <a class="item"> < </a>
-          <c:forEach var="assignment" items= "${assignmentList.pages}" varStatus="i">
-         	 <a class="item">${i.index}</a>
+          <c:forEach var="i" begin="0" end="${assignmentList.pages}">
+         	 <a class="item">${i+1}</a>
           </c:forEach>
+          <a class="item"> > </a>
         </div>
      </div>
 </div>
