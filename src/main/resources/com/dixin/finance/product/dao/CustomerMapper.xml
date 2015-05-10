@@ -116,6 +116,4 @@
 		update message set last_msg_id = #{lastMsgId} where id = #{id}
 	</update>
 	
-	
-	
 </mapper>

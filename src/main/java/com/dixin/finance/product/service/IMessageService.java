@@ -13,3 +13,4 @@ public interface IMessageService {
 	public Integer selectNextId();
 	public void updateLastMsgId(Integer id , Integer lastMsgId);
 }
+

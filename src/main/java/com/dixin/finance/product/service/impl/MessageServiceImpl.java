@@ -59,3 +59,4 @@ public class MessageServiceImpl implements IMessageService {
 		customerMapper.updateLastMsgId(map);
 	}
 }
+

@@ -40,5 +40,12 @@ public interface ProductMapper {
 	 * @return
 	 */			
 	void addProductList(List<ProductVO> productList);
+	
+	
+	/**
+	 * 删除产品
+	 * @return
+	 */		
+	void deleteProduct(int productId);		
 }
 

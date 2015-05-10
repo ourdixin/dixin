@@ -237,5 +237,10 @@ public class ProductServiceImpl implements IProductService{
         return cellvalue;
 
     }
+
+	@Override
+	public void deleteProduct(int productId) {
+		productMapper.deleteProduct(productId);
+	}
     
 }

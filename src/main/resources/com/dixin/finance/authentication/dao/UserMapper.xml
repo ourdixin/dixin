@@ -26,6 +26,7 @@
 		term,
 		auth_type,
 		fm_id,
+		is_risk_tested,
 		create_user,
 		create_time,
 		update_user,
@@ -49,6 +50,7 @@
 		#{term},
 		#{authType},
 		#{fmId},
+		#{isRiskTested},
 		0,
 		SYSDATE(),
 		0,
@@ -77,6 +79,7 @@
 	    term term,
 	    auth_type authType,
 	    fm_id fmId,
+	    is_risk_tested isRiskTested,
 	    create_user createUser,
 	    create_time createTime,
 	    update_user updateUser,
@@ -106,6 +109,7 @@
 	    term term,
 	    auth_type authType,
 	    fm_id fmId,
+	    is_risk_tested isRiskTested,
 	    create_user createUser,
 	    create_time createTime,
 	    update_user updateUser,
@@ -140,8 +144,8 @@
 		<if test="account!=null">
 			account=#{account},
 		</if>
-		<if test="institutionId!=null">
-			institution_id=#{institutionId},
+		<if test="financialInstitution!=null">
+			institution_id=#{financialInstitution.id},
 		</if>
 		update_user=0,
 		update_time=SYSDATE()
@@ -154,36 +158,52 @@
 	<delete id="deleteStudent" parameterType="int">
 			DELETE FROM user WHERE id = #{userId}
 	</delete>
-  	
-  	<resultMap  id="f_inResult" type="com.dixin.finance.authentication.vo.Financial_institutionVO">
+
+  	<resultMap id="f_inResult" type="com.dixin.finance.authentication.vo.Financial_institutionVO">
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
 		<result column="tel" property="tel"/>
+		<result column="info" property="info"/>
 	</resultMap>
-	
+
 	<resultMap id="userResult" type="com.dixin.finance.authentication.vo.UserVO">  
-		<id column="id" property="id"/>
-		<result column="user_name" property="userName"/>
+		<id column="uid" property="id"/>
+		<result column="userName" property="userName"/>
 		<result column="password" property="password"/>
 		<result column="user_type" property="userType"/>
-		<result column="name" property="name"/>
+		<result column="uname" property="name"/>
 		<result column="mobile" property="mobile"/>
 		<result column="address" property="address"/>
-		<result column="zip_code" property="zipCode"/>
+		<result column="zipCode" property="zipCode"/>
 		<result column="qq" property="qq"/>
 		<result column="account" property="account"/>
 		<result column="start_date" property="startDate"/>
 		<result column="term" property="term"/>
 		<result column="update_user" property="updateUser"/>
 		<result column="update_time" property="updateTime"/>
-		<association property="financialInstitution" column="institution_id" resultMap="f_inResult"/>
+		<association property="financialInstitution" column="institution_id" resultMap="f_inResult"/>  
 	</resultMap>  
 	
 	<!-- 通过id 查找用户 -->
-	<select id="findUserById" parameterType="int" resultMap="userResult">
-		SELECT u.*
+	<select id="findUserById" parameterType="int" resultMap="userResult" useCache="false">
+		SELECT 
+		u.id uid,
+	    u.user_name userName,
+	    u.password password,
+	    u.user_type userType,
+	    u.name uname,
+	    u.mobile mobile,
+	    u.address address,
+	    u.zip_code zipCode,
+	    u.qq qq,
+	    u.account account,
+	    financialInstitution.id id,
+	    financialInstitution.name name,
+	    financialInstitution.tel tel,
+	    u.start_date startDate,
+	    u.term term
 		FROM
-	    user u left join financial_institution f on u.institution_id = f.id WHERE u.id = #{userId}
+	    user u left join financial_institution financialInstitution on u.institution_id = financialInstitution.id WHERE u.id = #{userId}
 	</select>
   	
   	<!-- 更改用户密码 -->
@@ -195,8 +215,10 @@
   	<select id="existsTel" parameterType="String" resultType="Integer">
   		   SELECT id FROM user WHERE mobile = #{mobile}
   	</select>
-  
-  
-  
-  
+
+  	<!-- 设置用户评测 -->
+  	<update id="setRiskTested" parameterType="int">
+  			UPDATE user SET is_risk_tested = 1 WHERE id=#{user_id}
+  	</update>
+
 </mapper>

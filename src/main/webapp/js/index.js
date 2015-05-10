@@ -34,7 +34,10 @@ $(document).ready(function(){
 
 	function searchProducts()
 	{
-		$.get(HOST_PATH+"/products?profitType="+profitType+"&searchText="+$('#search_text').attr("value"), null, success);
+		if($('#search_text').attr("value") == undefined)
+			$.get(HOST_PATH+"/products?profitType="+profitType, null, success);
+		else
+			$.get(HOST_PATH+"/products?profitType="+profitType+"&searchText="+$('#search_text').attr("value"), null, success);
 	}
 	
 	$("#query").click(function(){
