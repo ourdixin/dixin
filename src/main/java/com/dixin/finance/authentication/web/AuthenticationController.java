@@ -279,7 +279,8 @@ public class AuthenticationController {
 	/***********************************账户设计**********************************************/
 	@RequestMapping(value="/authentication/accountSetting",method=RequestMethod.GET)
 	public String accountSetting(Model model,HttpSession session,HttpServletRequest request){
-		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		UserVO user = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
 		model.addAttribute("user", userVO);
 		return "/authentication/personaldata";
 	}
