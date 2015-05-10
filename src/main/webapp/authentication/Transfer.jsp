@@ -37,7 +37,7 @@
                   <td>李小姐</td>
                   <td>2014-12-5</td>
                   <td>未转让</td>
-                  <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                  <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
                 </tr>
               <tr>
                   <td>小金库</td>
@@ -45,7 +45,7 @@
                   <td>张先生 </td>
                   <td>2014-10-3</td>
                   <td>未转让</td>
-                  <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                  <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
               </tr>
               <tr>
                   <td>白石20号基金 </td>
@@ -53,7 +53,7 @@
                   <td>李小姐</td>
                   <td>2014-11-5</td>
                   <td>已转让</td>
-                  <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                  <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
               </tr>
               <tr>
                 <td>鑫泰山1号</td>
@@ -61,7 +61,7 @@
                 <td>张先生 </td>
                 <td>2014-12-5</td>
                 <td>未转让</td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
                 </tr>
               <tr>
                 <td>小金库</td>
@@ -69,7 +69,7 @@
                 <td>李小姐</td>
                 <td>2014-10-3</td>
                 <td>未转让</td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
                 </tr>
               <tr>
                 <td>白石20号基金 </td>
@@ -77,7 +77,7 @@
                 <td>张先生 </td>
                 <td>2014-11-5</td>
                 <td>已转让</td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
                 </tr>
               <tr>
                 <td>鑫泰山1号</td>
@@ -85,7 +85,7 @@
                 <td>李小姐</td>
                 <td>2014-12-5</td>
                 <td>未转让</td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
                 </tr>
               <tr>
                 <td>小金库</td>
@@ -93,7 +93,7 @@
                 <td>张先生 </td>
                 <td>2014-10-3</td>
                 <td>未转让</td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
                 </tr>
               <tr>
                 <td>白石20号基金 </td>
@@ -101,7 +101,7 @@
                 <td>李小姐</td>
                 <td>2014-11-5</td>
                 <td>已转让</td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
                 </tr>
               <tr>
                 <td>鑫泰山1号</td>
@@ -109,7 +109,7 @@
                 <td>张先生 </td>
                 <td>2014-12-5</td>
                 <td>已转让</td>
-                <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event);">详细</a></span></td>
+                <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event);">详细</a></span></td>
               </tr>
               </tbody>
         </table></div>

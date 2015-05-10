@@ -10,7 +10,7 @@
 		<div class="body_width">
 			<i>欢迎进入121金融个人理财中心</i> <span id='login_span'> 
 			<c:if test="${null == user}">
-					<a href="<%=request.getContextPath()%>/authentication/login.jsp">登陆
+					<a href="<%=request.getContextPath()%>/authentication/login.jsp">登录
 					</a>
    	  | <a
 						href="<%=request.getContextPath()%>/authentication/register.jsp">免费注册</a>

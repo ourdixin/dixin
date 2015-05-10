@@ -291,6 +291,8 @@ public class AuthenticationController {
 		
 		userServiceImpl.updateUser(user);//修改
 		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
+		if(userVO.getArea() != null)
+			userVO.setAreaId(userVO.getArea().getId());
 		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
 		model.addAttribute("user", userVO);
 		BaseWebResult webResult = new BaseWebResult();

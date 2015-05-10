@@ -45,11 +45,11 @@
   				 	  <td style="display:none" id="term${i.index}">${assignment.product.term}</td>
   				 	  <td style="display:none" id="payType${i.index}">${assignment.product.payType}</td>
 	                  <td id="pname${i.index}">${assignment.product.name}</td>
-	                  <td id="amount${i.index}">${assignment.amount}</td>
+	                  <td id="amount${i.index}"><fmt:formatNumber value="${assignment.amount}" pattern="#"/></td>
 	                  <td id="contactor${i.index}">${assignment.contactor}</td>
-	                  <td id="assign_date${i.index}"><fmt:formatDate pattern="yyyy-MM-dd" value="${assignment.assign_date}"/></td>
+	                  <td id="assign_date${i.index}"><fmt:formatDate pattern="yyyy年MM月dd日" value="${assignment.assign_date}"/></td>
 	                  <td id="">未转让</td>
-	                  <td><span class="sg_tab"><a href="#none" onclick="testMessageBox(event,${i.index});">详细</a></span></td>
+	                  <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event,${i.index});">详细</a></span></td>
                 </tr>
 			  </c:forEach>
               </tbody>

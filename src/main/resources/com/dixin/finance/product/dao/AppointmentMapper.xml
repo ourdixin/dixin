@@ -19,7 +19,7 @@
 		update_user,
 		update_time)
 	values(
-		#{user_id},
+		#{userId},
 		#{reserve_date},
 		#{amount},
 		#{product.id},
@@ -40,7 +40,7 @@
   
   <resultMap id="appointmentResult" type="com.dixin.finance.product.vo.AppointmentVO">  
 		<id column="id" property="id"/>
-		<result column="user_id" property="user_id"/>
+		<result column="user_id" property="userId"/>
 		<result column="reserve_date" property="reserve_date"/>
 		<result column="amount" property="amount"/>
 		<result column="tel" property="tel"/>

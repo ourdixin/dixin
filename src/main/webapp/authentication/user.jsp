@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -68,9 +69,9 @@
 		<a class="item">  <  </a>
 		<# for(i = 0; i < products.pages; i++){ #> 
 			<# if(products.pages.pageNum == i){ #>
-				<a class="item" name="<#=id#>" href="#none"  ><#=i+1#></a>
+				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
 			<#} else {#>
-            	<a class="item" name="<#=id#>" href="#none" ><#=i+1#></a>
+            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
 		<# } } #>
           <a class="item"> >  </a>
         </div>
@@ -96,11 +97,13 @@
 					href="<%=request.getContextPath()%>/authentication/RiskAppraisal.jsp" style="color: #F00; text-decoration: underline">请点击此处进行了解</a></strong>
 			</div>
 			</c:if>
+			<c:if test="${null != user && ( user.area.id <=0 || fn:length(user.address) <= 2 )}">
 			<div class="jg">
 				<img src="<%=request.getContextPath()%>/images/ico_21.png"
 					width="25" height="18" />您的个人相关信息尚未完善，<a href="<%=request.getContextPath()%>/authentication/accountSetting"
 					style="color: #F00; text-decoration: underline">请点击此处完善您的信息</a>。我们会根据您提供的个人信息，提供专属客户服务。
 			</div>
+			</c:if>
 			<div class="jg2">
 				<img src="<%=request.getContextPath()%>/images/ico_22.png"
 					width="11" height="11" />正在发行的产品

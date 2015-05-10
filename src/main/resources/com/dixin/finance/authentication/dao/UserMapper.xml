@@ -155,7 +155,7 @@
   
   
 	<!-- 删除用户 -->
-	<delete id="deleteStudent" parameterType="int">
+	<delete id="deleteUser" parameterType="int">
 			DELETE FROM user WHERE id = #{userId}
 	</delete>
 
@@ -184,6 +184,7 @@
 		<result column="account" property="account"/>
 		<result column="start_date" property="startDate"/>
 		<result column="term" property="term"/>
+		<result column="isRiskTested" property="isRiskTested"/>
 		<result column="update_user" property="updateUser"/>
 		<result column="update_time" property="updateTime"/>
 		<association property="financialInstitution" column="institution_id" resultMap="f_inResult"/> 
@@ -209,7 +210,8 @@
 	    area.id aid,
 	    area.name aname,
 	    u.start_date startDate,
-	    u.term term
+	    u.term term,
+	    u.is_risk_tested isRiskTested
 		FROM
 	    user u left join financial_institution financialInstitution on u.institution_id = financialInstitution.id 
 	    left join area  on u.area_id = area.id 

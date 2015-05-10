@@ -38,9 +38,9 @@
 					<c:forEach var="appointment" items="${appointmentList.list}">
 						<tr>
 							<td>${appointment.product.name}</td>
-							<td><fmt:formatDate pattern="yyyy年MM月dd"
+							<td><fmt:formatDate pattern="yyyy年MM月dd日"
 									value="${appointment.reserve_date}" /></td>
-							<td>${appointment.amount}</td>
+							<td><fmt:formatNumber value="${appointment.amount}" pattern="#"/>万元</td>
 							<td>${appointment.msg}</td>
 						</tr>
 					</c:forEach>
