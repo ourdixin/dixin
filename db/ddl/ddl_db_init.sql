@@ -3927,13 +3927,15 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `product_id` int(11) NOT NULL COMMENT '预约产品',
   `tel` varchar(16) NOT NULL COMMENT '预约手机号码',
   `amount` double NOT NULL COMMENT '预约金额',
-  `msg` varchar(1024) NOT NULL COMMENT '预约留言',
+  `msg` text NOT NULL COMMENT '预约留言',
+  `purchase_id` int(11) NOT NULL DEFAULT '-1' COMMENT '产品购买ID',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',
   `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
+  KEY `user_id` (`user_id`),
+  KEY `purchase_id` (`purchase_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
