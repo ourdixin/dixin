@@ -12,6 +12,7 @@
 		assign_date,
 		amount,
 		product_id,
+		pay_type,
 		assign_type,
 		contactor,
 		tel,
@@ -20,10 +21,11 @@
 		update_user,
 		update_time)
 	values(
-		#{userId},
+		#{user.id},
 		#{assign_date},
 		#{amount},
 		#{product.id},
+		#{pay_type},
 		#{assign_type},
 		#{contactor},
 		#{tel},
@@ -33,6 +35,11 @@
 		SYSDATE()
 	)
   </insert>  
+  
+  <resultMap id="selectUser" type="com.dixin.finance.authentication.vo.UserVO">
+		<id column="uid" property="id"/>
+		<result column="uname" property="name"/>
+	</resultMap>
 	
 	<resultMap  id="selectProduct" type="com.dixin.finance.product.vo.ProductVO">
 		<id column="id" property="id"/>
@@ -45,6 +52,7 @@
 		<result column="user_id" property="userId"/>
 		<result column="assign_date" property="assign_date"/>
 		<result column="amount" property="amount"/>
+		<result column="pay_type" property="pay_type"/>
 		<result column="assign_type" property="assign_type"/>
 		<result column="contactor" property="contactor"/>
 		<result column="tel" property="tel"/>
@@ -52,18 +60,21 @@
 		<result column="create_time" property="create_time"/>
 		<result column="update_user" property="update_user"/>
 		<result column="update_time" property="update_time"/>
-		<association property="product" column="product_id" resultMap="selectProduct"/>  
+		<association property="product" column="product_id" resultMap="selectProduct"/> 
+		<association property="user" column="user_id" resultMap="selectUser"/>  
 	</resultMap>  
 	
    <select id="query"  resultMap="assignmentResult" useCache="false" >
 		select assignment.id id,
-			assignment.user_id user_id,
+			user.id uid,
+			user.name uname,
 			assignment.assign_date assign_date,
 			assignment.amount amount,
 			product.id product,
 			product.name name,
 			product.pay_type payType,
 			product.term term,
+			assignment.pay_type pay_type,
 			assignment.assign_type assign_type,
 			assignment.contactor contactor,
 			assignment.tel tel,
@@ -71,18 +82,20 @@
 			assignment.create_time createTime, 
 			assignment.update_user updateUser, 
 			assignment.update_time updateTime
-		from assignment,product where assignment.product_id = product.id
+		from assignment,product,user where assignment.product_id = product.id and assignment.id = user.id
   </select>
   
    <select id="queryUserAssignmentList" parameterType="int" resultMap="assignmentResult" useCache="false" >
 		select assignment.id id,
-			assignment.user_id user_id,
+			user.id uid,
+			user.name uname,
 			assignment.assign_date assign_date,
 			assignment.amount amount,
 			product.id product,
 			product.name name,
 			product.pay_type payType,
 			product.term term,
+			assignment.pay_type pay_type,
 			assignment.assign_type assign_type,
 			assignment.contactor contactor,
 			assignment.tel tel,
@@ -90,7 +103,7 @@
 			assignment.create_time createTime, 
 			assignment.update_user updateUser, 
 			assignment.update_time updateTime
-		from assignment,product where assignment.product_id = product.id and user_id = #{userId}
+		from assignment,product ,user where assignment.product_id = product.id and  assignment.id = user.id and user_id = #{userId}
   </select>	
   
 </mapper>

@@ -14,7 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IAppointmentService;
@@ -22,12 +26,18 @@ import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.service.IMessageService;
 import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.service.IPurchaseService;
+
 import com.dixin.finance.product.vo.ProductQueryParameter;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
 import com.github.pagehelper.PageHelper;
+
+import com.dixin.finance.product.vo.AssignmentVO;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 /**
  * @author Administrator
  * 
@@ -93,7 +103,6 @@ public class ProductManagerController {
 		this.purchaseServiceImpl = purchaseServiceImpl;
 	}
 
-
 	@RequestMapping(value="/admin/addsalesdata")
 	public @ResponseBody BaseWebResult addSalesData(PurchaseVO purchaseVo,String backurl,HttpSession session,Model model,HttpServletRequest request){
 		BaseWebResult webResult = new BaseWebResult();
@@ -135,5 +144,20 @@ public class ProductManagerController {
 		
 		return products;
 	}		
+
+	/***********************************产品转让管理**********************************************/
+	@RequestMapping(value="/product/manager/assignment")
+	public String  assignmentManager(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		
+		PageHelper.startPage(pageNum, pageSize);
+		List<AssignmentVO> assignments = assignmentService.queryAssignmentList();
+		PageInfo<AssignmentVO> pageinfoList = new PageInfo(assignments);
+		model.addAttribute("assignmentList", pageinfoList);
+		return "/admin/assignmentManager";
+	}
 	
 }
