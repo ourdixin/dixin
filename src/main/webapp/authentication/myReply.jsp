@@ -32,11 +32,11 @@
 			<thead>
  				 <tr>
     				<th>留言时间</th>
-    				<th>客户姓名</th>
-    				<th>分类问题</th>
+    				<!-- >th>客户姓名</th -->
+    				<th>问题分类</th>
     				<th>留言内容</th>
-    				<th>最后留言</th>
-    				<th>内容回复</th>
+    				<th>客服回复</th>
+    				<th>回复</th>
   				</tr>
   			</thead>
   			<tbody>
@@ -45,7 +45,7 @@
   						<td>
   							<fmt:formatDate value="${message.msgTime}" pattern="yyyy-MM-dd HH:mm"/>
   						</td>
-  						<td>${message.userVO.userName}</td>
+  						<!-- td>${message.userVO.userName}</td -->
   						<td><c:choose>
   								<c:when test="${message.catogryId==74}">
   									浮动类收益产品

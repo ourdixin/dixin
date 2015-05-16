@@ -34,8 +34,8 @@
     		<th>留言时间</th>
     		<%--<th>客户代码</th>  --%>
    			<th>客户姓名</th>
-   			<th>分类问题</th>
-    		<th>问题描述</th>
+   			<th>问题分类</th>
+    		<th>问题描述/回复</th>
     	</tr>
 	</thead>
 	<tbody>
@@ -45,7 +45,7 @@
 					<fmt:formatDate value="${message.msgTime}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
 				<%-- <td>${message.userId}</td> --%>
-				<td>${message.userVO.userName}</td>
+				<td>${message.userVO.name}</td>
 				<td>
 					<c:choose>
   								<c:when test="${message.catogryId==74}">
