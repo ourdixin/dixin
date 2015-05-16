@@ -3589,8 +3589,7 @@ CREATE TABLE IF NOT EXISTS `assignment` (
   `assign_date` date NOT NULL COMMENT '转让日期',
   `amount` double NOT NULL COMMENT '转让金额',
   `product_id` int(11) NOT NULL COMMENT '转让产品',
-  `pay_type` int(11) NOT NULL COMMENT '付息方式',
-  `assign_type` int(11) NOT NULL COMMENT '转让条件',
+  `assign_type` text NOT NULL COMMENT '转让条件',
   `contactor` varchar(32) NOT NULL COMMENT '联系人',
   `tel` varchar(11) NOT NULL COMMENT '联系电话',
   `create_user` int(11) NOT NULL COMMENT '创建人',
@@ -3928,13 +3927,15 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `product_id` int(11) NOT NULL COMMENT '预约产品',
   `tel` varchar(16) NOT NULL COMMENT '预约手机号码',
   `amount` double NOT NULL COMMENT '预约金额',
-  `msg` varchar(1024) NOT NULL COMMENT '预约留言',
+  `msg` text NOT NULL COMMENT '预约留言',
+  `purchase_id` int(11) NOT NULL DEFAULT '-1' COMMENT '产品购买ID',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',
   `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
+  KEY `user_id` (`user_id`),
+  KEY `purchase_id` (`purchase_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------

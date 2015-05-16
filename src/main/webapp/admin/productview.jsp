@@ -208,7 +208,10 @@
   </tr>
 </table>
 
-<p style="margin-left:420px;"><span class="bnt_ok"><a href="<%=request.getContextPath()%>/product/appointment.jsp?productId=${product.id}&productName=${product.name}" >预约</a></span></p>
+<p style="margin-left:420px;">
+<span class="bnt_ok"><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=${product.id}>" > 修改 </a></span>
+<span class="bnt_ok"><a href="<%=request.getContextPath()%>/admin/delproduct?productId=${product.id}>" > 删除 </a></span>
+</p>
 
 
 <br class=" clear" />

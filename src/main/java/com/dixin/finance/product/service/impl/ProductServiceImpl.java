@@ -97,17 +97,17 @@ public class ProductServiceImpl implements IProductService{
 	        // 得到总行数
 	        int rowNum = sheet.getLastRowNum();
 	        HSSFRow row = sheet.getRow(0);
-	        HSSFCell cell = row.getCell(4);
 	        int colNum = row.getPhysicalNumberOfCells();
-	        if(colNum == 20)
-	        {
-	        	String title = cell.getStringCellValue();
-		        if(title.contains("封闭"))
-		        	type = 43;//浮动收益
-		        else
-		        	type = 42; //固定收益
-	        }
+	        if(colNum < 20)
+	        	return products;
 	        
+        	HSSFCell cell = row.getCell(4);
+        	String title = cell.getStringCellValue();
+	        if(title.contains("封闭"))
+	        	type = 43;//浮动收益
+	        else
+	        	type = 42; //固定收益
+	        	
 	        if(type != -1){        
 		        String strValue = "";
 		        // 正文内容应该从第三行开始,前二行为表头的标题
