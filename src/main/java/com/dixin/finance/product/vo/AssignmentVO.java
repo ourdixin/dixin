@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.framework.base.vo.BaseVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,9 +26,9 @@ public class AssignmentVO extends BaseVO {
 	
 	private ProductVO product; 
 	
-	private int pay_type; //支付方式
+	//private int pay_type; //支付方式
 	
-	private int assign_type; //转让条件
+	private String assign_type; //转让条件
 	
 	private String contactor; //联系人
 	
@@ -41,6 +42,7 @@ public class AssignmentVO extends BaseVO {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date updateTime; // 更新时间',
+	private UserVO user;//用户
 	
 	
 	
@@ -76,16 +78,11 @@ public class AssignmentVO extends BaseVO {
 	public void setProduct(ProductVO product) {
 		this.product = product;
 	}
-	public int getPay_type() {
-		return pay_type;
-	}
-	public void setPay_type(int pay_type) {
-		this.pay_type = pay_type;
-	}
-	public int getAssign_type() {
+	
+	public String getAssign_type() {
 		return assign_type;
 	}
-	public void setAssign_type(int assign_type) {
+	public void setAssign_type(String assign_type) {
 		this.assign_type = assign_type;
 	}
 	public String getContactor() {
@@ -123,6 +120,18 @@ public class AssignmentVO extends BaseVO {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+	/**
+	 * @return the user
+	 */
+	public UserVO getUser() {
+		return user;
+	}
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(UserVO user) {
+		this.user = user;
 	}
 	
 

@@ -47,7 +47,7 @@
 						  </tr -->
 						  <tr>
 						    <td height="30" align="right">收益分配：</td>
-						    <td><input maxlength="" id="" name="" class="itstyle lt it" type="text" /></td>
+						    <td><input maxlength="" id="assign_type" name="assign_type" class="itstyle lt it" type="text" /></td>
 						  </tr>
 						  <tr>
 						    <td height="30" align="right">金额：</td>
