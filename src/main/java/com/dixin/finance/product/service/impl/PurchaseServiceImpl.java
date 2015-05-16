@@ -38,4 +38,9 @@ public class PurchaseServiceImpl implements IPurchaseService {
 		return purchaseMapper.queryPurchase(Id);
 	}
 
+	@Override
+	public void addPurchase(PurchaseVO purchaseVo) {
+		purchaseMapper.addPurchase(purchaseVo);
+	}
+
 }

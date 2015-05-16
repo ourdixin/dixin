@@ -29,7 +29,9 @@ public class PurchaseVO extends BaseVO {
 	private Double amount; //预约金额
 
 	private ProductVO product; 	//购买的产品
-	
+	private Integer productId;
+
+
 	private Integer institutionId; //营销机构
 	
 	private Double pnl;	//浮动盈亏
@@ -92,7 +94,15 @@ public class PurchaseVO extends BaseVO {
 	public void setProduct(ProductVO product) {
 		this.product = product;
 	}
+	
+	public Integer getProductId() {
+		return productId;
+	}
 
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+	
 	public Integer getInstitutionId() {
 		return institutionId;
 	}

@@ -19,6 +19,11 @@
 <div id="main_right">
 
 <div class="main_width">
+
+<div>
+	<a href="<%=request.getContextPath()%>/admin/addSalesData">添加产品销售数据</a>
+</div>
+
 <div class="con_table">
 <table width="1200">
   <thead>

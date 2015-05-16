@@ -22,6 +22,7 @@ import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IMessageService;
+import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
@@ -157,5 +158,7 @@ public class AuthenManagerController {
 		
 		return webResult;
 	}	
+	
+
 	
 }

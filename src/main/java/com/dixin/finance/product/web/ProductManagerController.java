@@ -3,17 +3,31 @@
  */
 package com.dixin.finance.product.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.service.IMessageService;
 import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.service.IPurchaseService;
+import com.dixin.finance.product.vo.ProductQueryParameter;
+import com.dixin.finance.product.vo.ProductVO;
+import com.dixin.finance.product.vo.PurchaseVO;
+import com.dixin.framework.base.web.BaseWebResult;
+import com.dixin.framework.constant.WebConstants;
+import com.github.pagehelper.PageHelper;
 /**
  * @author Administrator
  * 
@@ -79,6 +93,47 @@ public class ProductManagerController {
 		this.purchaseServiceImpl = purchaseServiceImpl;
 	}
 
+
+	@RequestMapping(value="/admin/addsalesdata")
+	public @ResponseBody BaseWebResult addSalesData(PurchaseVO purchaseVo,String backurl,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setMsg(backurl);
+			return webResult;
+		}
+		
+		purchaseVo.setUserId(userVO.getId());
+		purchaseVo.setAmount(purchaseVo.getAmount() * 10000);
+		purchaseVo.setPnl(0d);
+		purchaseServiceImpl.addPurchase(purchaseVo);
+		
+		webResult.setSuccess(true);
+		
+		return webResult;
+	}
 	
+	@RequestMapping(value="/admin/getautoproduct")
+	public @ResponseBody List<ProductVO> getAutoCompleteProducts(String name,String backurl,HttpSession session,Model model,HttpServletRequest request){
+		
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return null;
+		}
+		
+		ProductQueryParameter parameter = new ProductQueryParameter();
+		parameter.setPageSize(30);
+		parameter.setSearchText(name);
+		PageHelper.startPage(parameter.getPageNum(), parameter.getPageSize());
+		List<ProductVO> products = productService.queryProductList(parameter );
+		
+		
+		return products;
+	}		
 	
 }
