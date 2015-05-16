@@ -347,7 +347,7 @@ public class ProductController {
 		ProductVO product = new ProductVO();
 		product.setId(String.valueOf(productId));
 		assignment.setProduct(product);
-		assignment.setUserId(userVO.getId());
+		assignment.setUser(userVO);
 		assignmentService.insertAssignment(assignment);
 		
 		webResult.setSuccess(true);

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.framework.base.vo.BaseVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -15,7 +16,7 @@ public class AssignmentVO extends BaseVO {
 	
 	private int id;
 	
-	private int userId;
+	private UserVO user;  //用户
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -50,13 +51,13 @@ public class AssignmentVO extends BaseVO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 	
+	public UserVO getUser() {
+		return user;
+	}
+	public void setUser(UserVO user) {
+		this.user = user;
+	}
 	public Date getAssign_date() {
 		return assign_date;
 	}
