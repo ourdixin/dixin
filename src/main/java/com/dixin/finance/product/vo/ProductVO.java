@@ -823,8 +823,17 @@ public class ProductVO extends BaseVO {
 						value *= 100;
 					setRateC(Float.valueOf(getFloatFromString(strValue)));
 				}
-			break;			
+			break;	
 			case 9:
+				if(!strValue.isEmpty())
+				{
+					float value = Float.valueOf(getFloatFromString(strValue));
+					if(value < 1)
+						value *= 100;
+					setRateD(Float.valueOf(getFloatFromString(strValue)));
+				}
+			break;				
+			case 10:
 				if(!strValue.isEmpty())
 				{
 					setPartA(Float.valueOf(getFloatFromString(strValue))*10000); 
@@ -833,25 +842,29 @@ public class ProductVO extends BaseVO {
 				else
 					bRet = false;
 			break;			
-			case 10:
+			case 11:
 				if(!strValue.isEmpty())
 					setPartB(Float.valueOf(getFloatFromString(strValue))*10000); 
 			break;			
-			case 11:
+			case 12:
 				if(!strValue.isEmpty())
 					setPartC(Float.valueOf(getFloatFromString(strValue))*10000);
 			break;
-			case 12:
+			case 13:
+				if(!strValue.isEmpty())
+					setPartD(Float.valueOf(getFloatFromString(strValue))*10000);
+			break;			
+			case 14:
 				if(!strValue.isEmpty())
 					this.setAppendAmount(Double.valueOf(getFloatFromString(strValue))*10000);
 			break;			
-			case 13:
+			case 15:
 				if(!strValue.isEmpty())
 					this.setAmount(Double.valueOf(getFloatFromString(strValue))*100000000);
 				else
 					this.setAmount(0d);
 			break;			
-			case 14:
+			case 16:
 				bFind = false;
 				for(int i =0; i < ProductDirectionConstant.DirectionTypeString.length; ++i)
 					if(strValue.contains(ProductDirectionConstant.DirectionTypeString[i].Name)){
@@ -865,7 +878,7 @@ public class ProductVO extends BaseVO {
 					this.setDirectionInfo(strValue);
 				}
 			break;	
-			case 15:
+			case 17:
 				bFind = false;
 				for(int i =0; i < PayTypeConstant.PayTypeString.length; ++i)
 					if(strValue.contains(PayTypeConstant.PayTypeString[i])){
@@ -879,13 +892,13 @@ public class ProductVO extends BaseVO {
 					this.setPayTypeInfo(strValue);
 				}
 			break;				
-			case 16:
+			case 18:
 				if(!strValue.isEmpty())
 					this.setStar(Integer.valueOf(getNumberFromString(strValue)));
 				else
 					this.setStar(1);
 			break;			
-			case 17:
+			case 19:
 				bFind = false;
 				for(int i =0; i < ProductTypeConstant.ProductTypeString.length; ++i)
 					if(strValue.contains(ProductTypeConstant.ProductTypeString[i])){
@@ -898,10 +911,10 @@ public class ProductVO extends BaseVO {
 					bRet = false;
 				}				
 			break;		
-			case 18:
+			case 20:
 				this.setAdFile(strValue);
 			break;			
-			case 19:
+			case 21:
 				this.setGuideFile(strValue);
 			break;			
 			default: 
