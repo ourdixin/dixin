@@ -58,7 +58,7 @@ div {
 									name="releaseDate" value="2100-01-01 01:02" type="text" />(格式：yyyy-MM-dd HH:ss)</td>
 								<td class="t">销售截止日期：</td>
 								<td><input class="itstyle lt it" id="endDate"
-									name="endDate" value="" type="date" /></td>
+									name="endDate" value="" type="text" />(格式：yyyy-MM-dd HH:ss)</td>
 							</tr>
 
 							<tr>

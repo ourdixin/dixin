@@ -112,8 +112,16 @@ $(document).ready(function(){
     }
     
 	function addsuccess(data){
-		alert("添加成功！")
-		//location.href = data.msg;
+		if(data.success )
+		{
+			alert("添加成功！")
+		}
+		else
+		{
+			alert(data.msg);
+			if(data.url != null && data.url != "")
+				location.href = data.url;
+		}
 	};
 	
 	$('.bnt_ok').click(function(){
@@ -245,7 +253,7 @@ $(document).ready(function(){
 	}  
 	
 	var myDate = new Date();
-	$('#endDate').attr("value",myDate.format("yyyy-MM-dd"));
+	$('#endDate').attr("value",myDate.format("yyyy-MM-dd hh:mm"));
 	
 	
 	$('#payType').change(function(){ 

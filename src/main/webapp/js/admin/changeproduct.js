@@ -123,7 +123,8 @@ $(document).ready(function(){
 		else
 		{
 			alert(data.msg);
-			location.href = data.url;			
+			if(data.url!=null && data.url!="")
+				location.href = data.url;			
 		}
 	};
 	
@@ -257,7 +258,7 @@ $(document).ready(function(){
 	
 	var myDate = new Date();
 	if($('#endDate').attr("value")=="")
-		$('#endDate').attr("value",myDate.format("yyyy-MM-dd"));
+		$('#endDate').attr("value",myDate.format("yyyy-MM-dd hh:mm"));
 	
 	
 	$('#payType').change(function(){ 

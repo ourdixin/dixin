@@ -28,7 +28,6 @@
 <table width="1200">
   <thead>
   <tr>
-    <th>产品代码</th>
     <th>产品名称</th>
   <th>类型</th>
   <th>销售金额/万元</th>
@@ -43,7 +42,6 @@
   </thead>
   <tbody>
       <tr>
-        <td>102158415</td>
         <td>衡阳城投二期</td>
         <td>A类</td>
         <td>100<span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
@@ -56,7 +54,6 @@
         <td><i><a href="<%=request.getContextPath() %>/admin/SalesData-editor.jsp">编辑</a></i></td>
         </tr>
       <tr>
-        <td>102158415</td>
         <td>衡阳城投二期</td>
         <td>B类</td>
         <td>450<span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
@@ -69,7 +66,6 @@
         <td><i><a href="<%=request.getContextPath() %>/admin/SalesData-editor.jsp">编辑</a></i></td>
         </tr>
       <tr>
-        <td>102158415</td>
         <td>衡阳城投二期</td>
         <td>A类</td>
         <td>200<span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
@@ -82,7 +78,6 @@
         <td><i><a href="<%=request.getContextPath() %>/admin/SalesData-editor.jsp">编辑</a></i></td>
         </tr>
       <tr>
-        <td>102158415</td>
         <td>衡阳城投二期</td>
         <td>B类</td>
         <td>350<span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
@@ -95,8 +90,7 @@
         <td><i><a href="<%=request.getContextPath() %>/admin/SalesData-editor.jsp">编辑</a></i></td>
         </tr>
       </tbody>
-        </table>
-
+   </table>
 </div>
 </div>
 <div class="page_menu">

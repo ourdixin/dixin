@@ -62,7 +62,7 @@ div {
 									name="releaseDate" value="<fmt:formatDate value="${product.releaseDate}" pattern="yyyy-MM-dd HH:mm"/>" type="text" />(格式：yyyy-MM-dd HH:ss)</td>
 								<td class="t">销售截止日期：</td>
 								<td><input class="itstyle lt it" id="endDate"
-									name="endDate" value="<fmt:formatDate value="${product.endDate}" pattern="yyyy-MM-dd"/>" type="date" /></td>
+									name="endDate" value="<fmt:formatDate value="${product.endDate}" pattern="yyyy-MM-dd HH:mm"/>" type="text" />(格式：yyyy-MM-dd HH:ss)</td>
 							</tr>
 							<tr>
 								<td class="t">期限：</td>
