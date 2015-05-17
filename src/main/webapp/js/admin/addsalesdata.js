@@ -2,10 +2,15 @@ $(document).ready(function(){
     
 	function addsuccess(data){
 		if(data.success)
+		{
 			alert("添加成功！");
+		}
 		else
+		{
 			alert(data.msg);
-		//location.href = data.msg;
+			location.href = data.url;			
+		}
+
 	};
 	
 	$('.bnt_ok').click(function(){

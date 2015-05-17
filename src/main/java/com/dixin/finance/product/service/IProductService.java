@@ -14,5 +14,6 @@ public interface IProductService {
 	public abstract void addProduct(ProductVO product);
 	public abstract void addProductList(List<ProductVO> productList); 
 	public abstract List<ProductVO> readProductListFromExcel(String fileName); 
-	public abstract void deleteProduct(int productId);	
+	public abstract void deleteProduct(int productId);
+	public abstract void updateProduct(ProductVO product);	
 }

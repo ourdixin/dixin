@@ -960,7 +960,7 @@ public class ProductVO extends BaseVO {
 			break;			
 			case 9:
 				if(!strValue.isEmpty())
-					this.setManageFee(Float.valueOf(getFloatFromString(strValue)));
+					this.setManageFee(Float.valueOf(getFloatFromString(strValue))*100);
 				else
 					this.setManageFee(0f);
 			break;			

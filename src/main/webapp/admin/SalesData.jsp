@@ -20,10 +20,10 @@
 
 <div class="main_width">
 
-<div>
-	<a href="<%=request.getContextPath()%>/admin/addSalesData">添加产品销售数据</a>
+<div class="con_table">
+	<a class="bnt_ok" href="<%=request.getContextPath()%>/admin/addsalesdata.jsp">添加产品销售数据</a>
 </div>
-
+<br>
 <div class="con_table">
 <table width="1200">
   <thead>

@@ -165,13 +165,13 @@ public class ProductController {
 	}	
 	
 	   @RequestMapping("/product/uploadguidefile")  
-	public @ResponseBody BaseWebResult uploadGuideFile(HttpServletRequest request,@RequestParam("uploadguidefile") MultipartFile guidefile) {  
+	   public @ResponseBody BaseWebResult uploadGuideFile(HttpServletRequest request,@RequestParam("uploadguidefile") MultipartFile guidefile) {  
 	   BaseWebResult webResult = new BaseWebResult();
 	   String filename = "";
 	    
 	   if(guidefile != null && !guidefile.isEmpty())
 	   {
-	        filename = FileUpoadController.saveFile(request,guidefile); 
+		   filename = FileUpoadController.saveFile(request,guidefile); 
 	   }	   
 	   
 	    webResult.setSuccess(true);
@@ -180,15 +180,19 @@ public class ProductController {
 	}		   
 	   
 	@RequestMapping(value="/product/add")
-	public @ResponseBody BaseWebResult addProduct(ProductVO product,String editorValue,HttpSession session,Model model,HttpServletRequest request){
+	public @ResponseBody BaseWebResult addProduct(ProductVO product,String editorValue,String backurl,HttpSession session,Model model,HttpServletRequest request){
 	
 		BaseWebResult webResult = new BaseWebResult();
 
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			//webResult.setSuccess(false);
-			//return webResult;
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setUrl(backurl);
+			webResult.setMsg("添加失败，请先登陆!");
+			return webResult;
 		}
 		double amount = product.getAmount() * 100000000;
 		double minAmount = product.getMinAmount() * 10000;
@@ -202,17 +206,47 @@ public class ProductController {
 		webResult.setSuccess(true);
 		return webResult;		
 	}	
+	@RequestMapping(value="/product/update")
+	public @ResponseBody BaseWebResult update(ProductVO product,String editorValue,String backurl,HttpSession session,Model model,HttpServletRequest request){
 	
+		BaseWebResult webResult = new BaseWebResult();
+
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setUrl(backurl);
+			webResult.setMsg("添加失败，请先登陆!");
+			return webResult;
+		}
+		double amount = product.getAmount() * 100000000;
+		double minAmount = product.getMinAmount() * 10000;
+		double appendAmount = product.getAppendAmount() * 10000;
+		product.setAmount(amount);
+		product.setMinAmount(minAmount);
+		product.setAppendAmount(appendAmount);
+		product.setInfo(editorValue);
+		productService.updateProduct(product);
+		
+		webResult.setSuccess(true);
+		return webResult;		
+	}		
 	@RequestMapping(value="/product/addProductList")
-	public @ResponseBody BaseWebResult addProductList(HttpServletRequest request,HttpSession session,@RequestParam("productfile") MultipartFile productfile){
+	public @ResponseBody BaseWebResult addProductList(String backurl,HttpServletRequest request,HttpSession session,@RequestParam("productfile") MultipartFile productfile){
 	
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(false);
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			//webResult.setSuccess(false);
-			//return webResult;
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setUrl(backurl);
+			webResult.setMsg("添加失败，请先登陆!");
+			return webResult;
 		}
 
 		String filename = "";

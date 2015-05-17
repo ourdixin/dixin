@@ -6,6 +6,8 @@ public class BaseWebResult {
 	
 	private String msg;
 	
+	private String url;
+
 	private Object result;
 
 	public boolean isSuccess() {
@@ -32,5 +34,12 @@ public class BaseWebResult {
 		this.result = result;
 	}
 	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	
 }

@@ -135,7 +135,6 @@ public class ProductServiceImpl implements IProductService{
 		        }     
 	        }
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			products.clear();
 		}
@@ -241,6 +240,11 @@ public class ProductServiceImpl implements IProductService{
 	@Override
 	public void deleteProduct(int productId) {
 		productMapper.deleteProduct(productId);
+	}
+
+	@Override
+	public void updateProduct(ProductVO product) {
+		productMapper.updateProduct(product);
 	}
     
 }

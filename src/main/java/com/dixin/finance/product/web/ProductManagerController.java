@@ -112,7 +112,8 @@ public class ProductManagerController {
 			webResult.setSuccess(false);
 			if(backurl == null || backurl=="")
 				backurl=request.getContextPath()+"/admin/login.jsp";
-			webResult.setMsg(backurl);
+			webResult.setUrl(backurl);
+			webResult.setMsg("请先登录！");
 			return webResult;
 		}
 		

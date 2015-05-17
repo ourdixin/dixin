@@ -12,21 +12,10 @@ searchsuccess: function delsuccess(data){
 
 	
 function delProduct(productName,productId){
-	$( "#dialog-confirm" ).show();
-	$( "#dialog-confirm" ).dialog({
-      resizable: false,
-      height:140,
-      modal: true,
-      buttons: {
-        "删除": function() {
-          $( this ).dialog( "close" );
-          $.post(HOST_PATH+"/admin/delproduct","productId="+productId, delsuccess);
-        },
-        "取消": function() {
-          $( this ).dialog( "close" );
-        }
-      }
-    });
+	
+   if(confirm("是否继续删除此产品？")){
+        $.post(HOST_PATH+"/admin/delproduct","productId="+productId, delsuccess);
+    }
 }
 
 $(document).ready(function(){
