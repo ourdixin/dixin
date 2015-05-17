@@ -1,6 +1,6 @@
 package com.dixin.finance.product.constant;
 
-public interface ProductStateConstant {
+public interface ProductSellStateConstant {
 
 	/**
 	 * 待定

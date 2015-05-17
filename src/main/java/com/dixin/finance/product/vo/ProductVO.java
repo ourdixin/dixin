@@ -10,7 +10,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.dixin.finance.product.constant.PayTypeConstant;
 import com.dixin.finance.product.constant.ProductDirectionConstant;
-import com.dixin.finance.product.constant.ProductStateConstant;
+import com.dixin.finance.product.constant.ProductSellStateConstant;
+import com.dixin.finance.product.constant.ProductStatusConstant;
 import com.dixin.finance.product.constant.ProductTypeConstant;
 import com.dixin.framework.base.vo.BaseVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -187,7 +188,7 @@ public class ProductVO extends BaseVO {
 	private Integer state=0;
 	
 	
-	private Integer star=ProductStateConstant.UNDERTERMINED;
+	private Integer star=ProductSellStateConstant.UNDERTERMINED;
 	private Integer catogryId=ProductTypeConstant.BOND;
 	private Integer profitId=0;
 	private Integer bonusType=0;
@@ -201,7 +202,7 @@ public class ProductVO extends BaseVO {
 		if(direction >= ProductDirectionConstant.FinacalMarket &&  direction < ProductDirectionConstant.Others)
 			return ProductDirectionConstant.DirectionTypeString[direction - ProductDirectionConstant.FinacalMarket].Name;
 		
-		if(direction >= ProductDirectionConstant.Currency &&  direction <= ProductDirectionConstant.HybridFund)
+		if(direction >= ProductDirectionConstant.Currency &&  direction <= ProductDirectionConstant.FOFund)
 			return ProductDirectionConstant.DirectionTypeString[10 + direction - ProductDirectionConstant.Currency].Name;
 		
 		return directionInfo;
@@ -264,6 +265,11 @@ public class ProductVO extends BaseVO {
 	 */	
 	private String sellFee;		
 	
+	/**
+	 * 产品期限状态
+	 */	
+	private Integer status = ProductStatusConstant.Status_Duration;	
+
 	private String createUser=""; // 创建人',
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")//存日期时使用 
@@ -468,13 +474,13 @@ public class ProductVO extends BaseVO {
 		Date curdate = cal.getTime();
 		cal.setTime(releaseDate);
 		if(releaseDate == null || cal.get(Calendar.YEAR) >= 2100)
-			state = ProductStateConstant.UNDERTERMINED;
+			state = ProductSellStateConstant.UNDERTERMINED;
 		else if( curdate.before(releaseDate))
-			state = ProductStateConstant.OnBook;
+			state = ProductSellStateConstant.OnBook;
 		else if( curdate.after(endDate))
-			state = ProductStateConstant.Sold;		
+			state = ProductSellStateConstant.Sold;		
 		else
-			state = ProductStateConstant.OnSell;
+			state = ProductSellStateConstant.OnSell;
 		
 		return state;
 	}
@@ -681,6 +687,13 @@ public class ProductVO extends BaseVO {
 		this.sellFee = sellFee;
 	}
 	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
 	public boolean SetValue(String strValue,int nCol,int type){
 		boolean bRet = true;
 		switch(nCol) 
@@ -729,7 +742,6 @@ public class ProductVO extends BaseVO {
 				sdf.setTimeZone(zone);
 				date = sdf.parse(strDate);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

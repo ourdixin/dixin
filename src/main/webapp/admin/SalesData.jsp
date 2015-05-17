@@ -20,9 +20,6 @@
 
 <div class="main_width">
 
-<div class="con_table">
-	<a class="bnt_ok" href="<%=request.getContextPath()%>/admin/addsalesdata.jsp">添加产品销售数据</a>
-</div>
 <br>
 <div class="con_table">
 <table width="1200">
@@ -30,11 +27,9 @@
   <tr>
     <th>产品名称</th>
   <th>类型</th>
+  <th>购买人数</th>
+  <th>购买份额</th>
   <th>销售金额/万元</th>
-  <th>起息日</th>
-  <th>到期日</th>
-  <th>付息方式</th>
-  <th>回执</th>
   <th>状态</th>
   <th>备注</th>
   <th width=50>操作</th>
@@ -42,52 +37,24 @@
   </thead>
   <tbody>
       <tr>
-        <td>衡阳城投二期</td>
-        <td>A类</td>
-        <td>100<span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
-        <td>2015-3-15</td>
-        <td>2016-3-15</td>
-        <td>年付</td>
-        <td>已收到</td>
+        <td>衡阳城投一期</td>
+        <td>浮动</td>
+        <td>120</td>
+        <td>250</td>
+        <td>1000</td>
         <td>存续</td>
         <td>无</td>
-        <td><i><a href="<%=request.getContextPath() %>/admin/SalesData-editor.jsp">编辑</a></i></td>
+        <td><span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
         </tr>
       <tr>
         <td>衡阳城投二期</td>
-        <td>B类</td>
-        <td>450<span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
-        <td>2015-3-15</td>
-        <td>2016-3-15</td>
-        <td>自然年付</td>
-        <td>未收到</td>
-        <td>存续</td>
+        <td>固定</td>
+        <td>20</td>
+        <td>150</td>
+        <td>450</td>
+        <td>到期</td>
         <td>延期3个月，利率上浮1%到期付30%</td>
-        <td><i><a href="<%=request.getContextPath() %>/admin/SalesData-editor.jsp">编辑</a></i></td>
-        </tr>
-      <tr>
-        <td>衡阳城投二期</td>
-        <td>A类</td>
-        <td>200<span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
-        <td>2015-3-15</td>
-        <td>2016-3-15</td>
-        <td>半年付</td>
-        <td>已收到</td>
-        <td>到期</td>
-        <td>无</td>
-        <td><i><a href="<%=request.getContextPath() %>/admin/SalesData-editor.jsp">编辑</a></i></td>
-        </tr>
-      <tr>
-        <td>衡阳城投二期</td>
-        <td>B类</td>
-        <td>350<span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
-        <td>2015-3-15</td>
-        <td>2016-3-15</td>
-        <td>季度付</td>
-        <td>已收到</td>
-        <td>到期</td>
-        <td>无</td>
-        <td><i><a href="<%=request.getContextPath() %>/admin/SalesData-editor.jsp">编辑</a></i></td>
+        <td><span><a href="<%=request.getContextPath() %>/admin/SalesData-detail.jsp">明细</a></span></td>
         </tr>
       </tbody>
    </table>

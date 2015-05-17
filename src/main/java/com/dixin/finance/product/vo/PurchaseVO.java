@@ -7,6 +7,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.dixin.finance.product.constant.PurchaseStatusConstant;
 import com.dixin.framework.base.vo.BaseVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -36,6 +37,26 @@ public class PurchaseVO extends BaseVO {
 	
 	private Double pnl;	//浮动盈亏
 	
+	private Boolean hasReceipt = false; //是否已经有回执
+	
+	private	Integer status = PurchaseStatusConstant.Status_Buy;		//产品是否持有，转让或者赎回
+	
+	public Boolean getHasReceipt() {
+		return hasReceipt;
+	}
+
+	public void setHasReceipt(Boolean hasReceipt) {
+		this.hasReceipt = hasReceipt;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
 	private String createUser=""; // 创建人',
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")//存日期时使用 

@@ -58,8 +58,9 @@ CREATE TABLE IF NOT EXISTS `area` (
 -- --------------------------------------------------------
 
 --
--- 转存表中的数据 `catogry`,预先设置的分类
+-- 转存表中的数据 `area`
 --
+
 INSERT INTO `area` (`id`, `name`, `pid`, `create_user`, `create_time`, `update_user`, `update_time`) VALUES
 (1, '北京市', -1, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
 (2, '天津市', -1, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
@@ -3700,10 +3701,16 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (85, '新三版', 7),
 (86, '结构型', 7),
 (87, '混合型', 7),
+(88, 'FOF', 7),
 (100, '银行', 11),
 (101, '证券', 11),
 (102, '保险', 11),
-(103, '信托', 11);
+(103, '信托', 11),
+(110, '持有', 12),
+(111, '转让', 12),
+(112, '赎回', 12),
+(120, '存续期', 13),
+(121, '到期', 13);
 
 -- --------------------------------------------------------
 
@@ -3733,11 +3740,12 @@ INSERT INTO `dict` (`id`, `name`) VALUES
 (5, '操作分类'),
 (6, '操作对象分类'),
 (7, '资金投向'),
-(8, '产品状态'),
+(8, '产品销售状态'),
 (9, '利益分配方式'),
 (10, '期限单位分类'),
-(11, '金融机构分类');
-
+(11, '金融机构分类'),
+(12, '用户产品期限状态'),
+(13, '产品期限状态');
 -- --------------------------------------------------------
 
 --
@@ -3880,6 +3888,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `open_day` varchar(256) DEFAULT NULL COMMENT '开放日',
   `bonus` varchar(256) DEFAULT NULL COMMENT '业绩提成',
   `sell_fee` varchar(256) DEFAULT NULL COMMENT '退出费用',
+  `status` tinyint(4) NOT NULL DEFAULT '120' COMMENT '产品期限状态',
   `info` text NOT NULL COMMENT '资管要素HTML文件',
   `view_num` int(11) NOT NULL COMMENT '查看次数',
   `create_user` int(11) NOT NULL COMMENT '创建人',
@@ -3889,7 +3898,25 @@ CREATE TABLE IF NOT EXISTS `product` (
   PRIMARY KEY (`id`),
   KEY `code` (`code`,`name`),
   KEY `catogry_id` (`catogry_id`),
-  KEY `direction` (`direction`)
+  KEY `direction` (`direction`),
+  KEY `status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `product_info`
+--
+
+CREATE TABLE IF NOT EXISTS `product_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
+  `product_id` int(11) NOT NULL COMMENT '对应的产品ID',
+  `info_date` date NOT NULL COMMENT '信息发布日期',
+  `info_type` int(11) NOT NULL COMMENT '信息类型，派息，分红，净值',
+  `value` float NOT NULL COMMENT '对应的数值',
+  PRIMARY KEY (`id`),
+  KEY `info_date` (`info_date`,`info_type`),
+  KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -3907,11 +3934,14 @@ CREATE TABLE IF NOT EXISTS `purchase` (
   `amount` int(11) NOT NULL COMMENT '购买金额',
   `institution_id` int(11) DEFAULT '0' COMMENT '营销机构',
   `pnl` double NOT NULL DEFAULT '0' COMMENT '浮动收益',
+  `has_receipt` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否已经收到回执',
+  `status` tinyint(4) NOT NULL DEFAULT '110' COMMENT '用户是否持有，赎回或者转让此产品',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',
   `update_time` datetime NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `state` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
