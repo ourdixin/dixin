@@ -171,7 +171,7 @@ public class ProductManagerController {
 	}
 	
 	/***********************************产品转让管理**********************************************/
-	@RequestMapping(value="/product/manager/assignment")
+	@RequestMapping(value="/admin/product/assignment")
 	public String  assignmentManager(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
 		if(pageNum == null)
 			pageNum = 1;

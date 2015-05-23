@@ -51,7 +51,7 @@
 						  </tr>
 						  <tr>
 						    <td height="30" align="right">金额：</td>
-						    <td><input maxlength="" id="amount" name="amount" class="itstyle lt it" type="text" /></td>
+						    <td><input maxlength="" id="amount" name="amount" class="itstyle lt it" type="text" /> (万)</td>
 						  </tr>
 						  <tr>
 						    <td height="30" align="right">联系人：</td>
