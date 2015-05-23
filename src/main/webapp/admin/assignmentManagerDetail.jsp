@@ -25,7 +25,7 @@
 	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
 	<!---用户左侧共用部份---->
-	<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
+	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
 	<!---用户左侧共用部份结束---->
 	<form action="<%=request.getContextPath()%>/product/assignment"
 		method="post" id="assiForm">
