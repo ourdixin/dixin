@@ -246,6 +246,11 @@ public class ProductVO extends BaseVO {
 	private String fundManagerUrl;		
 	
 	/**
+	 * 基金经理姓名HTML
+	 */	
+	private String fundManagerHtml ;	
+
+	/**
 	 * 管理费
 	 */	
 	private Float manageFee = 0F;		
@@ -662,6 +667,34 @@ public class ProductVO extends BaseVO {
 	public void setFundManagerUrl(String fundManagerUrl) {
 		this.fundManagerUrl = fundManagerUrl;
 	}
+	
+	public String getFundManagerHtml() {
+		String strHtml = "";
+		
+		if(fundManager != null && fundManagerUrl != null)
+		{
+			String[]  fundManagerList = fundManager.split(",");
+			String[]  urlList = fundManagerUrl.split(",");
+			
+			for(int i =0; i< fundManagerList.length ; i++)
+			{
+				if(!strHtml.isEmpty())
+					strHtml += ",";
+				if(i < urlList.length )
+					strHtml += "<a href=\"" + urlList[i] + "\" target=\"_blank\"> " + fundManagerList[i] + "</a>";
+				else
+					strHtml += fundManagerList[i] ;
+			}
+		}
+		
+		if(strHtml.isEmpty())
+			strHtml = fundManager;
+		
+		return strHtml;
+	}
+	public void setFundManagerHtml(String fundManagerHtml) {
+		this.fundManagerHtml = fundManagerHtml;
+	}	
 	public Float getManageFee() {
 		return manageFee;
 	}

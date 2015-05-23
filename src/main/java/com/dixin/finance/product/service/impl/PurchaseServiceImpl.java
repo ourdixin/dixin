@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.dixin.finance.product.dao.ProductMapper;
 import com.dixin.finance.product.dao.PurchaseMapper;
 import com.dixin.finance.product.service.IPurchaseService;
+import com.dixin.finance.product.vo.PurchaseStatisticsVO;
 import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.finance.product.web.ProductController;
 
@@ -41,6 +42,11 @@ public class PurchaseServiceImpl implements IPurchaseService {
 	@Override
 	public void addPurchase(PurchaseVO purchaseVo) {
 		purchaseMapper.addPurchase(purchaseVo);
+	}
+
+	@Override
+	public List<PurchaseStatisticsVO> queryPurchaseStatistics() {
+		return purchaseMapper.queryPurchaseStatistics();
 	}
 
 }

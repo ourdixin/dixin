@@ -37,7 +37,7 @@ $(document).ready(function(){
 		}
 				
 		$("a[class='item']").click(function(){
-			$.get(HOST_PATH+"/products?pageNum="+this.text+"&productType="+this.name, null, success);
+			$.get(HOST_PATH+"/products?pageNum="+this.text+"&productType="+this.name+"&profitType="+profitType, null, success);
 		});		
 		
 	};

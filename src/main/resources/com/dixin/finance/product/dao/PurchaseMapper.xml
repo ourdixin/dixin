@@ -72,6 +72,7 @@
 		<result column="updateTime" property="updateTime"/>
 		<association property="product" column="productId" resultMap="productResult"/>
 	</resultMap>  
+
 	
   <select id="queryPurchaseList" parameterType="map" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
 		select 
@@ -141,6 +142,25 @@
 		from purchase 
 		join product on purchase.product_id = product.id
 		WHERE purchase.user_id = #{userId} and product.profit_id = #{profitType}  order by purchase.buy_date desc
+  </select>
+
+	<resultMap id="PurchaseStatistics" type="com.dixin.finance.product.vo.PurchaseStatisticsVO">
+		<id column="id" property="productId"/>
+		<result column="purchasevolume" property="volume"/>  
+		<result column="purchaseamount" property="amount"/> 
+		<result column="usernum" property="userNum"/> 
+		<association property="product" column="id" resultMap="productResult"/>
+	</resultMap>  
+	
+  <select id="queryPurchaseStatistics" resultMap="PurchaseStatistics" resultType="com.dixin.finance.product.vo.PurchaseStatisticsVO" useCache="false" >
+		SELECT 
+			count(purchase.user_id) as usernum,
+			sum(purchase.volume) as purchasevolume,
+			sum(purchase.amount) as purchaseamount,
+			product.*
+		FROM purchase join product on purchase.product_id= product.id  
+		group by product.id 
+		order by product.end_date desc 
   </select>
 
   <select id="queryPurchase" parameterType="int" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
