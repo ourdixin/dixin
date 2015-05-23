@@ -466,11 +466,11 @@ public class ProductVO extends BaseVO {
 		Calendar cal = Calendar.getInstance();
 		TimeZone zone = TimeZone.getTimeZone("GMT+8");
 		cal.setTimeZone(zone);
-		cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
-		cal.set(Calendar.HOUR_OF_DAY, 0);
-		cal.set(Calendar.MINUTE, 0);
-		cal.set(Calendar.SECOND, 0);
-		cal.set(Calendar.MILLISECOND, 0);
+//		cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
+//		cal.set(Calendar.HOUR_OF_DAY, 0);
+//		cal.set(Calendar.MINUTE, 0);
+//		cal.set(Calendar.SECOND, 0);
+//		cal.set(Calendar.MILLISECOND, 0);
 		Date curdate = cal.getTime();
 		cal.setTime(releaseDate);
 		if(releaseDate == null || cal.get(Calendar.YEAR) >= 2100)

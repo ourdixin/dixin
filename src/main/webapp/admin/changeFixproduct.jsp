@@ -153,7 +153,7 @@ div {
 							<tr>
 								<td class="t">A类份额：</td>
 								<td><input class="itstyle lt it" id="partA" name="partA"
-									value="<fmt:formatNumber value="${product.partA}" minFractionDigits="0"/>" type="text" /></td>
+									value="<fmt:formatNumber value="${product.partA}" groupingUsed="false" minFractionDigits="0"/>" type="text" /></td>
 								<td class="t" nowrap>A类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateA" name="rateA"
 									value="<fmt:formatNumber value="${product.rateA}" minFractionDigits="0"/>" type="text" />%</td>
@@ -162,7 +162,7 @@ div {
 							<tr>
 								<td class="t">B类份额：</td>
 								<td><input class="itstyle lt it" id="partB" name="partB"
-									value="<fmt:formatNumber value="${product.partB}" minFractionDigits="0"/>" type="text" /></td>
+									value="<fmt:formatNumber value="${product.partB}" groupingUsed="false" minFractionDigits="0"/>" type="text" /></td>
 								<td class="t" nowrap>B类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateB" name="rateB"
 									value="<fmt:formatNumber value="${product.rateB}" minFractionDigits="0"/>" type="text" />%</td>
@@ -172,7 +172,7 @@ div {
 							<tr>
 								<td class="t">C类份额：</td>
 								<td><input class="itstyle lt it" id="partC" name="partC"
-									value="<fmt:formatNumber value="${product.partC}" minFractionDigits="0"/>" type="text" /></td>
+									value="<fmt:formatNumber value="${product.partC}" groupingUsed="false" minFractionDigits="0"/>" type="text" /></td>
 								<td class="t" nowrap>C类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateC" name="rateC"
 									value="<fmt:formatNumber value="${product.rateC}" minFractionDigits="0"/>" type="text" />%</td>
@@ -182,7 +182,7 @@ div {
 							<tr>
 								<td class="t">D类份额：</td>
 								<td><input class="itstyle lt it" id="partD" name="partD"
-									value="<fmt:formatNumber value="${product.partD}" minFractionDigits="0"/>" type="text" /></td>
+									value="<fmt:formatNumber value="${product.partD}" groupingUsed="false" minFractionDigits="0"/>" type="text" /></td>
 								<td class="t" nowrap>D类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateD" name="rateD"
 									value="<fmt:formatNumber value="${product.rateD}" minFractionDigits="0"/>" type="text" />%</td>
