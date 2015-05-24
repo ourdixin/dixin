@@ -26,6 +26,7 @@ import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IMessageService;
 import com.dixin.finance.product.vo.AssignmentVO;
+import com.dixin.finance.product.vo.MessageVO;
 import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
@@ -232,6 +233,8 @@ public class AuthenManagerController {
 		//产品购买信息
 		//产品成交信息
 		//在线留言
+		List<MessageVO> messageList = messageServiceImpl.selectMsgsByInitialId(id);
+		model.addAttribute("messageList", messageList);
 		return "/admin/userDetail";
 	}
 }
