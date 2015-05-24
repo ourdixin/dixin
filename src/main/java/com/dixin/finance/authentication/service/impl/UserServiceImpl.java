@@ -70,10 +70,15 @@ public class UserServiceImpl implements IUserService {
 	
 	
 	@Override
+	public List<UserVO> findAllUser() {
+		return userMapper.query(null);
+	}
+
+	@Override
 	public UserVO findUserById(int userId) {
 		return userMapper.findUserById(userId);
 	}
-
+	
 	@Override
 	public void updateUser(UserVO userVO) {
 		userMapper.updateUser(userVO);

@@ -89,7 +89,7 @@
 
 <body>
 <!---TOP头部共用部份---->
-<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
 <div id="main_body">
 <div class="padding_top_10"></div>

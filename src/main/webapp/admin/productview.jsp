@@ -12,7 +12,7 @@
 </head>
 <body>
 <!---TOP头部共用部份---->
-<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
 
 <div id="main_body">
@@ -87,23 +87,23 @@
         <td width="0%" align="center" bgcolor="#FFFFFF" height="35">产品规模</td>
         <td width="0%" align="center" bgcolor="#FFFFFF">
         <c:if test="${product.amount  > 0 }">
-        	<strong>预计为 <fmt:formatNumber value="${product.amount/100000000}" pattern="#"/>亿元</strong>
+        	<strong>预计为 <fmt:formatNumber value="${product.amount/100000000}"  minFractionDigits="0"/>亿元</strong>
         </c:if>
         </td>
         <td width="0%" align="center" bgcolor="#FFFFFF">投资起点</td>
         
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
         <c:if test="${product.minAmount < 10000}">
-        	 <fmt:formatNumber value="${product.minAmount}" pattern="#"/>元
+        	 <fmt:formatNumber value="${product.minAmount}"  minFractionDigits="0"/>元
         </c:if>
         <c:if test="${product.minAmount > 10000}">
-        	<fmt:formatNumber value="${product.minAmount/10000}" pattern="#"/> 万元
+        	<fmt:formatNumber value="${product.minAmount/10000}"  minFractionDigits="0"/> 万元
         </c:if>
         <c:if test="${product.appendAmount >= 10000}">
-        	+<fmt:formatNumber value="${product.appendAmount/10000}" pattern="#"/>万元的整数倍
+        	+<fmt:formatNumber value="${product.appendAmount/10000}"  minFractionDigits="0"/>万元的整数倍
         </c:if>        
         <c:if test="${product.appendAmount < 10000 && product.appendAmount > 0}">
-        	+<fmt:formatNumber value="${product.appendAmount}" pattern="#"/>元的整数倍
+        	+<fmt:formatNumber value="${product.appendAmount}"  minFractionDigits="0"/>元的整数倍
         </c:if>           
         
         </strong></td>
@@ -114,7 +114,7 @@
         <c:if test="${product.profitId == 43}">
         	<td width="0%" align="center" bgcolor="#FFFFFF">基金经理</td>
         	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>
-        	<a href="${product.fundManagerUrl}" target="_blank"> ${product.fundManager}</a>
+        	<c:out value="${product.fundManagerHtml}" escapeXml="false" />
         	</strong></td>
         </c:if>        
       </tr>
@@ -190,7 +190,7 @@
         ${product.buyFee}
         </strong></td>      
         <td width="0%" align="center" bgcolor="#FFFFFF">管理费</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF"><strong><fmt:formatNumber value="${product.manageFee}" pattern="#"/>%</strong></td>
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong><fmt:formatNumber value="${product.manageFee}"  minFractionDigits="0"/>%</strong></td>
         <td width="0%" align="center" bgcolor="#FFFFFF">退出费用</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.sellFee}</strong></td>
       </c:if>

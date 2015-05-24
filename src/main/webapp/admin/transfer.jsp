@@ -10,7 +10,7 @@
 </head>
 <body>
 <!---TOP头部共用部份---->
-	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
 	<!---管理左侧共用部份---->
 	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />

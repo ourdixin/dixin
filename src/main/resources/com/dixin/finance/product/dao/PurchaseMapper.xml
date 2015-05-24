@@ -47,6 +47,7 @@
 		<result column="open_day" property="openDay"/>
 		<result column="bonus" property="bonus"/>
 		<result column="sell_fee" property="sellFee"/>
+		<result column="status" property="status"/>
 		<result column="info" property="info"/>
 		<result column="view_num" property="viewNum"/>
 		<result column="create_user" property="createUser"/>
@@ -63,12 +64,15 @@
 		<result column="amount" property="amount"/>  
 		<result column="institutionId" property="institutionId"/>  
 		<result column="pnl" property="pnl"/>
+		<result column="hasReceipt" property="hasReceipt"/>
+		<result column="purchase_status" property="status"/>
 		<result column="createUser" property="createUser"/>
 		<result column="createTime" property="createTime"/>
 		<result column="updateUser" property="updateUser"/>
 		<result column="updateTime" property="updateTime"/>
 		<association property="product" column="productId" resultMap="productResult"/>
 	</resultMap>  
+
 	
   <select id="queryPurchaseList" parameterType="map" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
 		select 
@@ -80,6 +84,8 @@
 			,purchase.amount amount
 			,purchase.institution_id institutionId
 			,purchase.pnl pnl
+			,purchase.has_receipt hasReceipt
+			,purchase.status purchase_status
 			,purchase.create_user createUser
 			,purchase.create_time createTime
 			,purchase.update_user updateUser
@@ -122,6 +128,7 @@
 			,product.open_day
 			,product.bonus
 			,product.sell_fee
+			,product.status
 			,product.info
 			,product.view_num
 			,product.ad_file
@@ -134,8 +141,90 @@
 			,product.update_time
 		from purchase 
 		join product on purchase.product_id = product.id
-		WHERE purchase.user_id = #{userId} and product.profit_id = #{profitType}  order by purchase.buy_date desc
+		WHERE 1 
+		<if test="userId != null and userId != -1">  
+            <![CDATA[  
+               and purchase.user_id = #{userId} 
+            ]]>  
+        </if> 				
+		<if test="profitType != null and profitType != -1">  
+            <![CDATA[  
+               and product.profit_id = #{profitType} 
+            ]]>  
+        </if> 
+		<if test="productId != null and productId != -1">  
+            <![CDATA[  
+               and purchase.product_id = #{productId} 
+            ]]>  
+        </if> 				
+		order by purchase.buy_date desc
   </select>
+	
+	<resultMap id="PurchaseStatistics" type="com.dixin.finance.product.vo.PurchaseStatisticsVO">
+		<id column="id" property="productId"/>
+		<result column="purchasevolume" property="volume"/>  
+		<result column="purchaseamount" property="amount"/> 
+		<result column="usernum" property="userNum"/> 
+		<association property="product" column="id" resultMap="productResult"/>
+	</resultMap>  
+	
+  <select id="queryPurchaseStatistics" resultMap="PurchaseStatistics" resultType="com.dixin.finance.product.vo.PurchaseStatisticsVO" useCache="false" >
+		SELECT 
+			count(purchase.user_id) as usernum,
+			sum(purchase.volume) as purchasevolume,
+			sum(purchase.amount) as purchaseamount,
+			product.*
+		FROM purchase join product on purchase.product_id= product.id  
+		group by product.id 
+		order by product.end_date desc 
+  </select>
+  
+	<resultMap id="userResult" type="com.dixin.finance.authentication.vo.UserVO">  
+		<id column="uid" property="id"/>
+		<result column="user_name" property="userName"/>
+		<result column="password" property="password"/>
+		<result column="user_type" property="userType"/>
+		<result column="name" property="name"/>
+		<result column="mobile" property="mobile"/>
+		<result column="address" property="address"/>
+		<result column="zip_code" property="zipCode"/>
+		<result column="qq" property="qq"/>
+		<result column="account" property="account"/>
+		<result column="start_date" property="startDate"/>
+		<result column="term" property="term"/>
+		<result column="is_risk_tested" property="isRiskTested"/>
+		<result column="update_user" property="updateUser"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="institution_id" property="institutionId" /> 
+		<result column="area_id" property="areaId" />  
+	</resultMap>  
+	<resultMap id="PurchaseDetails" type="com.dixin.finance.product.vo.PurchaseVO">
+		<id column="Id" property="id"/>
+		<result column="user_id" property="userId"/>  
+		<result column="product_id" property="productId"/>
+		<result column="buy_date" property="buyDate"/>
+		<result column="volume" property="volume"/>  
+		<result column="amount" property="amount"/>  
+		<result column="institution_id" property="institutionId"/>  
+		<result column="pnl" property="pnl"/>
+		<result column="has_receipt" property="hasReceipt"/>
+		<result column="status" property="status"/>
+		<result column="create_user" property="createUser"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_user" property="updateUser"/>
+		<result column="update_time" property="updateTime"/>
+		<association property="user" column="id" resultMap="userResult"/>
+	</resultMap> 
+	
+  <select id="queryPurchaseDetails" parameterType="int" resultMap="PurchaseDetails" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
+		SELECT purchase.id as Id , 
+		purchase.*,
+		user.*
+		FROM `purchase` left join user on purchase.user_id=user.id
+		WHERE purchase.product_id=#{productId}
+		order by purchase.buy_date desc 
+  </select>
+
 
   <select id="queryPurchase" parameterType="int" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
 		select id id,
@@ -146,6 +235,8 @@
 			amount amount,
 			institution_id institutionId,
 			pnl pnl,
+			has_receipt hasReceipt,
+			status status,
 			create_user createUser, 
 			create_time createTime, 
 			update_user updateUser, 
@@ -164,6 +255,8 @@
 		amount,
 		institution_id,
 		pnl,
+		has_receipt,
+		status,
 		create_user,
 		create_time,
 		update_user,
@@ -171,11 +264,13 @@
 	values(
 		#{userId},
 		#{buyDate},
-		#{product.id},
+		#{productId},
 		#{volume},	
 		#{amount},
 		#{institutionId},
 		#{pnl},
+		#{hasReceipt},
+		#{status},
 		0,
 		SYSDATE(),
 		0,

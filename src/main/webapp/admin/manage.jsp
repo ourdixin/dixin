@@ -79,7 +79,7 @@
 			  <td><#=products.list[i].payTypeInfo#> </td>
 			  <#}else{#>
 			  <td><#=products.list[i].buyFee#></td>
-			  <td><a href="<#=products.list[i].fundManagerUrl#>" target="_blank">  <#=products.list[i].fundManager#></a> </td>
+			  <td><#==products.list[i].fundManagerHtml#></td>
 			  <#}#>
 			  <td><#=products.list[i].directionInfo#></td>
 
@@ -193,10 +193,6 @@
 	<br class=" clear" />
 	</div>            
 
-<div id="dialog-confirm" title="删除吗？">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>这些产品将被永久删除，并且无法恢复。您确定吗？
-</p>
-</div>
 <!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->

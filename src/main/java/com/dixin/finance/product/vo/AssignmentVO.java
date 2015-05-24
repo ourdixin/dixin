@@ -16,7 +16,6 @@ public class AssignmentVO extends BaseVO {
 	
 	private int id;
 	
-	private int userId;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -52,13 +51,13 @@ public class AssignmentVO extends BaseVO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 	
+	public UserVO getUser() {
+		return user;
+	}
+	public void setUser(UserVO user) {
+		this.user = user;
+	}
 	public Date getAssign_date() {
 		return assign_date;
 	}
@@ -121,18 +120,5 @@ public class AssignmentVO extends BaseVO {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	/**
-	 * @return the user
-	 */
-	public UserVO getUser() {
-		return user;
-	}
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(UserVO user) {
-		this.user = user;
-	}
-	
 
 }

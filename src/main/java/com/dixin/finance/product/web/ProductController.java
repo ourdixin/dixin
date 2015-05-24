@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.constant.ProductTypeConstant;
@@ -73,7 +74,8 @@ public class ProductController {
 
 	@Resource(name="PurchaseServiceImpl")
 	private IPurchaseService purchaseServiceImpl;	
-	
+	@Resource
+	private IUserService userServiceImpl;
 	@RequestMapping(value="/products", method=RequestMethod.GET)
 	public @ResponseBody BaseWebResult queryProductList(ProductQueryParameter parameter, HttpSession session){
 
@@ -165,13 +167,13 @@ public class ProductController {
 	}	
 	
 	   @RequestMapping("/product/uploadguidefile")  
-	public @ResponseBody BaseWebResult uploadGuideFile(HttpServletRequest request,@RequestParam("uploadguidefile") MultipartFile guidefile) {  
+	   public @ResponseBody BaseWebResult uploadGuideFile(HttpServletRequest request,@RequestParam("uploadguidefile") MultipartFile guidefile) {  
 	   BaseWebResult webResult = new BaseWebResult();
 	   String filename = "";
 	    
 	   if(guidefile != null && !guidefile.isEmpty())
 	   {
-	        filename = FileUpoadController.saveFile(request,guidefile); 
+		   filename = FileUpoadController.saveFile(request,guidefile); 
 	   }	   
 	   
 	    webResult.setSuccess(true);
@@ -180,15 +182,19 @@ public class ProductController {
 	}		   
 	   
 	@RequestMapping(value="/product/add")
-	public @ResponseBody BaseWebResult addProduct(ProductVO product,String editorValue,HttpSession session,Model model,HttpServletRequest request){
+	public @ResponseBody BaseWebResult addProduct(ProductVO product,String editorValue,String backurl,HttpSession session,Model model,HttpServletRequest request){
 	
 		BaseWebResult webResult = new BaseWebResult();
 
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			//webResult.setSuccess(false);
-			//return webResult;
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setUrl(backurl);
+			webResult.setMsg("添加失败，请先登陆!");
+			return webResult;
 		}
 		double amount = product.getAmount() * 100000000;
 		double minAmount = product.getMinAmount() * 10000;
@@ -197,22 +203,62 @@ public class ProductController {
 		product.setMinAmount(minAmount);
 		product.setAppendAmount(appendAmount);
 		product.setInfo(editorValue);
+		product.setPartA(product.getPartA() * 10000);
+		product.setPartB(product.getPartB() * 10000);
+		product.setPartC(product.getPartC() * 10000);
+		product.setPartD(product.getPartD() * 10000);
 		productService.addProduct(product);
 		
 		webResult.setSuccess(true);
 		return webResult;		
 	}	
+	@RequestMapping(value="/product/update")
+	public @ResponseBody BaseWebResult update(ProductVO product,String editorValue,String backurl,HttpSession session,Model model,HttpServletRequest request){
 	
+		BaseWebResult webResult = new BaseWebResult();
+
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setUrl(backurl);
+			webResult.setMsg("添加失败，请先登陆!");
+			return webResult;
+		}
+		double amount = product.getAmount() * 100000000;
+		double minAmount = product.getMinAmount() * 10000;
+		double appendAmount = product.getAppendAmount() * 10000;
+		product.setAmount(amount);
+		product.setMinAmount(minAmount);
+		product.setAppendAmount(appendAmount);
+		product.setInfo(editorValue);
+		
+		product.setPartA(product.getPartA() * 10000);
+		product.setPartB(product.getPartB() * 10000);
+		product.setPartC(product.getPartC() * 10000);
+		product.setPartD(product.getPartD() * 10000);
+		
+		productService.updateProduct(product);
+		
+		webResult.setSuccess(true);
+		return webResult;		
+	}		
 	@RequestMapping(value="/product/addProductList")
-	public @ResponseBody BaseWebResult addProductList(HttpServletRequest request,HttpSession session,@RequestParam("productfile") MultipartFile productfile){
+	public @ResponseBody BaseWebResult addProductList(String backurl,HttpServletRequest request,HttpSession session,@RequestParam("productfile") MultipartFile productfile){
 	
 		BaseWebResult webResult = new BaseWebResult();
 		webResult.setSuccess(false);
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			//webResult.setSuccess(false);
-			//return webResult;
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setUrl(backurl);
+			webResult.setMsg("添加失败，请先登陆!");
+			return webResult;
 		}
 
 		String filename = "";
@@ -347,7 +393,7 @@ public class ProductController {
 		ProductVO product = new ProductVO();
 		product.setId(String.valueOf(productId));
 		assignment.setProduct(product);
-		assignment.setUserId(userVO.getId());
+		assignment.setUser(userVO);
 		assignmentService.insertAssignment(assignment);
 		
 		webResult.setSuccess(true);
@@ -520,7 +566,7 @@ public class ProductController {
 	
 	public PageInfo<PurchaseVO> GetPurchaseList(Integer userId, Integer pageNum, Integer pageSize,Integer profitType){
 	    PageHelper.startPage(pageNum, pageSize);
-	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType);
+	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType,-1);
 	    return new PageInfo(purchaseList);
 	}	
 	/***********************************根据初始留言ID显示相关所有留言****************************************/

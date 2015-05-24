@@ -4,7 +4,11 @@ $(document).ready(function(){
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor');
 
-
+    //ue.setContent(productInfo);
+    ue.addListener("ready", function () {
+        // editor准备好之后才可以使用
+    	ue.setContent(productInfo);
+    });    
     function isFocus(e){
         alert(UE.getEditor('editor').isFocus());
         UE.dom.domUtils.preventDefault(e)
@@ -112,20 +116,20 @@ $(document).ready(function(){
     }
     
 	function addsuccess(data){
-		if(data.success )
+		if(data.success)
 		{
-			alert("添加成功！")
+			alert("更新成功！");
 		}
 		else
 		{
 			alert(data.msg);
-			if(data.url != null && data.url != "")
-				location.href = data.url;
+			if(data.url!=null && data.url!="")
+				location.href = data.url;			
 		}
 	};
 	
 	$('.bnt_ok').click(function(){
-		$.post(HOST_PATH+"/product/add", $("#addproductForm").serialize(), addsuccess);
+		$.post(HOST_PATH+"/product/update", $("#updateproductForm").serialize(), addsuccess);
 	});   
 	
 	$('#submitad').click(function(){
@@ -253,7 +257,8 @@ $(document).ready(function(){
 	}  
 	
 	var myDate = new Date();
-	$('#endDate').attr("value",myDate.format("yyyy-MM-dd hh:mm"));
+	if($('#endDate').attr("value")=="")
+		$('#endDate').attr("value",myDate.format("yyyy-MM-dd hh:mm"));
 	
 	
 	$('#payType').change(function(){ 

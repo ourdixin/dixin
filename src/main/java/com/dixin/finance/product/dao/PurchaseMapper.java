@@ -5,11 +5,14 @@ import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 
+import com.dixin.finance.product.vo.PurchaseStatisticsVO;
 import com.dixin.finance.product.vo.PurchaseVO;
 
 @MapperScan
 public interface PurchaseMapper {
 	public List<PurchaseVO> queryPurchaseList(Map<String, Object> map);
 	public PurchaseVO queryPurchase(int Id);
-	public void addPurchase(PurchaseVO purchase);
+	public void addPurchase(PurchaseVO purchaseVo);
+	public List<PurchaseStatisticsVO> queryPurchaseStatistics();
+	public List<PurchaseVO> queryPurchaseDetails(int productId);
 }

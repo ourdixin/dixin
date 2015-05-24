@@ -78,7 +78,7 @@
 			  <td><#=products.list[i].payTypeInfo#> </td>
 			  <#}else{#>
 			  <td><#=products.list[i].buyFee#></td>
-			  <td><a href="<#=products.list[i].fundManagerUrl#>" target="_blank">  <#=products.list[i].fundManager#></a> </td>
+			  <td><#==products.list[i].fundManagerHtml#></td>
 			  <#}#>
 			  <td><#=products.list[i].directionInfo#></td>
 

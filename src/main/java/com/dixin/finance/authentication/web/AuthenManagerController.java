@@ -1,5 +1,7 @@
 package com.dixin.finance.authentication.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dixin.finance.authentication.constant.UserTypeConstant;
+import com.dixin.finance.authentication.dao.UserMapper;
 import com.dixin.finance.authentication.service.IAreaService;
 import com.dixin.finance.authentication.service.IAsmService;
 import com.dixin.finance.authentication.service.IFinService;
@@ -22,9 +25,13 @@ import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IMessageService;
+import com.dixin.finance.product.vo.AssignmentVO;
+import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 /**
  * 后台管理
@@ -158,4 +165,55 @@ public class AuthenManagerController {
 		return webResult;
 	}	
 	
+	/**
+	 * 查询所有用户
+	 * @param pageNum
+	 * @param pageSize
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/admin/findAllUser",method=RequestMethod.GET)
+	public String findAllUser(Integer pageNum,Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		
+		PageHelper.startPage(pageNum, pageSize);
+		List<UserVO> users = userServiceImpl.findAllUser();
+		PageInfo<AssignmentVO> pageinfoList = new PageInfo(users);
+		model.addAttribute("userList", pageinfoList);
+		return "/admin/user";
+	}
+	
+	/**
+	 * 修改用户认证状态
+	 * @param authType
+	 * @param pageNum
+	 * @param pageSize
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/admin/updateAuthType",method=RequestMethod.GET)
+	public String updateAuthType(Integer id,Integer authType,Integer pageNum,Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		UserVO userVO = new UserVO();
+		
+		userVO.setAuthType(authType);
+		userVO.setId(id);
+		userServiceImpl.updateUser(userVO);
+		PageHelper.startPage(pageNum, pageSize);
+		List<UserVO> users = userServiceImpl.findAllUser();
+		PageInfo<AssignmentVO> pageinfoList = new PageInfo(users);
+		model.addAttribute("userList", pageinfoList);
+		return "/admin/user";
+	}
 }
