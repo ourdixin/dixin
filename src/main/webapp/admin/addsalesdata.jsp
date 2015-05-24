@@ -32,6 +32,7 @@
 				<form id="addForm" name="addproductForm" method="post"
 					action="<%=request.getContextPath()%>/product/addsalesdata">
 					<!-- token:token/ -->
+					<input  name="userId" id="userId" value="${param.userid}" type="hidden" />
 					<table>
 						<tbody>
 							<tr width="100%">
