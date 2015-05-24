@@ -47,6 +47,7 @@ public interface UserMapper {
 	 * @return
 	 */
 	UserVO findUserById(int userId);
+	
 	/**
 	 * *@param map
 	 * 
