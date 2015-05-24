@@ -69,6 +69,11 @@ public class UserVO extends BaseVO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public String getSecUserName() {
+		String username = mobile.substring(0, 3);
+		username+= "****" + mobile.substring(mobile.length() - 4);
+		return username;
+	}	
 	public String getPassword() {
 		return password;
 	}

@@ -34,7 +34,7 @@ div {
 </head>
 <body>
 	<!---TOP头部共用部份---->
-	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
 
 	<div id="main_body">
@@ -107,10 +107,10 @@ div {
 							<tr>
 								<td class="t">投资起点：</td>
 								<td><input class="itstyle lt it" id="minAmount"
-									name="minAmount" value="" type="text" />(单位:万)</td>
+									name="minAmount" value="" type="text" />(单位:万元)</td>
 								<td class="t">递增金额：</td>
 								<td><input class="itstyle lt it" id="appendAmount"
-									name="appendAmount" value="" type="text" />(单位:万)</td>
+									name="appendAmount" value="" type="text" />(单位:万元)</td>
 							</tr>
 							<tr>
 								<td class="t">续存：</td>
@@ -151,7 +151,7 @@ div {
 							<tr>
 								<td class="t">A类份额：</td>
 								<td><input class="itstyle lt it" id="partA" name="partA"
-									value="" type="text" /></td>
+									value="" type="text" />(单位:万元)</td>
 								<td class="t" nowrap>A类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateA" name="rateA"
 									value="" type="text" />%</td>
@@ -160,7 +160,7 @@ div {
 							<tr>
 								<td class="t">B类份额：</td>
 								<td><input class="itstyle lt it" id="partB" name="partB"
-									value="" type="text" /></td>
+									value="" type="text" />(单位:万元)</td>
 								<td class="t" nowrap>B类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateB" name="rateB"
 									value="" type="text" />%</td>
@@ -170,7 +170,7 @@ div {
 							<tr>
 								<td class="t">C类份额：</td>
 								<td><input class="itstyle lt it" id="partC" name="partC"
-									value="" type="text" /></td>
+									value="" type="text" />(单位:万元)</td>
 								<td class="t" nowrap>C类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateC" name="rateC"
 									value="" type="text" />%</td>
@@ -180,7 +180,7 @@ div {
 							<tr>
 								<td class="t">D类份额：</td>
 								<td><input class="itstyle lt it" id="partD" name="partD"
-									value="" type="text" /></td>
+									value="" type="text" />(单位:万元)</td>
 								<td class="t" nowrap>D类年化收益率：</td>
 								<td><input class="itstyle lt it" id="rateD" name="rateD"
 									value="" type="text" />%</td>

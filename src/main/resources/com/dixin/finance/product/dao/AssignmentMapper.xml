@@ -12,7 +12,6 @@
 		assign_date,
 		amount,
 		product_id,
-		pay_type,
 		assign_type,
 		contactor,
 		tel,
@@ -25,7 +24,6 @@
 		#{assign_date},
 		#{amount},
 		#{product.id},
-		#{pay_type},
 		#{assign_type},
 		#{contactor},
 		#{tel},
@@ -52,7 +50,6 @@
 		<result column="user_id" property="userId"/>
 		<result column="assign_date" property="assign_date"/>
 		<result column="amount" property="amount"/>
-		<result column="pay_type" property="pay_type"/>
 		<result column="assign_type" property="assign_type"/>
 		<result column="contactor" property="contactor"/>
 		<result column="tel" property="tel"/>
@@ -74,7 +71,6 @@
 			product.name name,
 			product.pay_type payType,
 			product.term term,
-			assignment.pay_type pay_type,
 			assignment.assign_type assign_type,
 			assignment.contactor contactor,
 			assignment.tel tel,
@@ -95,7 +91,6 @@
 			product.name name,
 			product.pay_type payType,
 			product.term term,
-			assignment.pay_type pay_type,
 			assignment.assign_type assign_type,
 			assignment.contactor contactor,
 			assignment.tel tel,

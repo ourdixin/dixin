@@ -15,8 +15,7 @@
 	src="<%=request.getContextPath()%>/js/ueditor/ueditor.all.min.js"> </script>
 <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
 <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-<script type="text/javascript" charset="utf-8"
-	src="<%=request.getContextPath()%>/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=request.getContextPath()%>/js/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 <style type="text/css">
 div {
@@ -32,7 +31,7 @@ div {
 </head>
 <body>
 	<!---TOP头部共用部份---->
-	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
 
 	<div id="main_body">
@@ -137,10 +136,10 @@ div {
 								<tr>
 								<td class="t" width="100">基金经理姓名：</td>
 								<td><input class="itstyle lt it" id="fundManager" name="fundManager"
-									value="${product.fundManager}" type="text" /></td>
+									value="${product.fundManager}" type="text" />(多个以,隔开)</td>
 								<td class="t" width="100">基金经理介绍的网页链接：</td>
 								<td><input class="itstyle lt it" id="fundManagerUrl" name="fundManagerUrl"
-									value="${product.fundManagerUrl}" type="text" /></td>
+									value="${product.fundManagerUrl}" type="text" />(多个以,隔开)</td>
 							</tr>
 							</tr>
 								<tr>
@@ -182,7 +181,7 @@ div {
 							</tr>
 							<tr>
 								<td colspan="4"><center>
-										<span class="bnt_ok">添加</span>
+										<span class="bnt_ok">更新</span>
 									</center></td>
 							</tr>
 						</tbody>

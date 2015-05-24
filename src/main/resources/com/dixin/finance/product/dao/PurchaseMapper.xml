@@ -72,6 +72,7 @@
 		<result column="updateTime" property="updateTime"/>
 		<association property="product" column="productId" resultMap="productResult"/>
 	</resultMap>  
+
 	
   <select id="queryPurchaseList" parameterType="map" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
 		select 
@@ -140,8 +141,90 @@
 			,product.update_time
 		from purchase 
 		join product on purchase.product_id = product.id
-		WHERE purchase.user_id = #{userId} and product.profit_id = #{profitType}  order by purchase.buy_date desc
+		WHERE 1 
+		<if test="userId != null and userId != -1">  
+            <![CDATA[  
+               and purchase.user_id = #{userId} 
+            ]]>  
+        </if> 				
+		<if test="profitType != null and profitType != -1">  
+            <![CDATA[  
+               and product.profit_id = #{profitType} 
+            ]]>  
+        </if> 
+		<if test="productId != null and productId != -1">  
+            <![CDATA[  
+               and purchase.product_id = #{productId} 
+            ]]>  
+        </if> 				
+		order by purchase.buy_date desc
   </select>
+	
+	<resultMap id="PurchaseStatistics" type="com.dixin.finance.product.vo.PurchaseStatisticsVO">
+		<id column="id" property="productId"/>
+		<result column="purchasevolume" property="volume"/>  
+		<result column="purchaseamount" property="amount"/> 
+		<result column="usernum" property="userNum"/> 
+		<association property="product" column="id" resultMap="productResult"/>
+	</resultMap>  
+	
+  <select id="queryPurchaseStatistics" resultMap="PurchaseStatistics" resultType="com.dixin.finance.product.vo.PurchaseStatisticsVO" useCache="false" >
+		SELECT 
+			count(purchase.user_id) as usernum,
+			sum(purchase.volume) as purchasevolume,
+			sum(purchase.amount) as purchaseamount,
+			product.*
+		FROM purchase join product on purchase.product_id= product.id  
+		group by product.id 
+		order by product.end_date desc 
+  </select>
+  
+	<resultMap id="userResult" type="com.dixin.finance.authentication.vo.UserVO">  
+		<id column="uid" property="id"/>
+		<result column="user_name" property="userName"/>
+		<result column="password" property="password"/>
+		<result column="user_type" property="userType"/>
+		<result column="name" property="name"/>
+		<result column="mobile" property="mobile"/>
+		<result column="address" property="address"/>
+		<result column="zip_code" property="zipCode"/>
+		<result column="qq" property="qq"/>
+		<result column="account" property="account"/>
+		<result column="start_date" property="startDate"/>
+		<result column="term" property="term"/>
+		<result column="is_risk_tested" property="isRiskTested"/>
+		<result column="update_user" property="updateUser"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="institution_id" property="institutionId" /> 
+		<result column="area_id" property="areaId" />  
+	</resultMap>  
+	<resultMap id="PurchaseDetails" type="com.dixin.finance.product.vo.PurchaseVO">
+		<id column="Id" property="id"/>
+		<result column="user_id" property="userId"/>  
+		<result column="product_id" property="productId"/>
+		<result column="buy_date" property="buyDate"/>
+		<result column="volume" property="volume"/>  
+		<result column="amount" property="amount"/>  
+		<result column="institution_id" property="institutionId"/>  
+		<result column="pnl" property="pnl"/>
+		<result column="has_receipt" property="hasReceipt"/>
+		<result column="status" property="status"/>
+		<result column="create_user" property="createUser"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_user" property="updateUser"/>
+		<result column="update_time" property="updateTime"/>
+		<association property="user" column="id" resultMap="userResult"/>
+	</resultMap> 
+	
+  <select id="queryPurchaseDetails" parameterType="int" resultMap="PurchaseDetails" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
+		SELECT purchase.id as Id , 
+		purchase.*,
+		user.*
+		FROM `purchase` left join user on purchase.user_id=user.id
+		WHERE purchase.product_id=#{productId}
+		order by purchase.buy_date desc 
+  </select>
+
 
   <select id="queryPurchase" parameterType="int" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
 		select id id,

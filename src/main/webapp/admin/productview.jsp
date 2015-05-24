@@ -12,7 +12,7 @@
 </head>
 <body>
 <!---TOP头部共用部份---->
-<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
 
 <div id="main_body">
@@ -114,7 +114,7 @@
         <c:if test="${product.profitId == 43}">
         	<td width="0%" align="center" bgcolor="#FFFFFF">基金经理</td>
         	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>
-        	<a href="${product.fundManagerUrl}" target="_blank"> ${product.fundManager}</a>
+        	<c:out value="${product.fundManagerHtml}" escapeXml="false" />
         	</strong></td>
         </c:if>        
       </tr>

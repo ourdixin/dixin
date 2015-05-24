@@ -30,7 +30,7 @@
               <thead>
               <tr>
               <th>产品名称</th>
-              <th>金额</th>
+              <th>金额(万)</th>
               <th>联系人</th>
               <th>发布时间</th>
               <th>有效性</th>

@@ -23,7 +23,7 @@
 </head>
 <body>
 	<!---TOP头部共用部份---->
-	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
 
 	<div id="main_body">
@@ -32,6 +32,7 @@
 				<form id="addForm" name="addproductForm" method="post"
 					action="<%=request.getContextPath()%>/product/addsalesdata">
 					<!-- token:token/ -->
+					<input  name="userId" id="userId" value="${param.userid}" type="hidden" />
 					<table>
 						<tbody>
 							<tr width="100%">
