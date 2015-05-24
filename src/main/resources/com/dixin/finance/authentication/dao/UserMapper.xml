@@ -85,7 +85,7 @@
 	    update_user updateUser,
 	    update_time updateTime
 	FROM
-	    user
+	    user where user_type!=25  
   </select>
   
   <select id="selectLoginUser" parameterType="map" resultType="com.dixin.finance.authentication.vo.UserVO">
@@ -146,6 +146,9 @@
 		</if>
 		<if test="financialInstitution!=null">
 			institution_id=#{financialInstitution.id},
+		</if>
+		<if test="authType!=null">
+			auth_type=#{authType},
 		</if>
 		update_user=0,
 		update_time=SYSDATE()

@@ -165,6 +165,15 @@ public class AuthenManagerController {
 		return webResult;
 	}	
 	
+	/**
+	 * 查询所有用户
+	 * @param pageNum
+	 * @param pageSize
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/admin/findAllUser",method=RequestMethod.GET)
 	public String findAllUser(Integer pageNum,Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
 		
@@ -173,6 +182,34 @@ public class AuthenManagerController {
 		if(pageSize == null)
 			pageSize = 10;
 		
+		PageHelper.startPage(pageNum, pageSize);
+		List<UserVO> users = userServiceImpl.findAllUser();
+		PageInfo<AssignmentVO> pageinfoList = new PageInfo(users);
+		model.addAttribute("userList", pageinfoList);
+		return "/admin/user";
+	}
+	
+	/**
+	 * 修改用户认证状态
+	 * @param authType
+	 * @param pageNum
+	 * @param pageSize
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/admin/updateAuthType",method=RequestMethod.GET)
+	public String updateAuthType(Integer id,Integer authType,Integer pageNum,Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		UserVO userVO = new UserVO();
+		
+		userVO.setAuthType(authType);
+		userVO.setId(id);
+		userServiceImpl.updateUser(userVO);
 		PageHelper.startPage(pageNum, pageSize);
 		List<UserVO> users = userServiceImpl.findAllUser();
 		PageInfo<AssignmentVO> pageinfoList = new PageInfo(users);
