@@ -12,7 +12,7 @@
 		<div id="main_left">
 			<ul>
 				<dt>后台管理</dt>
-<dd><a href="<%=request.getContextPath()%>/admin/appointment.jsp"><img src="<%=request.getContextPath()%>/images/ico_14.png" width="20" height="20" />客户产品预约</a></dd>
+<dd><a href="<%=request.getContextPath()%>/admin/appointment"><img src="<%=request.getContextPath()%>/images/ico_14.png" width="20" height="20" />客户产品预约</a></dd>
 <dd><a href="<%=request.getContextPath()%>/admin/SalesData.jsp"><img src="<%=request.getContextPath()%>/images/ico_16.png" width="20" height="20" />产品销售数据</a></dd>
 <dd><a href="<%=request.getContextPath()%>/admin/message"><img src="<%=request.getContextPath()%>/images/ico_11.png" width="20" height="20" />客户在线留言</a></dd>
 <dd><a href="<%=request.getContextPath()%>/admin/findAllUser"><img src="<%=request.getContextPath()%>/images/ico_07.png" width="20" height="20" />客户管理</a></dd>

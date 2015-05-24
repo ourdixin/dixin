@@ -7,7 +7,7 @@ $(document).ready(function(){
     //ue.setContent(productInfo);
     ue.addListener("ready", function () {
         // editor准备好之后才可以使用
-    	ue.setContent(productInfo);
+    	ue.setContent($("#productInfo").html());
     });    
     function isFocus(e){
         alert(UE.getEditor('editor').isFocus());

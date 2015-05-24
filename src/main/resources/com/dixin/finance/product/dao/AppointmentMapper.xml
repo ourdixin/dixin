@@ -14,6 +14,9 @@
 		product_id,
 		msg,
 		tel,
+		purchase_id,
+		first_contact_id,
+		constant,
 		create_user,
 		create_time,
 		update_user,
@@ -25,6 +28,9 @@
 		#{product.id},
 		#{msg},
 		#{tel},
+		#{purchase.id},
+		#{contact.id},
+		#{constant},
 		0,
 		SYSDATE(),
 		0,
@@ -87,5 +93,103 @@
 			reservation.update_time updateTime
 		from reservation,product where reservation.product_id = product.id and user_id = #{userId}
   </select>
-    
+  
+  <!-- ************************************whb**************************************** -->
+  <resultMap  id="contact" type="com.dixin.finance.product.vo.ContactRecordVO">
+		<id column="d_id" property="id"/>
+		<result column="d_contact_id" property="contactId"/>
+		<result column="d_record" property="record"/>
+		<association property="lastContactRecordVO" column="d_last_contact_id" resultMap="lastcontact"/>		  
+  </resultMap>
+  <resultMap  id="lastcontact" type="com.dixin.finance.product.vo.ContactRecordVO">
+		<id column="e_id" property="id"/>
+		<result column="e_record" property="record"/>
+	</resultMap>
+  
+  <resultMap  id="product" type="com.dixin.finance.product.vo.ProductVO">
+		<id column="c_id" property="id"/>
+		<result column="c_name" property="name"/>
+		<result column="c_code" property="code"/>
+  </resultMap>
+   <!-- 
+   <resultMap  id="purchase" type="com.dixin.finance.product.vo.PurchaseVO">
+		<id column="id" property="id"/>
+		<result column="buy_date" property="buyDate"/>
+		<result column="volume" property="volume"/>
+		<result column="amount" property="amount"/>
+		<result column="institution_id" property="institutionId"/>
+		<result column="pnl" property="pnl"/>
+  </resultMap>
+   -->
+<resultMap  id="user" type="com.dixin.finance.authentication.vo.UserVO">
+		<id column="b_id" property="id"/>
+		<result column="b_mobile" property="mobile"/>
+		<result column="b_name" property="name"/>
+		<result column="b_user_name" property="userName"/>
+  </resultMap>
+  <resultMap id="appointmentMap" type="com.dixin.finance.product.vo.AppointmentVO">  
+		<id column="a_id" property="id"/>
+		<result column="a_user_id" property="userId"/>
+		<result column="a_reserve_date" property="reserve_date"/>
+		<result column="a_amount" property="amount"/>
+		<result column="a_tel" property="tel"/>
+		<result column="a_msg" property="msg"/>
+		<result column="a_constant" property="constant"/>
+		<result column="a_create_user" property="createUser"/>
+		<result column="a_create_time" property="createTime"/>
+		<result column="a_update_user" property="updateUser"/>
+		<result column="a_update_time" property="updateTime"/>
+		<association property="product" column="a_product_id" resultMap="product"/>
+		<association property="user" column="a_user_id" resultMap="user"/>
+		<association property="contact" column="first_contact_id" resultMap="contact"/>
+		<!-- association property="purchase" column="purchase_id" resultMap="purchase"/-->  
+	</resultMap>  
+	
+	<select id="queryAllAppointmentList"  resultMap="appointmentMap">
+	
+		select 	
+				a.id as a_id,
+				a.user_id as a_user_id,
+				a.reserve_date as a_reserve_date,
+				a.product_id as a_product_id,
+				a.amount as a_amount,
+				a.tel as a_tel,
+				a.msg as a_msg,
+				a.purchase_id as a_purchase_id,
+				a.first_contact_id as a_first_contact_id,
+				a.constant as a_constant,
+				a.create_user as a_create_user,
+				a.create_time as a_create_time,
+				a.update_user as a_update_user,
+				a.update_time as a_update_time,
+				b.id as b_id,
+				b.name as b_name,
+				b.user_name as b_user_name,
+				c.id as c_id,
+				c.name as c_name,
+				c.code as c_code,
+				d.id as d_id,
+				d.contact_id  as d_contact_id,
+				d.record as d_record,
+				d.last_contact_id as d_last_contact_id,
+				e.id as e_id,
+				e.record as e_record
+				
+		from
+				reservation a inner join user b on a.user_id = b. id
+					inner join product c on a.product_id = c.id
+						left join contact_record d on a.first_contact_id = d.id and d.contact_id = -1
+							left join contact_record e on d.last_contact_id = e.id 	
+							order by a.create_time desc		
+	</select>   
+	<!-- 更新第一条联系记录id -->
+	<update id="setFirstContactId" parameterType="map">
+		update reservation set first_contact_id = #{firstContactId} where id=#{appointmentId}
+	</update>
+	
+	
+	<!-- 设置购买状态 -->
+	<update id="setConstant"  parameterType="map">
+		update reservation set constant = #{Constant} where id = #{reservationId}
+	</update>
 </mapper>

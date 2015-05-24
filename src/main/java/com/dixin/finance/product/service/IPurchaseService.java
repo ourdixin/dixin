@@ -15,5 +15,5 @@ public interface IPurchaseService {
 	public abstract PurchaseVO queryPurchase(int Id);
 	public abstract void addPurchase(PurchaseVO purchaseVo);
 	public abstract List<PurchaseStatisticsVO> queryPurchaseStatistics();
-	public List<PurchaseVO> queryPurchaseDetails(int productId);
+	public abstract List<PurchaseVO> queryPurchaseDetails(int productId);
 }

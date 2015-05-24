@@ -90,7 +90,7 @@
 	
 	<!-- 根据初始留言的id 查找相关留言 -->
 	<resultMap  id="userMap" type="com.dixin.finance.authentication.vo.UserVO">
-		<id column="id" property="id"/>
+		<id column="userid" property="id"/>
 		<result column="user_name" property="userName"/>
 		<result column="name" property="name"/>
 		<result column="user_type" property="userType"/>
@@ -108,12 +108,13 @@
 		<result column="create_time" property="createTime"/>
 		<result column="update_user" property="updateUser"/>
 		<result column="update_time" property="updateTime"/>
-		<association property="userVO" column="user_id" resultMap="userMap"/> 
+		<association property="userVO" column="userid" resultMap="userMap"/> 
 	</resultMap> 
 	
 	<select id="selectMsgsByInitialId"  parameterType="Integer" resultMap="selectSameMessage">
 		select 
 				a.* ,
+				b.id as userid,
 				b.* from message a, user b where a.user_id = b.id and (a.id=#{id} || a.msg_id = #{id}) 
 		order by a.msg_time desc
 	</select>

@@ -70,6 +70,7 @@ public class PurchaseVO extends BaseVO {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date updateTime= new Date(); // 更新时间',
+	
 		
 
 	public Integer getId() {
