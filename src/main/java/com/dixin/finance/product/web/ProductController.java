@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.constant.ProductTypeConstant;
@@ -73,7 +74,8 @@ public class ProductController {
 
 	@Resource(name="PurchaseServiceImpl")
 	private IPurchaseService purchaseServiceImpl;	
-	
+	@Resource
+	private IUserService userServiceImpl;
 	@RequestMapping(value="/products", method=RequestMethod.GET)
 	public @ResponseBody BaseWebResult queryProductList(ProductQueryParameter parameter, HttpSession session){
 
@@ -201,6 +203,10 @@ public class ProductController {
 		product.setMinAmount(minAmount);
 		product.setAppendAmount(appendAmount);
 		product.setInfo(editorValue);
+		product.setPartA(product.getPartA() * 10000);
+		product.setPartB(product.getPartB() * 10000);
+		product.setPartC(product.getPartC() * 10000);
+		product.setPartD(product.getPartD() * 10000);
 		productService.addProduct(product);
 		
 		webResult.setSuccess(true);
@@ -228,6 +234,12 @@ public class ProductController {
 		product.setMinAmount(minAmount);
 		product.setAppendAmount(appendAmount);
 		product.setInfo(editorValue);
+		
+		product.setPartA(product.getPartA() * 10000);
+		product.setPartB(product.getPartB() * 10000);
+		product.setPartC(product.getPartC() * 10000);
+		product.setPartD(product.getPartD() * 10000);
+		
 		productService.updateProduct(product);
 		
 		webResult.setSuccess(true);

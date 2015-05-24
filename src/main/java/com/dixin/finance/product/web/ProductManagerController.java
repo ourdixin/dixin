@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IAssignmentService;
@@ -58,7 +59,17 @@ public class ProductManagerController {
 	@Resource(name="productServiceImpl")
 	private IProductService productService;
 	
+	@Resource
+	private IUserService userServiceImpl;
 	
+	public IUserService getUserServiceImpl() {
+		return userServiceImpl;
+	}
+
+	public void setUserServiceImpl(IUserService userServiceImpl) {
+		this.userServiceImpl = userServiceImpl;
+	}
+
 	public IProductService getProductService() {
 		return productService;
 	}
@@ -100,7 +111,7 @@ public class ProductManagerController {
 	}
 
 	@RequestMapping(value="/admin/addsalesdata")
-	public @ResponseBody BaseWebResult addSalesData(PurchaseVO purchaseVo,String backurl,HttpSession session,Model model,HttpServletRequest request){
+	public @ResponseBody BaseWebResult addSalesData(PurchaseVO purchaseVo,Integer userId,String backurl,HttpSession session,Model model,HttpServletRequest request){
 		BaseWebResult webResult = new BaseWebResult();
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
@@ -113,7 +124,15 @@ public class ProductManagerController {
 			return webResult;
 		}
 		
-		purchaseVo.setUserId(userVO.getId());
+		UserVO customer = userServiceImpl.findUserById(userId);
+		if(customer == null || userId == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("添加失败！");
+			return webResult;
+		}			
+		
+		purchaseVo.setUserId(userId);
 		purchaseVo.setAmount(purchaseVo.getAmount() * 10000);
 		purchaseVo.setPnl(0d);
 		purchaseServiceImpl.addPurchase(purchaseVo);

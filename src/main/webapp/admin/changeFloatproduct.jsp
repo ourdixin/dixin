@@ -181,7 +181,7 @@ div {
 							</tr>
 							<tr>
 								<td colspan="4"><center>
-										<span class="bnt_ok">添加</span>
+										<span class="bnt_ok">更新</span>
 									</center></td>
 							</tr>
 						</tbody>

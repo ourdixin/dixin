@@ -82,10 +82,10 @@ div {
 							<tr>
 								<td class="t">投资起点：</td>
 								<td><input class="itstyle lt it" id="minAmount"
-									name="minAmount" value="" type="text" />(单位:万)</td>
+									name="minAmount" value="" type="text" />(单位:万元)</td>
 								<td class="t">递增金额：</td>
 								<td><input class="itstyle lt it" id="appendAmount"
-									name="appendAmount" value="" type="text" />(单位:万)</td>
+									name="appendAmount" value="" type="text" />(单位:万元)</td>
 							</tr>
 							<tr hidden>
 								<!--  td class="t">续存：</td>
