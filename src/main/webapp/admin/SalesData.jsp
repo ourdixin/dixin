@@ -24,7 +24,7 @@
 							<th>类型</th>
 							<th>购买人数</th>
 							<th>购买份额</th>
-							<th>销售金额/万元</th>
+							<th>销售金额</th>
 							<th>状态</th>
 							<th>备注</th>
 							<th width=50>操作</th>
@@ -52,7 +52,7 @@
 								<# } #>
 							</td>
 							<td>无</td>
-							<td><span><a href="<%=request.getContextPath()%>/admin/SalesData-detail?id=<#=list[i].productId#>">明细</a></span></td>
+							<td><span><a href="<%=request.getContextPath()%>/admin/SalesData-detail.jsp?id=<#=list[i].productId#>">明细</a></span></td>
 						</tr>
 					<# } #>
 					</tbody>

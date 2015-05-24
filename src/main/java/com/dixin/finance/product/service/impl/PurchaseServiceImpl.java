@@ -26,9 +26,10 @@ public class PurchaseServiceImpl implements IPurchaseService {
 	private PurchaseMapper purchaseMapper;	
 	
 	@Override
-	public List<PurchaseVO> queryPurchaseList(int userId,int profitType) {
+	public List<PurchaseVO> queryPurchaseList(int userId,int profitType,int productId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);	
+		map.put("productId", productId);	
 		map.put("profitType", profitType);
 		return purchaseMapper.queryPurchaseList(map);
 	}
@@ -47,6 +48,12 @@ public class PurchaseServiceImpl implements IPurchaseService {
 	@Override
 	public List<PurchaseStatisticsVO> queryPurchaseStatistics() {
 		return purchaseMapper.queryPurchaseStatistics();
+	}
+
+	@Override
+	public List<PurchaseVO> queryPurchaseDetails(int productId) {
+		
+		return purchaseMapper.queryPurchaseDetails(productId);
 	}
 
 }

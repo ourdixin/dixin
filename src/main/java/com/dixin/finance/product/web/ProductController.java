@@ -551,7 +551,7 @@ public class ProductController {
 	
 	public PageInfo<PurchaseVO> GetPurchaseList(Integer userId, Integer pageNum, Integer pageSize,Integer profitType){
 	    PageHelper.startPage(pageNum, pageSize);
-	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType);
+	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType,-1);
 	    return new PageInfo(purchaseList);
 	}	
 	/***********************************根据初始留言ID显示相关所有留言****************************************/

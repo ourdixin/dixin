@@ -7,6 +7,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.constant.PurchaseStatusConstant;
 import com.dixin.framework.base.vo.BaseVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,6 +22,7 @@ public class PurchaseVO extends BaseVO {
 	private Integer id;
 	
 	private Integer userId;
+	private UserVO user; 	//购买的用户
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
@@ -110,6 +112,14 @@ public class PurchaseVO extends BaseVO {
 
 	public ProductVO getProduct() {
 		return product;
+	}
+
+	public UserVO getUser() {
+		return user;
+	}
+
+	public void setUser(UserVO user) {
+		this.user = user;
 	}
 
 	public void setProduct(ProductVO product) {

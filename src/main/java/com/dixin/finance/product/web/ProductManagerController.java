@@ -169,6 +169,33 @@ public class ProductManagerController {
 		
 		return webResult;
 	}
+	@RequestMapping(value="/admin/SalesDataDetail")
+	public @ResponseBody BaseWebResult getSalesDataDetail(Integer id,String backurl,Integer pageNum,Integer pageSize,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setUrl(backurl);
+			webResult.setMsg("请先登录！");
+			return webResult;
+		}
+		
+		if(pageNum == null)
+			pageNum = 0;
+		if(pageSize == null)
+			pageSize =	10;	
+		
+		PageHelper.startPage(pageNum, pageSize);
+		List<PurchaseVO> PurchaseList = purchaseServiceImpl.queryPurchaseDetails(id);
+		PageInfo<PurchaseVO> result = new PageInfo(PurchaseList);
+		webResult.setResult(result);
+		webResult.setSuccess(true);
+		
+		return webResult;
+	}
 	
 	/***********************************产品转让管理**********************************************/
 	@RequestMapping(value="/product/manager/assignment")
