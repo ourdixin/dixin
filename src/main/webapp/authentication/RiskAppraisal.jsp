@@ -9,7 +9,8 @@
 <link href="<%=request.getContextPath() %>/css/LTT_define.css"
      rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-1.4.2.min.js"></script>
-<script type="<%=request.getContextPath() %>/text/javascript" src="js/js.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/js.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/RiskAppraisal.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
@@ -53,7 +54,7 @@
   本公司提醒你：本公司根据您提供的信息对您进行风险承受能力评估，开展适当性工作。您应当如实提供相关信息及证明材料，并对所提供的信息和证明材料的真实性、准确性、完整性负责。<br>
   本公司建议：当您的各项状况发生重大变化时，需对您所投资的金融产品及时进行重新审视，以确保您的投资决定与您可承受的投资风险程度等实际情况一致。<br>
   本公司在此承诺，对于您在本问卷中所提供的一切信息，本公司将严格按照法律法规要求承担保密义务。除法律法规规定的有权机关依法定程序进行查询外，本公司保证不会将涉及您的任何信息提供、泄漏给第三方或者将相关信息用于违法、不当用途。</div>
-<div>
+<div id=question1>
   <table width="698" border="0" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
@@ -66,7 +67,7 @@
       </tr>
       <tr>
         <td> </td>
-        <td><div>
+        <td><div >
           <ul>
             <li>
               <input type="radio" name="w1" id="w1" value="1,4">
@@ -86,7 +87,7 @@
     </tbody>
   </table>
 </div>
-<div>
+<div id=question2>
   <table width="698" border="0" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
@@ -118,7 +119,7 @@
     </tbody>
   </table>
 </div>
-<div>
+<div id=question3>
   <table width="698" border="0" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
@@ -175,7 +176,7 @@
   </table>
 </div>
 -->
-<div>
+<div id=question4>
   <table width="698" border="0" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
@@ -222,7 +223,7 @@
     </tbody>
   </table>
 </div>
-<div>
+<div id=question5>
   <table width="698" border="0" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
@@ -254,7 +255,7 @@
     </tbody>
   </table>
 </div>
-<div>
+<div id=question6>
   <table width="698" border="0" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
@@ -286,7 +287,7 @@
     </tbody>
   </table>
 </div>
-<div>
+<div id=question7>
   <table width="698" border="0" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
@@ -352,7 +353,7 @@
   </table>
 </div>
 -->
-<div>
+<div id=question8>
   <table width="698" border="0" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
@@ -381,7 +382,7 @@
     </tbody>
   </table>
 </div>
-<div>
+<div id=question9>
   <table width="698" border="0" cellspacing="0" cellpadding="0">
     <tbody>
       <tr>
