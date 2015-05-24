@@ -185,7 +185,8 @@
 		<result column="zipCode" property="zipCode"/>
 		<result column="qq" property="qq"/>
 		<result column="account" property="account"/>
-		<result column="start_date" property="startDate"/>
+		<result column="startDate" property="startDate"/>
+		<result column="regDate" property="regDate"/>
 		<result column="term" property="term"/>
 		<result column="isRiskTested" property="isRiskTested"/>
 		<result column="update_user" property="updateUser"/>
@@ -213,6 +214,7 @@
 	    area.id aid,
 	    area.name aname,
 	    u.start_date startDate,
+	    u.reg_date regDate,
 	    u.term term,
 	    u.is_risk_tested isRiskTested
 		FROM
