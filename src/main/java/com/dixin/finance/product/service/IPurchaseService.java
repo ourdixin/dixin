@@ -9,4 +9,5 @@ public interface IPurchaseService {
 
 	public abstract List<PurchaseVO> queryPurchaseList(int userId,int profitType);
 	public abstract PurchaseVO queryPurchase(int Id);
+	public void insert(PurchaseVO purchase);
 }

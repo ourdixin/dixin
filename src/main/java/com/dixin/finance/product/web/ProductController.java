@@ -390,8 +390,11 @@ public class ProductController {
 		}			
 		
 		ProductVO product = new ProductVO();
+		PurchaseVO purchase = new PurchaseVO();
+		purchase.setId(-1);
 		product.setId(String.valueOf(productId));
 		appointment.setProduct(product);
+		appointment.setPurchase(purchase);
 		appointment.setUserId(userVO.getId());
 		appointmentService.insertAppointment(appointment);
 		webResult.setSuccess(true);

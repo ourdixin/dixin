@@ -1,6 +1,8 @@
 package com.dixin.finance.product.service.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 
@@ -30,6 +32,29 @@ public class AppointmentServceImpl implements IAppointmentService {
 	@Override
 	public List<AppointmentVO> queryUserAppointmentList(int userId) {
 		return appointmentMapper.queryUserAppointmentList(userId);
+	}
+
+	@Override
+	public List<AppointmentVO> queryAllAppointmentList() {
+		return appointmentMapper.queryAllAppointmentList();
+	}
+
+	@Override
+	public void setFirstContactId(Integer firstContactId, Integer appointmentId) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("firstContactId", firstContactId);
+		map.put("appointmentId", appointmentId);
+		appointmentMapper.setFirstContactId(map);
+		
+	}
+
+	@Override
+	public void setConstant(Integer reservationId, Integer Constant) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("reservationId", reservationId);
+		map.put("Constant", Constant);
+		appointmentMapper.setConstant(map);
+		
 	}
 	
 	

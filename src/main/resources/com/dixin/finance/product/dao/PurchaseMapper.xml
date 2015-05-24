@@ -171,7 +171,7 @@
 	values(
 		#{userId},
 		#{buyDate},
-		#{productId},
+		#{product.id},
 		#{volume},	
 		#{amount},
 		#{institutionId},

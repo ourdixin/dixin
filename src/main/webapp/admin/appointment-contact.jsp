@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,27 +21,37 @@
 
 <div class="main_width">
 <div class="con_table">
-<table width="100%">
-  <thead>
-  <tr>
-    <th>联系时间</th>
-  <th>联系人</th>
-  <th>联系记录</th>
-  </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td>2015年3月5日</td>
-        <td>张三</td>
-        <td>想要预约产品</td>
-        </tr>
-      <tr>
-        <td>2015年3月5日</td>
-        <td>张三</td>
-        <td>未联系上</td>
-        </tr>
-      </tbody>
-        </table>
+	<c:choose>
+		<c:when test="${empty list}">
+			<span style="color:red;font-family:微软雅黑">暂时没有联系记录，请稍后查看！</span>
+		</c:when>
+		<c:otherwise>
+			<table width="100%">
+  				<thead>
+  					<tr>
+    					<th>联系时间</th>
+  						<th>联系人</th>
+  						<th>联系记录</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<c:forEach var="contact" items="${list}">
+  						<tr>
+  							<td>
+  								<fmt:formatDate value="${contact.contactTime}" pattern="yyyy年MM月dd日"/>
+  							</td>
+  							<td>
+  								${contact.user.name}
+  							</td>
+  							<td>
+  								${contact.record}
+  							</td>
+  						</tr>
+  					</c:forEach>
+  				</tbody>
+      	 	</table>
+		</c:otherwise>
+	</c:choose>
 
 </div>
 </div>

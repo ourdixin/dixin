@@ -22,5 +22,17 @@ public interface IAppointmentService {
 	 * 查询用户产品预定信息
 	 * @return
 	 */
-	public List<AppointmentVO> queryUserAppointmentList(int userId);	
+	public List<AppointmentVO> queryUserAppointmentList(int userId);
+	/**
+	 * 后台查询所有预约信息
+	 */
+	public List<AppointmentVO> queryAllAppointmentList();
+	/**
+	 *  设置第一条留言id
+	 */
+	public void setFirstContactId(Integer firstContactId,Integer appointmentId);
+	/**
+	 * 设置状态
+	 */
+	public void setConstant(Integer reservationId,Integer Constant);
 }
