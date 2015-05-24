@@ -19,14 +19,14 @@
 <!---TOP结束---->
 <div id="main_body">
 <div id="title_xi"></div>
-<div id="title_font">121金融网站会员登录</div>
+<div id="title_font">121金融网站后台登录</div>
 <div class="register">
 <div class="info_frm">
 <form id="loginForm">
 <input type="hidden" name="backurl" value="${backurl}" />
 <table>
       <tbody><tr>
-        <td class="t" width="15%">您的帐号： </td>
+        <td class="t" width="15%">管理员帐号： </td>
         <td width="85%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ><div class="input-r-tips lt"></div></td>
       </tr>
       <tr>
