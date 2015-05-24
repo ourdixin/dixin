@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.product.dao.ContactRecordMapper">
+	<!-- 插入联系记录 -->
+	<insert id="insert" parameterType="com.dixin.finance.product.vo.ContactRecordVO">
+		insert into contact_record(
+			contact_id,
+			user_id,
+			contact_time,
+			record,
+			last_contact_id,
+			create_user,
+			create_time,
+			update_user,
+			update_time
+			)
+			values(
+			#{contactId},
+			#{user.id},
+			SYSDATE(),
+			#{record},
+			#{lastContactRecordVO.id},
+			0,
+			SYSDATE(),
+			0,
+			SYSDATE()
+			)
+				
+	</insert>
+	
+	
+	<!-- 查询一组留言 -->
+	
+	<resultMap  id="user" type="com.dixin.finance.authentication.vo.UserVO">
+		<result column="userid" property="id"/>
+		<result column="mobile" property="mobile"/>
+		<result column="name" property="name"/>
+		<result column="user_name" property="userName"/>
+  	</resultMap>
+  	<resultMap  id="contact" type="com.dixin.finance.product.vo.ContactRecordVO">
+		<id column="contactid" property="id"/>
+		<result column="contact_id" property="contactId"/>
+		<result column="record" property="record"/>
+		<result column="contact_time" property="contactTime"/>
+		<result column="create_user" property="createUser"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_user" property="updateUser"/>
+		<result column="update_time" property="updateTime"/>
+		<association property="user" column="userid" resultMap="user"/>
+  	</resultMap>
+  	
+  	<select id="query" parameterType="Integer" resultMap="contact">
+  		select user.id as userid, user.*,contact_record.id as contactid ,contact_record.* from user ,contact_record
+  			 where user.id = contact_record.user_id and 
+  			 	(contact_record.id=#{firstContactId} || contact_record.contact_id=#{firstContactId})
+  	</select>
+  	
+	<!-- 更新最后留言id -->
+	<update id="updateLastContactId" parameterType="map">
+		update contact_record  set last_contact_id = #{lastContactId} where id=#{firstContactId}
+	</update>
+	
+	<!-- 下一条自增id -->
+	<select id="nextId" resultType="Integer">
+		select AUTO_INCREMENT from INFORMATION_SCHEMA.TABLES   where TABLE_NAME='contact_record'  
+	</select>
+</mapper>

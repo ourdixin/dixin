@@ -182,7 +182,7 @@ public class ProductManagerController {
 	/**************添加预约进程信息***********************************/
 	@RequestMapping(value="admin/appointment-deal")
 	public @ResponseBody BaseWebResult addReservationProcess(Model model,HttpSession session,HttpServletRequest request,
-			Integer reservationId,Integer userId,String productId,Integer option,
+			Integer reservationId,Integer userId,Integer productId,Integer option,
 			@DateTimeFormat(pattern="yyyy-MM-dd")Date buyDate,Double amount,Integer volume,String info,String reason){
 		logger.info("客户产品预约（处理）");
 		BaseWebResult webResult = new BaseWebResult();
@@ -205,9 +205,9 @@ public class ProductManagerController {
 			PurchaseVO purchase = new PurchaseVO();
 			purchase.setUserId(userId);
 			purchase.setBuyDate(buyDate);
-			ProductVO product = new ProductVO();
-			product.setId(productId);
-			purchase.setProduct(product);
+			//ProductVO product = new ProductVO();
+			//product.setId(productId);
+			//purchase.setProduct(product);
 			purchase.setVolume(volume);
 			purchase.setAmount(amount);
 			purchase.setPnl(0.0);
