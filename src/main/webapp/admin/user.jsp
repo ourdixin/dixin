@@ -55,7 +55,7 @@
 									</c:otherwise>
 								</c:choose>
 								<td width="8%"><span><a href="<%=request.getContextPath()%>/admin/updateAuthType?id=${user.id}&authType=1">通过</a></span><i><a href="<%=request.getContextPath()%>/admin/updateAuthType?id=${user.id}&authType=0">拒绝</a></i></td>
-								<td><span><a href="#">详细</a></span></span><i><a href="<%=request.getContextPath()%>/admin/addsalesdata.jsp?userid=${user.id}">添加产品</a></i></td>
+								<td><span><a href="<%=request.getContextPath()%>/admin/userDetail?id=${user.id}">详细</a></span></span><i><a href="<%=request.getContextPath()%>/admin/addsalesdata.jsp?userid=${user.id}">添加产品</a></i></td>
 							</tr>
 						</c:forEach>	
 						</tbody>

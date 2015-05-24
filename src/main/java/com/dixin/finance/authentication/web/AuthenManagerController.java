@@ -216,4 +216,22 @@ public class AuthenManagerController {
 		model.addAttribute("userList", pageinfoList);
 		return "/admin/user";
 	}
+	
+	/**
+	 * 用户详细信息管理
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/admin/userDetail",method=RequestMethod.GET)
+	public String userDetail(Integer id,Model model,HttpSession session,HttpServletRequest request){
+		//用户基本信息
+		UserVO userVO = userServiceImpl.findUserById(id);
+		model.addAttribute("user", userVO);
+		//产品购买信息
+		//产品成交信息
+		//在线留言
+		return "/admin/userDetail";
+	}
 }
