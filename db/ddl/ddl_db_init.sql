@@ -3941,7 +3941,7 @@ CREATE TABLE IF NOT EXISTS `purchase` (
   `update_user` int(11) NOT NULL COMMENT '更新人',
   `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `state` (`status`)
+  KEY `status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -3958,6 +3958,8 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `tel` varchar(16) NOT NULL COMMENT '预约手机号码',
   `amount` double NOT NULL COMMENT '预约金额',
   `msg` text NOT NULL COMMENT '预约留言',
+  `constant` int(11) NOT NULL COMMENT '状态',
+  `first_contact_id` int(11) NOT NULL DEFAULT '-1' COMMENT '第一个联系id',
   `purchase_id` int(11) NOT NULL DEFAULT '-1' COMMENT '产品购买ID',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
@@ -4027,13 +4029,56 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `fm_id` (`fm_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
+
+--
+-- 表的结构 `contact_record`
+--
+
+CREATE TABLE IF NOT EXISTS `contact_record` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一id',
+  `contact_id` int(11) NOT NULL COMMENT '维护联系id',
+  `user_id` int(11) NOT NULL COMMENT '用户id',
+  `contact_time` datetime NOT NULL COMMENT '联系时间',
+  `record` text COMMENT '记录',
+  `last_contact_id` int(11) NOT NULL COMMENT '最后一次联系id',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `contact_id` (`contact_id`),
+  KEY `user_id` (`user_id`),
+  KEY `last_contact_id` (`last_contact_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
--- 初始化超管用户
+-- 表的结构 `reservation_process`
 --
 
-insert into `user`(user_name, password, user_type, enabled, reg_date, mobile, create_user, create_time, update_user, update_time) values('root', PASSWORD('ourdixn521'), 0, 0, SYSDATE(), 0, 0, SYSDATE(), 0, SYSDATE());
+CREATE TABLE IF NOT EXISTS `reservation_process` (
+`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一id',
+  `date` datetime NOT NULL COMMENT '进程时间',
+  `reservation_id` int(11) NOT NULL COMMENT '预约id',
+  `state` int(11) NOT NULL COMMENT '状态',
+  `info` text NOT NULL COMMENT '信息',
+  `create_user` int(11) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` int(11) NOT NULL COMMENT '更新人',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `date` (`date`),
+  KEY `reservation_id` (`reservation_id`),
+  KEY `state` (`state`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+-- --------------------------------------------------------
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

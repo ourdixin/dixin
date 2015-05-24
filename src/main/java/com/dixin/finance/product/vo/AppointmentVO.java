@@ -42,7 +42,7 @@ public class AppointmentVO extends BaseVO {
 	private Date updateTime; // 更新时间',
 	private UserVO user;//用户
 	private PurchaseVO purchase;//购买
-	private Integer constant;//预约状态
+	private Integer constant = -1;//预约状态
 	private ContactRecordVO contact;//第一条联系记录
 	
 	public int getId() {

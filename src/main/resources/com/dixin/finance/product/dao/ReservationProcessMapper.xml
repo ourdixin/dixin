@@ -6,7 +6,6 @@
 	<!--  -->
 	<insert id="insert"  parameterType="com.dixin.finance.product.vo.ReservationProcessVO">
 		insert into reservation_process(
-				id,
 				date,
 				reservation_id,
 				state,
@@ -17,7 +16,6 @@
 				update_time
 			)
 			values(
-				#{id},
 				SYSDATE(),
 				#{appointment.id},
 				#{state},

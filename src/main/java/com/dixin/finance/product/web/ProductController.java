@@ -38,6 +38,7 @@ import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.service.IPurchaseService;
 import com.dixin.finance.product.vo.AppointmentVO;
 import com.dixin.finance.product.vo.AssignmentVO;
+import com.dixin.finance.product.vo.ContactRecordVO;
 import com.dixin.finance.product.vo.PageDataItem;
 import com.dixin.finance.product.vo.ProductQueryParameter;
 import com.dixin.finance.product.vo.ProductVO;
@@ -437,10 +438,13 @@ public class ProductController {
 		
 		ProductVO product = new ProductVO();
 		PurchaseVO purchase = new PurchaseVO();
+		ContactRecordVO contact = new ContactRecordVO();
+		contact.setId(-1);
 		purchase.setId(-1);
 		product.setId(String.valueOf(productId));
 		appointment.setProduct(product);
 		appointment.setPurchase(purchase);
+		appointment.setContact(contact);
 		appointment.setUserId(userVO.getId());
 		appointmentService.insertAppointment(appointment);
 		webResult.setSuccess(true);
