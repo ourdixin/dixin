@@ -37,8 +37,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach var="user" items="${userList.list}"
-								varStatus="i">
+						<c:forEach var="user" items="${userList.list}" varStatus="i">
 							<tr>
 								<td><fmt:formatDate pattern="yyyy年MM月dd日" value="${user.regDate}" /></td>
 								<td>${user.name}</td>

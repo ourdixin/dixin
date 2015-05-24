@@ -366,18 +366,14 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach var="message" items="${messageList}" varStatus="i">
 							<tr>
-								<td>2015-3-15</td>
-								<td>张三</td>
+								<td><fmt:formatDate pattern="yyyy年MM月dd日" value="${message.msgTime}" /></td>
+								<td>${message.userVO.name}</td>
 								<td>产品预约</td>
 								<td>我有100万的产品需要转让，如何转让啊</td>
 							</tr>
-							<tr>
-								<td>2015-3-15</td>
-								<td>张三</td>
-								<td>产品转让</td>
-								<td>利润很高</td>
-							</tr>
+						</c:forEach>	
 						</tbody>
 					</table>
 
