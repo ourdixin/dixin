@@ -25,6 +25,7 @@
     <mvc:resources location="/tpl/" mapping="/tpl/**"></mvc:resources>
     <mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
     <mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
+    <mvc:resources location="/upload/" mapping="/upload/**"></mvc:resources>
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
 	

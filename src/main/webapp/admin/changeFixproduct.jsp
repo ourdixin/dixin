@@ -30,14 +30,15 @@ div {
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/ajaxfileupload.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";</script>
-<script type="text/javascript">	var productInfo = "${product.info}";</script>
 </script>
 </head>
 <body>
 	<!---TOP头部共用部份---->
 	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
-
+	<div id="productInfo" style="display: none">
+		${product.info}
+	</div>
 	<div id="main_body">
 		<div id="title_xi"></div>
 		<div class="register">
@@ -90,7 +91,7 @@ div {
 							<tr>
 								<td class="t">产品规模：</td>
 								<td><input class="itstyle lt it" id="amount" name="amount"
-									value="<fmt:formatNumber value="${product.amount/100000000}" minFractionDigits="0"/>" type="text" />(单位:亿)</td>
+									value="<fmt:formatNumber value="${product.amount/100000000}" groupingUsed="false" minFractionDigits="0"/>" type="text" />(单位:亿)</td>
 								<td class="t">资金投向：</td>
 								<td><select class="itstyle"
 									name="direction" id="direction">
@@ -109,10 +110,10 @@ div {
 							<tr>
 								<td class="t">投资起点：</td>
 								<td><input class="itstyle lt it" id="minAmount"
-									name="minAmount" value="<fmt:formatNumber value="${product.minAmount/10000}" minFractionDigits="0"/>" type="text" />(单位:万)</td>
+									name="minAmount" value="<fmt:formatNumber value="${product.minAmount/10000}" groupingUsed="false" minFractionDigits="0"/>" type="text" />(单位:万)</td>
 								<td class="t">递增金额：</td>
 								<td><input class="itstyle lt it" id="appendAmount"
-									name="appendAmount" value="<fmt:formatNumber value="${product.appendAmount/10000}" minFractionDigits="0"/>" type="text" />(单位:万)</td>
+									name="appendAmount" value="<fmt:formatNumber value="${product.appendAmount/10000}" groupingUsed="false" minFractionDigits="0"/>" type="text" />(单位:万)</td>
 							</tr>
 							<tr>
 								<td class="t">续存：</td>
@@ -190,14 +191,14 @@ div {
 							<tr>						
 							<td class="t">产品推介单页：</td>
 							<td>
-								<input hidden class="itstyle lt it" id="adFile" name="adFile" value="${product.adFile}" type="text" />
+								<input readonly="readonly" class="itstyle lt it" id="adFile" name="adFile" value="${product.adFile}" type="text" />
 								<input class="itstyle lt it" id="uploadadfile" name="uploadadfile" value="" type="file" />
 								<input id="submitad" type="button" value="上传文件">
 								<img id="adloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />
 							</td>
 							<td class="t" nowrap>定向客户指南：</td>
 							<td>
-								<input hidden class="itstyle lt it" id="guideFile" name="guideFile"	value="${product.guideFile}" type="text" />
+								<input readonly="readonly" class="itstyle lt it" id="guideFile" name="guideFile"	value="${product.guideFile}" type="text" />
 								<input class="itstyle lt it" id="uploadguidefile" name="uploadguidefile" value="" type="file" />
 								<input id="submitguide" type="button" value="上传文件">
 								<img id="guideloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />
