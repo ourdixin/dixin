@@ -1,5 +1,7 @@
 package com.dixin.finance.authentication.service;
 
+import java.util.List;
+
 import com.dixin.finance.authentication.vo.UserVO;
 
 public interface IUserService {
@@ -29,6 +31,12 @@ public interface IUserService {
 	 * @return
 	 */
 	UserVO findUserById(int user_id);
+	
+	/**
+	 * 查找所有用户
+	 * @return
+	 */
+	List<UserVO> findAllUser();
 	
 	/**
 	 * 修改用户信息
