@@ -79,7 +79,7 @@ public class AuthenticationController {
 	
 	
 	@RequestMapping(value="/authentication/user", method=RequestMethod.POST)
-	public @ResponseBody BaseWebResult register(UserVO userVO, String backurl, HttpSession session,HttpServletRequest request){
+	public @ResponseBody BaseWebResult register(UserVO userVO, String rpassword, String backurl, HttpSession session,HttpServletRequest request){
 		
 		if(backurl == null || backurl=="")
 			backurl=request.getContextPath()+"/";
@@ -88,7 +88,12 @@ public class AuthenticationController {
 		userVO.setEnabled(1);
 		logger.info("用户" + userVO.getUserName() + "注册开始");
 		BaseWebResult webResult = new BaseWebResult();
-		if(userServiceImpl.checkWithTel(userVO.getMobile()) > 0)
+		if(!rpassword.equals(userVO.getPassword()))
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("两次密码输入不一致!");			
+		}
+		else if(userServiceImpl.checkWithTel(userVO.getMobile()) > 0)
 		{
 			webResult.setSuccess(false);
 			webResult.setMsg("此手机号码已被注册!");
@@ -103,6 +108,7 @@ public class AuthenticationController {
 			webResult.setResult(userVO);
 			webResult.setMsg(backurl);
 		}
+		
 		return webResult;
 	}
 
