@@ -22,7 +22,8 @@
 	<!---用户左侧共用部份---->
 	<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
 	<!---用户左侧共用部份结束---->
-	<c:if test="${null != grade}"> 
+
+	<c:if test="${null != grade && 0 != grade}"> 
 <div id="main_right" style="background:#f1f1f1;">
 <div id="title_xi"></div>
 <div id="title_font">121金融合格投资人风险评测调查结果</div>
@@ -67,7 +68,7 @@
 			</td>
 		</tr>
 	</tfoot>
-	<td>如果您的评分结果与您的风险承受能力等级不匹配，您可以重新评测</td>
+	<td><br><strong style="font-size:14px;color:red;">如果您的评分结果与您的风险承受能力等级不匹配，您可以重新评测</strong><br></td>
 	</div>
 </div>
 </div>
