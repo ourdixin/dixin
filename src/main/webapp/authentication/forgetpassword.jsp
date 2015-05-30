@@ -49,7 +49,7 @@
       </tr>
       <tr>
         <td class="t">重新输入：</td>
-        <td><input maxlength="12" class="itstyle lt it" id="rpassword" value="" type="password" />
+        <td><input maxlength="12" class="itstyle lt it" id="rpassword" name="rpassword"type="password" />
           <div class="input-r-tips"></div></td>
       </tr>
       <tr>
