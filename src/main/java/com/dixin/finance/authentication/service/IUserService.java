@@ -44,6 +44,9 @@ public interface IUserService {
 	 */
 	void updateUser(UserVO userVO);
 	
-	
-	void setRiskTested(int userId);
+	/**
+	 * 设置用户评分
+	 * @return
+	 */	
+	void setRiskTested(int userId,int grade);
 }
