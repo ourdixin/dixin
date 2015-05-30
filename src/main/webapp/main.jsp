@@ -153,7 +153,7 @@
 	<form id="loginForm">
 	<input id="username" name="username"  type="text"  value="请输入手机号" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}"  class="log_user"/>
 	<input name="password" id="pass" type="password" value="" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" class="log_pass" /></div>
-	<dt><a href="<%=request.getContextPath() %>/authentication/forgetpassword.jsp">忘记密码？</a> <input type="checkbox" name="checkbox" id="checkbox" />记住手机号码</dt>
+	<dt><a href="<%=request.getContextPath() %>/authentication/forgetpassword.jsp">忘记密码？</a> <input type="checkbox" name="bremenber" id="bremenber" />记住手机号码</dt>
 	<span><a class="bnt_ok" href="javascript:void(0)">登录</a></span>
 	</form>
 	<del><a href="<%=request.getContextPath() %>/authentication/register.jsp">点击这里注册</a>还没有注册过？</del>
@@ -222,7 +222,8 @@
 		<% // p2p产品列表  %>
   </div -->
 <!---TAB结束---->
-<div class="index_about"><a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.baidu.com/');" href="javascript:void(0)"> <img src="<%=request.getContextPath() %>/images/index_28.jpg" width="151" height="29" /></a><a href="<%=request.getContextPath() %>/authentication/regarding.jsp"><img src="<%=request.getContextPath() %>/images/index_30.jpg" width="124" height="29" /></a></div>
+<div class="index_about"><!-- a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.9diancaixun.com/');" href="javascript:void(0)"> <img src="<%=request.getContextPath() %>/images/index_28.jpg" width="151" height="29" /></a> -->
+<a href="<%=request.getContextPath() %>/authentication/regarding.jsp"><img src="<%=request.getContextPath() %>/images/index_30.jpg" width="124" height="29" /></a></div>
 </div>
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />

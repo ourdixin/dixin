@@ -209,8 +209,8 @@
 </table>
 
 <p style="margin-left:420px;">
-<span class="bnt_ok"><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=${product.id}>" > 修改 </a></span>
-<span class="bnt_ok"><a href="<%=request.getContextPath()%>/admin/delproduct?productId=${product.id}>" > 删除 </a></span>
+<span class="bnt_ok"><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=${product.id}" > 修改 </a></span>
+<!-- span class="bnt_ok"><a href="<%=request.getContextPath()%>/admin/delproduct?productId=${product.id}" > 删除 </a></span -->
 </p>
 
 

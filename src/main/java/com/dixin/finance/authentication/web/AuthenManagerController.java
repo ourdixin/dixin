@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dixin.finance.authentication.constant.UserTypeConstant;
-import com.dixin.finance.authentication.dao.UserMapper;
 import com.dixin.finance.authentication.service.IAreaService;
 import com.dixin.finance.authentication.service.IAsmService;
 import com.dixin.finance.authentication.service.IFinService;
@@ -24,7 +23,9 @@ import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
+import com.dixin.finance.product.constant.ProfitTypeConstant;
 import com.dixin.finance.product.service.IMessageService;
+import com.dixin.finance.product.service.IPurchaseService;
 import com.dixin.finance.product.vo.AssignmentVO;
 import com.dixin.finance.product.vo.MessageVO;
 import com.dixin.finance.product.vo.PurchaseVO;
@@ -64,6 +65,17 @@ public class AuthenManagerController {
 	
 	@Resource
 	private IAreaService areaServiceImpl;
+	
+	@Resource
+	private IPurchaseService PurchaseServiceImpl;
+
+	public IPurchaseService getPurchaseServiceImpl() {
+		return PurchaseServiceImpl;
+	}
+
+	public void setPurchaseServiceImpl(IPurchaseService purchaseServiceImpl) {
+		PurchaseServiceImpl = purchaseServiceImpl;
+	}
 
 	public IUserService getUserServiceImpl() {
 		return userServiceImpl;
@@ -231,7 +243,12 @@ public class AuthenManagerController {
 		UserVO userVO = userServiceImpl.findUserById(id);
 		model.addAttribute("user", userVO);
 		//产品购买信息
-		//产品成交信息
+			//固定
+		List<PurchaseVO> fixProductList = PurchaseServiceImpl.queryPurchaseList(id, ProfitTypeConstant.FixProduct, -1);
+		model.addAttribute("fixProductList", fixProductList);	
+		//浮动
+		List<PurchaseVO> proProductList = PurchaseServiceImpl.queryPurchaseList(id, ProfitTypeConstant.FloatProduct, -1);
+		model.addAttribute("proProductList", proProductList);
 		//在线留言
 		List<MessageVO> messageList = messageServiceImpl.selectMsgsByInitialId(id);
 		model.addAttribute("messageList", messageList);
