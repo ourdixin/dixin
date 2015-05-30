@@ -45,7 +45,7 @@
 					<fmt:formatDate value="${message.msgTime}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
 				<%-- <td>${message.userId}</td>  --%>
-				<td>${message.userVO.userName}</td>
+				<td>${message.userVO.name}</td>
 				<td>
 					<c:choose>
   								<c:when test="${message.catogryId==74}">

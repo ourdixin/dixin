@@ -355,7 +355,7 @@ public class AuthenticationController {
 		return "/authentication/myReplybyuser";
 	}
 	
-	/***************************后台用户回复普通用户留言并更新初始留言last_msg_id属性************************/
+	/***************************前台用户回复普通用户留言并更新初始留言last_msg_id属性************************/
 	@RequestMapping(value="/authentication/myReplybyuser" ,method=RequestMethod.POST )
 	public @ResponseBody BaseWebResult replyMessageByUser(Model model,Integer id,String msg,Integer catogryId,HttpSession session,HttpServletRequest request){
 		logger.info("前台留言回复页面被访问+1!");
