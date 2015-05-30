@@ -63,66 +63,48 @@
 					<thead>
 						<tr>
 							<th>产品代码</th>
-							<th>基金代码</th>
-							<th>基金名称</th>
-							<th>基金份额</th>
-							<th>基金净值</th>
-							<th>浮动盈亏</th>
-							<th>分红方式</th>
-							<th>营销机构</th>
+							<th>产品名称</th>
+							<th>发行时间</th>
+							<th>期限</th>
+							<th>利率</th>
+							<th>认购起点</th>
+							<th>付息方式</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>58248</td>
-							<td>300</td>
-							<td>小金库</td>
-							<td>52</td>
-							<td>1500</td>
-							<td>1%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412160029</td>
-							<td>145</td>
-							<td>白石20号基金</td>
-							<td>2</td>
-							<td>1500</td>
-							<td>15%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412050937</td>
-							<td>158</td>
-							<td>鑫泰山1号</td>
-							<td>20</td>
-							<td>1500</td>
-							<td>5%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412220020</td>
-							<td>369</td>
-							<td>小金库</td>
-							<td>2014</td>
-							<td>1500</td>
-							<td>3%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412160029</td>
-							<td>258</td>
-							<td>白石20号基金</td>
-							<td>5</td>
-							<td>1500</td>
-							<td>20%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
+						<c:forEach var="fixProduct" items="${fixProductList}" varStatus="i">
+							<tr>
+								<td>${fixProduct.product.code}</td>
+								<td>${fixProduct.product.name}</td>
+								<td><fmt:formatDate pattern="yyyy年MM月dd日" value="${fixProduct.product.releaseDate}" /></td>
+								<td>${fixProduct.product.term}
+								<c:choose>
+									<c:when test="${fixProduct.product.termUnit==63}">年</c:when>
+									<c:when test="${fixProduct.product.termUnit==64}">月</c:when>
+									<c:otherwise>日</c:otherwise>
+								</c:choose>
+								</td>
+								<td>${fixProduct.product.rate}</td>
+								<td>
+								<c:choose>
+									<c:when test="${fixProduct.product.minAmount>10000}">${fixProduct.product.minAmount/10000}万元</c:when>
+									<c:otherwise>${fixProduct.product.minAmount}元</c:otherwise>
+								</c:choose>
+								</td>
+								<td>
+								<c:choose>
+									<c:when test="${fixProduct.product.payType==66}">自然季度付息</c:when>
+									<c:when test="${fixProduct.product.payType==67}">自然半年度付息</c:when>
+									<c:when test="${fixProduct.product.payType==68}">自然年度付息</c:when>
+									<c:when test="${fixProduct.product.payType==69}">季度付息</c:when>
+									<c:when test="${fixProduct.product.payType==70}">半年度付息</c:when>
+									<c:when test="${fixProduct.product.payType==71}">年度付息</c:when>
+									<c:when test="${fixProduct.product.payType==72}">到期还本付息</c:when>
+									<c:when test="${fixProduct.product.payType==73}">其他付息方式</c:when>
+								</c:choose>
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<div class="page_menu">
@@ -135,221 +117,57 @@
 				<table class="ui compact table segment">
 					<thead>
 						<tr>
+							<th>产品代码</th>
 							<th>产品名称</th>
-							<th>金额</th>
-							<th>联系人</th>
 							<th>发行时间</th>
+							<th>期限</th>
+							<th>利率</th>
+							<th>认购起点</th>
+							<th>付息方式</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>鑫泰山1号</td>
-							<td>2000</td>
-							<td>张小姐</td>
-							<td>2014-12-5</td>
-						</tr>
-						<tr>
-							<td>小金库</td>
-							<td>5000</td>
-							<td>黄先生</td>
-							<td>2014-10-3</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="page_menu">
-					<a class="item"> < </a> <a class="item">1</a> <a class="item">2</a>
-					<a class="item">3</a> <a class="item">4</a> <a class="item">5</a> <a
-						class="item">6</a> <a class="item"> > </a>
-				</div>
-			</div>
-		</div>
-
-		<!---TAB部份---->
-		<div class="tab1">
-			<div class="user_title">产品成交信息</div>
-			<ul class="ul_1">
-				<li class="tab1_6_off" id="tab1_6"
-					onMouseOver="set_tab('tab1', 6 ,7)">固定收益</li>
-				<li class="tab1_7_off" id="tab1_7"
-					onMouseOver="set_tab('tab1', 7 ,7)">浮动收益</li>
-
-
-			</ul>
-			<div id="tab1_con_6" class="con" style="display: block; clear: both;">
-				<table border="0" cellpadding="0" cellspacing="0"
-					class="ui compact table segment">
-					<thead>
-						<tr>
-							<th>产品代码</th>
-							<th>基金代码</th>
-							<th>基金名称</th>
-							<th>基金份额</th>
-							<th>基金净值</th>
-							<th>浮动盈亏</th>
-							<th>分红方式</th>
-							<th>营销机构</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>58248</td>
-							<td>300</td>
-							<td>小金库</td>
-							<td>52</td>
-							<td>1500</td>
-							<td>1%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412160029</td>
-							<td>145</td>
-							<td>白石20号基金</td>
-							<td>2</td>
-							<td>1500</td>
-							<td>15%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412050937</td>
-							<td>158</td>
-							<td>鑫泰山1号</td>
-							<td>20</td>
-							<td>1500</td>
-							<td>5%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412220020</td>
-							<td>369</td>
-							<td>小金库</td>
-							<td>2014</td>
-							<td>1500</td>
-							<td>3%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412160029</td>
-							<td>258</td>
-							<td>白石20号基金</td>
-							<td>5</td>
-							<td>1500</td>
-							<td>20%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="page_menu">
-					<a class="item"> < </a> <a class="item">1</a> <a class="item">2</a>
-					<a class="item">3</a> <a class="item">4</a> <a class="item">5</a> <a
-						class="item">6</a> <a class="item"> > </a>
-				</div>
-			</div>
-			<div id="tab1_con_7" class="con" style="display: none; clear: both;">
-				<table border="0" cellpadding="0" cellspacing="0"
-					class="ui compact table segment">
-					<thead>
-						<tr>
-							<th>产品代码</th>
-							<th>基金代码</th>
-							<th>基金名称</th>
-							<th>基金份额</th>
-							<th>基金净值</th>
-							<th>浮动盈亏</th>
-							<th>分红方式</th>
-							<th>营销机构</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>2584261</td>
-							<td>300</td>
-							<td>小金库</td>
-							<td>52</td>
-							<td>1500</td>
-							<td>1%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412160029</td>
-							<td>145</td>
-							<td>白石20号基金</td>
-							<td>2</td>
-							<td>1500</td>
-							<td>15%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412050937</td>
-							<td>158</td>
-							<td>鑫泰山1号</td>
-							<td>20</td>
-							<td>1500</td>
-							<td>5%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412220020</td>
-							<td>369</td>
-							<td>小金库</td>
-							<td>2014</td>
-							<td>1500</td>
-							<td>3%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>201412160029</td>
-							<td>258</td>
-							<td>白石20号基金</td>
-							<td>5</td>
-							<td>1500</td>
-							<td>20%</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="page_menu">
-					<a class="item"> < </a> <a class="item">1</a> <a class="item">2</a>
-					<a class="item">3</a> <a class="item">4</a> <a class="item">5</a> <a
-						class="item">6</a> <a class="item"> > </a>
-				</div>
-			</div>
-		</div>
-		<!---TAB结束---->
-		<div class="tab1">
-			<div class="user_title">产品成交信息</div>
-			<div class="main_width">
-				<div class="con_table">
-					<table width="100%">
-						<thead>
+						<c:forEach var="proProduct" items="${proProductList}" varStatus="i">
 							<tr>
-								<th>预约产品</th>
-								<th>预约日期</th>
-								<th>预约金额</th>
-								<th>备注</th>
+								<td>${proProduct.product.code}</td>
+								<td>${proProduct.product.name}</td>
+								<td><fmt:formatDate pattern="yyyy年MM月dd日" value="${proProduct.product.releaseDate}" /></td>
+								<td>${proProduct.product.term}
+								<c:choose>
+									<c:when test="${proProduct.product.termUnit==63}">年</c:when>
+									<c:when test="${proProduct.product.termUnit==64}">月</c:when>
+									<c:otherwise>日</c:otherwise>
+								</c:choose>
+								</td>
+								<td>${proProduct.product.rate}</td>
+								<td>
+								<c:choose>
+									<c:when test="${proProduct.product.minAmount>10000}">${proProduct.product.minAmount/10000}万元</c:when>
+									<c:otherwise>${proProduct.product.minAmount}元</c:otherwise>
+								</c:choose>
+								</td>
+								<td>
+								<c:choose>
+									<c:when test="${proProduct.product.payType==66}">自然季度付息</c:when>
+									<c:when test="${proProduct.product.payType==67}">自然半年度付息</c:when>
+									<c:when test="${proProduct.product.payType==68}">自然年度付息</c:when>
+									<c:when test="${proProduct.product.payType==69}">季度付息</c:when>
+									<c:when test="${proProduct.product.payType==70}">半年度付息</c:when>
+									<c:when test="${proProduct.product.payType==71}">年度付息</c:when>
+									<c:when test="${proProduct.product.payType==72}">到期还本付息</c:when>
+									<c:when test="${proProduct.product.payType==73}">其他付息方式</c:when>
+								</c:choose>
+								</td>
 							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>衡阳城投二期</td>
-								<td>2015年3月2日 9:10:32分</td>
-								<td>1000万元</td>
-								<td>感谢您预约我们的产品，有任何疑问请我们的客服热线。</td>
-							</tr>
-						</tbody>
-					</table>
+						</c:forEach>
+					</tbody>
+				</table>
+				<div class="page_menu">
+					<a class="item"> < </a> <a class="item">1</a> <a class="item">2</a>
+					<a class="item">3</a> <a class="item">4</a> <a class="item">5</a> <a
+						class="item">6</a> <a class="item"> > </a>
 				</div>
 			</div>
-
 		</div>
 
 		<div class="tab1">
