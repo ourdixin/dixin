@@ -424,6 +424,21 @@ public class ProductController {
 		return "/product/assignmentShow";
 	}
 	
+	//首页显示转让产品
+	@RequestMapping(value="/authentication/transfer")
+	public String  assignmentManager(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		
+		PageHelper.startPage(pageNum, pageSize);
+		List<AssignmentVO> assignments = assignmentService.queryAssignmentList();
+		PageInfo<AssignmentVO> pageinfoList = new PageInfo(assignments);
+		model.addAttribute("assignmentList", pageinfoList);
+		return "/authentication/transfer";
+	}
+	
 	/***********************************产品预约**********************************************/
 	@RequestMapping(value="/product/appointment",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult appointment(AppointmentVO appointment,int productId,String backurl, HttpSession session,HttpServletRequest request){

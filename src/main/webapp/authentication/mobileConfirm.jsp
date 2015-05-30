@@ -8,12 +8,9 @@
 <title>用户中心-个人资料</title>
 <link href="<%=request.getContextPath()%>/css/LTT_define.css"
 	rel="stylesheet" type="text/css" />
-<link href="<%=request.getContextPath()%>/css/LTT_user.css"
-	rel="stylesheet" type="text/css" />
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/js.js"></script>
+<link href="<%=request.getContextPath()%>/css/LTT_user.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/personaldata.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
 </script>
 </head>
@@ -28,6 +25,7 @@
 	<div id="main_right">
 		<form action="" method="post" id="baseInfoForm">
 		<input type="hidden" id="_vCode" name = "_vCode" value="<%=session.getAttribute("vCode") %>">
+		<input name="id" id="id" type = "hidden" value="${user.id}">
 		<div id="tab1_con_1" style="display: block; clear: both;">
 			<div class="user_title">修改手机号</div>
 			<table border="0" cellspacing="0" cellpadding="0">
@@ -45,8 +43,7 @@
 				</tr>
 				<tr>
 					<td height="50" align="right">验证码：</td>
-					<td width="82"><input maxlength="12" class="itstyle lt it160"
-						name="vCode" id="vCode" type="text" /></td>
+					<td width="82"><input maxlength="12" class="itstyle lt it160" name="vCode" id="vCode" type="text" /></td>
 					<td width="154"><font
 						style="border: 1px solid #ccc; padding: 3px 10px; background: #f1f1f1"><a
 							href="<%=request.getContextPath()%>/authentication/verificationCode">验证码</a></font></td>
