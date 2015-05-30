@@ -209,7 +209,7 @@ public class ProductManagerController {
 			//product.setId(productId);
 			//purchase.setProduct(product);
 			purchase.setVolume(volume);
-			purchase.setAmount(amount);
+			purchase.setAmount(amount*10000);
 			purchase.setPnl(0.0);
 			purchase.setProductId(productId);
 			purchaseServiceImpl.addPurchase(purchase);

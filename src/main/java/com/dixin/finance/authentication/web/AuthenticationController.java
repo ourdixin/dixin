@@ -379,8 +379,8 @@ public class AuthenticationController {
 		message.setCreateUser(userId);
 		message.setUpdateUser(userId);
 		messageServiceImpl.insertMessage(message);
-		final Integer lastMsgId = -1;//用户回复后设置lastMsg为-1
-		messageServiceImpl.updateLastMsgId(id,lastMsgId);//设置初始留言
+		//final Integer lastMsgId = -1;//用户回复后设置lastMsg为-1
+		messageServiceImpl.updateLastMsgId(id,thisLastMsgId);//设置初始留言
 		webResult.setMsg("提交成功！");
 		webResult.setSuccess(true);
 		return webResult;	

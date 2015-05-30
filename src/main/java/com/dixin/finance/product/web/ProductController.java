@@ -494,7 +494,8 @@ public class ProductController {
 		Integer catogryId = message.switchToCatogryID(select2);
 		message.setCatogryId(catogryId);
 		message.setMsg(questions);
-		message.setLastMsgId(-1);//第一次留言时，设置
+		Integer thisLastMsgId = messageServiceImpl.selectNextId();
+		message.setLastMsgId(thisLastMsgId);
 		message.setCreateUser(userId);
 		message.setUpdateUser(userId);
 		messageServiceImpl.insertMessage(message);
@@ -513,6 +514,10 @@ public class ProductController {
 			return "authentication/login";
 		}
 		List<MessageVO> list = messageServiceImpl.selectFirstMessage();
+		String msg = list.get(0).getLastMessage().getMsg();
+		logger.info(msg);
+		Integer userType = list.get(0).getLastMessage().getUserVO().getUserType();
+		logger.info("userType"+userType);
 		/*MessageVO message = list.get(1).getLastMessage();
 		if(message==null){
 			logger.info("message为空");
