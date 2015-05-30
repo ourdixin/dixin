@@ -48,7 +48,7 @@
 	          </tr>
 	          <tr>
 	            <td></td>
-	            <td><label><input checked="checked" id="agree" class="checkbox" type="checkbox">我已阅读并同意</label><a href="http://www.howbuy.com/register/agreement.htm" target="_blank">《121金融注册协议》</a></td>
+	            <td><label><input checked="checked" id="agree" class="checkbox" type="checkbox">我已阅读并同意</label><a href="<%=request.getContextPath()%>/authentication/Agreement.jsp" >《121金融注册协议》</a></td>
 	          </tr>
 	          <tr>
 	            <td></td>
