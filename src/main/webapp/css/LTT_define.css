@@ -180,8 +180,8 @@ img{ border:none}
 	margin-bottom:1px;}
 #main_left ul dd img{
 	margin-right:8px; vertical-align:middle}	
-#main_left ul dt{background:#e83838;}
-#main_left ul dd a{background:#f1f1f1; display:block; color:#535353; text-decoration:none; font-size:14px;}
+/**#main_left ul dt{background:#e83838;} **/
+#main_left ul  dd a{background:#f1f1f1; display:block; color:#535353; text-decoration:none; font-size:14px;} 
 #main_left ul dd a:hover{background:#e1e1e1;}
 #main_right{
 	width:780px;

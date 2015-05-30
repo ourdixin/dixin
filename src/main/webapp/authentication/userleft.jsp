@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">	var HOST_URL = "<%=request.getServletPath() %>";</script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/userleft.js"></script>
 <title></title>
 </head>
 <body>
 	<div id="main_body">
 		<div id="main_left">
-			<ul>
-				<dt><a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a></dt>
+			<ul id="left_menu">
+				<dd><a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a></dd>
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/boughtproduct.jsp"><img src="<%=request.getContextPath()%>/images/ico_03.png" width="12" height="12" />我购买的产品</a>
 				</dd>
