@@ -90,7 +90,7 @@
 	<!---用户左侧共用部份结束---->
 	
 		<div id="main_right">
-			<c:if test="${null != user && !user.isRiskTested}">
+			<c:if test="${null != user && user.isRiskTested <= 0}">
 			<div class="jg font_red">
 				<img src="<%=request.getContextPath()%>/images/ico_21.png"
 					width="25" height="18" /><strong>您还未进行合格投资人风险测评调查问卷测试，<a

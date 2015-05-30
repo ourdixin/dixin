@@ -223,7 +223,26 @@ public class AuthenticationController {
 		return "/authentication/myselfwealthers";
 		
 	}
-
+	
+	@RequestMapping(value="/authentication/queryRiskAppraisal")
+	public  String showRiskAppraisal(Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response) {
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			return "authentication/login";
+		}
+		int grade = userVO.getIsRiskTested();
+		model.addAttribute("grade", grade);
+		if(grade<12){
+			model.addAttribute("level", new String("A"));
+		}else if(grade>=12&&grade<24){
+			model.addAttribute("level", new String("B"));
+		}else{
+			model.addAttribute("level", new String("C"));
+		}		
+		
+		return "authentication/RiskAppraisal";
+	}
+	
 	@RequestMapping(value="/authentication/RiskAppraisal", method=RequestMethod.POST)
 	public String Assessment(String w1,String w2,String w3,String[] w4,String w5,String w6,String w7,String w8,String w9, Model model,HttpSession session,HttpServletRequest request){
 		logger.info("风险评估页面被访问！");
@@ -267,7 +286,7 @@ public class AuthenticationController {
 		assessment.setGrade(grade);
 		asmServiceImpl.insert(assessment);
 		userServiceImpl.setRiskTested(userVO.getId());
-		userVO.setIsRiskTested(true);
+		userVO.setIsRiskTested(grade);
 		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		//根据分数计算等级，并返回结果页面
 		model.addAttribute("user", userVO);
@@ -281,6 +300,8 @@ public class AuthenticationController {
 		}
 		return "/authentication/RiskAppraisal-result";
 	}
+	
+	
 
 	/***********************************账户设计**********************************************/
 	@RequestMapping(value="/authentication/accountSetting",method=RequestMethod.GET)
