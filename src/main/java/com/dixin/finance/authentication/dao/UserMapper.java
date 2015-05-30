@@ -62,5 +62,5 @@ public interface UserMapper {
 	/*
 	 * 评测问卷
 	 */
-	void setRiskTested(int userId);
+	void setRiskTested(Map<String,Object> map);
 }

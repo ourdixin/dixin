@@ -63,9 +63,13 @@ public class UserServiceImpl implements IUserService {
 	}
 	
 	@Override
-	public void setRiskTested(int userId)
+	public void setRiskTested(int userId,int grade)
 	{
-		userMapper.setRiskTested(userId);
+		Map<String, Object> map = new HashMap<String , Object>();
+		
+		map.put("grade", grade);
+		map.put("user_id", userId);
+		userMapper.setRiskTested(map);
 	}
 	
 	
