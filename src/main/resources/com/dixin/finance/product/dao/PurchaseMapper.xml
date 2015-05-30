@@ -57,11 +57,11 @@
 	</resultMap>
 	
 	<resultMap id="PurchaseResult" type="com.dixin.finance.product.vo.PurchaseVO">
-		<id column="Id" property="id"/>
+		<id column="purchaseId" property="id"/>
 		<result column="userId" property="userId"/>  
 		<result column="buyDate" property="buyDate"/>
 		<result column="volume" property="volume"/>  
-		<result column="amount" property="amount"/>  
+		<result column="purchaseAmount" property="amount"/>  
 		<result column="institutionId" property="institutionId"/>  
 		<result column="pnl" property="pnl"/>
 		<result column="hasReceipt" property="hasReceipt"/>
@@ -76,12 +76,12 @@
 	
   <select id="queryPurchaseList" parameterType="map" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
 		select 
-			purchase.id Id
+			purchase.id purchaseId
 			,purchase.user_id userId
 			,purchase.product_id productId
 			,purchase.buy_date buyDate
 			,purchase.volume volume
-			,purchase.amount amount
+			,purchase.amount purchaseAmount
 			,purchase.institution_id institutionId
 			,purchase.pnl pnl
 			,purchase.has_receipt hasReceipt
@@ -227,12 +227,12 @@
 
 
   <select id="queryPurchase" parameterType="int" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
-		select id id,
+		select id purchaseId,
 			user_id userId,
 			buy_date buyDate,
 			product_id productId,
 			volume volume,
-			amount amount,
+			amount purchaseAmount,
 			institution_id institutionId,
 			pnl pnl,
 			has_receipt hasReceipt,
@@ -241,7 +241,7 @@
 			create_time createTime, 
 			update_user updateUser, 
 			update_time updateTime
-		from product
+		from purchase
 			WHERE id=#{Id} 
 	</select>
 
