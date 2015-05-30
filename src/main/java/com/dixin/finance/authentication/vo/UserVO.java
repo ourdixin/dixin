@@ -45,7 +45,7 @@ public class UserVO extends BaseVO {
 	private int fmId;	//财务经理ID
 	private FinancialManagerVO fmanagerVO;//财富经理id;	
 	
-	private boolean isRiskTested;
+	private int isRiskTested;
 	
 	private int createUser; // 创建人
 	
@@ -235,11 +235,11 @@ public class UserVO extends BaseVO {
 		this.institutionId = institutionId;
 	}
 	
-	public boolean getIsRiskTested() {
+	public int getIsRiskTested() {
 		return isRiskTested;
 	}
 	
-	public void setIsRiskTested(boolean isRiskTested) {
+	public void setIsRiskTested(int isRiskTested) {
 		this.isRiskTested = isRiskTested;
 	}
 }

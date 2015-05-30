@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,11 +22,34 @@
 	<!---用户左侧共用部份---->
 	<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
 	<!---用户左侧共用部份结束---->
-	
+	<c:if test="${null != grade}"> 
+	<table>
+	<thead>
+		<tr><td>
+				<div style="font-size:16px;color:red;font-family:微软雅黑;">您好，${user.userName}！</div>
+		</td></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td align="left">
+				<strong>评估结果：</strong>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				根据您对评估问卷的勾选结果，您的得分总计为 <span style="font-size:16px;color:red;" >${grade}</span>分。
+				根据您的评估结果鉴定您对投资风险的适应度，您的风险承受能力等级为 <span style="font-size:16px;color:red;" >${level}</span>级。<br>
+				A级(12分以下)	保守型投资人：适合政府融资平台、上市公司股权质押类项目。<br>
+				B级(12分-24分(不含24分))	稳健型投资人：适合现金管理类、企业融资类、房地产类项目。<br>
+				C级(24分及以上)	积极型投资人：适合PE类、纯投资类和浮动收益类项目。<br>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+	</c:if>
 <div id="main_right" style="background:#f1f1f1;">
 <div id="title_xi"></div>
 <div id="title_font">121金融合格投资人风险评测调查问卷</div>
-
 <div style="padding:0 20px;">
 <form  action="<%=request.getContextPath() %>/authentication/RiskAppraisal" method="post" id="assessmentForm">
  <%-- 
