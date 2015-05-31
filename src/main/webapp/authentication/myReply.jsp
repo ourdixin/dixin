@@ -59,13 +59,21 @@
   							</c:choose>
   						</td>
   						<td>${message.msg}</td>
-  						<td>${message.lastMessage.msg}</td>
+  						
   						<c:choose>
-  							<c:when test="${empty message.lastMessage}">
-  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
+  							<c:when test="${message.lastMessage.userVO.userType==25}">
+  								<td>${message.lastMessage.msg}</td>
   							</c:when>
   							<c:otherwise>
+  								<td></td>
+  							</c:otherwise>
+  						</c:choose>
+  						<c:choose>
+  							<c:when test="${message.lastMessage.userVO.userType==25}">
   								<td><i ><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
+  							</c:when>
+  							<c:otherwise>
+  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
   							</c:otherwise>
   						</c:choose>	
   					</tr>

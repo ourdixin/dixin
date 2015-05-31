@@ -79,7 +79,7 @@ public class AuthenticationController {
 	
 	
 	@RequestMapping(value="/authentication/user", method=RequestMethod.POST)
-	public @ResponseBody BaseWebResult register(UserVO userVO, String backurl, HttpSession session,HttpServletRequest request){
+	public @ResponseBody BaseWebResult register(UserVO userVO, String rpassword, String backurl, HttpSession session,HttpServletRequest request){
 		
 		if(backurl == null || backurl=="")
 			backurl=request.getContextPath()+"/";
@@ -88,7 +88,12 @@ public class AuthenticationController {
 		userVO.setEnabled(1);
 		logger.info("用户" + userVO.getUserName() + "注册开始");
 		BaseWebResult webResult = new BaseWebResult();
-		if(userServiceImpl.checkWithTel(userVO.getMobile()) > 0)
+		if(!rpassword.equals(userVO.getPassword()))
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("两次密码输入不一致!");			
+		}
+		else if(userServiceImpl.checkWithTel(userVO.getMobile()) > 0)
 		{
 			webResult.setSuccess(false);
 			webResult.setMsg("此手机号码已被注册!");
@@ -103,6 +108,7 @@ public class AuthenticationController {
 			webResult.setResult(userVO);
 			webResult.setMsg(backurl);
 		}
+		
 		return webResult;
 	}
 
@@ -217,7 +223,26 @@ public class AuthenticationController {
 		return "/authentication/myselfwealthers";
 		
 	}
-
+	
+	@RequestMapping(value="/authentication/queryRiskAppraisal")
+	public  String showRiskAppraisal(Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response) {
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			return "authentication/login";
+		}
+		int grade = userVO.getIsRiskTested();
+		model.addAttribute("grade", grade);
+		if(grade<12){
+			model.addAttribute("level", new String("A"));
+		}else if(grade>=12&&grade<24){
+			model.addAttribute("level", new String("B"));
+		}else{
+			model.addAttribute("level", new String("C"));
+		}		
+		
+		return "authentication/RiskAppraisal";
+	}
+	
 	@RequestMapping(value="/authentication/RiskAppraisal", method=RequestMethod.POST)
 	public String Assessment(String w1,String w2,String w3,String[] w4,String w5,String w6,String w7,String w8,String w9, Model model,HttpSession session,HttpServletRequest request){
 		logger.info("风险评估页面被访问！");
@@ -260,8 +285,8 @@ public class AuthenticationController {
 		Integer grade = grade1+grade2+grade3+grade4+grade5+grade6+grade7+grade8+grade9;
 		assessment.setGrade(grade);
 		asmServiceImpl.insert(assessment);
-		userServiceImpl.setRiskTested(userVO.getId());
-		userVO.setIsRiskTested(true);
+		userServiceImpl.setRiskTested(userVO.getId(),grade);
+		userVO.setIsRiskTested(grade);
 		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		//根据分数计算等级，并返回结果页面
 		model.addAttribute("user", userVO);
@@ -275,6 +300,8 @@ public class AuthenticationController {
 		}
 		return "/authentication/RiskAppraisal-result";
 	}
+	
+	
 
 	/***********************************账户设计**********************************************/
 	@RequestMapping(value="/authentication/accountSetting",method=RequestMethod.GET)
@@ -374,13 +401,13 @@ public class AuthenticationController {
 		message.setUserId(userId);
 		message.setCatogryId(catogryId);
 		message.setMsg(msg);
-		Integer thisLastMsgId = messageServiceImpl.selectNextId();
-		message.setLastMsgId(thisLastMsgId);
+		message.setLastMsgId(-1);
 		message.setCreateUser(userId);
 		message.setUpdateUser(userId);
 		messageServiceImpl.insertMessage(message);
-		final Integer lastMsgId = -1;//用户回复后设置lastMsg为-1
-		messageServiceImpl.updateLastMsgId(id,lastMsgId);//设置初始留言
+		//final Integer lastMsgId = -1;//用户回复后设置lastMsg为-1
+		Integer thisLastMsgId = message.getId();
+		messageServiceImpl.updateLastMsgId(id,thisLastMsgId);//设置初始留言
 		webResult.setMsg("提交成功！");
 		webResult.setSuccess(true);
 		return webResult;	

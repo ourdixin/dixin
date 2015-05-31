@@ -4,7 +4,7 @@
 
 <mapper namespace="com.dixin.finance.product.dao.CustomerMapper">
 	<!-- 插入message信息 -->
-	<insert id="insert" parameterType="com.dixin.finance.product.vo.MessageVO">
+	<insert id="insert" parameterType="com.dixin.finance.product.vo.MessageVO" useGeneratedKeys = "true" keyProperty = "id">
 		insert into message(
 				msg_id ,
 				user_id,
@@ -29,24 +29,26 @@
 				SYSDATE()
 			)
 	</insert>
-	<!-- 查找下一条自增id -->
-	<select id="selectNextId" resultType="Integer">
-		select AUTO_INCREMENT from INFORMATION_SCHEMA.TABLES   where TABLE_NAME='message'  
-	</select>
 	
 	
 	<!-- 查找所有初始留言信息 -->
+	<resultMap  id="user" type="com.dixin.finance.authentication.vo.UserVO">
+		<id column="d_id" property="id"/>
+		<result column="d_user_name" property="userName"/>
+		<result column="d_name" property="name"/>
+		<result column="d_user_type" property="userType"/>
+	</resultMap>
 	<resultMap id="lastMessage" type="com.dixin.finance.product.vo.MessageVO">
 		<id column="b_id" property="id"/>
 		<result column="b_msg" property="msg"/>
 		<result column="b_last_msg_id" property="lastMsgId"/>
-		
+		<association property="userVO" column="b_user_id" resultMap="user"/>
 	</resultMap>
 	<resultMap  id="userResult" type="com.dixin.finance.authentication.vo.UserVO">
-		<id column="id" property="id"/>
-		<result column="user_name" property="userName"/>
-		<result column="name" property="name"/>
-		<result column="user_type" property="userType"/>
+		<id column="c_id" property="id"/>
+		<result column="c_user_name" property="userName"/>
+		<result column="c_name" property="name"/>
+		<result column="c_user_type" property="userType"/>
 	</resultMap>
 	
 	<resultMap id="selectMessage" type="com.dixin.finance.product.vo.MessageVO">  
@@ -62,7 +64,7 @@
 		<result column="a_update_user" property="updateUser"/>
 		<result column="a_update_time" property="updateTime"/>
 		<association property="userVO" column="a_user_id" resultMap="userResult"/> 
-		<association property="lastMessage" column="b_last_msg_id" resultMap="lastMessage"/> 
+		<association property="lastMessage" column="a_last_msg_id" resultMap="lastMessage"/> 
 	</resultMap> 
 	
 	<select id="selectFirstMsg"   resultMap="selectMessage">
@@ -81,11 +83,18 @@
 				b.id as b_id,
 				b.msg as b_msg,
 				b.last_msg_id as b_last_msg_id,
-			   	c.*  
-			   	from 
-			   	(message a left join message b on a.last_msg_id = b.id )
-			   	 inner join user c on a.user_id = c.id and a.msg_id =-1
-			   	 order by a.msg_time desc
+			 	c.id as c_id,
+           		c.name as c_name,
+           		c.user_name as c_user_name,
+          		c.user_type as c_user_type,
+            	d.id as d_id,
+            	d.name as d_name,
+            	d.user_name as d_user_name,
+            	d.user_type as d_user_type
+            	from message a left join message b on a.last_msg_id = b.id 
+            	left join user d on b.user_id = d.id 
+           		inner join user c on a.user_id = c.id and a.msg_id = -1
+           		order by a.msg_time desc
 	</select>
 	
 	<!-- 根据初始留言的id 查找相关留言 -->
@@ -126,20 +135,24 @@
 		update message set last_msg_id = #{lastMsgId} where id = #{id}
 	</update>
 	
-	
-	
-	<!-- 通过用户的id查看它的所有初始留言 -->
-		<resultMap id="lastMessageBy" type="com.dixin.finance.product.vo.MessageVO">
+	<!--  -->
+	<resultMap  id="users" type="com.dixin.finance.authentication.vo.UserVO">
+		<id column="d_id" property="id"/>
+		<result column="d_user_name" property="userName"/>
+		<result column="d_name" property="name"/>
+		<result column="d_user_type" property="userType"/>
+	</resultMap>
+	<resultMap id="lastMessages" type="com.dixin.finance.product.vo.MessageVO">
 		<id column="b_id" property="id"/>
 		<result column="b_msg" property="msg"/>
 		<result column="b_last_msg_id" property="lastMsgId"/>
-		
+		<association property="userVO" column="b_user_id" resultMap="users"/>
 	</resultMap>
-	<resultMap  id="userResultMap" type="com.dixin.finance.authentication.vo.UserVO">
-		<id column="id" property="id"/>
-		<result column="user_name" property="userName"/>
-		<result column="name" property="name"/>
-		<result column="user_type" property="userType"/>
+	<resultMap  id="userResults" type="com.dixin.finance.authentication.vo.UserVO">
+		<id column="c_id" property="id"/>
+		<result column="c_user_name" property="userName"/>
+		<result column="c_name" property="name"/>
+		<result column="c_user_type" property="userType"/>
 	</resultMap>
 	
 	<resultMap id="selectMessageBy" type="com.dixin.finance.product.vo.MessageVO">  
@@ -154,10 +167,11 @@
 		<result column="a_create_time" property="createTime"/>
 		<result column="a_update_user" property="updateUser"/>
 		<result column="a_update_time" property="updateTime"/>
-		<association property="userVO" column="a_user_id" resultMap="userResultMap"/> 
-		<association property="lastMessage" column="b_last_msg_id" resultMap="lastMessageBy"/> 
+		<association property="userVO" column="a_user_id" resultMap="userResults"/> 
+		<association property="lastMessage" column="a_last_msg_id" resultMap="lastMessages"/> 
 	</resultMap> 
 	
+	<!-- 通过用户id查找该用户的所有初始留言 -->
 	<select id="selectFirstMsgByUserId"   resultMap="selectMessageBy">
 		SELECT 	
 				a.id as a_id,
@@ -174,11 +188,22 @@
 				b.id as b_id,
 				b.msg as b_msg,
 				b.last_msg_id as b_last_msg_id,
-			   	c.*  
+			   	c.id as c_id,
+           		c.name as c_name,
+           		c.user_name as c_user_name,
+          		c.user_type as c_user_type,
+            	d.id as d_id,
+            	d.name as d_name,
+            	d.user_name as d_user_name,
+            	d.user_type as d_user_type
 			   	from 
 			   	(message a left join message b on a.last_msg_id = b.id ) 
+			   	left join user d on b.user_id = d.id 
 			   	inner join user c on a.user_id = c.id and a.msg_id =-1 and c.id = #{id}
 			   	order by a.msg_time desc
 	</select>
+	
+	
+	
 	
 </mapper>

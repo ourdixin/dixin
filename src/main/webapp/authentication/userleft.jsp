@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">	var HOST_URL = "<%=request.getServletPath() %>";</script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/userleft.js"></script>
 <title></title>
 </head>
 <body>
 	<div id="main_body">
 		<div id="main_left">
-			<ul>
-				<dt><a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a></dt>
+			<ul id="left_menu">
+				<dd><a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a></dd>
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/boughtproduct.jsp"><img src="<%=request.getContextPath()%>/images/ico_03.png" width="12" height="12" />我购买的产品</a>
 				</dd>
@@ -29,7 +31,7 @@
 					<a href="<%=request.getContextPath()%>/authentication/myReply"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的留言</a>
 				</dd>
 				<dd>
-					<a href="<%=request.getContextPath()%>/authentication/RiskAppraisal.jsp"><img src="<%=request.getContextPath()%>/images/ico_10.png" width="16" height="17" />风险评估</a>
+					<a href="<%=request.getContextPath()%>/authentication/queryRiskAppraisal"><img src="<%=request.getContextPath()%>/images/ico_10.png" width="16" height="17" />风险评估</a>
 				</dd>
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/accountSetting"><img src="<%=request.getContextPath()%>/images/ico_17.png" width="18" height="20" />帐户设置</a>
