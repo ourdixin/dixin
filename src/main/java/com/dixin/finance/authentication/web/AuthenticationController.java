@@ -122,7 +122,7 @@ public class AuthenticationController {
 		if(userVO != null)
 		{
 			UserInfo userInfo = new UserInfo(userVO);
-			logger.info("用户" + username + "登陆成功");
+			logger.info("用户" + username + "登录成功");
 			webResult.setSuccess(true);
 			webResult.setResult(userInfo);
 			if(backurl == null || backurl=="")

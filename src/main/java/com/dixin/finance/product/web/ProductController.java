@@ -194,7 +194,7 @@ public class ProductController {
 			if(backurl == null || backurl=="")
 				backurl=request.getContextPath()+"/admin/login.jsp";
 			webResult.setUrl(backurl);
-			webResult.setMsg("添加失败，请先登陆!");
+			webResult.setMsg("添加失败，请先登录!");
 			return webResult;
 		}
 		double amount = product.getAmount() * 100000000;
@@ -225,7 +225,7 @@ public class ProductController {
 			if(backurl == null || backurl=="")
 				backurl=request.getContextPath()+"/admin/login.jsp";
 			webResult.setUrl(backurl);
-			webResult.setMsg("添加失败，请先登陆!");
+			webResult.setMsg("添加失败，请先登录!");
 			return webResult;
 		}
 		double amount = product.getAmount() * 100000000;

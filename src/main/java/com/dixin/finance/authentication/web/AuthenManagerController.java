@@ -152,12 +152,12 @@ public class AuthenManagerController {
 	public @ResponseBody BaseWebResult login(String username,String password,String backurl, HttpSession session,HttpServletRequest request){
 		
 		BaseWebResult webResult = new BaseWebResult();
-		logger.info("用户" + username + "登陆开始");
+		logger.info("用户" + username + "登录开始");
 		UserVO userVO = userServiceImpl.login(username,password);
 		if(userVO != null && (userVO.getUserType() == UserTypeConstant.MANAGER || userVO.getUserType() == UserTypeConstant.ADMINISTRATOR ))
 		{
 			UserInfo userInfo = new UserInfo(userVO);
-			logger.info("用户" + username + "登陆成功");
+			logger.info("用户" + username + "登录成功");
 			webResult.setSuccess(true);
 			webResult.setResult(userInfo);
 			if(backurl == null || backurl=="")

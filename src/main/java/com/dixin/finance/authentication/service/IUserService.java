@@ -12,7 +12,7 @@ public interface IUserService {
 	void register(UserVO userVO);
 	
 	/**
-	 * 用户登陆
+	 * 用户登录
 	 */
 	UserVO login(String username,String password);	
 	/**
