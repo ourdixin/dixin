@@ -258,7 +258,7 @@ public class ProductController {
 			if(backurl == null || backurl=="")
 				backurl=request.getContextPath()+"/admin/login.jsp";
 			webResult.setUrl(backurl);
-			webResult.setMsg("添加失败，请先登陆!");
+			webResult.setMsg("添加失败，请先登录!");
 			return webResult;
 		}
 
@@ -399,7 +399,7 @@ public class ProductController {
 		
 		webResult.setSuccess(true);
 		webResult.setResult(assignment);
-		webResult.setMsg(request.getContextPath()+"/product/queryAssignment");
+		webResult.setMsg(request.getContextPath()+"/product/assignmentShow.jsp");
 		return webResult;
 	}
 	

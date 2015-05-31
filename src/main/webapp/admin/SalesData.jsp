@@ -52,7 +52,10 @@
 								<# } #>
 							</td>
 							<td>无</td>
-							<td><span><a href="<%=request.getContextPath()%>/admin/SalesData-detail.jsp?id=<#=list[i].productId#>">明细</a></span></td>
+							<td>
+								<span><a href="<%=request.getContextPath()%>/admin/SalesData-detail.jsp?id=<#=list[i].productId#>">明细</a></span>
+								<span><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=<#=list[i].productId#>">修改</a></span>
+							</td>
 						</tr>
 					<# } #>
 					</tbody>
