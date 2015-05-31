@@ -22,9 +22,6 @@ public interface ContactRecordMapper {
 		 * 更新最有一条留言id
 		 */
 		public void updateLastContactId(Map<String,Integer> map);
-		/**
-		 * 查询下一个自增id
-		 */
-		public Integer nextId();
+		
 
 }

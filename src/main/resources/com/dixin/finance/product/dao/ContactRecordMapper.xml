@@ -4,7 +4,7 @@
 
 <mapper namespace="com.dixin.finance.product.dao.ContactRecordMapper">
 	<!-- 插入联系记录 -->
-	<insert id="insert" parameterType="com.dixin.finance.product.vo.ContactRecordVO">
+	<insert id="insert" parameterType="com.dixin.finance.product.vo.ContactRecordVO" useGeneratedKeys = "true" keyProperty = "id">
 		insert into contact_record(
 			contact_id,
 			user_id,
@@ -57,13 +57,8 @@
   			 	(contact_record.id=#{firstContactId} || contact_record.contact_id=#{firstContactId})
   	</select>
   	
-	<!-- 更新最后留言id -->
+  	<!-- 更新最后留言id -->
 	<update id="updateLastContactId" parameterType="map">
 		update contact_record  set last_contact_id = #{lastContactId} where id=#{firstContactId}
 	</update>
-	
-	<!-- 下一条自增id -->
-	<select id="nextId" resultType="Integer">
-		select AUTO_INCREMENT from INFORMATION_SCHEMA.TABLES   where TABLE_NAME='contact_record'  
-	</select>
 </mapper>

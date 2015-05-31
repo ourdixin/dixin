@@ -7,6 +7,5 @@ public interface IContactRecordService {
 	public void insert(ContactRecordVO contact);
 	public List<ContactRecordVO> query(Integer firstContactId);
 	public  void updateLastContactId(Integer lastContactId ,Integer firstContactId);
-	public Integer nextId();
 
 }

@@ -39,9 +39,4 @@ public class ContactRecordServiceImpl implements IContactRecordService{
 		contactMapper.updateLastContactId(map);
 	}
 
-	@Override
-	public Integer nextId() {
-		return contactMapper.nextId();
-	}
-
 }
