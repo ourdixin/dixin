@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>产品预约详细信息</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
 
 <body>
@@ -18,36 +20,47 @@
 	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
 	<!---管理左侧共用部份结束---->
 <div id="main_right">
-<div class="user_title">产品名称：中信证券•千石资本•宁聚优债季享4期</div>
-<div class="user_title">客户姓名：13436636208</div>
+<div class="user_title">产品名称：${param.productName}</div>
+<div class="user_title">客户姓名：${param.userName}</div>
 <div class="con_table">
-  <table width="1200">
-    <thead>
-      <tr>
-        <th align="center" bgcolor="#FFFFFF">进程时间</th>
-        <th bgcolor="#FFFFFF">进程状态</th>
-         <th bgcolor="#FFFFFF">备注信息</th>
-        </tr>
+  	<input type="hidden" name="reservationId" id="a1" value="${param.reservationId }"/>
+  	<table width="1200">
+    	<thead>
+     	 	<tr>
+        		<th align="center" bgcolor="#FFFFFF">进程时间</th>
+        		<th bgcolor="#FFFFFF">进程状态</th>
+         		<th bgcolor="#FFFFFF">备注信息</th>
+        	</tr>
         </thead>
         <tbody>
-      <tr>
-        <td align="center" bgcolor="#FFFFFF">2015年5月1日</td>
-        <td bgcolor="#FFFFFF">未购买</td>
-         <td bgcolor="#FFFFFF"> 12</td>
-        </tr>
-      <tr>
-        <td align="center" bgcolor="#FFFFFF">2015年5月10日</td>
-        <td bgcolor="#FFFFFF">购买中 </td>
-        <td bgcolor="#FFFFFF"> 22</td>
-      </tr>
-      <tr>
-        <td align="center" bgcolor="#FFFFFF">2015年5月20日</td>
-        <td bgcolor="#FFFFFF">已购买</td>
-        <td bgcolor="#FFFFFF"> 33</td>
-      </tr>
+    		<c:choose>
+    			<c:when test="${empty list}">
+    				<tr>
+    					<td></td><td></td><td></td>
+    				</tr>
+    			</c:when>
+    			<c:otherwise>
+    				<c:forEach var="process" items="${list}">
+    					<tr>
+    						<td>
+    							<fmt:formatDate value="${process.date}" pattern="yyyy-MM-dd HH:mm"/>
+    						</td>
+    						<td>
+    							${process.state}
+    						</td>
+    						<td>
+    							${process.info}
+    						</td>
+    					</tr>
+    				</c:forEach>
+    			</c:otherwise>
+    		</c:choose>
       
-    </tbody>
+    	</tbody>
   </table>
+  		
+  
+  
 </div>
 
 

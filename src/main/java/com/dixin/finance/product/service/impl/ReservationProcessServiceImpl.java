@@ -20,5 +20,11 @@ public class ReservationProcessServiceImpl implements IReservationProcessService
 			reservationProcessMapper.insert(reservationProcess);
 		}
 	}
+	@Override
+	public List<ReservationProcessVO> selectByreservationId(
+			Integer reservationId) {
+		
+		return  reservationProcessMapper.selectByreservationId(reservationId);
+	}
 
 }

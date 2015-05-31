@@ -76,21 +76,21 @@
    							<c:when test="${appointment.constant==104}">
    								<td>
    									已购买<br/>
-   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail.jsp">详细</a></span>
+   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail?userName=${appointment.user.name}&reservationId=${appointment.id}&productName=${appointment.product.name}">详细</a></span>
         							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=${appointment.id}&constant=${appointment.constant}&userId=${appointment.userId}&productId=${appointment.product.id}">修改</a></i>
    								</td>
    							</c:when>
    							<c:when test="${appointment.constant==105}">
    								<td>
    									购买中<br/>
-   									<span><a href="">进程</a></span>
+   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail?userName=${appointment.user.name}&reservationId=${appointment.id}&productName=${appointment.product.name}">进程</a></span>
         							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=${appointment.id}&constant=${appointment.constant}&userId=${appointment.userId}&productId=${appointment.product.id}">修改</a></i>
    								</td>
    							</c:when>
    							<c:when test="${appointment.constant==106}">
    								<td>
    									不购买<br/>
-   									<span><a href="">进程</a></span>
+   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail?userName=${appointment.user.name}&reservationId=${appointment.id}&productName=${appointment.product.name}">进程</a></span>
         							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=${appointment.id}&constant=${appointment.constant}&userId=${appointment.userId}&productId=${appointment.product.id}">修改</a></i>
    								</td>
    							</c:when>

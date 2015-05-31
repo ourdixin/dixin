@@ -12,4 +12,8 @@ public interface ReservationProcessMapper {
 	 * 插入预约进程信息
 	 */
 	public void insert(ReservationProcessVO reservationProcess);
+	/**
+	 * query
+	 */
+	public List<ReservationProcessVO>  selectByreservationId(Integer reservationId);
 }

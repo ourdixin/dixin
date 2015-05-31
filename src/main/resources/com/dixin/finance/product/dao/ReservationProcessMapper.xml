@@ -26,4 +26,10 @@
 				SYSDATE()	
 			)
 	</insert>
+	
+	<!-- 查询通过预约id -->
+	<select id="selectByreservationId" parameterType="Integer" resultType="com.dixin.finance.product.vo.ReservationProcessVO">
+		select * from reservation_process where reservation_id = #{reservationId}
+	</select>
+	
 </mapper>

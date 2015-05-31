@@ -436,4 +436,19 @@ public class ProductManagerController {
 		return "/admin/assignmentManager";
 	}
 	
+	/*************************查询通过预约id************************/
+	@RequestMapping(value="/admin/appointment-detail")
+	public String selectByreservationId(Integer reservationId,Model model,HttpSession session,HttpServletRequest request){
+		logger.info("客户产品预约（详细）页面被访问");
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return "admin/login";
+		}
+		logger.info(reservationId.toString());
+		List<ReservationProcessVO>  list = reservationProcessService.selectByreservationId(reservationId);
+		model.addAttribute("list", list);
+		return "/admin/appointment-detail";
+	}
+	
 }

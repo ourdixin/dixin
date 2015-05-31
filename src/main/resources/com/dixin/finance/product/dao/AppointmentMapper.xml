@@ -176,7 +176,7 @@
 				e.record as e_record
 				
 		from
-				reservation a inner join user b on a.user_id = b. id and a.constant !=104
+				reservation a inner join user b on a.user_id = b. id 
 					inner join product c on a.product_id = c.id
 						left join contact_record d on a.first_contact_id = d.id and d.contact_id = -1
 							left join contact_record e on d.last_contact_id = e.id 	
