@@ -200,16 +200,31 @@
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td height="60" align="center"><span class="single">产品推介单页下载<i><a href="<%=request.getContextPath()%>/${product.adFile}" target="_blank">下载</a></i></span>
-    <span class="guide">定向客户指南下载<i><a href="<%=request.getContextPath()%>/${product.guideFile}" target="_blank">下载</a></i></span></td>
+    <td height="60" align="center"><span class="single">产品推介单页下载<i><a 
+    <c:if test="${product.adFile != null && product.adFile !='' }">
+   	 	href="<%=request.getContextPath()%>/${product.adFile}" target="_blank"
+    </c:if>
+    >下载</a>
+    </i></span>
+    <span class="guide">定向客户指南下载<i>
+    <a 
+    <c:if test="${product.adFile != null && product.adFile !='' }">
+    	href="<%=request.getContextPath()%>/${product.guideFile}" target="_blank"
+    </c:if>
+    >
+    下载</a></i></span></td>
   </tr>
   <tr>
     <td>${product.info}</td>
   </tr>
 </table>
-
-<p style="margin-left:420px;"><span class="bnt_ok"><a href="<%=request.getContextPath()%>/product/appointment.jsp?productId=${product.id}&productName=${product.name}" >预约</a></span></p>
-
+<c:if test="${product.state  >=59 && product.state<=61 }">
+<p style="margin-left:420px;">
+	<span class="bnt_ok">
+		<a href="<%=request.getContextPath()%>/product/appointment.jsp?productId=${product.id}&productName=${product.name}" >预约</a>
+	</span>
+</p>
+</c:if>
 
 <br class=" clear" />
 </div>

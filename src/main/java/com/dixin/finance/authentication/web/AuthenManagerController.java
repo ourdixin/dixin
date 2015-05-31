@@ -145,7 +145,7 @@ public class AuthenManagerController {
 		
 		model.addAttribute("user", userVO);
 		
-		return "admin/appointment";
+		return "redirect:appointment";
 	}
 	
 	@RequestMapping(value="/admin/login", method=RequestMethod.POST)

@@ -99,7 +99,7 @@ public class ProductManagerController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "authentication/login";
+			return "admin/login";
 		}
 		
 		List<AppointmentVO> list = appointmentService.queryAllAppointmentList();
@@ -119,7 +119,7 @@ public class ProductManagerController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "authentication/login";
+			return "admin/login";
 		}
 		List<ContactRecordVO> list = contactRecordServiceImpl.query(firstContactId);
 		logger.info("length:"+list.size());
@@ -134,7 +134,7 @@ public class ProductManagerController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "authentication/login";
+			return "admin/login";
 		}
 		List<ContactRecordVO> list = contactRecordServiceImpl.query(firstContactId);
 		logger.info("length:"+list.size());
