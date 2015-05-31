@@ -404,12 +404,14 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/product/queryAssignment")
-	public String queryAssignmentList(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+	public @ResponseBody BaseWebResult queryAssignmentList(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
 		BaseWebResult webResult = new BaseWebResult();
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "/authentication/login";
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			return webResult;
 		}
 		
 		if(pageNum == null)
@@ -420,8 +422,9 @@ public class ProductController {
 		PageHelper.startPage(pageNum, pageSize);
 		List<AssignmentVO> assignments = assignmentService.queryUserAssignmentList(userVO.getId());
 		PageInfo<AssignmentVO> pageinfoList = new PageInfo(assignments);
-		model.addAttribute("assignmentList", pageinfoList);
-		return "/product/assignmentShow";
+		webResult.setSuccess(true);
+		webResult.setResult(pageinfoList);		
+		return webResult;
 	}
 	
 	//首页显示转让产品
