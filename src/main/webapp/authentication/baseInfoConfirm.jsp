@@ -38,7 +38,7 @@
 						<tr>
 							<td height="50" align="right">QQ：</td>
 							<td colspan="2"><input maxlength="12" class="itstyle lt it"
-								name="qq" id="qq" type="text"></td>
+								name="qq" id="qq" type="text" value="${user.qq}"></td>
 						</tr>
 						<tr>
 							<td height="50" align="right">所在地区：</td>
@@ -49,7 +49,7 @@
 							
 							<td width="74%">
 								<select name="areaId" id="areaId" style="width:180px">
-									<option>北京</option>
+									<option></option>
 								</select>
 							</td>
 						</tr>
@@ -57,12 +57,12 @@
 							<td height="50" align="right">邮政编码：</td>
 							<td colspan="2"><input maxlength="12"
 								class="itstyle lt  it160" name="zipCode" id="zipCode"
-								type="text" /></td>
+								type="text"  value="${user.zipCode}"/></td>
 						</tr>
 						<tr>
 							<td height="50" align="right">联系地址：</td>
 							<td colspan="2"><input class="itstyle lt it" style="width:300px"
-								name="address" id="address" type="text" /></td>
+								name="address" id="address" type="text" value="${user.address}"/></td>
 						</tr>
 						<tr>
 							<td height="50" align="right">&nbsp;</td>

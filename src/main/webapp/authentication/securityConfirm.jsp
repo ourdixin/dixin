@@ -34,13 +34,13 @@
 						<tr>
 							<td height="50" align="right">资金帐户：</td>
 							<td><input maxlength="12" class="itstyle lt it"
-								name="account" id="account" type="text"></td>
+								name="account" id="account" type="text" value="${user.account}"></td>
 						</tr>
 						<tr>
 							<td height="50" align="right">认证公司：</td>
 							<td><select name="financialInstitution.id" id="financialInstitution.id">
 									<c:forEach var="finanic" items="${financialList}">
-										<option value="${finanic.id}">${finanic.name}</option>
+										<option value="${finanic.id}" <c:if test="${user.financialInstitution.id==finanic.id}">selected="selected"</c:if>>${finanic.name}</option>
 									</c:forEach>
 								</select>
 							</td>
