@@ -70,17 +70,17 @@
         </if>        
 		<if test="state == 60">  
             <![CDATA[  
-               and release_date > '1970-01-01' and CURDATE() >= release_date and CURDATE() <=end_date 
+               and release_date > '1970-01-01' and current_timestamp() >= release_date and current_timestamp() <=end_date 
             ]]>  
         </if>
 		<if test="state == 61">  
             <![CDATA[  
-               and release_date > CURDATE()
+               and release_date > current_timestamp()
             ]]>  
         </if>
  		<if test="state == 62">  
             <![CDATA[  
-               and CURDATE() > end_date
+               and current_timestamp() > end_date
             ]]>  
         </if>       
 		<if test="direction != -1">  
