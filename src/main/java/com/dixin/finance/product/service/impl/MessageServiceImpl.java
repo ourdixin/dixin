@@ -40,14 +40,8 @@ public class MessageServiceImpl implements IMessageService {
 		List<MessageVO> list = customerMapper.selectMsgsByInitialId(id);
 		return list;
 	}
-	@Override
-	/**
-	 * 查找下一条自增id
-	 */
-	public Integer selectNextId() {
-		Integer nextId = customerMapper.selectNextId();
-		return nextId;
-	}
+
+	
 	@Override
 	/**
 	 * 当后台用户回复普通用户留言时，将首条留言的last_msg_id更改为当前即将插入的message id

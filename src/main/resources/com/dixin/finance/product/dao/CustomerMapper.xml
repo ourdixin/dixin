@@ -4,7 +4,7 @@
 
 <mapper namespace="com.dixin.finance.product.dao.CustomerMapper">
 	<!-- 插入message信息 -->
-	<insert id="insert" parameterType="com.dixin.finance.product.vo.MessageVO">
+	<insert id="insert" parameterType="com.dixin.finance.product.vo.MessageVO" useGeneratedKeys = "true" keyProperty = "id">
 		insert into message(
 				msg_id ,
 				user_id,
@@ -29,10 +29,6 @@
 				SYSDATE()
 			)
 	</insert>
-	<!-- 查找下一条自增id -->
-	<select id="selectNextId" resultType="Integer">
-		select AUTO_INCREMENT from INFORMATION_SCHEMA.TABLES   where TABLE_NAME='message'  
-	</select>
 	
 	
 	<!-- 查找所有初始留言信息 -->
@@ -96,7 +92,7 @@
             	d.user_name as d_user_name,
             	d.user_type as d_user_type
             	from message a left join message b on a.last_msg_id = b.id 
-            	inner join user d on b.user_id = d.id 
+            	left join user d on b.user_id = d.id 
            		inner join user c on a.user_id = c.id and a.msg_id = -1
            		order by a.msg_time desc
 	</select>
@@ -202,7 +198,7 @@
             	d.user_type as d_user_type
 			   	from 
 			   	(message a left join message b on a.last_msg_id = b.id ) 
-			   	inner join user d on b.user_id = d.id 
+			   	left join user d on b.user_id = d.id 
 			   	inner join user c on a.user_id = c.id and a.msg_id =-1 and c.id = #{id}
 			   	order by a.msg_time desc
 	</select>

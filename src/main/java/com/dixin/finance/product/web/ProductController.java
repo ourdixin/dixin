@@ -509,8 +509,7 @@ public class ProductController {
 		Integer catogryId = message.switchToCatogryID(select2);
 		message.setCatogryId(catogryId);
 		message.setMsg(questions);
-		Integer thisLastMsgId = messageServiceImpl.selectNextId();
-		message.setLastMsgId(thisLastMsgId);
+		message.setLastMsgId(-1);
 		message.setCreateUser(userId);
 		message.setUpdateUser(userId);
 		messageServiceImpl.insertMessage(message);
@@ -529,10 +528,10 @@ public class ProductController {
 			return "authentication/login";
 		}
 		List<MessageVO> list = messageServiceImpl.selectFirstMessage();
-		String msg = list.get(0).getLastMessage().getMsg();
-		logger.info(msg);
-		Integer userType = list.get(0).getLastMessage().getUserVO().getUserType();
-		logger.info("userType"+userType);
+		//String msg = list.get(0).getLastMessage().getMsg();
+		//logger.info(msg);
+		//Integer userType = list.get(0).getLastMessage().getUserVO().getUserType();
+		//logger.info("userType"+userType);
 		/*MessageVO message = list.get(1).getLastMessage();
 		if(message==null){
 			logger.info("message为空");
@@ -630,12 +629,11 @@ public class ProductController {
 		message.setUserId(userId);
 		message.setCatogryId(catogryId);
 		message.setMsg(msg);
-		Integer lastMsgId = messageServiceImpl.selectNextId();
-		logger.info("lastMsgId"+lastMsgId.toString());
-		message.setLastMsgId(lastMsgId);
+		message.setLastMsgId(-1);
 		message.setCreateUser(userId);
 		message.setUpdateUser(userId);
 		messageServiceImpl.insertMessage(message);
+		Integer lastMsgId = message.getId();
 		messageServiceImpl.updateLastMsgId(id,lastMsgId);
 		webResult.setMsg("提交成功！");
 		webResult.setSuccess(true);

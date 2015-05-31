@@ -401,12 +401,12 @@ public class AuthenticationController {
 		message.setUserId(userId);
 		message.setCatogryId(catogryId);
 		message.setMsg(msg);
-		Integer thisLastMsgId = messageServiceImpl.selectNextId();
-		message.setLastMsgId(thisLastMsgId);
+		message.setLastMsgId(-1);
 		message.setCreateUser(userId);
 		message.setUpdateUser(userId);
 		messageServiceImpl.insertMessage(message);
 		//final Integer lastMsgId = -1;//用户回复后设置lastMsg为-1
+		Integer thisLastMsgId = message.getId();
 		messageServiceImpl.updateLastMsgId(id,thisLastMsgId);//设置初始留言
 		webResult.setMsg("提交成功！");
 		webResult.setSuccess(true);
