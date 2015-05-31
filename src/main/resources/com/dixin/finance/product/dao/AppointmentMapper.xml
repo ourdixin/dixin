@@ -192,4 +192,10 @@
 	<update id="setConstant"  parameterType="map">
 		update reservation set constant = #{Constant} where id = #{reservationId}
 	</update>
+	
+	<!-- 设置购买id -->
+	<update id="setPurchaseId" parameterType="map">
+		update reservation set  purchase_id = #{purchaseId} where id= #{reservationId}
+	</update>
+	
 </mapper>

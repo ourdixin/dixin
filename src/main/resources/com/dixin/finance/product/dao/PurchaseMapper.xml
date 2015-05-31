@@ -246,7 +246,7 @@
 	</select>
 
 	
-  <insert id="addPurchase" parameterType="com.dixin.finance.product.vo.PurchaseVO" >
+  <insert id="addPurchase" parameterType="com.dixin.finance.product.vo.PurchaseVO" useGeneratedKeys = "true" keyProperty = "id" >
     insert into purchase(
 		user_id,
 		buy_date,

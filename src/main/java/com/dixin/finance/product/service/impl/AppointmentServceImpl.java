@@ -56,6 +56,15 @@ public class AppointmentServceImpl implements IAppointmentService {
 		appointmentMapper.setConstant(map);
 		
 	}
+
+	@Override
+	public void setPurchaseId(Integer reservationId, Integer purchaseId) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("reservationId", reservationId);
+		map.put("purchaseId", purchaseId);
+		appointmentMapper.setPurchaseId(map);
+		
+	}
 	
 	
 }

@@ -37,4 +37,8 @@ public interface AppointmentMapper {
 	 * 设置购买状态
 	 */
 	public void setConstant(Map<String,Integer> map);
+	/**
+	 * 设置购买id
+	 */
+	public void setPurchaseId(Map<String,Integer> map);
 }

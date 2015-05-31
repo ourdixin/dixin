@@ -35,4 +35,8 @@ public interface IAppointmentService {
 	 * 设置状态
 	 */
 	public void setConstant(Integer reservationId,Integer Constant);
+	/**
+	 * 设置购买id
+	 */
+	public void setPurchaseId(Integer reservationId,Integer purchaseId );
 }

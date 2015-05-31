@@ -92,6 +92,72 @@ public class ProductManagerController {
 	@Resource(name="reservationProcessServiceImpl")
 	private IReservationProcessService reservationProcessService;
 	
+	public IUserService getUserServiceImpl() {
+		return userServiceImpl;
+	}
+
+	public void setUserServiceImpl(IUserService userServiceImpl) {
+		this.userServiceImpl = userServiceImpl;
+	}
+	
+
+	public IProductService getProductService() {
+		return productService;
+	}
+	
+	public void setProductService(IProductService productService) {
+		this.productService = productService;
+	}
+
+	public IAssignmentService getAssignmentService() {
+		return assignmentService;
+	}
+
+	public void setAssignmentService(IAssignmentService assignmentService) {
+		this.assignmentService = assignmentService;
+	}
+
+	public IAppointmentService getAppointmentService() {
+		return appointmentService;
+	}
+
+	public void setAppointmentService(IAppointmentService appointmentService) {
+		this.appointmentService = appointmentService;
+	}
+
+	public IMessageService getMessageServiceImpl() {
+		return messageServiceImpl;
+	}
+
+	public void setMessageServiceImpl(IMessageService messageServiceImpl) {
+		this.messageServiceImpl = messageServiceImpl;
+	}
+
+	public IPurchaseService getPurchaseServiceImpl() {
+		return purchaseServiceImpl;
+	}
+
+	public void setPurchaseServiceImpl(IPurchaseService purchaseServiceImpl) {
+		this.purchaseServiceImpl = purchaseServiceImpl;
+	}
+	public IContactRecordService getContactRecordServiceImpl() {
+		return contactRecordServiceImpl;
+	}
+
+	public void setContactRecordServiceImpl(
+			IContactRecordService contactRecordServiceImpl) {
+		this.contactRecordServiceImpl = contactRecordServiceImpl;
+	}
+
+	public IReservationProcessService getReservationProcessService() {
+		return reservationProcessService;
+	}
+
+	public void setReservationProcessService(
+			IReservationProcessService reservationProcessService) {
+		this.reservationProcessService = reservationProcessService;
+	}
+	
 	/*************************后台查询客服预约信息*******************************/
 	@RequestMapping(value="/admin/appointment")
 	public String showAppointment(Model model,HttpSession session,HttpServletRequest request){
@@ -212,6 +278,17 @@ public class ProductManagerController {
 		}
 		
 		ReservationProcessVO process = new ReservationProcessVO();
+		AppointmentVO appointment = new AppointmentVO();
+		appointment.setId(reservationId);
+		process.setAppointment(appointment);
+		process.setState(option);
+		if(option !=null && option==appointmentConstant.buying){
+			process.setInfo(info);
+		}
+		else{
+			process.setInfo(reason);
+		}
+	    reservationProcessService.insert(process);
 		if(option !=null && option==appointmentConstant.buyed){
 			PurchaseVO purchase = new PurchaseVO();
 			purchase.setUserId(userId);
@@ -224,88 +301,19 @@ public class ProductManagerController {
 			purchase.setPnl(0.0);
 			purchase.setProductId(productId);
 			purchaseServiceImpl.addPurchase(purchase);
+			Integer purchaseId = purchase.getId();
+			appointmentService.setPurchaseId(reservationId,purchaseId);
+			
 		}
 		appointmentService.setConstant(reservationId,option);
-		AppointmentVO appointment = new AppointmentVO();
-		appointment.setId(reservationId);
-		process.setAppointment(appointment);
-		process.setState(option);
-		if(option !=null && option==appointmentConstant.buying)
-			process.setInfo(info);
-		else
-			process.setInfo(reason);
-		reservationProcessService.insert(process);
+		
 		webResult.setMsg(request.getContextPath()+"/admin/appointment");
 		webResult.setSuccess(true);
 		return webResult;
 	}
 	
 
-	public IUserService getUserServiceImpl() {
-		return userServiceImpl;
-	}
-
-	public void setUserServiceImpl(IUserService userServiceImpl) {
-		this.userServiceImpl = userServiceImpl;
-	}
 	
-
-	public IProductService getProductService() {
-		return productService;
-	}
-	
-	public void setProductService(IProductService productService) {
-		this.productService = productService;
-	}
-
-	public IAssignmentService getAssignmentService() {
-		return assignmentService;
-	}
-
-	public void setAssignmentService(IAssignmentService assignmentService) {
-		this.assignmentService = assignmentService;
-	}
-
-	public IAppointmentService getAppointmentService() {
-		return appointmentService;
-	}
-
-	public void setAppointmentService(IAppointmentService appointmentService) {
-		this.appointmentService = appointmentService;
-	}
-
-	public IMessageService getMessageServiceImpl() {
-		return messageServiceImpl;
-	}
-
-	public void setMessageServiceImpl(IMessageService messageServiceImpl) {
-		this.messageServiceImpl = messageServiceImpl;
-	}
-
-	public IPurchaseService getPurchaseServiceImpl() {
-		return purchaseServiceImpl;
-	}
-
-	public void setPurchaseServiceImpl(IPurchaseService purchaseServiceImpl) {
-		this.purchaseServiceImpl = purchaseServiceImpl;
-	}
-	public IContactRecordService getContactRecordServiceImpl() {
-		return contactRecordServiceImpl;
-	}
-
-	public void setContactRecordServiceImpl(
-			IContactRecordService contactRecordServiceImpl) {
-		this.contactRecordServiceImpl = contactRecordServiceImpl;
-	}
-
-	public IReservationProcessService getReservationProcessService() {
-		return reservationProcessService;
-	}
-
-	public void setReservationProcessService(
-			IReservationProcessService reservationProcessService) {
-		this.reservationProcessService = reservationProcessService;
-	}
 
 	@RequestMapping(value="/admin/addsalesdata")
 	public @ResponseBody BaseWebResult addSalesData(PurchaseVO purchaseVo,Integer userId,String backurl,HttpSession session,Model model,HttpServletRequest request){
