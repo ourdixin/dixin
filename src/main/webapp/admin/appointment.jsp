@@ -76,7 +76,7 @@
    							<c:when test="${appointment.constant==104}">
    								<td>
    									已购买<br/>
-   									<span><a href="">详细</a></span>
+   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail.jsp">详细</a></span>
         							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=${appointment.id}&constant=${appointment.constant}&userId=${appointment.userId}&productId=${appointment.product.id}">修改</a></i>
    								</td>
    							</c:when>
