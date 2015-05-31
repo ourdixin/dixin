@@ -99,7 +99,7 @@ public class ProductManagerController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "authentication/login";
+			return "admin/login";
 		}
 		
 		List<AppointmentVO> list = appointmentService.queryAllAppointmentList();
@@ -119,7 +119,7 @@ public class ProductManagerController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "authentication/login";
+			return "admin/login";
 		}
 		List<ContactRecordVO> list = contactRecordServiceImpl.query(firstContactId);
 		logger.info("length:"+list.size());
@@ -134,7 +134,7 @@ public class ProductManagerController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "authentication/login";
+			return "admin/login";
 		}
 		List<ContactRecordVO> list = contactRecordServiceImpl.query(firstContactId);
 		logger.info("length:"+list.size());
@@ -157,22 +157,33 @@ public class ProductManagerController {
 			return webResult;
 		}
 		ContactRecordVO contact = new ContactRecordVO();
-		Integer id= contactRecordServiceImpl.nextId();
+		//用户首次插入联系记录时，维护联系记录id为-1,之后同组的联系记录均设为该组第一条联系记录的id
 		if(firstContactId==null||firstContactId<0){
 			contact.setContactId(-1);
-			appointmentService.setFirstContactId(id,appointmentId);
 		}else{
 			contact.setContactId(firstContactId);
-			contactRecordServiceImpl.updateLastContactId(id,firstContactId);
 		}
 		UserVO user = new UserVO();
 		user.setId(userId);
 		contact.setUser(user);
 		contact.setRecord(record);
 		ContactRecordVO lastContact = new ContactRecordVO();
-		lastContact.setId(id);
+		lastContact.setId(-1);
 		contact.setLastContactRecordVO(lastContact);
 		contactRecordServiceImpl.insert(contact);
+		Integer id = contact.getId();
+		
+		/*第一次插入联系记录时，设置预约表中的first_contact_id为当前记录id,并更新自身的last_contact_id为当前id
+		 * 之后同组联系中，每次插入联系记录更新本组第一条联系记录的last_contct_id为当前id
+		 */
+		if(firstContactId==null||firstContactId<0){
+			contactRecordServiceImpl.updateLastContactId(id,id);
+			appointmentService.setFirstContactId(id,appointmentId);
+		}else{
+			contactRecordServiceImpl.updateLastContactId(id,firstContactId);
+		}
+		
+		
 		webResult.setMsg(request.getContextPath()+"/admin/appointment");
 		webResult.setSuccess(true);
 		return webResult;

@@ -19,7 +19,7 @@
 				</dd>
 	
 				<dd>
-					<a href="<%=request.getContextPath()%>/product/queryAppointment"><img src="<%=request.getContextPath()%>/images/ico_18.png" width="15" height="15" />我的预约</a>
+					<a href="<%=request.getContextPath()%>/product/appointmentShow.jsp"><img src="<%=request.getContextPath()%>/images/ico_18.png" width="15" height="15" />我的预约</a>
 				</dd>
 				<dd>
 					<a href="<%=request.getContextPath()%>/product/queryAssignment"><img src="<%=request.getContextPath()%>/images/ico_13.png" width="20" height="16" />产品转让</a>
