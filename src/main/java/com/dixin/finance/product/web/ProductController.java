@@ -426,7 +426,9 @@ public class ProductController {
 	
 	//首页显示转让产品
 	@RequestMapping(value="/authentication/transfer")
-	public String  assignmentManager(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+	public @ResponseBody BaseWebResult assignmentManager(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		
 		if(pageNum == null)
 			pageNum = 1;
 		if(pageSize == null)
@@ -435,8 +437,9 @@ public class ProductController {
 		PageHelper.startPage(pageNum, pageSize);
 		List<AssignmentVO> assignments = assignmentService.queryAssignmentList();
 		PageInfo<AssignmentVO> pageinfoList = new PageInfo(assignments);
-		model.addAttribute("assignmentList", pageinfoList);
-		return "/authentication/transfer";
+		webResult.setSuccess(true);
+		webResult.setResult(pageinfoList);
+		return webResult;
 	}
 	
 	/***********************************产品预约**********************************************/

@@ -16,6 +16,7 @@ public class UserVO extends BaseVO {
 
 	private int id; // 内部唯一ID
 	private String userName; // 用户名
+	private String secUserName;
 	private String password; // 密码
 	private int userType; // 是客户还是后台管理用户
 	private int enabled; // 是否有效
@@ -70,10 +71,17 @@ public class UserVO extends BaseVO {
 		this.userName = userName;
 	}
 	public String getSecUserName() {
-		String username = mobile.substring(0, 3);
-		username+= "****" + mobile.substring(mobile.length() - 4);
-		return username;
+		if(mobile != null && mobile.length() >=8)
+		{
+			secUserName = mobile.substring(0, 3);
+			secUserName+= "****" + mobile.substring(mobile.length() - 4);
+		}
+		return secUserName;
 	}	
+	public void setSecUserName(String secUserName) {
+		this.secUserName = secUserName;
+	}	
+	
 	public String getPassword() {
 		return password;
 	}
