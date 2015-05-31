@@ -255,6 +255,33 @@ public class AuthenticationController {
 		assessment.setUserId(userVO.getId());
 		String delim1 = ",";
 		String delim2 = "-";
+		if(w1==null||w1==""){
+			logger.info("w1:"+w1);
+		}
+		if(w2==null||w2==""){
+			logger.info("w2:"+w2);
+		}
+		if(w3==null||w3==""){
+			logger.info("w1:"+w1);
+		}
+		if(w4==null||w4.length==0){
+			logger.info("w1:"+w1);
+		}
+		if(w5==null||w5==""){
+			logger.info("w1:"+w1);
+		}
+		if(w6==null||w6==""){
+			logger.info("w1:"+w1);
+		}
+		if(w7==null||w7==""){
+			logger.info("w1:"+w1);
+		}
+		if(w8==null||w8==""){
+			logger.info("w1:"+w1);
+		}
+		if(w9==null||w9==""){
+			logger.info("w9:"+w9);
+		}
 		int option1 = split.pickUpString(w1,delim1).get(0);
 		int grade1 = split.pickUpString(w1,delim1).get(1);
 		int option2 = split.pickUpString(w2,delim1).get(0);
