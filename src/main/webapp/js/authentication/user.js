@@ -15,7 +15,7 @@ $(document).ready(function(){
 		}
 				
 		$("a[class='item']").click(function(){
-			$.post(HOST_PATH+"/products/advance?pageNum="+this.text+"&productType="+this.name, null, success);
+			$.post(HOST_PATH+"/products/advance?state=60&pageNum="+this.text+"&productType="+this.name, null, success);
 		});		
 		
 	};
