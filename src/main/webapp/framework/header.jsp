@@ -15,7 +15,13 @@
    	  | <a
 						href="<%=request.getContextPath()%>/authentication/register.jsp">免费注册</a>
 				</c:if> <c:if test="${null != user}"> 
-   	${user.secUserName}【普通会员】  	
+   	${user.secUserName}
+   	<c:if test="${user.userType == 10}">
+   		【普通会员】
+   	</c:if>  
+   	<c:if test="${user.userType == 25}">
+   		【管理员】
+   	</c:if>     		
 	| <a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a>
 	| <a href="<%=request.getContextPath()%>/product/customer.jsp">在线客服</a> | <a
 						href="<%=request.getContextPath()%>/authentication/logout">安全退出</a>

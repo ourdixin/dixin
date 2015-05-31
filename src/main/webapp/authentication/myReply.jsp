@@ -36,7 +36,7 @@
     				<th>问题分类</th>
     				<th>留言内容</th>
     				<th>客服回复</th>
-    				<th>回复</th>
+    				<th>操作</th>
   				</tr>
   			</thead>
   			<tbody>
@@ -73,7 +73,7 @@
   								<td><i ><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
   							</c:when>
   							<c:otherwise>
-  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
+  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=${message.id}&catogryId=${message.catogryId}">追问</a></i></td>
   							</c:otherwise>
   						</c:choose>	
   					</tr>
