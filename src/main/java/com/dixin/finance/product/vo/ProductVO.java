@@ -512,9 +512,18 @@ public class ProductVO extends BaseVO {
 		if(catogryId != null)
 			this.catogryId = catogryId;
 	}
+	public String getProductType()
+	{
+		if(catogryId >=ProductTypeConstant.BOND && catogryId <= ProductTypeConstant.ASSET_MANAGEMENT )
+			return ProductTypeConstant.ProductTypeString[catogryId - ProductTypeConstant.BOND];
+		
+		return ProductTypeConstant.ProductTypeString[2]; 
+	}
+	
 	public int getProfitId() {
 		return profitId;
 	}
+
 	public void setProfitId(Integer profitId) {
 		if(profitId != null)
 			this.profitId = profitId;
