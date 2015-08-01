@@ -11,13 +11,38 @@
 <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript" src="js/superslide.2.1.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	searchsuccess: function searchsuccess(data){
+		if(data.result.length == 1 )
+		{
+			var htmlStr = template('product_item', data.result[0]);
+			$('#tab_products').html(htmlStr);
+		}
+		/*
+		else
+		{
+			var htmlStr = template('product_list', data);
+			$('.con').remove();
+			$('.index_serch').after(htmlStr);
+		}
+		*/	
+		$("a[class='item']").click(function(){
+			//$.post(basePath+"/products/advance?pageNum="+this.text+"&productType="+this.name, null, success);
+			searchProducts(this.text);
+		});		
+		
+	};
+
  function setTab(name,cursel,n){
- for(i=1;i<=n;i++){
-  var menu=document.getElementById(name+i);
-  var con=document.getElementById("con_"+name+"_"+i);
-  menu.className=i==cursel?"over":"";
-  con.style.display=i==cursel?"block":"none";
- }
+	 for(i=1;i<=n;i++){
+		 var menu=document.getElementById(name+i);
+		 var con=document.getElementById("con_"+name+"_"+i);
+		 menu.className=i==cursel?"over":"";
+		 con.style.display=i==cursel?"block":"none";
+		 
+	 }
+	 //ajax
+	 $.post(HOST_PATH+"/products/advance","pageSize=8 & profitType=42 & state =63", searchsuccess);	
 }
 </script>
 </head>
@@ -137,241 +162,21 @@
             <th>产品类型</th>
             <th>操作</th>
           </tr>
+        <c:forEach var="fixedProduct" items="${fixedProducts.list}" varStatus="i">
           <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
+            <td>${fixedProduct.code}</td>
+            <td>${fixedProduct.name}</td>
+            <td>${fixedProduct.releaseDate}</td>
+            <td>${fixedProduct.term}</td>
+             <td>${fixedProduct.rateA}</td>
+            <td>${fixedProduct.minAmount}</td>
+            <td>${fixedProduct.catogryId}</td>
             <td class="red"><a href="#">了解更多</a></td>
           </tr>
-          <tr class="jg">
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr class="jg">
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr class="jg">
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr class="jg">
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
+         </c:forEach>
         </table>
         <p class="tablemore"><a href="<%=request.getContextPath() %>/product/product.jsp">更多产品 &gt;&gt;</a></p>
       </div>
-      <div id="con_one_2" class="hometable" style="display:none;">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <th>产品代码</th>
-            <th>产品名称</th>
-            <th>发行时间</th>
-            <th>期限</th>
-            <th>利率</th>
-            <th>认购起点</th>
-            <th>产品类型</th>
-            <th>操作</th>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr class="jg">
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr class="jg">
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-        </table>
-        <p class="tablemore"><a href="<%=request.getContextPath() %>/product/product.jsp">更多产品 &gt;&gt;</a></p>
-      </div>
-      <div id="con_one_3" class="hometable" style="display:none;">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <th>产品代码</th>
-            <th>产品名称</th>
-            <th>发行时间</th>
-            <th>期限</th>
-            <th>利率</th>
-            <th>认购起点</th>
-            <th>产品类型</th>
-            <th>操作</th>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr class="jg">
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr class="jg">
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr class="jg">
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-          <tr>
-            <td>S51132</td>
-            <td>中信证券•安泰收益凭证三十二期</td>
-            <td>2015-7-18</td>
-            <td>3个月</td>
-            <td>15.30%</td>
-            <td>5万元</td>
-            <td>券商理财</td>
-            <td class="red"><a href="#">了解更多</a></td>
-          </tr>
-        </table>
-        <p class="tablemore"><a href="<%=request.getContextPath() %>/product/product.jsp">更多产品 &gt;&gt;</a></p>
-      </div>
-    </div>
-  </div>
   
   <div class="ind_table">
     <div class="fdsy">
