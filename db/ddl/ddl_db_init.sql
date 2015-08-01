@@ -3895,6 +3895,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `status` tinyint(4) NOT NULL DEFAULT '120' COMMENT '产品期限状态',
   `info` text NOT NULL COMMENT '资管要素HTML文件',
   `view_num` int(11) NOT NULL COMMENT '查看次数',
+  `recommend` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否在首页被推荐,1位推荐，0为默认未推荐',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_user` int(11) NOT NULL COMMENT '更新人',
