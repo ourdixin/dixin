@@ -379,6 +379,9 @@ public class ProductController {
 		return webResult;
 	}	
 	
+	
+
+	
 	/***********************************产品转让**********************************************/
 	@RequestMapping(value="/product/assignment",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult assignment(AssignmentVO assignment,int productId,String backurl, HttpSession session,HttpServletRequest request){

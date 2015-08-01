@@ -67,6 +67,14 @@ public class ProductServiceImpl implements IProductService{
 	{
 		return productMapper.queryProduct(productId);
 	}
+	
+	
+
+	@Override
+	public List<ProductVO> findProductList(ProductVO product) {
+		return productMapper.findProductList(product);
+		
+	}
 
 	@Override
 	public void updateViewNum(int productId) {

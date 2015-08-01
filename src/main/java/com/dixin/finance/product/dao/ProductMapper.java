@@ -22,6 +22,14 @@ public interface ProductMapper {
 	 */	
 	ProductVO queryProduct(int productId);
 	
+	
+    /**
+     * 根据条件查询产品信息
+     * @param product
+     * @return
+     */
+	List<ProductVO> findProductList(ProductVO product);
+	
 	/**
 	 * 添加查看次数
 	 * @return
