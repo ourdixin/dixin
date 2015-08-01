@@ -78,6 +78,8 @@ public class AuthenticationController {
 		{
 			model.addAttribute("user", userVO);
 		}
+		
+/*
 		//首页推荐产品
 		//固定收益
 		List<ProductVO> fixedProducts = productService.findProductList(product);
@@ -85,6 +87,8 @@ public class AuthenticationController {
 		List<ProductVO> floatProducts = productService.findProductList(product);
 		model.addAttribute("fixedProducts", fixedProducts);
 		model.addAttribute("floatProducts", floatProducts);
+*/
+
 		return "main";
 	}	
 	

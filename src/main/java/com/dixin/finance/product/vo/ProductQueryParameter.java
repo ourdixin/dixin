@@ -61,7 +61,17 @@ public class ProductQueryParameter {
 	 */	
 	private	int profitType = -1;		
 	
-
+	/**
+	 * 是否推荐到首页
+	 */	
+	private	int recommend = -1;	
+	
+	/**
+	 * 查询前limit条数
+	 */	
+	private	int limit = -1;
+	
+	
 	public int getPageNum() {
 		return pageNum;
 	}
@@ -141,5 +151,20 @@ public class ProductQueryParameter {
 	public void setProfitType(int profitType) {
 		this.profitType = profitType;
 	}
+	
+	public int getRecommend() {
+		return recommend;
+	}
 
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
 }

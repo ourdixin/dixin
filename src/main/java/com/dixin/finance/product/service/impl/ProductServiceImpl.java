@@ -59,6 +59,8 @@ public class ProductServiceImpl implements IProductService{
 		map.put("rate", parameter.getRate());
 		map.put("direction", parameter.getDirection());
 		map.put("profitType", parameter.getProfitType());
+		map.put("recommend", parameter.getRecommend());
+		map.put("limit", parameter.getLimit());
 		return productMapper.queryProductList(map);
 	}
 	

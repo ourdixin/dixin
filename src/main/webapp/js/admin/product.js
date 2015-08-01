@@ -21,7 +21,7 @@ function recommendproduct(productName,productId){
 	   if(confirm("是否要把此产品推荐到首页显示？")){
 	        $.post(HOST_PATH+"/admin/recommendproduct","productId="+productId, actionsuccess);
 	    }
-	}
+}
 
 $(document).ready(function(){
 

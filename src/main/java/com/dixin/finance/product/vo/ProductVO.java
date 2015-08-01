@@ -274,6 +274,11 @@ public class ProductVO extends BaseVO {
 	 * 产品期限状态
 	 */	
 	private Integer status = ProductStatusConstant.Status_Duration;	
+	
+	/**
+	 * 是否推荐产品到首页，1为推荐到首页显示，0为默认不推荐
+	 */	
+	private Integer recommend = 0;
 
 	private String createUser=""; // 创建人',
 
@@ -725,6 +730,14 @@ public class ProductVO extends BaseVO {
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	
+	public Integer getRecommend() {
+		return recommend;
+	}
+	
+	public void setRecommend(Integer recommend) {
+		this.recommend = recommend;
 	}
 	
 	public boolean SetValue(String strValue,int nCol,int type){
