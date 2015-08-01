@@ -23,12 +23,14 @@ import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.product.service.IMessageService;
+import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.authentication.vo.AssessmentVO;
 import com.dixin.finance.authentication.vo.FinancialManagerVO;
 import com.dixin.finance.authentication.vo.Financial_institutionVO;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.vo.MessageVO;
+import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
@@ -64,8 +66,11 @@ public class AuthenticationController {
 	@Resource
 	private IAreaService areaServiceImpl;
 	
+	@Resource(name="productServiceImpl")
+	private IProductService productService;
+	
 	@RequestMapping(value="/")
-	public String index(HttpSession session,Model model,HttpServletRequest request){
+	public String index(ProductVO product,HttpSession session,Model model,HttpServletRequest request){
 	
 		logger.info("首页被访问!");
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
@@ -73,7 +78,13 @@ public class AuthenticationController {
 		{
 			model.addAttribute("user", userVO);
 		}
-		
+		//首页推荐产品
+		//固定收益
+		List<ProductVO> fixedProducts = productService.findProductList(product);
+		//浮动收益
+		List<ProductVO> floatProducts = productService.findProductList(product);
+		model.addAttribute("fixedProducts", fixedProducts);
+		model.addAttribute("floatProducts", floatProducts);
 		return "main";
 	}	
 	

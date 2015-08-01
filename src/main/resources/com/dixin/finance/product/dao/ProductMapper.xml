@@ -168,6 +168,65 @@
                
         order by release_date desc
   </select>
+  
+  <select id="findProductList" parameterType="com.dixin.finance.product.vo.ProductVO" resultType="com.dixin.finance.product.vo.ProductVO" useCache="false" >
+		select id id,
+			code code, 
+			name name, 
+			release_date releaseDate,
+			end_date endDate, 
+			b_delay bDelay,
+			delay_condition delayCondition,
+			delay_term delayTerm,
+			delay_term_unit delayTermUnit,
+			term term, 
+			term_unit termUnit,
+			append_term appendTerm, 
+			append_term_unit appendTermUnit,			
+			part_a partA, 
+			rate_a rateA, 
+			part_b partB, 
+			rate_b rateB, 
+			part_c partC, 
+			rate_c rateC, 
+			part_d partD, 
+			rate_d rateD, 
+			amount amount, 
+			min_amount minAmount,
+			append_amount appendAmount,
+			pay_type payType, 
+			pay_type_info payTypeInfo,
+			ad_file adFile, 
+			guide_file guideFile,  
+			star star, 
+			catogry_id catogryId, 
+			profit_id profitId, 
+			bonus_type bonusType, 
+			direction direction,
+			buy_fee buyFee,
+			close_term closeTerm,
+			close_term_unit closeTermUnit,
+			fund_manager fundManager,
+			fund_manager_url fundManagerUrl,
+			manage_fee manageFee,
+			open_day openDay,
+			bonus bonus,
+			sell_fee sellFee,
+			status status,
+			info info,
+			view_num viewNum,
+			create_user createUser, 
+			create_time createTime, 
+			update_user updateUser, 
+			update_time updateTime
+		from product
+		 WHERE name like '%${searchText}%' 
+		<if test="profitId != null">  
+            <![CDATA[  
+               and profit_id=#{profitId} 
+            ]]>  
+        </if>  
+  </select>
 
   <select id="queryProduct" parameterType="int" resultType="com.dixin.finance.product.vo.ProductVO" useCache="false" >
 		select id id,
