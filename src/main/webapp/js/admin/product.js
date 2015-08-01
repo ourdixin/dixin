@@ -2,6 +2,27 @@
  * 
  */
 
+actionsuccess: function actionsuccess(data){
+	if(data.success )
+	{
+		searchProducts(1);
+	}
+};
+
+	
+function delProduct(productName,productId){
+	
+   if(confirm("是否继续删除此产品？")){
+        $.post(HOST_PATH+"/admin/delproduct","productId="+productId, actionsuccess);
+    }
+}
+function recommendproduct(productName,productId){
+	
+	   if(confirm("是否要把此产品推荐到首页显示？")){
+	        $.post(HOST_PATH+"/admin/recommendproduct","productId="+productId, actionsuccess);
+	    }
+	}
+
 $(document).ready(function(){
 
 	template.config('openTag', '<#');
@@ -29,7 +50,7 @@ $(document).ready(function(){
 	};
 	
 	
-	function searchProducts(pageNum)
+	searchProducts = function (pageNum)
 	{	
 		var data = "";
 		$('div span:has(a[href^=javascript])').each(function(){
@@ -70,7 +91,5 @@ $(document).ready(function(){
 		searchProducts(1);
 		
 	});
-	
-
-	
+		
 });

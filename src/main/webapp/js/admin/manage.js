@@ -3,7 +3,7 @@
  * 
  */
 
-searchsuccess: function actionsuccess(data){
+actionsuccess: function actionsuccess(data){
 	if(data.success )
 	{
 		searchProducts();

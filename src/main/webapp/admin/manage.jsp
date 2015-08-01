@@ -147,7 +147,7 @@
 
 
       <div class="index_serch" style="width:700px">
-         <div class="serch_a"><a id="fixIncome" href="javascript:void(0)" style="color:#F60">固定收益</a>&nbsp;&nbsp;&nbsp;&nbsp; <a id="UnfixIncome" href="javascript:void(0)" style="color:#F00">浮动收益</a></div>
+         <div class="serch_a"><a id="fixIncome" href="javascript:void(0)" style="color:#F60">固定收益</a>&nbsp; <a id="UnfixIncome" href="javascript:void(0)" style="color:#F00">浮动收益</a></div>
           <form id="searchForm">
            <div class="serch_b">
            	<input id="search_text" type="text" class="serch_text"/>

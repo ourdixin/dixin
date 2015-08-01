@@ -49,6 +49,12 @@ public interface ProductMapper {
 	void deleteProduct(int productId);
 	
 	/**
+	 * 推荐产品到首页
+	 * @return
+	 */		
+	void recommendProduct(int productId);	
+	
+	/**
 	 * 修改产品
 	 * @return
 	 */	

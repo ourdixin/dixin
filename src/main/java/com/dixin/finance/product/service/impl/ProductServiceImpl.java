@@ -246,5 +246,10 @@ public class ProductServiceImpl implements IProductService{
 	public void updateProduct(ProductVO product) {
 		productMapper.updateProduct(product);
 	}
+
+	@Override
+	public void recommendProduct(int productId) {
+		productMapper.recommendProduct(productId);
+	}
     
 }

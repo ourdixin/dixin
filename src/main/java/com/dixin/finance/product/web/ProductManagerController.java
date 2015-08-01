@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,7 +30,6 @@ import javax.servlet.http.HttpSession;
 import com.dixin.finance.product.service.IReservationProcessService;
 import com.dixin.finance.authentication.service.IUserService;
 import com.dixin.finance.authentication.vo.UserVO;
-
 import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.service.IMessageService;
@@ -44,6 +44,7 @@ import com.dixin.finance.product.vo.ContactRecordVO;
 import com.dixin.finance.product.vo.ReservationProcessVO;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
+import com.dixin.finance.product.constant.ProfitTypeConstant;
 import com.dixin.finance.product.constant.appointmentConstant;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.dixin.finance.product.vo.ProductQueryParameter;
@@ -449,6 +450,89 @@ public class ProductManagerController {
 		List<ReservationProcessVO>  list = reservationProcessService.selectByreservationId(reservationId);
 		model.addAttribute("list", list);
 		return "/admin/appointment-detail";
+	}
+	
+	@RequestMapping(value="/admin/productview", method=RequestMethod.GET)
+	public String adminProductView(int productId,HttpSession session,Model model,HttpServletRequest request){
+	
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "admin/login";
+		}
+		
+		productService.updateViewNum(productId);
+		ProductVO product = productService.queryProduct(productId);
+		model.addAttribute("product", product);
+		model.addAttribute("user", userVO);
+		
+		return "admin/productview";
+	}	
+	
+	@RequestMapping(value="/admin/changeproduct")
+	public String adminChangeProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
+	
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "admin/login";
+		}
+		
+
+		ProductVO product = productService.queryProduct(productId);
+		model.addAttribute("product", product);
+		model.addAttribute("user", userVO);
+		if(product.getProfitId() == ProfitTypeConstant.FixProduct)
+			return "admin/changeFixproduct";
+		
+		return "admin/changeFloatproduct";
+	}	
+	
+	@RequestMapping(value="/admin/delproduct",method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult adminDeleteProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			return webResult;
+		}
+		
+		productService.deleteProduct(productId);
+		
+		webResult.setSuccess(true);
+		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");
+		return webResult;
+	}		
+	
+	
+	@RequestMapping(value="/admin/recommendproduct",method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult adminRecommendProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			return webResult;
+		}
+		
+		productService.recommendProduct(productId);
+		
+		webResult.setSuccess(true);
+		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");
+		return webResult;
 	}
 	
 }

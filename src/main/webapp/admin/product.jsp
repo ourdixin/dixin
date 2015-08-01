@@ -66,8 +66,8 @@
               <td>
 				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/productview?productId=<#=products.list[i].id#>" >详细</a></span>
 				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=<#=products.list[i].id#>" >修改</a></span>
-				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/recommendproduct?productId=<#=products.list[i].id#>" >首推</a></span>
-				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/delproduct?productId=<#=products.list[i].id#>" >删除</a></span>
+				<span class="sg_tab"><a href="javascript:void(0)" onclick="recommendproduct('<#=products.list[i].name#>',<#=products.list[i].id#>)" >首推</a></span>
+				<span class="sg_tab"><a href="javascript:void(0)" onclick="delProduct('<#=products.list[i].name#>',<#=products.list[i].id#>)" >删除</a></span>
 			</td>
             </tr>
 		    <# } #>
