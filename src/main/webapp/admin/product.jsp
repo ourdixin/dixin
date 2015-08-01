@@ -40,7 +40,7 @@
 					<#=products.list[i].releaseDate#>
 				<#}#>
 				</td>
-              <td><#=products.list[i].term#>月</td>
+              <td><#=products.list[i].term#>
 			 <#if(63==products.list[i].termUnit){#>
 				年<#}else if(64==products.list[i].termUnit){#>
 				月
@@ -66,6 +66,7 @@
               <td>
 				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/productview?productId=<#=products.list[i].id#>" >详细</a></span>
 				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=<#=products.list[i].id#>" >修改</a></span>
+				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/recommendproduct?productId=<#=products.list[i].id#>" >首推</a></span>
 				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/delproduct?productId=<#=products.list[i].id#>" >删除</a></span>
 			</td>
             </tr>
@@ -127,7 +128,10 @@
 				<dd><a id="-1" style="color:#F60" href="javascript:void(0)" target="_self">不限</a><a id="49" href="javascript:void(0)" target="_self">金融市场</a><a id="50" href="javascript:void(0)" target="_self">公益</a><a id="51" href="javascript:void(0)" target="_self">金融机构</a><a id="52" href="javascript:void(0)" target="_self">房地产</a><a id="53" href="javascript:void(0)" target="_self">工商企业</a><a id="54" href="javascript:void(0)" target="_self">基础设施</a><a id="55" href="javascript:void(0)" target="_self">实业企业</a><a id="56" href="javascript:void(0)" target="_self">保障房</a><a id="57" href="javascript:void(0)" target="_self">酒店类</a>
 				<a id="77" href="javascript:void(0)" target="_self">货币型</a><a id="78" href="javascript:void(0)" target="_self">债券型</a><a id="79" href="javascript:void(0)" target="_self">股票型</a><span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a id="80" href="javascript:void(0)" target="_self">私募股权</a><a id="81" href="javascript:void(0)" target="_self">定向增发</a><a id="82" href="javascript:void(0)" target="_self">海外市场</a><a id="83" href="javascript:void(0)" target="_self">量化对冲</a><a id="84" href="javascript:void(0)" target="_self">指数型</a><a id="58" href="javascript:void(0)" target="_self">其它</a></dd>
 			</dl>		
-	
+			<dl>
+				<dt id="recommend">首页推荐：</dt>
+				<dd><a id="-1" style="color:#F60" href="javascript:void(0)" target="_self">不限</a><a id="1" href="javascript:void(0)" target="_self">被推荐</a><a id="0" href="javascript:void(0)" target="_self">未被推荐</a></dd>
+			</dl>		
 
     </div>
 </div>

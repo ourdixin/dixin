@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -6,231 +6,639 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>121金融</title>
-<link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/pptBox.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/js.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/popwindow.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>
-<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
-<script type="text/html" id="product_item">
-
-	<table class="ui compact table segment">
-      <thead>
-      <tr><th>产品代码</th>
-      <th>产品名称</th>
-      <th>发行时间</th>
-	  <# if(getprofitType() == 42) {#>
-      <th>期限</th>
-      <th>利率</th>
-	  <# }#>
-	  <th>认购起点</th>
-	  <# if(getprofitType() == 42) {#>
-	   <th>付息方式</th>
-	  <# }else{#>
-	  <th>认购费</th>
-	  <th>基金经理</th>
-	  <# }#>
-	  <th>资金投向</th>
-      <th>状态</th>
-      <th>推荐指数</th>
-      <th>操作</th>
-      </tr>
-      </thead>
-      <tbody>
-      
-		    <# for(i = 0; i < products.list.length; i++){ #> 
-            <tr>
-              <td><#=products.list[i].code#></td>
-              <td><#=products.list[i].name#></td>
-              <td>
-				<#if(products.list[i].releaseDate >= products.list[i].invalidDate) {#>
-					待定
-				<#}else{#>
-					<#=products.list[i].releaseDate#>
-				<#}#>
-			  </td>
-			<# if(getprofitType() == 42) {#>
-              <td>
-				<#if(products.list[i].term > 0 ){#>
-					<#=products.list[i].term#>
-					<#if(63==products.list[i].termUnit){#>
-						年
-					<#}else if(64==products.list[i].termUnit){#>
-						月
-					<#}else{#>
-						天
-					<#}#>
-				<#}#>
-				</td>	
-				<td><#=products.list[i].rate#></td>
-			<#}#>	                
-			  <td>
-				<#if(products.list[i].minAmount>10000) {#>
-				 <#=products.list[i].minAmount/10000#>万元
-				<#}else{#>
-				 <#=products.list[i].minAmount#>元
-				<#}#>
-			  </td>
- 			  <# if(getprofitType() == 42) {#>
-			  <td><#=products.list[i].payTypeInfo#> </td>
-			  <#}else{#>
-			  <td><#=products.list[i].buyFee#></td>
-			  <td><#==products.list[i].fundManagerHtml#></td>
-			  <#}#>
-			  <td><#=products.list[i].directionInfo#></td>
-
-			   <#if(products.list[i].state == 59){#>
-              <td>待定</td>
-				<#}else if(products.list[i].state == 60){#>
-              <td>在售</td>
-				<#}else if(products.list[i].state == 61){#>
-              <td>预约</td>
-				<#}else{#>
-              <td>售罄</td>
-				<#}#>
-              <td>
-              	<# for(j = 0; j < products.list[i].star; j ++){ #> 
-              		<img src="<%=request.getContextPath()%>/images/xx.png" width="16" height="13" />
-              	<# } #>
-              </td>
-              <td><span class="sg_tab"><a href="<%=request.getContextPath()%>/product/view?productId=<#=products.list[i].id#>" >详细</a></span></td>
-            </tr>
-		    <# } #>
-
-      </tbody>
-</table> 
-        <div class="page_menu">
-		<a class="item">  <  </a>
-		<# for(i = 0; i < products.pages; i++){ #> 
-			<# if(products.pages.pageNum == i){ #>
-				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
-			<#} else {#>
-            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
-		<# } } #>
-          <a class="item"> >  </a>
-        </div>
+<title>9点财讯-最新理财产品资讯</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="js/superslide.2.1.js"></script>
+<script type="text/javascript">
+ function setTab(name,cursel,n){
+ for(i=1;i<=n;i++){
+  var menu=document.getElementById(name+i);
+  var con=document.getElementById("con_"+name+"_"+i);
+  menu.className=i==cursel?"over":"";
+  con.style.display=i==cursel?"block":"none";
+ }
+}
 </script>
-
-<script type="text/html" id="product_list">
-	<# for(i = 0; i < result.length; i++){ #> 
-		<# if( i==0){ #>
-		<div id="tab1_con_<#=i+1#>" class="con" style=" display:block">
-		<#} else {#>
-		<div id="tab1_con_<#=i+1#>" class="con" style=" display:none">
-		<# }  #>
-               <# include('product_item' , result[i]) #>
-		</div>
-	<# } #>
-</script>
-
-<script type="text/html" id="login_span_tpl">
-	<#=result.name#>
-<# if( result.userType == 10 ) {#>
-	【普通会员】
-<#} else {#>
-	【认证会员】
-<# }  #>
- 	| <a href="<%=request.getContextPath() %>/authentication/user.jsp">我的121金融</a> | <a href="<%=request.getContextPath() %>/authentication/logout">安全退出</a>
-</script>
-
 </head>
 
 <body>
-
-<!---TOP头部共用部份---->
-<c:import url="/framework/header.jsp" charEncoding="utf-8" />
-<!---TOP结束---->
-
-<div id="main_body" style="padding:0; width:1002px;">
-<c:if test="${null == user}">
-	<div class="index_login">
-	<div>登录121金融帐户</div>
-	<div>
-	
-	<form id="loginForm">
-	<input id="username" name="username"  type="text"  value="请输入手机号" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}"  class="log_user"/>
-	<input name="password" id="pass" type="password" value="" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" class="log_pass" /></div>
-	<dt><a href="<%=request.getContextPath() %>/authentication/forgetpassword.jsp">忘记密码？</a> <input type="checkbox" name="bremenber" id="bremenber" />记住手机号码</dt>
-	<span><a class="bnt_ok" href="javascript:void(0)">登录</a></span>
-	</form>
-	<del><a href="<%=request.getContextPath() %>/authentication/register.jsp">点击这里注册</a>还没有注册过？</del>
-
-	</div>
-</c:if>
-<div id="xxx" style="width:1002px; height:358px;" >
-     <script>
-     var box =new PPTBox();
-     box.width = 1002; //宽度
-     box.height = 358;//高度
-     box.autoplayer = 3;//自动播放间隔时间
-
-     //box.add({"url":"图片地址","title":"悬浮标题","href":"链接地址"})
-     box.add({"url":"images/index_10.jpg","href":"<%=request.getContextPath() %>","title":"悬浮提示标题1"})
-     //box.add({"url":"images/tu3.jpg","href":"http://www.baidu.com/","title":"悬浮提示标题3"})
-     //box.add({"url":"images/tu4.jpg","href":"http://www.baidu.com/","title":"悬浮提示标题4"})
-     box.show();
-    </script>
+<div id="header">
+  <div class="topbar">
+    <div class="topnav">
+      <div class="tel">免费专业顾问：400-6262-121</div>
+      <div class="subnav"><a href="<%=request.getContextPath() %>/authentication/login.jsp">登录</a> | <a href="<%=request.getContextPath() %>/authentication/register.jsp">免费注册</a> | <a href="<%=request.getContextPath() %>/authentication/regarding.jsp">关于我们</a> </div>
+    </div>
+  </div>
+  <div class="logobar">
+    <div class="logo"><img src="images/logo.png"><img src="images/sloga.png"></div>
+    <div class="topsearch">
+        <table width="304" border="0" cellspacing="0" cellpadding="0"><form name="form1" method="post" action="<%=request.getContextPath() %>/product/product.jsp">
+          <tr>
+            <td width="242"><input type="text" name="textfield" id="textfield">
+            <input type="submit" name="button" id="button" value="提交"></td>
+            <td width="62"><a href="<%=request.getContextPath() %>/product/product.jsp">理财产品<br>高级筛选</a></td>
+          </tr></form>
+        </table>
+    </div>
+  </div>
 </div>
-<div>
-<a href="<%=request.getContextPath() %>/product/product.jsp"><img src="images/index_14.jpg" width="333" height="103" /></a>
-<a href="<%=request.getContextPath() %>/authentication/regarding.jsp"><img src="images/index_15.jpg" width="333" height="103" /></a>
-<a href="<%=request.getContextPath() %>/authentication/transfer.jsp"><img src="images/index_17.jpg" width="334" height="103" /></a>
-</div>
-<!---TAB部份----> 
-
-<ul class="ul_1" style="margin-top:10px;">
-                <li class="tab1_1_on"  id="tab1_1" onMouseOver="set_tab('tab1', 1 ,7)">债 券</li>
-                <li class="tab1_2_off" id="tab1_2" onMouseOver="set_tab('tab1', 2 ,7)">银行理财</li>
-                <li class="tab1_3_off"  id="tab1_3" onMouseOver="set_tab('tab1', 3 ,7)">基金</li>
-                <li class="tab1_4_off" id="tab1_4" onMouseOver="set_tab('tab1', 4 ,7)">券商理财</li>
-                <li class="tab1_5_off" id="tab1_5" onMouseOver="set_tab('tab1', 5 ,7)">信托</li>
-                <li class="tab1_6_off"  id="tab1_6" onMouseOver="set_tab('tab1', 6 ,7)">资管</li>
-                <!-- li class="tab1_7_off" id="tab1_7" onMouseOver="set_tab('tab1', 7 ,7)">p2p</li -->
+<!-- 头部结束，焦点图开始 -->
+<div id="banner">
+  <div class="loginbox">
+    <h2><strong>九点财讯</strong>助您获取年化收益</h2>
+    <h1>15%</h1>
+    <h3><span class="red">20</span>倍银行活期存款收益</h3>
+    <p><a href="<%=request.getContextPath() %>/authentication/login.jsp"><img src="images/loginboxbtn.png" width="216" height="42" vspace="12"></a></p>
+    <p align="right">已有帐号？<a href="<%=request.getContextPath() %>/authentication/login.jsp">立即登录</a></p>
+  </div>
+  
+  <div class="banner">
+      <div class="fullSlide">
+        <div class="bd">
+            <ul>
+                <li _src="url(images/01.jpg)" style="background:#fde9a4 center 0 no-repeat;"><a href="<%=request.getContextPath() %>/product/product.jsp"></a></li>
+                <li _src="url(images/02.jpg)" style="background:#c20d02 center 0 no-repeat;"><a href="<%=request.getContextPath() %>/authentication/regarding.jsp"></a></li>
+                <li _src="url(images/03.jpg)" style="background:#5ac6ea center 0 no-repeat;"><a href="<%=request.getContextPath() %>/authentication/transfer.jsp"></a></li>
             </ul>
-            <div class="index_serch">
-              <div class="serch_a"><a id="fixIncome" href="javascript:void(0)" style="color:#F60">固定收益</a>&nbsp;&nbsp;&nbsp;&nbsp; <a id="UnfixIncome" href="javascript:void(0)" style="color:#F00">浮动收益</a></div>
-          <form id="searchForm">
-           <div class="serch_b">
-           	<input id="search_text" type="text" class="serch_text"/>
-           	<a id="query" href="javascript:void(0)" >查询</a> 
-           </div>
-           </form>
-           <div id="tab_search" class="senior"><a href="<%=request.getContextPath() %>/product/product.jsp">理财产品高级筛选</a></div>
-      
-           </div>
-           
-            <!-- div id="tab_con_1" class="con" style=" display:block">
-               <% // 债券产品列表  %>
-			</div>
-            <div id="tab_con_2" class="con"  style=" display:none">
-			    <% // 银行理财产品列表  %>
-			</div>
-     	  <div id="tab_con_3" class="con"  style=" display:none">
-     	       <% // 基金产品列表  %>       
-		</div>
-        
-       <div id="tab_con_4" class="con"  style=" display:none">
-			 <% // 券商理财产品列表  %> 
-		</div>
-         <div id="tab_con_5" class="con"  style=" display:none">
-		 <% // 信托产品列表  %>
-	</div>
-         <div id="tab_con_6" class="con"  style=" display:none">
-		<% // 资管产品列表  %>
-	</div -->
-         <!--  div id="tab_con_7" class="con"  style=" display:none">
-		<% // p2p产品列表  %>
-  </div -->
-<!---TAB结束---->
-<div class="index_about"><!-- a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.9diancaixun.com/');" href="javascript:void(0)"> <img src="<%=request.getContextPath() %>/images/index_28.jpg" width="151" height="29" /></a> -->
-<a href="<%=request.getContextPath() %>/authentication/regarding.jsp"><img src="<%=request.getContextPath() %>/images/index_30.jpg" width="124" height="29" /></a></div>
+        </div>
+        <div class="hd"><ul></ul></div>
+        <span class="prev"></span>
+        <span class="next"></span>
+      </div>
+      <script type="text/javascript"> 
+    $(".fullSlide").hover(function(){
+        $(this).find(".prev,.next").stop(true, true).fadeTo("show", 0.5)
+    },
+    function(){
+        $(this).find(".prev,.next").fadeOut()
+    });
+    $(".fullSlide").slide({
+        titCell: ".hd ul",
+        mainCell: ".bd ul",
+        effect: "fold",
+        autoPlay: true,
+        autoPage: true,
+        trigger: "click",
+        startFun: function(i) {
+            var curLi = jQuery(".fullSlide .bd li").eq(i);
+            if ( !! curLi.attr("_src")) {
+                curLi.css("background-image", curLi.attr("_src")).removeAttr("_src")
+            }
+        }
+    });
+    </script>
+    </div>
 </div>
-<!---foot底部---->
-<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
-<!---foot底部结束---->
+<!-- 焦点图结束 -->
+<div id="wrap">
+  <div class="zst">
+    <ul>
+      <li>
+        <h2><a href="<%=request.getContextPath() %>/product/product.jsp">金融超市</a></h2>
+        <p>短期高回报产品</p>
+        <p>长期稳定高收益产品</p>
+      </li>
+      <li>
+        <h2><a href="<%=request.getContextPath() %>/authentication/regarding.jsp">金融折扣</a></h2>
+        <p>短期高回报产品</p>
+        <p>长期稳定高收益产品</p>
+      </li>
+      <li>
+        <h2><a href="<%=request.getContextPath() %>/authentication/transfer.jsp">产品转让</a></h2>
+        <p>短期高回报产品</p>
+        <p>长期稳定高收益产品</p>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="ind_table">
+    <div class="gdsy">
+      <p>标准化金融产品</p>
+      <p>实力公司背景</p>
+      <p>本金金额全保障</p>
+      <p>锁定极端亏损</p>
+    </div>
+    <div class="ind_tablebox">
+      <ul class="ind_tab">
+        <li class="over" id="one1" onmouseover="setTab('one',1,3)">待发行</li>
+        <li id="one2" onmouseover="setTab('one',2,3)">正发行</li>
+        <li id="one3" onmouseover="setTab('one',3,3)">已发行</li>
+      </ul>
+      <div id="con_one_1" class="hometable">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>产品代码</th>
+            <th>产品名称</th>
+            <th>发行时间</th>
+            <th>期限</th>
+            <th>利率</th>
+            <th>认购起点</th>
+            <th>产品类型</th>
+            <th>操作</th>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+        </table>
+        <p class="tablemore"><a href="<%=request.getContextPath() %>/product/product.jsp">更多产品 &gt;&gt;</a></p>
+      </div>
+      <div id="con_one_2" class="hometable" style="display:none;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>产品代码</th>
+            <th>产品名称</th>
+            <th>发行时间</th>
+            <th>期限</th>
+            <th>利率</th>
+            <th>认购起点</th>
+            <th>产品类型</th>
+            <th>操作</th>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+        </table>
+        <p class="tablemore"><a href="<%=request.getContextPath() %>/product/product.jsp">更多产品 &gt;&gt;</a></p>
+      </div>
+      <div id="con_one_3" class="hometable" style="display:none;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>产品代码</th>
+            <th>产品名称</th>
+            <th>发行时间</th>
+            <th>期限</th>
+            <th>利率</th>
+            <th>认购起点</th>
+            <th>产品类型</th>
+            <th>操作</th>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>3个月</td>
+            <td>15.30%</td>
+            <td>5万元</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+        </table>
+        <p class="tablemore"><a href="<%=request.getContextPath() %>/product/product.jsp">更多产品 &gt;&gt;</a></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ind_table">
+    <div class="fdsy">
+      <p>标准化金融产品</p>
+      <p>实力公司背景</p>
+      <p>本金金额全保障</p>
+      <p>锁定极端亏损</p>
+    </div>
+    <div class="ind_tablebox">
+      <ul class="ind_tab">
+        <li class="over" id="tow1" onmouseover="setTab('tow',1,3)">待发行</li>
+        <li id="tow2" onmouseover="setTab('tow',2,3)">正发行</li>
+        <li id="tow3" onmouseover="setTab('tow',3,3)">已发行</li>
+      </ul>
+      <div id="con_tow_1" class="hometable">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>产品代码</th>
+            <th>产品名称</th>
+            <th>发行时间</th>
+            <th>认购起点</th>
+            <th>基金经理</th>
+            <th>产品类型</th>
+            <th>操作</th>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+        </table>
+        <p class="tablemore"><a href="<%=request.getContextPath() %>/product/product.jsp">更多产品 &gt;&gt;</a></p>
+      </div>
+      <div id="con_tow_2" class="hometable" style="display:none;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>产品代码</th>
+            <th>产品名称</th>
+            <th>发行时间</th>
+            <th>认购起点</th>
+            <th>基金经理</th>
+            <th>产品类型</th>
+            <th>操作</th>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+        </table>
+        <p class="tablemore"><a href="<%=request.getContextPath() %>/product/product.jsp">更多产品 &gt;&gt;</a></p>
+      </div>
+      <div id="con_tow_3" class="hometable" style="display:none;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>产品代码</th>
+            <th>产品名称</th>
+            <th>发行时间</th>
+            <th>认购起点</th>
+            <th>基金经理</th>
+            <th>产品类型</th>
+            <th>操作</th>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr class="jg">
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+          <tr>
+            <td>S51132</td>
+            <td>中信证券•安泰收益凭证三十二期</td>
+            <td>2015-7-18</td>
+            <td>5万元</td>
+            <td>巴菲特</td>
+            <td>券商理财</td>
+            <td class="red"><a href="#">了解更多</a></td>
+          </tr>
+        </table>
+        <p class="tablemore"><a href="<%=request.getContextPath() %>/product/product.jsp">更多产品 &gt;&gt;</a></p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<!-- 表格结束 -->
+<div class="links">
+  <div class="linksbox">
+    <h2>合作伙伴</h2>
+    <ul>
+      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+</div>
+<div id="footer">121金融 Copyright © 2014 All rights reserved  | <a href="http://www.miibeian.gov.cn"  target="_blank">京ICP证20158984号 </a> | <a href="<%=request.getContextPath()%>/authentication/reading.jsp"  target="_blank">使用121金融前必读</a></div>
 </body>
 </html>
-	

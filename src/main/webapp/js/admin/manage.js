@@ -3,7 +3,7 @@
  * 
  */
 
-searchsuccess: function delsuccess(data){
+searchsuccess: function actionsuccess(data){
 	if(data.success )
 	{
 		searchProducts();
@@ -14,9 +14,15 @@ searchsuccess: function delsuccess(data){
 function delProduct(productName,productId){
 	
    if(confirm("是否继续删除此产品？")){
-        $.post(HOST_PATH+"/admin/delproduct","productId="+productId, delsuccess);
+        $.post(HOST_PATH+"/admin/delproduct","productId="+productId, actionsuccess);
     }
 }
+function recommendproduct(productName,productId){
+	
+	   if(confirm("是否要把此产品推荐到首页显示？")){
+	        $.post(HOST_PATH+"/admin/recommendproduct","productId="+productId, actionsuccess);
+	    }
+	}
 
 $(document).ready(function(){
 
