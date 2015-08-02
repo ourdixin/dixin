@@ -11,7 +11,7 @@ var tab_two = 1;
 		 con.style.display=i==cursel?"block":"none"; 
 	 }
 	var profitType = 42;
-	var state = 61;
+	var state = 62 + cursel;
 	
 	if(name == "one")
 	{
@@ -22,11 +22,7 @@ var tab_two = 1;
 		profitType = 43;
 	 	tab_two = cursel;
 	 }
-	 if(cursel == 2)
-		 state = 63;
-	 else if(cursel == 3)
-		 state = 64;
-		 
+	
 	 searchProducts(profitType,state);
 }
 
@@ -56,11 +52,11 @@ $(document).ready(function(){
 			state = 61;	
 		
 		 //ajax
-		 $.post(HOST_PATH+"/products/advance","pageSize=8&profitType=" + profitType + "&state=" + state, success);	
+		 $.post(HOST_PATH+"/products/advance","recommend=1&pageSize=8&profitType=" + profitType + "&state=" + state, success);	
 	}
 	
 	
 	// 加载产品信息
-	searchProducts();
-	searchProducts(43);	
+	searchProducts(42,63);
+	searchProducts(43,63);	
 });

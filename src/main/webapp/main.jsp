@@ -16,7 +16,6 @@
 <script type="text/html" id="product_item">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <th>产品代码</th>
             <th>产品名称</th>
             <th>发行时间</th>
 			<# if(products.list.length > 0 && products.list[0].profitId == 42) {#>
@@ -29,7 +28,6 @@
           </tr>
         <# for(i = 0; i < products.list.length; i++){ #> 
           <tr>
-            <td><#=products.list[i].code#></td>
             <td><#=products.list[i].name#></td>
             <td>				
 				<#if(products.list[i].releaseDate >= products.list[i].invalidDate) {#>
@@ -60,9 +58,6 @@
 				 <#=products.list[i].minAmount#>元
 				<#}#>
 			</td>
-			<# if(products.list[i].profitId == 43) {#>
-				<td><#==products.list[i].fundManagerHtml#></td>
-			<#}#>
             <td><#=products.list[i].productType#></td>
             <td class="red"><a href="<%=request.getContextPath()%>/product/view?productId=<#=products.list[i].id#>">了解更多</a></td>
           </tr>
@@ -77,7 +72,25 @@
   <div class="topbar">
     <div class="topnav">
       <div class="tel">免费专业顾问：400-6262-121</div>
-      <div class="subnav"><a href="<%=request.getContextPath() %>/authentication/login.jsp">登录</a> | <a href="<%=request.getContextPath() %>/authentication/register.jsp">免费注册</a> | <a href="<%=request.getContextPath() %>/authentication/regarding.jsp">关于我们</a> </div>
+      
+      <div class="subnav">
+      	<c:if test="${null == user}">
+      		<a href="<%=request.getContextPath() %>/authentication/login.jsp">登录</a> | <a href="<%=request.getContextPath() %>/authentication/register.jsp">免费注册</a> | <a href="<%=request.getContextPath() %>/authentication/regarding.jsp">关于我们</a>
+      	</c:if> 
+      	<c:if test="${null != user}"> 	 
+      		   	${user.secUserName}
+	   	<c:if test="${user.userType == 10}">
+	   		【普通会员】
+	   	</c:if>  
+	   	<c:if test="${user.userType == 25}">
+	   		【管理员】
+	   	</c:if>
+	   	 | <a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a>
+	   	 | <a href="<%=request.getContextPath()%>/product/customer.jsp">在线客服</a> 
+	   	 | <a href="<%=request.getContextPath()%>/authentication/logout">安全退出</a>
+	   	 | <a href="<%=request.getContextPath() %>/authentication/regarding.jsp">关于我们</a>
+	    </c:if> 
+      </div>
     </div>
   </div>
   <div class="logobar">
@@ -95,14 +108,16 @@
 </div>
 <!-- 头部结束，焦点图开始 -->
 <div id="banner">
-  <div class="loginbox">
-    <h2><strong>九点财讯</strong>助您获取年化收益</h2>
-    <h1>15%</h1>
-    <h3><span class="red">20</span>倍银行活期存款收益</h3>
-    <p><a href="<%=request.getContextPath() %>/authentication/login.jsp"><img src="images/loginboxbtn.png" width="216" height="42" vspace="12"></a></p>
-    <p align="right">已有帐号？<a href="<%=request.getContextPath() %>/authentication/login.jsp">立即登录</a></p>
-  </div>
-  
+	<c:if test="${null == user}">
+	  <div class="loginbox">
+	    <h2><strong>九点财讯</strong>助您获取年化收益</h2>
+	    <h1>15%</h1>
+	    <h3><span class="red">20</span>倍银行活期存款收益</h3>
+	    <p><a href="<%=request.getContextPath() %>/authentication/register.jsp"><img src="images/loginboxbtn.png" width="216" height="42" vspace="12"></a></p>
+	    <p align="right">已有帐号？<a href="<%=request.getContextPath() %>/authentication/login.jsp">立即登录</a></p>
+	    
+	  </div>
+	</c:if>  
   <div class="banner">
       <div class="fullSlide">
         <div class="bd">
@@ -236,6 +251,6 @@
   </div>
   <div class="clear"></div>
 </div>
-<div id="footer">121金融 Copyright © 2014 All rights reserved  | <a href="http://www.miibeian.gov.cn"  target="_blank">京ICP证20158984号 </a> | <a href="<%=request.getContextPath()%>/authentication/reading.jsp"  target="_blank">使用121金融前必读</a></div>
+<div id="footer">9点财讯 Copyright © 2014 All rights reserved  | <a href="http://www.miibeian.gov.cn"  target="_blank">京ICP证20158984号 </a> | <a href="<%=request.getContextPath()%>/authentication/reading.jsp"  target="_blank">使用9点财讯前必读</a></div>
 </body>
 </html>

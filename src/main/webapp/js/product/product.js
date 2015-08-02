@@ -71,6 +71,6 @@ $(document).ready(function(){
 		
 	});
 	
-
+	searchProducts(1);
 	
 });

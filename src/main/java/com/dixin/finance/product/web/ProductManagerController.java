@@ -515,6 +515,10 @@ public class ProductManagerController {
 		return webResult;
 	}		
 	
+	void SetProductRecommendState(int productId,int recommend)
+	{
+		productService.recommendProduct(productId,recommend);
+	}
 	
 	@RequestMapping(value="/admin/recommendproduct",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult adminRecommendProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
@@ -528,7 +532,26 @@ public class ProductManagerController {
 			return webResult;
 		}
 		
-		productService.recommendProduct(productId);
+		SetProductRecommendState(productId,1);
+		
+		webResult.setSuccess(true);
+		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");
+		return webResult;
+	}
+	
+	@RequestMapping(value="/admin/cancelrecommendproduct",method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult adminCancelRecommendProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			return webResult;
+		}
+		
+		SetProductRecommendState(productId,0);
 		
 		webResult.setSuccess(true);
 		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");

@@ -258,8 +258,11 @@ public class ProductServiceImpl implements IProductService{
 	}
 
 	@Override
-	public void recommendProduct(int productId) {
-		productMapper.recommendProduct(productId);
+	public void recommendProduct(int productId,int recommend) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("productId", productId);	
+		map.put("recommend", recommend);
+		productMapper.recommendProduct(map);
 	}
     
 }

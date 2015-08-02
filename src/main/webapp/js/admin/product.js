@@ -23,6 +23,13 @@ function recommendproduct(productName,productId){
 	    }
 }
 
+function cancelrecommendproduct(productName,productId){
+	
+	   if(confirm("是否要取消此产品推荐到首页显示？")){
+	        $.post(HOST_PATH+"/admin/cancelrecommendproduct","productId="+productId, actionsuccess);
+	    }
+}
+
 $(document).ready(function(){
 
 	template.config('openTag', '<#');
@@ -91,5 +98,6 @@ $(document).ready(function(){
 		searchProducts(1);
 		
 	});
-		
+	
+	searchProducts(1);
 });

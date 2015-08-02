@@ -60,7 +60,7 @@ public interface ProductMapper {
 	 * 推荐产品到首页
 	 * @return
 	 */		
-	void recommendProduct(int productId);	
+	void recommendProduct(Map<String, Object> map);	
 	
 	/**
 	 * 修改产品
