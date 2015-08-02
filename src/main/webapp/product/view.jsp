@@ -22,7 +22,11 @@
     <tbody>
       <tr>
         <td width="0%" height="50" align="center" bgcolor="#FFFFFF">资管计划名称</td>
-        <td colspan="5" align="center"><font style="color:#F90; font-size:18px; font-weight:bold;">${product.name}</font></td>
+        <td colspan="5" align="center"><font style="color:#F90; font-size:18px; font-weight:bold;">${product.name}
+        <c:if test='${product.code != null && product.code !="" }'>
+        	(${product.code})
+        </c:if>
+        </font></td>
       </tr>
       <tr>
         <td width="0%" height="35" align="center" bgcolor="#FFFFFF">发行时间</td>
