@@ -64,8 +64,14 @@ $(document).ready(function(){
 			   data += this.id + "&";
 		 });
 		data += "pageNum=" +  pageNum;
+		if($('#search_text').attr("value") != undefined)
+			data += "&searchText=" + $('#search_text').attr("value");
 		$.post(HOST_PATH+"/products/advance",data, searchsuccess);		
 	}
+	
+	$('#search_text_button').click(function(){
+		searchProducts(1);
+	});
 	
 	$('dd a ').click(function(){
 		var name = this.parentNode.parentNode.firstElementChild.innerText;

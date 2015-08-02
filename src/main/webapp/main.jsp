@@ -96,12 +96,14 @@
   <div class="logobar">
     <div class="logo"><img src="images/logo.png"><img src="images/sloga.png"></div>
     <div class="topsearch">
-        <table width="304" border="0" cellspacing="0" cellpadding="0"><form name="form1" method="post" action="<%=request.getContextPath() %>/product/product.jsp">
-          <tr>
-            <td width="242"><input type="text" name="textfield" id="textfield">
-            <input type="submit" name="button" id="button" value="提交"></td>
-            <td width="62"><a href="<%=request.getContextPath() %>/product/product.jsp">理财产品<br>高级筛选</a></td>
-          </tr></form>
+        <table width="304" border="0" cellspacing="0" cellpadding="0">
+        <form name="form1" method="post" action="<%=request.getContextPath() %>/product/product.jsp">
+	          <tr>
+	            <td width="242"><input type="text" name="search_text" id="search_text">
+	            <input type="submit" name="button" id="button" value="提交"></td>
+	            <td width="62"><a href="<%=request.getContextPath() %>/product/product.jsp">理财产品<br>高级筛选</a></td>
+	          </tr>
+          </form>
         </table>
     </div>
   </div>

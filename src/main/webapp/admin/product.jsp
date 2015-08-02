@@ -135,8 +135,11 @@
 			<dl>
 				<dt id="recommend">首页推荐：</dt>
 				<dd><a id="-1" style="color:#F60" href="javascript:void(0)" target="_self">不限</a><a id="1" href="javascript:void(0)" target="_self">被推荐</a><a id="0" href="javascript:void(0)" target="_self">未被推荐</a></dd>
-			</dl>		
-
+			</dl>	
+			<dl>
+				<dt>产品名称：</dt>
+				<dd><input id="search_text" type="text" class="serch_text"/><button id="search_text_button" type="button">查询 </button></dd>
+			</dl>
     </div>
 </div>
 <div id="tab_products" class="con" >
