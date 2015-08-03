@@ -34,6 +34,7 @@ import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
+import com.dixin.framework.tools.ConfigInfo;
 import com.dixin.framework.tools.RandomValidateCode;
 import com.dixin.framework.tools.split;
 import com.dixin.finance.product.constant.CustomerConstant;
@@ -94,7 +95,7 @@ public class AuthenticationController {
 	
 	
 	@RequestMapping(value="/authentication/user", method=RequestMethod.POST)
-	public @ResponseBody BaseWebResult register(UserVO userVO, String rpassword, String backurl, HttpSession session,HttpServletRequest request){
+	public @ResponseBody BaseWebResult register(UserVO userVO, String rpassword,String verifyCode,String backurl, HttpSession session,HttpServletRequest request){
 		
 		if(backurl == null || backurl=="")
 			backurl=request.getContextPath()+"/";
@@ -102,6 +103,7 @@ public class AuthenticationController {
 		userVO.setName(userVO.getMobile());
 		userVO.setEnabled(1);
 		logger.info("用户" + userVO.getUserName() + "注册开始");
+		
 		BaseWebResult webResult = new BaseWebResult();
 		if(!rpassword.equals(userVO.getPassword()))
 		{
@@ -113,12 +115,13 @@ public class AuthenticationController {
 			webResult.setSuccess(false);
 			webResult.setMsg("此手机号码已被注册!");
 		}
-		else
-		{
+		else if(!session.getAttribute(userVO.getMobile()).equals(verifyCode)){
+			webResult.setSuccess(false);
+			webResult.setMsg("手机验证码输入有误!");
+		} else {
 			userServiceImpl.register(userVO);
 			logger.info("用户" + userVO.getUserName() + "注册成功");
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
-			
 			webResult.setSuccess(true);
 			webResult.setResult(userVO);
 			webResult.setMsg(backurl);
@@ -177,14 +180,12 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value="/authentication/sendsms")
-	public @ResponseBody BaseWebResult register(String phone, HttpSession session,HttpServletRequest request){
+	public @ResponseBody BaseWebResult register(String mobile, HttpSession session,HttpServletRequest request){
 		
-		List<String>	phoneList = new ArrayList<String>();
-		phoneList.add(phone);
-		String strMsg = "121金融短信验证码:123456";
-		smsServiceImpl.sendSms(strMsg, phoneList);
-		
+		String smsCode = smsServiceImpl.getSMSCode(mobile);
+		session.setAttribute(mobile, smsCode);
 		BaseWebResult webResult = new BaseWebResult();
+		webResult.setSuccess(true);
 		return webResult;
 	}
 	

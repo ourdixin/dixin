@@ -14,5 +14,7 @@ public interface ISmsService {
 	/**
 	 * 发送彩信
 	 */
-	boolean sendMms(String strMsg,List<String> phoneList);	
+	boolean sendMms(String strMsg,List<String> phoneList);
+
+	String getSMSCode(String mobile);	
 }

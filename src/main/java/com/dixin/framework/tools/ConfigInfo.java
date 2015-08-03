@@ -18,6 +18,26 @@ public class ConfigInfo {
     
     @Value("${sms.sign}")
     private String smsSign;
+    
+
+	@Value("${sms.code}")
+    private String smsCode;
+    
+    @Value("${sms.time}")
+    private String smsTime;
+    
+    
+    
+    public String getSmsCode() {
+		return smsCode;
+	}
+
+	public String getSmsTime() {
+		return smsTime;
+	}
+
+    
+
 
 	public String getSmsUrl() {
 		return smsUrl;
