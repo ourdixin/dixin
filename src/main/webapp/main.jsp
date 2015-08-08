@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>9点财讯-最新理财产品资讯</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
 <script type="text/javascript" src="js/superslide.2.1.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/main.js"></script>
