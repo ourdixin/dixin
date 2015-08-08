@@ -28,7 +28,15 @@ public class ConfigInfo {
     
     
     
-    public String getSmsCode() {
+    public void setSmsCode(String smsCode) {
+		this.smsCode = smsCode;
+	}
+
+	public void setSmsTime(String smsTime) {
+		this.smsTime = smsTime;
+	}
+
+	public String getSmsCode() {
 		return smsCode;
 	}
 
