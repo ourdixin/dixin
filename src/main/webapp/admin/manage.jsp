@@ -9,7 +9,7 @@
 <title>121金融</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/pptBox.js"></script>
-<script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script src="http://libs.baidu.com/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/js.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/popwindow.js"></script>
