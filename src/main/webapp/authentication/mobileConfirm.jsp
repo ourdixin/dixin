@@ -42,11 +42,17 @@
 						name="mobile" id="mobile" type="text" /></td>
 				</tr>
 				<tr>
+		            <td class="t" height="50">设置密码：</td>
+		            <td colspan="2"><input maxlength="12" class="itstyle lt it" name="password" id="password" type="password"></td>
+	            </tr>
+	            <tr>
+		            <td class="t" height="50">确认密码：</td>
+		            <td colspan="2"><input maxlength="12" class="itstyle lt it" name="rpassword" id="rpassword" value="" type="password"></td>
+	            </tr>
+				<tr>
 					<td height="50" align="right">验证码：</td>
-					<td width="82"><input maxlength="12" class="itstyle lt it160" name="vCode" id="vCode" type="text" /></td>
-					<td width="154"><font
-						style="border: 1px solid #ccc; padding: 3px 10px; background: #f1f1f1"><a
-							href="<%=request.getContextPath()%>/authentication/verificationCode">验证码</a></font></td>
+					<td width="82"><input maxlength="12" class="itstyle lt it160" name="verifyCode" id="verifyCode" type="text" /></td>
+					<td width="154"><div class="dis_getcode lt" id="getVerifyCode"><label>获取验证码</label></div><div class="input-r-tips lt"></div></td>
 				</tr>
 				<tr>
 					<td height="50" align="right">&nbsp;</td>

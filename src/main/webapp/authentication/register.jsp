@@ -19,7 +19,7 @@
 <!---TOP结束---->
 <div id="main_body">
 <div id="title_xi"></div>
-<div id="title_font">注册121金融</div>
+<div id="title_font">9点财讯</div>
 <div class="register">
 <div class="info_frm">
 <form action="<%=request.getContextPath() %>/authentication/user" method="post" id="regForm">
@@ -27,6 +27,10 @@
 	          <tbody><tr>
 	            <td class="t" width="15%">手机号码： </td>
 	            <td width="85%"><input maxlength="11" id="mobile" name="mobile" class="itstyle lt it" type="text"><div class="input-r-tips lt"></div></td>
+	          </tr>
+	           <tr>
+	            <td class="t">图形验证码：</td>
+	            <td><input maxlength="6" class="itstyle lt it" id="randCode" name="randCode" style="width:100px;" type="text"><div class="code_box"><div class="dis_getcode lt"><img id="randCodeImg" src="<%=request.getContextPath() %>/authentication/getPic" /></div></td>
 	          </tr>
 	          <tr>
 	            <td class="t">验证码：</td>

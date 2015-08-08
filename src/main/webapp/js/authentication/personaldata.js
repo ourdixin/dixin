@@ -35,13 +35,31 @@ $(document).ready(function(){
 	});
 	
 	function success(data){
-		alert("发布成功！")
-		location.href = data.msg;
+		if(data.success){
+			alert("发布成功！")
+			location.href = data.msg;
+		}
+		else
+		{
+			alert(data.msg)
+		}
 	};
 	
 	//修改基本信息
 	$('.bnt_ok_person_base').click(function(){
 		$.post(HOST_PATH+"/authentication/uppersonaldata", $("#baseInfoForm").serialize(), success);
+	});
+	
+	
+	$('#getVerifyCode').click(function(){
+		 var phone = $("input[name='mobile']").val();
+        var regex = /^1[3,4,5,7,8]\d{9}$/;
+        if(!regex.exec(phone)) {
+       	 alert("手机号输入不正确");
+            return;
+        }
+        
+		$.post(HOST_PATH+"/authentication/sendsms", $("#regForm").serialize(), success);
 	});
 	
 	//修改手机号

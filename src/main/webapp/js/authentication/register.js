@@ -11,7 +11,7 @@ $(document).ready(function(){
 		}
 	};
 	
-	$('.dis_getcode').click(function(){
+	$('#getVerifyCode').click(function(){
 		 var phone = $("input[name='mobile']").val();
          var regex = /^1[3,4,5,7,8]\d{9}$/;
          if(!regex.exec(phone)) {
@@ -21,6 +21,13 @@ $(document).ready(function(){
          
 		$.post(HOST_PATH+"/authentication/sendsms", $("#regForm").serialize(), success);
 	});
+	
+	$('#randCodeImg').click(function(){
+		var mydate = new Date();
+		$("#randCodeImg").attr("src",HOST_PATH+"/authentication/getPic?time="+mydate.toLocaleString());
+	});
+	
+	
 	
 	$('.bnt_ok').click(function(){
 		

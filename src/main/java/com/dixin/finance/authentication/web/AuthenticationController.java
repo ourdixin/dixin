@@ -1,5 +1,6 @@
 package com.dixin.finance.authentication.web;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,23 +23,22 @@ import com.dixin.finance.authentication.service.IFinService;
 import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
-import com.dixin.finance.product.service.IMessageService;
-import com.dixin.finance.product.service.IProductService;
+import com.dixin.finance.authentication.vo.AreaVO;
 import com.dixin.finance.authentication.vo.AssessmentVO;
 import com.dixin.finance.authentication.vo.FinancialManagerVO;
 import com.dixin.finance.authentication.vo.Financial_institutionVO;
 import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
+import com.dixin.finance.product.service.IMessageService;
+import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.vo.MessageVO;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
-import com.dixin.framework.tools.ConfigInfo;
+import com.dixin.framework.tools.MakePicture;
 import com.dixin.framework.tools.RandomValidateCode;
 import com.dixin.framework.tools.split;
-import com.dixin.finance.product.constant.CustomerConstant;
-import com.dixin.finance.authentication.vo.AreaVO;
 
 
 @Controller
@@ -103,7 +103,6 @@ public class AuthenticationController {
 		userVO.setName(userVO.getMobile());
 		userVO.setEnabled(1);
 		logger.info("用户" + userVO.getUserName() + "注册开始");
-		
 		BaseWebResult webResult = new BaseWebResult();
 		if(!rpassword.equals(userVO.getPassword()))
 		{
@@ -114,11 +113,13 @@ public class AuthenticationController {
 		{
 			webResult.setSuccess(false);
 			webResult.setMsg("此手机号码已被注册!");
-		}
-		else if(!session.getAttribute(userVO.getMobile()).equals(verifyCode)){
+		} else if(!((String)session.getAttribute("pic")).toUpperCase().equals(request.getParameter("randCode").toUpperCase())) {
+			webResult.setSuccess(false);
+			webResult.setMsg("图形验证码输入有误!");
+		}else if("".equals(verifyCode) || !verifyCode.equals(session.getAttribute(userVO.getMobile()))){
 			webResult.setSuccess(false);
 			webResult.setMsg("手机验证码输入有误!");
-		} else {
+		}else {
 			userServiceImpl.register(userVO);
 			logger.info("用户" + userVO.getUserName() + "注册成功");
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
@@ -179,9 +180,9 @@ public class AuthenticationController {
 		return "redirect:"+backurl;
 	}
 	
+	//获取验证码
 	@RequestMapping(value="/authentication/sendsms")
-	public @ResponseBody BaseWebResult register(String mobile, HttpSession session,HttpServletRequest request){
-		
+	public @ResponseBody BaseWebResult sendsms(String mobile, HttpSession session,HttpServletRequest request){
 		String smsCode = smsServiceImpl.getSMSCode(mobile);
 		session.setAttribute(mobile, smsCode);
 		BaseWebResult webResult = new BaseWebResult();
@@ -357,17 +358,26 @@ public class AuthenticationController {
 	
 
 	@RequestMapping(value="/authentication/uppersonaldata", method=RequestMethod.POST)
-	public @ResponseBody BaseWebResult updateUser(UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
-		
-		userServiceImpl.updateUser(user);//修改
+	public @ResponseBody BaseWebResult updateUser(String rpassword, String password,UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
-		if(userVO.getArea() != null)
-			userVO.setAreaId(userVO.getArea().getId());
-		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
-		model.addAttribute("user", userVO);
 		BaseWebResult webResult = new BaseWebResult();
-		webResult.setMsg(request.getContextPath()+"/authentication/personaldata.jsp");
-		webResult.setSuccess(true);
+		String verifyCode = request.getParameter("verifyCode");
+		if(!rpassword.equals(password))
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("两次密码输入不一致!");			
+		} else if("".equals(verifyCode) || !verifyCode.equals(session.getAttribute(userVO.getMobile()))){
+			webResult.setSuccess(false);
+			webResult.setMsg("手机验证码输入有误!");
+		} else {
+			userServiceImpl.updateUser(user);//修改
+			if(userVO.getArea() != null)
+				userVO.setAreaId(userVO.getArea().getId());
+			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
+			model.addAttribute("user", userVO);
+			webResult.setMsg(request.getContextPath()+"/authentication/personaldata.jsp");
+			webResult.setSuccess(true);
+		}
 		return webResult;
 	}
 	
@@ -376,6 +386,14 @@ public class AuthenticationController {
 		List<Financial_institutionVO> financialList = finServiceImpl.selectAll();
 		model.addAttribute("financialList", financialList);
 		return "/authentication/securityConfirm";
+	}
+	
+	@RequestMapping(value="/authentication/getPic")
+	public void getPic(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		MakePicture mp=new MakePicture() ;  
+        String str=mp.drawPicture(60, 20,response.getOutputStream()) ;  
+        request.getSession().setAttribute("pic", str) ;  
+        response.getOutputStream().print(str) ;
 	}
 	
 	/***********************************手机验证**********************************************/
@@ -455,6 +473,7 @@ public class AuthenticationController {
 		webResult.setSuccess(true);
 		return webResult;	
 	}
+	
 	
 	@RequestMapping(value="/authentication/getcitylist")
 	public @ResponseBody BaseWebResult getCityList(Integer pid, HttpServletRequest request, HttpServletResponse response){ 
