@@ -18,9 +18,9 @@ public class MakePicture {
 	    public String drawPicture(int width,int height,OutputStream os)  
 	    {  
 	        if(width<=0)  
-	            width=100 ;  
+	            width=120 ;  
 	        if(height<=0)   
-	            height=60 ;  
+	            height=80 ;  
 	              
 	        BufferedImage image=new BufferedImage(width, height,BufferedImage.TYPE_INT_RGB) ;  
 	        Graphics g=image.getGraphics()  ;  
