@@ -11,6 +11,31 @@ $(document).ready(function(){
 		}
 	};
 	
+	function smssuccess(data){
+		if(data.success){
+			alert("短信发送成功，请注意查收！")
+		}
+		else
+		{
+			alert(data.msg)
+		}
+	};
+	
+	function randcodesuccess(data){
+		if(data.success){
+			//$("#getVerifyCode").removeClass("dis_getcode"); 
+		}
+		else{
+			//$("#getVerifyCode").addClass("dis_getcode"); 
+			alert(data.msg)
+		}
+		
+	};	
+	
+	$('#randCode').blur(function() { 
+		$.post(HOST_PATH+"/authentication/randcode", $("#regForm").serialize(), randcodesuccess);
+	});	
+
 	$('#getVerifyCode').click(function(){
 		 var phone = $("input[name='mobile']").val();
          var regex = /^1[3,4,5,7,8]\d{9}$/;
@@ -19,7 +44,7 @@ $(document).ready(function(){
              return;
          }
          
-		$.post(HOST_PATH+"/authentication/sendsms", $("#regForm").serialize(), success);
+		$.post(HOST_PATH+"/authentication/sendsms", $("#regForm").serialize(), smssuccess);
 	});
 	
 	$('#randCodeImg').click(function(){

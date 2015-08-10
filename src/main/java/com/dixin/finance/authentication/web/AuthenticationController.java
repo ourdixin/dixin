@@ -180,15 +180,35 @@ public class AuthenticationController {
 		return "redirect:"+backurl;
 	}
 	
-	//获取验证码
+	//获取短信验证码
 	@RequestMapping(value="/authentication/sendsms")
 	public @ResponseBody BaseWebResult sendsms(String mobile, HttpSession session,HttpServletRequest request){
-		String smsCode = smsServiceImpl.getSMSCode(mobile);
-		session.setAttribute(mobile, smsCode);
 		BaseWebResult webResult = new BaseWebResult();
-		webResult.setSuccess(true);
+		if(!((String)session.getAttribute("pic")).toUpperCase().equals(request.getParameter("randCode").toUpperCase())) {
+			webResult.setSuccess(false);
+			webResult.setMsg("图形验证码输入有误!");
+		}
+		else
+		{
+			webResult.setSuccess(true);
+			String smsCode = smsServiceImpl.getSMSCode(mobile);
+			session.setAttribute(mobile, smsCode);
+		}
 		return webResult;
 	}
+	
+	//检查图像验证码
+	@RequestMapping(value="/authentication/randcode")
+	public @ResponseBody BaseWebResult verifycode(String randcode, HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		webResult.setSuccess(true);
+		if(!((String)session.getAttribute("pic")).toUpperCase().equals(request.getParameter("randCode").toUpperCase())) {
+			webResult.setSuccess(false);
+			webResult.setMsg("图形验证码输入有误!");
+		}
+		
+		return webResult;
+	}		
 	
 	@RequestMapping(value="/authentication/validatecode", method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult register(HttpSession session, HttpServletRequest request, HttpServletResponse response){
