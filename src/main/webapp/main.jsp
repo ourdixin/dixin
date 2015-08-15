@@ -7,10 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>9点财讯-最新理财产品资讯</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
-<script type="text/javascript" src="js/superslide.2.1.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/superslide.2.1.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/main.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 <script type="text/html" id="product_item">
@@ -68,47 +69,9 @@
 </head>
 
 <body>
-<div id="header">
-  <div class="topbar">
-    <div class="topnav">
-      <div class="tel">免费专业顾问：400-6262-121</div>
-      
-      <div class="subnav">
-      	<c:if test="${null == user}">
-      		<a href="<%=request.getContextPath() %>/authentication/login.jsp">登录</a> | <a href="<%=request.getContextPath() %>/authentication/register.jsp">免费注册</a> | <a href="<%=request.getContextPath() %>/authentication/regarding.jsp">关于我们</a>
-      	</c:if> 
-      	<c:if test="${null != user}"> 	 
-      		   	${user.secUserName}
-	   	<c:if test="${user.userType == 10}">
-	   		【普通会员】
-	   	</c:if>  
-	   	<c:if test="${user.userType == 25}">
-	   		【管理员】
-	   	</c:if>
-	   	 | <a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a>
-	   	 | <a href="<%=request.getContextPath()%>/product/customer.jsp">在线客服</a> 
-	   	 | <a href="<%=request.getContextPath()%>/authentication/logout">安全退出</a>
-	   	 | <a href="<%=request.getContextPath() %>/authentication/regarding.jsp">关于我们</a>
-	    </c:if> 
-      </div>
-    </div>
-  </div>
-  <div class="logobar">
-    <div class="logo"><img src="images/logo.png"><img src="images/sloga.png"></div>
-    <div class="topsearch">
-        <table width="304" border="0" cellspacing="0" cellpadding="0">
-        <form name="form1" method="post" action="<%=request.getContextPath() %>/product/product.jsp">
-	          <tr>
-	            <td width="242"><input type="text" name="search_text" id="search_text">
-	            <input type="submit" name="button" id="button" value="提交"></td>
-	            <td width="62"><a href="<%=request.getContextPath() %>/product/product.jsp">理财产品<br>高级筛选</a></td>
-	          </tr>
-          </form>
-        </table>
-    </div>
-  </div>
-</div>
-<!-- 头部结束，焦点图开始 -->
+<!---TOP头部共用部份---->
+<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+<!---TOP结束---->
 <div id="banner">
 	<c:if test="${null == user}">
 	  <div class="loginbox">
@@ -246,13 +209,13 @@
       <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
       <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
       <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
     </ul>
   </div>
-  <div class="clear"></div>
+  <div class="clear">
+ </div>
 </div>
-<div id="footer">9点财讯 Copyright © 2014 All rights reserved  | <a href="http://www.miibeian.gov.cn"  target="_blank">京ICP证20158984号 </a> | <a href="<%=request.getContextPath()%>/authentication/reading.jsp"  target="_blank">使用9点财讯前必读</a></div>
+<!---foot底部---->
+<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
+<!---foot底部结束---->
 </body>
 </html>

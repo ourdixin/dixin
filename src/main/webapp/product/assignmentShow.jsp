@@ -15,8 +15,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/product/popwindow.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 <script type="text/html" id="assignment">
-<div id="title_font">产品转让</div>
-<div>
+	<div>
 			<table class="ui compact table segment">
               <thead>
               <tr>

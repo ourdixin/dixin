@@ -18,14 +18,17 @@
 <!---TOP结束---->
 <div id="main_body">
 
-<div id="title_xi"></div>
-<div id="title_font">在线客服</div>
+<div class="wrap">
+    <div class="maintitle">
+     <div id="title_font">在线客服</div>
+     <div class="dqwz">当前位置：<a href="index.html">首页</a> &gt; 在线客服</div>
+   </div>
 <div class=" table_c" >
 <form action="<%=request.getContextPath() %>/product/customer"  method ="post" id="customerForm">
    <table>
     <tbody>
       <tr>
-        <td height="25" colspan="2" bgcolor="#efb270"><span style="color:#fff">&nbsp;&nbsp;请填写您的提问，我们会及时给您答复！</span></td>
+        <td height="25" colspan="2" bgcolor="#EEEEEE"><strong>&nbsp;&nbsp;请填写您的提问，我们会及时给您答复！</strong></td>
         </tr>
       <tr>
         <td width="14%" height="35" align="center" bgcolor="#FFFFFF"><font class="font_red">*</font>问题类型：</td>
@@ -37,7 +40,7 @@
         </tr>
       <tr>
         <td height="35" align="center" bgcolor="#FFFFFF"><font class="font_red">*</font>问题描述：</td>
-        <td bgcolor="#FFFFFF"><textarea name="questions" rows="10" class="itstyle lt it" id="pass" style="height:100px; width:300px;"></textarea></td>
+        <td bgcolor="#FFFFFF"><textarea name="questions" rows="10" class="itstyle lt it" id="pass" style="height:100px; width:400px;margin:8px 0;"></textarea></td>
       </tr>
       <tr>
         <td height="35" align="center" bgcolor="#FFFFFF">&nbsp;</td>

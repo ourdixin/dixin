@@ -8,7 +8,7 @@
 <title>风险评测调查结果</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css"
      rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-1.4.2.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="<%=request.getContextPath() %>/text/javascript" src="js/js.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
@@ -23,7 +23,7 @@
 	
 <div id="main_right" style="background:#f1f1f1;">
 <div id="title_xi"></div>
-<div id="title_font">121金融合格投资人风险评测调查结果</div>
+<div id="title_font">9点财讯合格投资人风险评测调查结果</div>
 <div style="padding:0 20px;">
 <%-- <div class="table_c">
   <table border="0" cellspacing="0" cellpadding="0">

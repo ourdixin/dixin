@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>关于121金融</title>
+<title>关于9点财讯</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -14,6 +14,11 @@
 <c:import url="/framework/header.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
 <div id="main_body">
+<div class="wrap">
+    <div class="maintitle">
+     <div id="title_font">金融折扣</div>
+     <div class="dqwz">当前位置：<a href="<%=request.getContextPath() %>/">首页</a> &gt; 金融折扣</div>
+   </div>
 <div id="main_left">
 <ul>
 <dt>金融折扣</dt>

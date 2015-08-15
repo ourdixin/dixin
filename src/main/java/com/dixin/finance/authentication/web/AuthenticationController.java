@@ -278,7 +278,7 @@ public class AuthenticationController {
 			model.addAttribute("level", new String("C"));
 		}		
 		
-		return "authentication/RiskAppraisal";
+		return "authentication/queryRiskAppraisal";
 	}
 	
 	@RequestMapping(value="/authentication/RiskAppraisal", method=RequestMethod.POST)
@@ -363,7 +363,7 @@ public class AuthenticationController {
 		}else{
 			model.addAttribute("level", new String("C"));
 		}
-		return "/authentication/RiskAppraisal-result";
+		return "/authentication/queryRiskAppraisal-result";
 	}
 	
 	
@@ -372,9 +372,12 @@ public class AuthenticationController {
 	@RequestMapping(value="/authentication/accountSetting",method=RequestMethod.GET)
 	public String accountSetting(Model model,HttpSession session,HttpServletRequest request){
 		UserVO user = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(user==null){
+			return "authentication/login";
+		}
 		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
 		model.addAttribute("user", userVO);
-		return "/authentication/personaldata";
+		return "/authentication/accountSetting";
 	}
 	
 
