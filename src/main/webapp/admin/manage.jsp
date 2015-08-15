@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>121金融</title>
+<title>9点财讯</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/pptBox.js"></script>
 <script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>

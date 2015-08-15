@@ -10,10 +10,15 @@
 <title></title>
 </head>
 <body>
-	<div id="main_body">
+   <div id="main_body">
+	<div class="wrap">
+	    <div class="maintitle">
+	     <div id="title_font">个人中心</div>
+	     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; 个人中心</div>
+	   </div>
 		<div id="main_left">
 			<ul id="left_menu">
-				<dd><a href="<%=request.getContextPath()%>/authentication/user.jsp">我的121金融</a></dd>
+				<dd><a href="<%=request.getContextPath()%>/authentication/user.jsp">我的9点财讯</a></dd>
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/boughtproduct.jsp"><img src="<%=request.getContextPath()%>/images/ico_03.png" width="12" height="12" />我购买的产品</a>
 				</dd>

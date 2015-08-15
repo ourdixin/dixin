@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>使用121金融必读</title>
+<title>使用9点财讯必读</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 </head>
 

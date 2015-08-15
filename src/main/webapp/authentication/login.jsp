@@ -18,38 +18,46 @@
 <c:import url="/framework/header.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
 <div id="main_body">
-<div id="title_xi"></div>
-<div id="title_font">121金融网站会员登录</div>
-<div class="register">
-<div class="info_frm">
+<div class="wrap">
+    <div class="maintitle">
+     <div id="title_font">会员登录</div>
+     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; 会员登录</div>
+   </div>
+<div class="table_c">
 <form id="loginForm">
 <input type="hidden" name="backurl" value="${backurl}" />
-<table>
-      <tbody><tr>
-        <td class="t" width="15%">您的帐号： </td>
-        <td width="85%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ><div class="input-r-tips lt"></div></td>
+  <table width="100%" cellpadding="0" cellspacing="0">
+      <tbody>
+      <tr>
+      	<td height="54" colspan="2" align="center" bgcolor="#f2f2f2" style="font-weight:bold;border-bottom:1px solid #dddddd;">进入我的9点财讯</td>
       </tr>
       <tr>
-        <td class="t">登录密码：</td>
-        <td><input maxlength="12" class="itstyle lt it" name="password" id="pass" type="password"><div class="input-r-tips"></div></td>
+      <td height="60" align="right"><span class="t">您的帐号： </span></td>
+        <td width="55%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ></td>
       </tr>
       <tr>
-        <td></td>
-        <td>
-          <span class="bnt_ok">立即登录</span>
-        </td>
+      <td height="60" align="right"><span class="t">登录密码：</span></td>
+        <td width="55%"><input maxlength="12" class="itstyle lt it" name="password" id="pass" type="password">
+        
+        <a href="<%=request.getContextPath()%>/authentication/forgetpassword.jsp" class="blue" style="font-size:12px;line-height:26px;">忘记密码？</a></td>
+      </tr>
+      <tr>
+      <td width="45%" height="60"></td>
+      <td width="55%"><span class="bnt_ok">立即登录</span><br /></td>
       </tr>
     </tbody>
 </table>
-</form>
-</div>
-
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
 </div>
 
 <br class=" clear" />
 
 </div>
-
+</div>
 
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />

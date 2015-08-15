@@ -26,7 +26,7 @@
 	<c:if test="${null != grade && 0 != grade}"> 
 <div id="main_right" style="background:#f1f1f1;">
 <div id="title_xi"></div>
-<div id="title_font">121金融合格投资人风险评测调查结果</div>
+<div id="title_font">9点财讯合格投资人风险评测调查结果</div>
 <div style="padding:0 20px;">
 <div style="line-height:24px;">
 	<table>
@@ -62,7 +62,7 @@
 			<td>
 				<span>
 				本评估问卷结果是根据您填写时所提供的资料而推论得知，且其结果将作为您未来在投资本公司资管计划时的参<br>
-				考所用。此问卷内容及结果不构成与您进行交易之要约或要约邀请，亦非投资买卖建议。121金融不对此问卷之准确性及资<br>
+				考所用。此问卷内容及结果不构成与您进行交易之要约或要约邀请，亦非投资买卖建议。9点财讯不对此问卷之准确性及资<br>
 				讯是否完整负责。<br>
 				</span>
 			</td>
@@ -75,7 +75,7 @@
 	</c:if>
 <div id="main_right" style="background:#f1f1f1;">
 <div id="title_xi"></div>
-<div id="title_font">121金融合格投资人风险评测调查问卷</div>
+<div id="title_font">9点财讯合格投资人风险评测调查问卷</div>
 <div style="padding:0 20px;">
 <form  action="<%=request.getContextPath() %>/authentication/RiskAppraisal" method="post" id="assessmentForm">
  <%-- 

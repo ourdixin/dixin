@@ -23,7 +23,7 @@
 	
 <div id="main_right" style="background:#f1f1f1;">
 <div id="title_xi"></div>
-<div id="title_font">121金融合格投资人风险评测调查结果</div>
+<div id="title_font">9点财讯合格投资人风险评测调查结果</div>
 <div style="padding:0 20px;">
 <%-- <div class="table_c">
   <table border="0" cellspacing="0" cellpadding="0">

@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>9点财讯-最新理财产品资讯</title>
 <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/superslide.2.1.js"></script>
@@ -208,12 +209,10 @@
       <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
       <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
       <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
     </ul>
   </div>
-  <div class="clear"></div>
+  <div class="clear">
+ </div>
 </div>
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />

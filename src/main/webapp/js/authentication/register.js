@@ -78,7 +78,7 @@ $(document).ready(function(){
          
          var bagree = $("input[id='agree']").attr("checked");
          if (bagree == false) {
-             alert("请先阅读并同意《121金融注册协议》才能注册用户！");
+             alert("请先阅读并同意《9点财讯注册协议》才能注册用户！");
              return;
          }         
 		
