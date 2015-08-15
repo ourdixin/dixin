@@ -122,6 +122,7 @@
 </div>
 
 <br class=" clear" />
+</div>
 <blockquote>&nbsp;</blockquote>
 <blockquote>&nbsp;	</blockquote>
 <!---foot底部---->

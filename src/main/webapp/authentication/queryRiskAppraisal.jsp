@@ -508,7 +508,7 @@
 
 <br class=" clear" />
 
-
+</div>
 
 	<!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />

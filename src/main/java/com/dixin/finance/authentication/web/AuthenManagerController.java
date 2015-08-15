@@ -187,7 +187,7 @@ public class AuthenManagerController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/admin/findAllUser",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/user",method=RequestMethod.GET)
 	public String findAllUser(Integer pageNum,Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
 		
 		if(pageNum == null)

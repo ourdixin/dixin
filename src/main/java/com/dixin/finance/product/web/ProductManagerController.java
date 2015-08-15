@@ -423,7 +423,7 @@ public class ProductManagerController {
 	}
 	
 	/***********************************产品转让管理**********************************************/
-	@RequestMapping(value="/admin/product/assignment")
+	@RequestMapping(value="/admin/assignment")
 	public String  assignmentManager(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
 		if(pageNum == null)
 			pageNum = 1;
@@ -434,7 +434,7 @@ public class ProductManagerController {
 		List<AssignmentVO> assignments = assignmentService.queryAssignmentList();
 		PageInfo<AssignmentVO> pageinfoList = new PageInfo(assignments);
 		model.addAttribute("assignmentList", pageinfoList);
-		return "/admin/assignmentManager";
+		return "/admin/assignment";
 	}
 	
 	/*************************查询通过预约id************************/
