@@ -14,7 +14,7 @@
 	<div class="wrap">
 	    <div class="maintitle">
 	     <div id="title_font">个人中心</div>
-	     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; 个人中心</div>
+	     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; <span id="title_name">个人中心</span></div>
 	   </div>
 		<div id="main_left">
 			<ul id="left_menu">
@@ -30,7 +30,7 @@
 					<a href="<%=request.getContextPath()%>/product/assignmentShow.jsp"><img src="<%=request.getContextPath()%>/images/ico_13.png" width="20" height="16" />产品转让</a>
 				</dd>
 				<dd>
-					<a href="<%=request.getContextPath()%>/authentication/myselfwealthers"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的专属财富经理</a>
+					<a href="<%=request.getContextPath()%>/authentication/myselfwealthers"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的财富经理</a>
 				</dd>
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/myReply"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的留言</a>

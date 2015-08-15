@@ -8,7 +8,7 @@
 <title>用户中心-风险评测</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css"
      rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-1.4.2.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery.scrollTo.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/js.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/RiskAppraisal.js"></script>
@@ -26,7 +26,6 @@
 	<c:if test="${null != grade && 0 != grade}"> 
 <div id="main_right" style="background:#f1f1f1;">
 <div id="title_xi"></div>
-<div id="title_font">9点财讯合格投资人风险评测调查结果</div>
 <div style="padding:0 20px;">
 <div style="line-height:24px;">
 	<table>
@@ -75,7 +74,6 @@
 	</c:if>
 <div id="main_right" style="background:#f1f1f1;">
 <div id="title_xi"></div>
-<div id="title_font">9点财讯合格投资人风险评测调查问卷</div>
 <div style="padding:0 20px;">
 <form  action="<%=request.getContextPath() %>/authentication/RiskAppraisal" method="post" id="assessmentForm">
  <%-- 

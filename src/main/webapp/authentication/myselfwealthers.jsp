@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>用户中心-你的专属财富经理</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
+<script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
 

@@ -15,7 +15,6 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/product/appointmentShow.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 <script type="text/html" id="appointment">
-			<div id="title_font">产品预约</div>
 			<table border="0" cellpadding="0" cellspacing="0"
 				class="ui compact table segment">
 				<thead>

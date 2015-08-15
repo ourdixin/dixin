@@ -94,7 +94,7 @@
 			<div class="jg font_red">
 				<img src="<%=request.getContextPath()%>/images/ico_21.png"
 					width="25" height="18" /><strong>您还未进行合格投资人风险测评调查问卷测试，<a
-					href="<%=request.getContextPath()%>/authentication/RiskAppraisal.jsp" style="color: #F00; text-decoration: underline">请点击此处进行了解</a></strong>
+					href="<%=request.getContextPath()%>/authentication/queryRiskAppraisal.jsp" style="color: #F00; text-decoration: underline">请点击此处进行了解</a></strong>
 			</div>
 			</c:if>
 			<c:if test="${null != user && ( user.area.id <=0 || fn:length(user.address) <= 2 )}">
