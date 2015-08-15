@@ -18,20 +18,25 @@
 <c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
 <div id="main_body">
-<div id="title_xi"></div>
-<div id="title_font">9点财讯网站后台登录</div>
-<div class="register">
-<div class="info_frm">
+<div class="wrap">
+    <div class="maintitle">
+     <div id="title_font">后台登录</div>
+     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; 后台登录</div>
+   </div>
+<div class="table_c">
 <form id="loginForm">
 <input type="hidden" name="backurl" value="${backurl}" />
 <table>
       <tbody><tr>
         <td class="t" width="15%">管理员帐号： </td>
-        <td width="85%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ><div class="input-r-tips lt"></div></td>
+        <td width="85%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ></td>
       </tr>
       <tr>
         <td class="t">登录密码：</td>
-        <td><input maxlength="12" class="itstyle lt it" name="password" id="pass" type="password"><div class="input-r-tips"></div></td>
+        <td>
+        	<input maxlength="12" class="itstyle lt it" name="password" id="pass" type="password">
+            <a href="<%=request.getContextPath()%>/admin/forgetpassword.jsp" class="blue" style="font-size:12px;line-height:26px;">忘记密码？</a></td>
+        </td>
       </tr>
       <tr>
         <td></td>

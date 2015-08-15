@@ -21,7 +21,7 @@
 <div class="wrap">
     <div class="maintitle">
      <div id="title_font">在线客服</div>
-     <div class="dqwz">当前位置：<a href="index.html">首页</a> &gt; 在线客服</div>
+     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; 在线客服</div>
    </div>
 <div class=" table_c" >
 <form action="<%=request.getContextPath() %>/product/customer"  method ="post" id="customerForm">
