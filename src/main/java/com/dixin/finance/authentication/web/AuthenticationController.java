@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -378,26 +379,30 @@ public class AuthenticationController {
 	
 
 	@RequestMapping(value="/authentication/uppersonaldata", method=RequestMethod.POST)
-	public @ResponseBody BaseWebResult updateUser(String rpassword, String password,UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
-		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
+	public @ResponseBody BaseWebResult updateUser(String rpassword, String password,String mobile,UserVO user,Model model,HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		BaseWebResult webResult = new BaseWebResult();
 		String verifyCode = request.getParameter("verifyCode");
-		if(!rpassword.equals(password))
-		{
-			webResult.setSuccess(false);
-			webResult.setMsg("两次密码输入不一致!");			
-		} else if("".equals(verifyCode) || !verifyCode.equals(session.getAttribute(userVO.getMobile()))){
-			webResult.setSuccess(false);
-			webResult.setMsg("手机验证码输入有误!");
-		} else {
-			userServiceImpl.updateUser(user);//修改
-			if(userVO.getArea() != null)
-				userVO.setAreaId(userVO.getArea().getId());
-			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
-			model.addAttribute("user", userVO);
-			webResult.setMsg(request.getContextPath()+"/authentication/personaldata.jsp");
-			webResult.setSuccess(true);
-		}
+		//修改手机号
+		if(StringUtils.isNoneEmpty(mobile)) {
+			//修改手机号
+			user.setMobile(mobile);
+			//同时修改用户名
+			user.setUserName(mobile);
+			if(rpassword==null || password==null || !rpassword.equals(password)){
+				webResult.setSuccess(false);
+				webResult.setMsg("两次密码输入不一致!");		
+			}
+			if("".equals(verifyCode) || !verifyCode.equals(session.getAttribute(mobile))){
+				webResult.setSuccess(false);
+				webResult.setMsg("手机验证码输入有误!");
+			} 
+		} 
+		userServiceImpl.updateUser(user);
+		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
+		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
+		model.addAttribute("user", userVO);
+		webResult.setMsg(request.getContextPath()+"/authentication/personaldata.jsp");
+		webResult.setSuccess(true);
 		return webResult;
 	}
 	

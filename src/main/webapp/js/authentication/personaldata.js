@@ -51,6 +51,42 @@ $(document).ready(function(){
 	});
 	
 	
+	function smssuccess(data){
+		if(data.success){
+			alert("短信发送成功，请注意查收！")
+		}
+		else
+		{
+			alert(data.msg)
+		}
+	};
+	
+	
+	
+	function randcodesuccess(data){
+		if(data.success){
+			//$("#getVerifyCode").removeClass("dis_getcode"); 
+		}
+		else{
+			//$("#getVerifyCode").addClass("dis_getcode"); 
+			alert(data.msg)
+		}
+		
+	};	
+	
+	
+	//生成图形验证码
+	$('#randCodeImg').click(function(){
+		var mydate = new Date();
+		$("#randCodeImg").attr("src",HOST_PATH+"/authentication/getPic?time="+mydate.toLocaleString());
+	});
+	
+	//检查图形验证码
+	$('#randCode').blur(function() { 
+		$.post(HOST_PATH+"/authentication/randcode", $("#baseInfoForm").serialize(), randcodesuccess);
+	});	
+	
+	//发送验证码
 	$('#getVerifyCode').click(function(){
 		 var phone = $("input[name='mobile']").val();
         var regex = /^1[3,4,5,7,8]\d{9}$/;
@@ -59,19 +95,12 @@ $(document).ready(function(){
             return;
         }
         
-		$.post(HOST_PATH+"/authentication/sendsms", $("#regForm").serialize(), success);
+		$.post(HOST_PATH+"/authentication/sendsms", $("#baseInfoForm").serialize(), smssuccess);
 	});
+	
 	
 	//修改手机号
 	$('.bnt_ok_mobile').click(function(){
-		/**
-		_vCode = $("#_vCode").val(); 
-		vCode = $("#vCode").val();
-		if(_vCode != vCode) {
-			alert("验证码错误");
-			return;
-		}
-		**/
 		$.post(HOST_PATH+"/authentication/uppersonaldata", $("#baseInfoForm").serialize(), success);
 	});
 	

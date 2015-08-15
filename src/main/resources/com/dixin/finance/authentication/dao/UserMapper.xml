@@ -124,7 +124,10 @@
 	<update id="updateUser" parameterType="com.dixin.finance.authentication.vo.UserVO">
 		UPDATE user SET 
 		<if test="password!=null">
-			password=#{password},
+			password = PASSWORD(#{password}),
+		</if>
+		<if test="userName!=null">
+			user_name=#{userName},
 		</if>
 		<if test="mobile!=null">
 			mobile=#{mobile},
