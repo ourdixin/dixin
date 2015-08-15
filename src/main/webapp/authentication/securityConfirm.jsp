@@ -47,7 +47,7 @@
 						</tr>
 						<tr>
 							<td height="50" align="right">&nbsp;</td>
-							<td><span class="bnt_ok_person_base">提交</span></td>
+							<td><span class="bnt_ok">提交</span></td>
 						</tr>
 					</table>
 				</form>

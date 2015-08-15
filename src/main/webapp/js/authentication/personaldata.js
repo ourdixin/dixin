@@ -46,7 +46,7 @@ $(document).ready(function(){
 	};
 	
 	//修改基本信息
-	$('.bnt_ok_person_base').click(function(){
+	$('.bnt_ok').click(function(){
 		$.post(HOST_PATH+"/authentication/uppersonaldata", $("#baseInfoForm").serialize(), success);
 	});
 	

@@ -404,7 +404,7 @@ public class AuthenticationController {
 		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
 		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
 		model.addAttribute("user", userVO);
-		webResult.setMsg(request.getContextPath()+"/authentication/personaldata.jsp");
+		webResult.setMsg(request.getContextPath()+"/authentication/accountSetting.jsp");
 		webResult.setSuccess(true);
 		return webResult;
 	}
