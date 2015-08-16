@@ -131,7 +131,7 @@
 			</dl>		
 			<dl>
 				<dt>产品名称：</dt>
-				<dd><input id="search_text" type="text" class="serch_text" value="<%=request.getParameter("search_text")==null?"":request.getParameter("search_text")%>"/><button id="search_text_button" type="button">查询 </button></dd>
+				<dd><input id="search_text" type="text" class="serch_text" style="margin-right:8px;height:24px;line-height:24px;font-size:14px;float:left;" value="<%=request.getParameter("search_text")==null?"":request.getParameter("search_text")%>"/><button id="search_text_button" type="button" style="height:30px;">查询 </button></dd>
 			</dl>	
 
     </div>
