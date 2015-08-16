@@ -16,13 +16,17 @@
 <!---TOP结束---->
 
 <div id="main_body">
-<div class="padding_top_10"></div>
-<div class="con_table">
+<div class="wrap">
+    <div class="maintitle">
+     <div id="title_font">理财产品</div>
+     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; <a href="<%=request.getContextPath()%>/product/product.jsp">理财产品 </a>&gt; 产品详情</div>
+   </div>
+<div class="table_c">
    <table width="100%">
     <tbody>
       <tr>
-        <td width="0%" height="50" align="center" bgcolor="#FFFFFF">资管计划名称</td>
-        <td colspan="5" align="center"><font style="color:#F90; font-size:18px; font-weight:bold;">${product.name}
+        <td width="0%" height="50" align="center" bgcolor="#f2f2f2"><strong>资管计划名称</strong></td>
+        <td colspan="5" align="center" bgcolor="#f2f2f2"><font style="color:#F90; font-size:18px; font-weight:bold;">${product.name}
         <c:if test='${product.code != null && product.code !="" }'>
         	(${product.code})
         </c:if>
@@ -221,16 +225,20 @@
   <tr>
     <td>${product.info}</td>
   </tr>
+  <tr>
+    <td height="60" align="center">
+		<c:if test="${product.state  >=59 && product.state<=61 }">
+			<span class="bnt_ok">
+				<a href="<%=request.getContextPath()%>/product/appointment.jsp?productId=${product.id}&productName=${product.name}" >预约</a>
+			</span>
+		</c:if>
+	</td>
+  </tr>
 </table>
-<c:if test="${product.state  >=59 && product.state<=61 }">
-<p style="margin-left:420px;">
-	<span class="bnt_ok">
-		<a href="<%=request.getContextPath()%>/product/appointment.jsp?productId=${product.id}&productName=${product.name}" >预约</a>
-	</span>
-</p>
-</c:if>
+
 
 <br class=" clear" />
+</div>
 </div>
 
 <!---foot底部---->

@@ -109,7 +109,7 @@
 </c:choose>	
 </div>
 </div>
-<div class="page_menu">
+<!-- div class="page_menu">
           <a class="item">  &lt;  </a>
           <a class="item">1</a>
           <a class="item">2</a>
@@ -119,7 +119,7 @@
           <a class="item">6</a>
           <a class="item"> &gt;  </a>
      
-</div>
+</div -->
 </div>
 
 <br class=" clear" />
