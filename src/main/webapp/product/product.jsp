@@ -88,11 +88,17 @@
 <c:import url="/framework/header.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
 <div id="main_body">
-<div class="padding_top_10"></div>
+<div class="wrap">
+
+    <div class="maintitle">
+      <div id="title_font">高级筛选</div>
+      <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; 高级筛选</div>
+    </div>
 <div class="box14_c">
-		<div class="t"><b>投资专区</b><i>></i>
+		<div class="t"><b>投资专区</b> &gt;
 		<!--  span name="" id="">利率：不限<a href="javascript:void(0)">X</a></span><i>></i><span>期限：1月以下<a href="javascript:void(0)" >X</a></span -->
 		</div>
+        <span class="clear" style="height:0;overflow:hidden;"></span>
 	<div class="box_d">
 			<dl>
 				<dt id="profitType">产品收益：</dt>
@@ -135,6 +141,7 @@
 </div>
 
 <br class=" clear" />
+</div>
 </div>
 
 

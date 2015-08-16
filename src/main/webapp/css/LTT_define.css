@@ -850,6 +850,19 @@ li {
 	}
 .jg img,.jg2 img{ vertical-align:middle; margin-right:5px; margin-left:5px;}
 
+.box14_c{padding:0px;background:#fff; margin-bottom:2px;}
+.box14_c .t{display:block;height:40px;border-bottom:1px solid #e7e1df;font-size:14px;font-family:"Simsun", SimHei;color:#615957; line-height:28px;}
+.box14_c .t b{float:left;margin:0 10px 0 0;font-size:18px;font-family:"Microsoft YaHei";color:#c91e22;}
+.box14_c .t  span{display:line-block;float:left;height:25px;border:1px solid #cccccc; background:#eeeeee;margin:0 5px;padding:0 10px; line-height:25px;font-size:12px;font-weight:bold;color:#444444;}
+.box14_c .t  span a{display:line-block;width:7px;height:7px;margin:6px 0 0 8px ;font-size:10px;color:#c8c6c6;font-weight:bold;font-family:Arial, Helvetica, sans-serif;color:#c91e22;font-weight:normal;}
+.box14_c .t i{float:left;font-family:"Simsun";}
+.box14_c .box_d{padding:20px;background:#f9eee9;font-size:14px;font-family:"Microsoft YaHei";border-top:2px solid #FFF;border-bottom:1px solid #e7e1df;}
+.box14_c .box_d dl{margin:3px 0;overflow:hidden;_zoom:1;}
+.box14_c .box_d dt{float:left;width:85px;font-weight:bold;color:#4d5a64;line-height:32px;}
+.box14_c .box_d dd{float:right:825px;line-height:26px;}
+.box14_c .box_d dd a{display:inline-block;margin:3px 5px;padding:0 5px;color:#615957;}
+.box14_c .box_d dd a:hover{color:#ffffff;text-decoration:none;background:#f36d35;}
+
 /**--------------------------------------/弹了窗口*css-----------------------------------*/	
 .mesWindow{border:#666 1px solid;background:#fff; padding:10px;}
 .mesWindowTop{border-bottom:#eee 1px solid;margin-left:4px;padding:3px;font-weight:bold;text-align:left;font-size:12px;}

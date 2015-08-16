@@ -36,8 +36,8 @@ $(document).ready(function(){
 			   data += this.id + "&";
 		 });
 		data += "pageNum=" +  pageNum ;
-		if($('#search_text').attr("value") != undefined)
-			data += "&searchText=" + $('#search_text').attr("value");
+		if($('.serch_text').val() != undefined)
+			data += "&searchText=" + $('.serch_text').val();
 		$.post(HOST_PATH+"/products/advance",data, searchsuccess);		
 	}
 	

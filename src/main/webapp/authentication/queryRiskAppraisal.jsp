@@ -31,13 +31,13 @@
 	<table>
 	<thead>
 		<tr><td>
-				<div style="font-size:16px;color:red;font-family:微软雅黑;">您好，${user.secUserName}！</div>
+				<div style="font-size:16px;color:red;font-family:微软雅黑;">尊敬的${user.secUserName}用户，您好！</div>
 		</td></tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td align="left">
-				<strong>评估结果：</strong>
+				<strong>您当前的评估结果：</strong>
 			</td>
 		</tr>
 		<tr>
@@ -73,9 +73,11 @@
 </div>
 	</c:if>
 <div id="main_right" style="background:#f1f1f1;">
-<div id="title_xi"></div>
 <div style="padding:0 20px;">
 <form  action="<%=request.getContextPath() %>/authentication/RiskAppraisal" method="post" id="assessmentForm">
+  <p>&nbsp;</p>
+  <div class="body_title">121金融合格投资人风险评测调查问卷</div>
+  <p>&nbsp;</p>
  <%-- 
 <div class="table_c">
   <table border="0" cellspacing="0" cellpadding="0">
@@ -102,15 +104,15 @@
   本公司建议：当您的各项状况发生重大变化时，需对您所投资的金融产品及时进行重新审视，以确保您的投资决定与您可承受的投资风险程度等实际情况一致。<br>
   本公司在此承诺，对于您在本问卷中所提供的一切信息，本公司将严格按照法律法规要求承担保密义务。除法律法规规定的有权机关依法定程序进行查询外，本公司保证不会将涉及您的任何信息提供、泄漏给第三方或者将相关信息用于违法、不当用途。</div>
 <div id=question1>
-  <table width="698" border="0" cellspacing="0" cellpadding="0">
+  <table width="698" border="0" align="center" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td width="14"> </td>
-        <td width="678"><strong>1、年龄状况：</strong></td>
+        <td width="14" height="32" bgcolor="#eeeeee"> </td>
+        <td width="678" bgcolor="#eeeeee"><strong>1、年龄状况：</strong></td>
       </tr>
       <tr>
         <td> </td>
@@ -135,11 +137,15 @@
   </table>
 </div>
 <div id=question2>
-  <table width="698" border="0" cellspacing="0" cellpadding="0">
+  <table width="698" border="0" align="center" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
-        <td width="14"> </td>
-        <td width="678"><strong>2、您的主要收入来源：</strong></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="14" height="32" bgcolor="#eeeeee"> </td>
+        <td width="678" height="32" bgcolor="#eeeeee"><strong>2、您的主要收入来源：</strong></td>
       </tr>
       <tr>
         <td> </td>
@@ -167,11 +173,15 @@
   </table>
 </div>
 <div id=question3>
-  <table width="698" border="0" cellspacing="0" cellpadding="0">
+  <table width="698" border="0" align="center" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
-        <td width="14"> </td>
-        <td width="678"><strong>3、您对金融投资风险的了解程度：</strong></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="14" height="32" bgcolor="#eeeeee"> </td>
+        <td width="678" bgcolor="#eeeeee"><strong>3、您对金融投资风险的了解程度：</strong></td>
       </tr>
       <tr>
         <td> </td>
@@ -224,11 +234,15 @@
 </div>
 -->
 <div id=question4>
-  <table width="698" border="0" cellspacing="0" cellpadding="0">
+  <table width="698" border="0" align="center" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
-        <td width="14"> </td>
-        <td width="678"><strong>4、您当前的主要资产配置情况：(可多选)</strong></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="14" height="32" bgcolor="#eeeeee"> </td>
+        <td width="678" bgcolor="#eeeeee"><strong>4、您当前的主要资产配置情况：(可多选)</strong></td>
       </tr>
       <tr>
         <td> </td>
@@ -271,11 +285,15 @@
   </table>
 </div>
 <div id=question5>
-  <table width="698" border="0" cellspacing="0" cellpadding="0">
+  <table width="698" border="0" align="center" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
-        <td width="14"> </td>
-        <td width="678"><strong>5、您投资首要考虑因素：</strong></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="14" height="32" bgcolor="#eeeeee"> </td>
+        <td width="678" height="32" bgcolor="#eeeeee"><strong>5、您投资首要考虑因素：</strong></td>
       </tr>
       <tr>
         <td> </td>
@@ -303,11 +321,15 @@
   </table>
 </div>
 <div id=question6>
-  <table width="698" border="0" cellspacing="0" cellpadding="0">
+  <table width="698" border="0" align="center" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
-        <td width="14"> </td>
-        <td width="678"><strong>6、您当前使用您个人总资产的百分之多少进行投资：</strong></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="14" height="32" bgcolor="#eeeeee"> </td>
+        <td width="678" height="32" bgcolor="#eeeeee"><strong>6、您当前使用您个人总资产的百分之多少进行投资：</strong></td>
       </tr>
       <tr>
         <td> </td>
@@ -335,11 +357,15 @@
   </table>
 </div>
 <div id=question7>
-  <table width="698" border="0" cellspacing="0" cellpadding="0">
+  <table width="698" border="0" align="center" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
-        <td width="14"> </td>
-        <td width="678"><strong>7、您刚将您的一大笔钱进行投资，预期能涨50%的，结果不到半个月价格跌了15%。假如这项投资的基本没有发生改变，您会怎么做：</strong></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="14" height="32" bgcolor="#eeeeee"> </td>
+        <td width="678" height="32" bgcolor="#eeeeee"><strong>7、您刚将您的一大笔钱进行投资，预期能涨50%的，结果不到半个月价格跌了15%。假如这项投资的基本没有发生改变，您会怎么做：</strong></td>
       </tr>
       <tr>
         <td> </td>
@@ -401,11 +427,15 @@
 </div>
 -->
 <div id=question8>
-  <table width="698" border="0" cellspacing="0" cellpadding="0">
+  <table width="698" border="0" align="center" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
-        <td width="14"> </td>
-        <td width="678"><strong>8、您更倾向于多长的投资期限：</strong></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="14" height="32" bgcolor="#eeeeee"> </td>
+        <td width="678" height="32" bgcolor="#eeeeee"><strong>8、您更倾向于多长的投资期限：</strong></td>
       </tr>
       <tr>
         <td> </td>
@@ -430,11 +460,15 @@
   </table>
 </div>
 <div id=question9>
-  <table width="698" border="0" cellspacing="0" cellpadding="0">
+  <table width="698" border="0" align="center" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
-        <td width="14"> </td>
-        <td width="678"><strong>9、您过去的投资绩效：</strong></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="14" height="32" bgcolor="#eeeeee"> </td>
+        <td width="678" height="32" bgcolor="#eeeeee"><strong>9、您过去的投资绩效：</strong></td>
       </tr>
       <tr>
         <td> </td>
