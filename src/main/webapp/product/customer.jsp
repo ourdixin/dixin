@@ -44,7 +44,7 @@
       </tr>
       <tr>
         <td height="35" align="center" bgcolor="#FFFFFF">&nbsp;</td>
-        <td bgcolor="#FFFFFF"><span class="bnt_ok">确定</span></td>
+        <td bgcolor="#FFFFFF"><span class="bnt_ok" style="cursor:pointer;">确定</span></td>
       </tr>
     </tbody>
   </table>

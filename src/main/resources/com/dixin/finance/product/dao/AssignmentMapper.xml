@@ -43,6 +43,10 @@
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
 		<result column="code" property="code"/>
+		<result column="term" property="term"/>
+		<result column="termUnit" property="termUnit"/>
+		<result column="releaseDate" property="releaseDate"/>
+		<result column="payType" property="payType"/>
 	</resultMap>
 	
 	<resultMap id="assignmentResult" type="com.dixin.finance.product.vo.AssignmentVO">  
@@ -91,6 +95,7 @@
 			product.name name,
 			product.pay_type payType,
 			product.term term,
+			product.term_unit termUnit,
 			assignment.assign_type assign_type,
 			assignment.contactor contactor,
 			assignment.tel tel,

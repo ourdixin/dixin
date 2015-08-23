@@ -459,7 +459,7 @@ public class ProductController {
 		message.setCreateUser(userId);
 		message.setUpdateUser(userId);
 		messageServiceImpl.insertMessage(message);
-		webResult.setUrl(request.getContextPath()+"/authentication/myReply");
+		webResult.setUrl(request.getContextPath()+"/authentication/myReply.jsp");
 		webResult.setMsg("提交成功！");
 		webResult.setSuccess(true);
 		return webResult;

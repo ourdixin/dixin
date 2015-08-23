@@ -635,6 +635,7 @@ public class ProductManagerController {
 		Integer lastMsgId = message.getId();
 		messageServiceImpl.updateLastMsgId(id,lastMsgId);
 		webResult.setMsg("提交成功！");
+		webResult.setUrl(request.getContextPath()+"/admin/MessageReply?id="+id+"&catogryId="+catogryId+"");
 		webResult.setSuccess(true);
 		return webResult;	
 	}

@@ -42,7 +42,7 @@ public class UserVO extends BaseVO {
 	private Date startDate; // 认证开始日期
 	private int term; // 期限
 
-	private int authType; // 认证类别
+	private int authType=-1; // 认证类别
 	private int fmId;	//财务经理ID
 	private FinancialManagerVO fmanagerVO;//财富经理id;	
 	

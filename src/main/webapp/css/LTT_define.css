@@ -805,6 +805,7 @@ li {
 	background:#F79122;
 	padding:6px 50px;
 	color:#fff;
+	cursor:pointer;
 	margin-right:20px;}
 .bnt_ok:hover,.cancel:hover{
 	background:#F60}	

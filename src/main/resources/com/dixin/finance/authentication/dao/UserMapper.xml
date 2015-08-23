@@ -150,7 +150,7 @@
 		<if test="financialInstitution!=null">
 			institution_id=#{financialInstitution.id},
 		</if>
-		<if test="authType > 0">
+		<if test="authType >= 0">
 			auth_type=#{authType},
 		</if>
 		update_user=0,

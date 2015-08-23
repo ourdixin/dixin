@@ -234,7 +234,7 @@ public class AuthenManagerController {
 		userVO.setAuthType(authType);
 		userVO.setId(id);
 		userServiceImpl.updateUser(userVO);
-		return "/admin/user.jsp";
+		return "/admin/user";
 	}
 	
 	/**

@@ -71,7 +71,7 @@
     <td align="center"><textarea name="msg" rows="4"  class="tareastyle tarea" id="pass2"></textarea></td>
   </tr>
   <tr>
-    <td align="center">
+    <td align="center" height="60px">
 <p><span class="bnt_ok">提交联系记录</span></p></td>
   </tr>
 </table>

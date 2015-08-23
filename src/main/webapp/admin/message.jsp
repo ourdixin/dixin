@@ -45,12 +45,12 @@
   							<#if(list[i].lastMessage == null || list[i].lastMessage.userVO.userType==25){#>
   								<td></td>
   							<#}else{#>
-  								<td><#list[i].lastMessage.msg#></td>
+  								<td><#=list[i].lastMessage.msg#></td>
 							<#}#>
   							<#if(list[i].lastMessage == null || list[i].lastMessage.userVO.userType!=25){#>
-  								<td><i><a href="<%=request.getContextPath()%>/admin/MessageReply?id=<#list[i].id#>&catogryId=<#list[i].catogryId#>">回复</a></i></td>
+  								<td><i><a href="<%=request.getContextPath()%>/admin/MessageReply?id=<#=list[i].id#>&catogryId=<#=list[i].catogryId#>">回复</a></i></td>
 							<#}else{#>
-  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/admin/MessageReply?id=<#list[i].id#>&catogryId=<#list[i].catogryId#>">回复</a></i></td>
+  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/admin/MessageReply?id=<#=list[i].id#>&catogryId=<#=list[i].catogryId#>">回复</a></i></td>
 							<#}#>
   					</tr>
   				<# } #>

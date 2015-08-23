@@ -77,6 +77,6 @@ setSelectState('');}
 function testMessageBox(ev,i)
 {
 var objPos = mousePosition(ev);
-messContent="<div class='window_s'><p style='font-weight:bold; color:#f90;'>"+document.getElementById("pname"+i).innerHTML+"</p><p>金额："+document.getElementById("amount"+i).innerHTML+"万</p><p>联系人:"+document.getElementById("contactor"+i).innerHTML+"</p><p>电话："+document.getElementById("tel"+i).innerHTML+"</p><p>转让条件："+document.getElementById("assign_type"+i).innerHTML+"</p><p>有限性：示转让</p></div><div class='window_s'><p style='font-weight:bold; color:#f90;'>产品信息</p><p>项目名称："+document.getElementById("pname"+i).innerHTML+"</p><p>成立时间:2014-5-20</p><p>期限："+document.getElementById("term"+i).innerHTML+"</p><p>收益分配："+document.getElementById("payType"+i).innerHTML+"</p><p>有限性：示转让</p></div>";
+messContent="<div class='window_s'><p style='font-weight:bold; color:#f90;'>"+document.getElementById("pname"+i).innerHTML+"</p><p>金额："+document.getElementById("amount"+i).innerHTML+"万</p><p>联系人:"+document.getElementById("contactor"+i).innerHTML+"</p><p>电话："+document.getElementById("tel"+i).innerHTML+"</p><p>转让条件："+document.getElementById("assign_type"+i).innerHTML+"</p></div><div class='window_s'><p style='font-weight:bold; color:#f90;'>产品信息</p><p>项目名称："+document.getElementById("pname"+i).innerHTML+"</p><p>发行时间:"+document.getElementById("releaseDate"+i).innerHTML+"</p><p>期限："+document.getElementById("term"+i).innerHTML+"</p><p>利益分配："+document.getElementById("payType"+i).innerHTML+"</p></div>";
 showMessageBox('产品转让信息窗口',messContent,objPos,350);
 }

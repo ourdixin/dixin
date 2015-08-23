@@ -32,8 +32,23 @@
   				 <tr>
   				 	  <td style="display:none" id="assign_type<#=i#>"><#=list[i].assign_type#></td>
   				 	  <td style="display:none" id="tel<#=i#>"><#=list[i].tel#></td>
-  				 	  <td style="display:none" id="term<#=i#>"><#=list[i].product.term#></td>
-  				 	  <td style="display:none" id="payType<#=i#>"><#=list[i].product.payType#></td>
+  				 	  <td style="display:none" id="term<#=i#>"><#=list[i].product.term#>
+						<#if(list[i].product.termUnit == 63){#>
+						年
+						<#}else if(list[i].product.termUnit == 64){#>
+						月
+						<#}else{#>
+						日
+						<#}#>
+					  </td>
+  				 	  <td style="display:none" id="payType<#=i#>"><#=list[i].product.payTypeInfo#></td>
+					  <td style="display:none" id="releaseDate<#=i#>">
+						<#if(list[i].releaseDate >= list[i].invalidDate) {#>
+							待定
+						<#}else{#>
+							<#=list[i].releaseDate#>
+						<#}#>
+					  </td>
 	                  <td id="pname<#=i#>"><#=list[i].product.name#></td>
 	                  <td id="amount<#=i#>"><#=list[i].amount#></td>
 	                  <td id="contactor<#=i#>"><#=list[i].contactor#></td>
