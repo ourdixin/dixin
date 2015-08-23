@@ -478,7 +478,8 @@ public class AuthenticationController {
 		BaseWebResult webResult = new BaseWebResult();
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO==null){
-			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setMsg("请先登录！");
+			webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
 			webResult.setSuccess(false);
 			return webResult;
 		}
@@ -498,6 +499,7 @@ public class AuthenticationController {
 		Integer thisLastMsgId = message.getId();
 		messageServiceImpl.updateLastMsgId(id,thisLastMsgId);//设置初始留言
 		webResult.setMsg("提交成功！");
+		webResult.setUrl(request.getContextPath()+"/authentication/myReply");
 		webResult.setSuccess(true);
 		return webResult;	
 	}

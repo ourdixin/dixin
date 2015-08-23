@@ -54,7 +54,7 @@
 				</tr>
 				<tr>
 					<td height="50" align="right">&nbsp;</td>
-					<td><span class="bnt_ok">修改</span><!-- a href="javascript:void(0)">忘记新密码？</a --></td>
+					<td><span class="bnt_ok" style="height:30px;cursor:pointer;">修改</span><!-- a href="javascript:void(0)">忘记新密码？</a --></td>
 				</tr>
 			</table>
 			<br /> <br />

@@ -67,52 +67,20 @@
 	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
 	<div id="main_body">
-		<div class="padding_top_10"></div>
-		<div id="title_xi"></div>
-		<div id="title_font">产品转让</div>
+  	<div class="wrap">
+
+    	<div class="maintitle">
+      	<div id="title_font">产品转让</div>
+      	<div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>">首页</a> &gt; 产品转让</div>
+    	</div>
 		<div id="content">
 		
 		</div>
-		<!-- div>
-			<table class="ui compact table segment">
-				<thead>
-					<tr>
-						<th>客户姓名</th>
-						<th>产品名称</th>
-						<th>转让金额/万元</th>
-						<th>联系人</th>
-						<th>发布时间</th>
-						<th>有效性</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="assignment" items="${assignmentList.list}"
-						varStatus="i">
-						<tr>
-							<td>${assignment.user.name}</td>
-							<td>${assignment.product.name}</td>
-							<td><fmt:formatNumber value="${assignment.amount}"
-									pattern="#" /></td>
-							<td>${assignment.contactor}</td>
-							<td><fmt:formatDate pattern="yyyy年MM月dd日"
-									value="${assignment.assign_date}" /></td>
-							<td id="">未转让</td>
-							<td><span class="sg_tab"><a
-									href="/authentication/transferDetail.jsp?amount=${assignment.amount}&contactor=${assignment.contactor}&tel=${assignment.tel}&assign_type=${assignment.assign_type}&pname=${assignment.product.name}&releaseDate=<fmt:formatDate pattern="yyyy年MM月dd日" value="${assignment.product.releaseDate}"/>&payType=${assignment.product.payType}">详细</a></span></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-		<div class="page_menu">
-			<a class="item"> < </a> <a class="item">1</a> <a class="item">2</a> <a
-				class="item">3</a> <a class="item">4</a> <a class="item">5</a> <a
-				class="item">6</a> <a class="item"> > </a>
-		</div -->
 
 		<br class=" clear" />
 	</div>
+</div>
+
 	<!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->

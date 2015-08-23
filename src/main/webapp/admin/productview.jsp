@@ -16,7 +16,11 @@
 <!---TOP结束---->
 
 <div id="main_body">
-<div class="padding_top_10"></div>
+<div class="wrap">
+    <div class="maintitle">
+     <div id="title_font">理财产品</div>
+     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt;  产品详情</div>
+   </div>
 <div class="con_table">
    <table width="100%">
     <tbody>
@@ -207,13 +211,14 @@
     <td>${product.info}</td>
   </tr>
 </table>
-
-<p style="margin-left:420px;">
+<center>
+<p>
 <span class="bnt_ok"><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=${product.id}" > 修改 </a></span>
 <!-- span class="bnt_ok"><a href="<%=request.getContextPath()%>/admin/delproduct?productId=${product.id}" > 删除 </a></span -->
 </p>
-
-
+</center>
+</div>
+</div>
 <br class=" clear" />
 </div>
 

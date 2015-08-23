@@ -22,27 +22,24 @@
 
 <div class="main_width">
 <div class="con_table">
-
-<c:choose>
-	<c:when test="${empty list}">
-		<span style="font-size:16px;color:red;font-family:微软雅黑;">暂时没有预约信息，请稍后查看！</span>
-	</c:when>
-	<c:otherwise>
-		<table width="1200">
-  			<thead>
-  				<tr>
-  					<th>提交时间</th>
-  					<%--<th>客户代码</th> --%>
-  					<th>客户姓名</th>
-  					<th>产品名称</th>
-  					<th>预约金额/万元</th>
- 			 		<th>预约打款日期</th>
- 			 		<th>预约留言</th>
-  					<th>联系</th>
-  					<th>联系记录</th>
-  					<th>结果</th>
- 		 		</tr>
- 	 		</thead>
+	<table width="1200">
+		<thead>
+			<tr>
+				<th width="100">提交时间</th>
+				<th width="50">客户姓名</th>
+				<th width="100">产品名称</th>
+				<th width="110">金额(万元)</th>
+		 		<th width="90">打款日期</th>
+		 		<th>预约留言</th>
+				<th width="80">联系</th>
+				<th width="50">联系记录</th>
+				<th width="50">结果</th>
+	 		</tr>
+ 		</thead>
+		 <c:choose>
+			<c:when test="${empty list}">
+			</c:when>
+			<c:otherwise>
    			<tbody>
    				<c:forEach var="appointment" items="${list}">
    					<tr>
@@ -104,22 +101,11 @@
    					</tr>
    				</c:forEach>
    			</tbody>
-   		</table>
-	</c:otherwise>
-</c:choose>	
+		</c:otherwise>
+	</c:choose>	
+</table>
 </div>
 </div>
-<!-- div class="page_menu">
-          <a class="item">  &lt;  </a>
-          <a class="item">1</a>
-          <a class="item">2</a>
-          <a class="item">3</a>
-          <a class="item">4</a>
-          <a class="item">5</a>
-          <a class="item">6</a>
-          <a class="item"> &gt;  </a>
-     
-</div -->
 </div>
 
 <br class=" clear" />

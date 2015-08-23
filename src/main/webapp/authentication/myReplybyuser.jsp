@@ -23,8 +23,8 @@
 	<!---用户左侧共用部份结束---->
 	
 <form action="<%=request.getContextPath() %>/authentication/myReplybyuser"  method ="post" id="myReplyForm">
-<input type="hidden" id="id" name="id" value="${param.id}"/><br/>
-<input type="hidden" id="catogryId" name="catogryId" value="${param.catogryId}"/><br/>
+<input type="hidden" id="id" name="id" value="${param.id}"/>
+<input type="hidden" id="catogryId" name="catogryId" value="${param.catogryId}"/>
 <div id="main_right">
 <div class="main_width">
 <div class="con_table">
@@ -71,15 +71,16 @@
     <td align="center"><textarea name="msg" rows="4"  class="tareastyle tarea" id="pass2"></textarea></td>
   </tr>
   <tr>
-    <td align="center">
-<p><span class="bnt_ok">提交联系记录</span></p></td>
+    <td align="center" height="60">
+		<p><span class="bnt_ok">提交联系记录</span></p>
+	</td>
   </tr>
 </table>
 </div>
 </form>
 <br class=" clear" />
-
-
+</div>
+<blockquote>&nbsp;</blockquote>
 
 <!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />

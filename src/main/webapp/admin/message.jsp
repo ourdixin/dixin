@@ -24,22 +24,22 @@
 <div class="main_width">
 <div class="con_table">
 
-<c:choose>
-	<c:when test="${empty list}">
-		<span style="font-size:16px;color:red;font-family:微软雅黑;">暂时没有留言信息，请稍后查看！</span>
-	</c:when>
-	<c:otherwise>
-		<table>
-			<thead>
- 				 <tr>
-    				<th>留言时间</th>
-    				<th>客户姓名</th>
-    				<th>分类问题</th>
-    				<th>留言内容</th>
-    				<th>最后留言</th>
-    				<th>内容回复</th>
-  				</tr>
-  			</thead>
+
+	<table>
+		<thead>
+			<tr>
+			<th>留言时间</th>
+			<th>客户姓名</th>
+			<th>分类问题</th>
+			<th>留言内容</th>
+			<th>最后留言</th>
+			<th>内容回复</th>
+			</tr>
+ 		</thead>
+		<c:choose>
+			<c:when test="${empty list}">
+			</c:when>
+			<c:otherwise>
   			<tbody>
   				<c:forEach var="message" items="${list}">
   					<tr>
@@ -80,43 +80,9 @@
   					</tr>
   				</c:forEach>
   			</tbody>
-		</table>
-
-	</c:otherwise>
-</c:choose>
-<!--  
-<table width="100%">
-  <thead>
-  <tr>
-    <th>留言时间</th>
-    <th>客户代码</th>
-    <th>客户姓名</th>
-    <th>分类问题</th>
-    <th>留言内容</th>
-    <th>内容回复</th>
-  </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td>2015-3-15</td>
-        <td>12015</td>
-        <td>张三</td>
-        <td>产品预约</td>
-        <td>平台非常好</td>
-        <td><i><a href="<%=request.getContextPath()%>/admin/MessageReply.jsp">回复</a></i></td>
-        </tr>
-      <tr>
-        <td>2015-3-15</td>
-        <td>12015</td>
-        <td>张三</td>
-        <td>产品转让</td>
-        <td>利润很高</td>
-        <td><i><a href="<%=request.getContextPath()%>/admin/MessageReply.jsp">回复</a></i></td>
-        </tr>
-      </tbody>
-        </table>
--->
-
+		</c:otherwise>
+	</c:choose>
+</table>
 </div>
 </div>
 </div>

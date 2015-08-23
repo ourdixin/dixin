@@ -19,7 +19,7 @@
 <div class="wrap">
     <div class="maintitle">
      <div id="title_font">理财产品</div>
-     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; <a href="<%=request.getContextPath()%>/product/product.jsp">理财产品 </a>&gt; 产品详情</div>
+     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt;  产品详情</div>
    </div>
 <div class="table_c">
    <table width="100%">

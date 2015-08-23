@@ -20,31 +20,29 @@
 
 	<table class="ui compact table segment">
       <thead>
-      <tr><th>产品代码</th>
       <th>产品名称</th>
-      <th>发行时间</th>
+      <th width="140px">发行时间</th>
 	  <# if(getprofitType() == 42) {#>
-      <th>期限</th>
-      <th>利率</th>
+      <th width="60px">期限</th>
+      <th width="120px">利率</th>
 	  <# }#>
-	  <th>认购起点</th>
+	  <th width="80px">认购起点</th>
 	  <# if(getprofitType() == 42) {#>
-	   <th>付息方式</th>
+	   <th width="108px">付息方式</th>
 	  <# }else{#>
 	  <th>认购费</th>
 	  <th>基金经理</th>
 	  <# }#>
-	  <th>资金投向</th>
-      <th>状态</th>
-      <th>推荐指数</th>
-      <th>操作</th>
+	  <!-- th width="80px">资金投向</th --!>
+      <th width="50px">状态</th>
+      <th width="130px">推荐指数</th>
+      <th width="156px">操作</th>
       </tr>
       </thead>
       <tbody>
       
 		    <# for(i = 0; i < products.list.length; i++){ #> 
             <tr>
-              <td><#=products.list[i].code#></td>
               <td><#=products.list[i].name#></td>
               <td>
 				<#if(products.list[i].releaseDate >= products.list[i].invalidDate) {#>
@@ -81,7 +79,7 @@
 			  <td><#=products.list[i].buyFee#></td>
 			  <td><#==products.list[i].fundManagerHtml#></td>
 			  <#}#>
-			  <td><#=products.list[i].directionInfo#></td>
+			  <!-- td><#=products.list[i].directionInfo#></td --!>
 
 			   <#if(products.list[i].state == 59){#>
               <td>待定</td>
@@ -158,20 +156,24 @@
            	<a id="query" href="javascript:void(0)" >查询</a> 
            </div>
            </form>
-           <div id="tab_search" class="senior">
+           <div class="senior" style="width:10px;">
+           </div>
+           <div  class="senior">
            	<a href="<%=request.getContextPath() %>/admin/product.jsp">理财产品高级筛选</a>
            </div>
-           &nbsp;&nbsp;
-           <div id="tab_search" class="senior">
+           <div class="senior" style="width:10px;">
+           </div>
+           <div class="senior">
            	<a href="<%=request.getContextPath() %>/admin/addFixProduct.jsp">添加固定收益产品</a>
            </div>
-           &nbsp; &nbsp;          
-           <div id="tab_search" class="senior">
+           <div class="senior" style="width:10px;">
+           </div>       
+           <div class="senior">
            	<a href="<%=request.getContextPath() %>/admin/addFloatingProduct.jsp">添加浮动收益产品</a>
-           	<a href="<%=request.getContextPath() %>/admin/import.jsp">批量导入产品</a>
            </div>   
-           &nbsp;&nbsp;         
-            <div id="tab_search" class="senior">
+           <div class="senior" style="width:10px;">
+           </div>         
+            <div class="senior">
            	<a href="<%=request.getContextPath() %>/admin/import.jsp">批量导入产品</a>
            </div>   
                          

@@ -65,8 +65,8 @@
     		<td align="center"><textarea name="record" rows="4"  class="tareastyle tarea" id="pass2"></textarea></td>
   		</tr>
   		<tr>
-    		<td align="center">
-			<p><span class="bnt_ok">提交联系记录</span></p></td>
+    		<td align="center" style="height:80px;">
+			<p><span class="bnt_ok" style="height:30px;cursor:pointer;">提交联系记录</span></p></td>
  		 </tr>
  		 
 	</table>
@@ -76,7 +76,7 @@
 <br class=" clear" />
 <blockquote>&nbsp;</blockquote>
 <blockquote>&nbsp;	</blockquote>
-
+</div>
 
 <!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />

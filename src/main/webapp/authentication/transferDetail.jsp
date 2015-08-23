@@ -24,34 +24,36 @@
 	<!---TOP头部共用部份---->
 	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
+	
 	<div id="main_body">
-		<div class="padding_top_10"></div>
-		<div id="title_xi"></div>
-		<div id="title_font">产品转让详细</div>
-
+	<div class="wrap">
+		<div class="maintitle">
+			<div id="title_font">产品转让详细</div>
+			<div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>">首页</a> &gt; 产品转让详细</div>
+		</div>
 			<div class="tab1">
 				<div class="user_title">${param.pname}</div>
 				<div class="con_table">
 					<table width="100%">
 						<tbody>
 							<tr>
-								<td align="center" bgcolor="#FFFFFF">金额</td>
+								<td width="300px" align="center" bgcolor="#FFFFFF">金额</td>
 								<td bgcolor="#FFFFFF">${param.amount}万元</td>
 							</tr>
 							<tr>
-								<td align="center" bgcolor="#FFFFFF">联系人</td>
+								<td width="300px" align="center" bgcolor="#FFFFFF">联系人</td>
 								<td bgcolor="#FFFFFF">${param.contactor}</td>
 							</tr>
 							<tr>
-								<td align="center" bgcolor="#FFFFFF">联系电话</td>
+								<td width="300px" align="center" bgcolor="#FFFFFF">联系电话</td>
 								<td bgcolor="#FFFFFF">${param.tel}</td>
 							</tr>
 							<tr>
-								<td align="center" bgcolor="#FFFFFF">转让条件</td>
+								<td width="300px" align="center" bgcolor="#FFFFFF">转让条件</td>
 								<td bgcolor="#FFFFFF">${param.assign_type}</td>
 							</tr>
 							<tr>
-								<td align="center" bgcolor="#FFFFFF">有效性</td>
+								<td width="300px" align="center" bgcolor="#FFFFFF">有效性</td>
 								<td bgcolor="#FFFFFF"></td>
 							</tr>
 						</tbody>
@@ -65,19 +67,19 @@
 					<table width="100%">
 						<tbody>
 							<tr>
-								<td align="center" bgcolor="#FFFFFF">项目名称</td>
+								<td width="300px" align="center" bgcolor="#FFFFFF">项目名称</td>
 								<td bgcolor="#FFFFFF">${param.pname}</td>
 							</tr>
 							<tr>
-								<td align="center" bgcolor="#FFFFFF">成立日期</td>
+								<td width="300px" align="center" bgcolor="#FFFFFF">成立日期</td>
 								<td bgcolor="#FFFFFF">${param.releaseDate}</td>
 							</tr>
 							<tr>
-								<td align="center" bgcolor="#FFFFFF">收益分配</td>
+								<td width="300px" align="center" bgcolor="#FFFFFF">收益分配</td>
 								<td bgcolor="#FFFFFF">${param.payType}</td>
 							</tr>
 							<tr>
-								<td align="center" bgcolor="#FFFFFF">有效性</td>
+								<td width="300px" align="center" bgcolor="#FFFFFF">有效性</td>
 								<td bgcolor="#FFFFFF">未转让</td>
 							</tr>
 						</tbody>
@@ -86,6 +88,8 @@
 			</div>
 		</div>
 		<br class=" clear" />
+	</div>
+</div>
 	<!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->

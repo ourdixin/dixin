@@ -25,8 +25,10 @@
 	<!---TOP头部共用部份---->
 	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
-
-	<div id="main_body">
+	<!---用户左侧共用部份---->
+	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
+	<!---用户左侧共用部份结束---->
+	<div id="main_right">
 		<div id="title_xi"></div>
 		<div class="register">
 				<form id="addForm" name="addproductForm" method="post"
@@ -59,20 +61,15 @@
 								<td></td>
 							</tr>
 							<tr>
-								<td colspan="4"><center><span class="bnt_ok">添加</span></center></td>
+								<td colspan="4"><center><span class="bnt_ok" style="height:30px;cursor:pointer;">添加</span></center></td>
 							</tr>
 						</tbody>
 					</table>
-
 				</form>
-
 		</div>
-
-
-		<br class=" clear" />
 	</div>
-
-
+<br class=" clear" />
+</div>
 
 	<!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />

@@ -17,11 +17,6 @@
 <script type="text/javascript" charset="utf-8"
 	src="<%=request.getContextPath()%>/js/ueditor/lang/zh-cn/zh-cn.js"></script>
 
-<style type="text/css">
-div {
-	width: 100%;
-}
-</style>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript"
@@ -35,8 +30,10 @@ div {
 	<!---TOP头部共用部份---->
 	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
 	<!---TOP结束---->
-
-	<div id="main_body">
+	<!---用户左侧共用部份---->
+	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
+	<!---用户左侧共用部份结束---->
+	<div id="main_right">
 		<div id="title_xi"></div>
 		<div class="register">
 			<div class="info_frm">
@@ -181,28 +178,20 @@ div {
 										style="width:980px;height:500px;"></script></td>
 							</tr>
 							<tr>
-								<td colspan="4"><center>
-										<span class="bnt_ok">添加</span>
-									</center></td>
+								<td colspan="4">
+									<center>
+										<span style="height:30px;cursor:pointer;" class="bnt_ok">添加</span>
+									</center>
+								</td>
 							</tr>
 						</tbody>
 					</table>
-
-
-
 				</form>
-
-
-
 			</div>
-
-		</div>
-
-
-		<br class=" clear" />
+		</div>	
 	</div>
-
-
+<br class=" clear" />
+</div>
 
 	<!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />

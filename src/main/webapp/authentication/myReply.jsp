@@ -25,14 +25,23 @@
 <div class="con_table">
 <c:choose>
 	<c:when test="${empty list}">
-		<span style="font-size:16px;color:red;font-family:微软雅黑;">暂时没有留言信息，请稍后查看！</span>
+		<table>
+			<thead>
+ 				 <tr>
+    				<th>留言时间</th>
+    				<th>问题分类</th>
+    				<th>留言内容</th>
+    				<th>客服回复</th>
+    				<th>操作</th>
+  				</tr>
+  			</thead>
+  		</table>
 	</c:when>
 	<c:otherwise>
 		<table>
 			<thead>
  				 <tr>
     				<th>留言时间</th>
-    				<!-- >th>客户姓名</th -->
     				<th>问题分类</th>
     				<th>留言内容</th>
     				<th>客服回复</th>
@@ -45,7 +54,6 @@
   						<td>
   							<fmt:formatDate value="${message.msgTime}" pattern="yyyy-MM-dd HH:mm"/>
   						</td>
-  						<!-- td>${message.userVO.userName}</td -->
   						<td><c:choose>
   								<c:when test="${message.catogryId==74}">
   									浮动类收益产品
@@ -82,36 +90,6 @@
 		</table>
 	</c:otherwise>
 </c:choose>
-
-<!--  		
-<table>
-			<thead>
- 				 <tr>
-    				<th>留言时间</th>
-    				<th>客户姓名</th>
-    				<th>分类问题</th>
-    				<th>留言内容</th>
-    				<th>最后留言</th>
-    				<th>内容回复</th>
-  				</tr>
-  			</thead>
-  			<tbody>
-  				<tr>
-  					<td>2012-8-9</td>
-  					<td>梁超杰</td>
-  					<td>固定收益问题</td>
-  					<td>1111</td>
-  					<td>
-  						555555
-  					</td>
-  					<td>
-  						<i><a href="<%=request.getContextPath()%>/admin/MessageReply?">回复</a></i>
-  					</td>
-  				</tr>
-  				
-  			</tbody>
-		</table>
--->
 </div>
 </div>
 </div>

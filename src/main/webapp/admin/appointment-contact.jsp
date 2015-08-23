@@ -21,19 +21,19 @@
 
 <div class="main_width">
 <div class="con_table">
-	<c:choose>
-		<c:when test="${empty list}">
-			<span style="color:red;font-family:微软雅黑">暂时没有联系记录，请稍后查看！</span>
-		</c:when>
-		<c:otherwise>
-			<table width="100%">
-  				<thead>
-  					<tr>
-    					<th>联系时间</th>
-  						<th>联系人</th>
-  						<th>联系记录</th>
-  					</tr>
-  				</thead>
+
+	<table width="100%">
+		<thead>
+			<tr>
+					<th>联系时间</th>
+				<th>联系人</th>
+				<th>联系记录</th>
+			</tr>
+		</thead>
+			<c:choose>
+				<c:when test="${empty list}">
+				</c:when>
+				<c:otherwise>
   				<tbody>
   					<c:forEach var="contact" items="${list}">
   						<tr>
@@ -49,10 +49,9 @@
   						</tr>
   					</c:forEach>
   				</tbody>
-      	 	</table>
 		</c:otherwise>
 	</c:choose>
-
+</table>
 </div>
 </div>
 </div>

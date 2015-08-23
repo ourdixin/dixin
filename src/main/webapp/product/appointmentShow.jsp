@@ -58,36 +58,7 @@
 	<!---用户左侧共用部份结束---->
 	<div id="main_right">
 		<div class="con" style="display: block">
-			<!-- div id="title_font">产品预约</div>
-			<table border="0" cellpadding="0" cellspacing="0"
-				class="ui compact table segment">
-				<thead>
-					<tr>
-						<th width="13%">预约产品</th>
-						<th width="12%">预约日期</th>
-						<th width="10%">预约金额</th>
-						<th width="17%">备注</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="appointment" items="${appointmentList.list}">
-						<tr>
-							<td>${appointment.product.name}</td>
-							<td><fmt:formatDate pattern="yyyy年MM月dd日"
-									value="${appointment.reserve_date}" /></td>
-							<td><fmt:formatNumber value="${appointment.amount}" pattern="#"/>万元</td>
-							<td>${appointment.msg}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<div class="page_menu">
-          <a class="item"> < </a>
-          <c:forEach var="i" begin="0" end="${appointment.pages}">
-         	 <a class="item" name="<#=id#>" href="javascript:void(0)" > ${i+1}</a>
-          </c:forEach>
-          <a class="item"> > </a>
-			</div -->
+
 		</div>
 
 	</div>

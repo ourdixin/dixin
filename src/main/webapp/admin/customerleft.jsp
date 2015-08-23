@@ -14,7 +14,7 @@
 		<div class="wrap">
 		    <div class="maintitle">
 		     <div id="title_font">后台管理</div>
-		     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; <a href="<%=request.getContextPath()%>/admin">后台管理 </a>&gt;<span id="title_name">客户产品预约</span></div>
+		     <div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; <a href="<%=request.getContextPath()%>/admin">后台管理 </a>&gt;<span id="title_name"><a id="title_url" href="<%=request.getContextPath()%>/admin">客户产品预约</a></span></div>
 		   </div>
 			<div id="main_left">
 			<ul id="left_menu">

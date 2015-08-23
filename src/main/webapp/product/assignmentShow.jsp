@@ -66,49 +66,13 @@
 <c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
 <!---用户左侧共用部份结束---->
 <div id="main_right">
-<div class="con" style="display: block">
-<!-- div id="title_font">产品转让</div>
-<div>
-			<table class="ui compact table segment">
-              <thead>
-              <tr>
-              <th>产品名称</th>
-              <th>金额(万)</th>
-              <th>联系人</th>
-              <th>发布时间</th>
-              <th>有效性</th>
-              <th>操作</th>
-              </tr>
-              </thead>
-              <tbody>
-              <# for(i = 0; i < list.length; i++){ #> 
-  				 <tr>
-  				 	  <td style="display:none" id="assign_type<# =i #>"><#=list[i].assign_type#></td>
-  				 	  <td style="display:none" id="tel<# =i #>"><#=list[i].tel#></td>
-  				 	  <td style="display:none" id="term<# =i #>"><#=list[i].product.term#></td>
-  				 	  <td style="display:none" id="payType<# =i #>"><#=list[i].product.payType#></td>
-	                  <td id="pname<# =i #>"><#=list[i].product.name#></td>
-	                  <td id="amount<# =i #>"><#=list[i].amount#></td>
-	                  <td id="contactor<# =i #>"><#=list[i].contactor#></td>
-	                  <td id="assign_date<# =i #>"><#=list[i].assign_date#></td>
-	                  <td id="">未转让</td>
-	                  <td><span class="sg_tab"><a href="javascript:void(0)" onclick="testMessageBox(event,<# =i #>);">详细</a></span></td>
-                </tr>
-			  <# } #>
-              </tbody>
-        </table></div>
-        
-          <div class="page_menu">
-          <a class="item"> < </a>
-          <c:forEach var="i" begin="0" end="${assignmentList.pages}">
-         	 <a class="item">${i+1}</a>
-          </c:forEach>
-          <a class="item"> > </a>
-        </div -->
-     </div>
+	<div class="con" style="display: block">
+
+    </div>
 </div>
 <br class=" clear" />
 </div>
+<blockquote>&nbsp;	</blockquote>
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 <!---foot底部结束---->

@@ -59,7 +59,7 @@
 				</tr>
 				<tr>
 					<td height="50" align="right">&nbsp;</td>
-					<td colspan="2"><span class="bnt_ok">提交</span></td>
+					<td colspan="2"><span class="bnt_ok" style="height:30px;cursor:pointer;">提交</span></td>
 				</tr>
 			</table>
 			<br/> <br/>

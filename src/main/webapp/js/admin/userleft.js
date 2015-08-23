@@ -12,7 +12,7 @@ $(document).ready(function(){
 			var pos = name.indexOf(">") + 1;
 			name = name.substring(pos);
 			
-			//$("#title_font").html(name);
+			$("#title_url").attr("href",$(element.children).attr("href"));
 			$("#title_name").html(name);
 		}
 	});

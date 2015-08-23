@@ -27,7 +27,7 @@
 							<th>销售金额</th>
 							<th>状态</th>
 							<th>备注</th>
-							<th width=50>操作</th>
+							<th width=100>操作</th>
 						</tr>
 					</thead>
 					<tbody>

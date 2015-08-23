@@ -59,14 +59,12 @@
     	</tbody>
   </table>
   		
-  
-  
 </div>
-
+</div>
 
 <br class=" clear" />
 </div>
-
+<blockquote>&nbsp;	</blockquote>
 
 <!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />

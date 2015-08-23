@@ -47,7 +47,7 @@
 						</tr>
 						<tr>
 							<td height="50" align="right">&nbsp;</td>
-							<td><span class="bnt_ok">提交</span></td>
+							<td><span class="bnt_ok" style="height:30px;cursor:pointer;">提交</span></td>
 						</tr>
 					</table>
 				</form>
@@ -56,6 +56,7 @@
 		</div>
 		<br class=" clear" />
 	</div>
+<blockquote>&nbsp;</blockquote>	
 	<!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->
