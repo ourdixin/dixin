@@ -26,12 +26,12 @@ $(document).ready(function(){
 		if(data.success )
 		{
 			var htmlStr = template('product_item', data.result);
-			$('#tab1_con_2').html(htmlStr);
+			$('#content').html(htmlStr);
 		}
 
 				
 		$("a[class='item']").click(function(){
-			$.get(HOST_PATH+"/authentication/queryAssignment?pageNum="+this.text, null, success);
+			$.get(HOST_PATH+"/authentication/transfer?pageNum="+this.text, null, success);
 		});		
 		
 	};	

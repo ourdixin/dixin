@@ -145,7 +145,7 @@ public class AuthenManagerController {
 		
 		model.addAttribute("user", userVO);
 		
-		return "redirect:appointment";
+		return "redirect:appointment.jsp";
 	}
 	
 	@RequestMapping(value="/admin/login", method=RequestMethod.POST)
@@ -187,19 +187,30 @@ public class AuthenManagerController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/admin/user",method=RequestMethod.GET)
-	public String findAllUser(Integer pageNum,Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+	@RequestMapping(value="/admin/user")
+	public @ResponseBody BaseWebResult findAllUser(Integer pageNum,Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		
+		BaseWebResult webResult = new BaseWebResult();
 		
 		if(pageNum == null)
 			pageNum = 1;
 		if(pageSize == null)
 			pageSize = 10;
+
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			return webResult;
+		}	
 		
 		PageHelper.startPage(pageNum, pageSize);
 		List<UserVO> users = userServiceImpl.findAllUser();
-		PageInfo<AssignmentVO> pageinfoList = new PageInfo(users);
-		model.addAttribute("userList", pageinfoList);
-		return "/admin/user";
+		PageInfo<UserVO> pageinfoList = new PageInfo(users);
+		webResult.setSuccess(true);
+		webResult.setResult(pageinfoList);
+		return webResult;	
 	}
 	
 	/**
@@ -223,11 +234,7 @@ public class AuthenManagerController {
 		userVO.setAuthType(authType);
 		userVO.setId(id);
 		userServiceImpl.updateUser(userVO);
-		PageHelper.startPage(pageNum, pageSize);
-		List<UserVO> users = userServiceImpl.findAllUser();
-		PageInfo<AssignmentVO> pageinfoList = new PageInfo(users);
-		model.addAttribute("userList", pageinfoList);
-		return "/admin/user";
+		return "/admin/user.jsp";
 	}
 	
 	/**

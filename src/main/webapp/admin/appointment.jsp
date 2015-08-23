@@ -9,19 +9,11 @@
 <title>客户产品预约</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-1.4.2.min.js"></script>
-</head>
-
-<body>
-<!---TOP头部共用部份---->
-	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
-	<!---TOP结束---->
-	<!---管理左侧共用部份---->
-	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
-	<!---管理左侧共用部份结束---->
-<div id="main_right">
-
-<div class="main_width">
-<div class="con_table">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/appointment.js"></script>
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";</script>
+<script type="text/html" id="appointment">
+	<div class="con_table">
 	<table width="1200">
 		<thead>
 			<tr>
@@ -36,78 +28,98 @@
 				<th width="50">结果</th>
 	 		</tr>
  		</thead>
-		 <c:choose>
-			<c:when test="${empty list}">
-			</c:when>
-			<c:otherwise>
    			<tbody>
-   				<c:forEach var="appointment" items="${list}">
+   				<# for(i = 0; i < list.length; i++) { #>
    					<tr>
    						<td>
-   							<fmt:formatDate value="${appointment.createTime}" pattern="yyyy-MM-dd HH:mm"/>
+   							<#=list[i].createTime#>
    						</td>
    						<td>
-   							${appointment.user.name}
+   							<#=list[i].user.name#>
    						</td>
    						<td>
-   							${appointment.product.name}
+   							<#=list[i].product.name#>
    						</td>
    						<td>
-   							${appointment.amount}
+   							<#=list[i].amount#>
    						</td>
    						<td>
-   							<fmt:formatDate value="${appointment.reserve_date}" pattern="yyyy-MM-dd"/>
+   							<#=list[i].reserve_date#>
    						</td>
    						<td>
-   							${appointment.msg}
+   							<#=list[i].msg#>
    						</td>
    						<td>
    							<span><a href="">拔打电话</a></span><br/>
               				<i><a href="">发短信</a></i>
    						</td>
    						<td>
-   							${appointment.contact.lastContactRecordVO.record}
-   							<span><a href="<%=request.getContextPath()%>/admin/appointment-add-contact?firstContactId=${appointment.contact.id}&appointmentId=${appointment.id}&userId=${appointment.userId}">添加</a></span>
-                			<i><a href="<%=request.getContextPath()%>/admin/appointment-contact?firstContactId=${appointment.contact.id}&appointmentId=${appointment.id}&userId=${appointment.userId}">更多</a></i>
+							<#if(list[i].contact != null && list[i].contact.lastContactRecordVO != null){#>
+   								<#=list[i].contact.lastContactRecordVO.record#>
+							<#}#>
+							<#if(list[i].contact != null){#>
+   								<span><a href="<%=request.getContextPath()%>/admin/appointment-add-contact?firstContactId=<#=list[i].contact.id#>&appointmentId=<#=list[i].id#>&userId=<#=list[i].userId#>">添加</a></span>
+                				<i><a href="<%=request.getContextPath()%>/admin/appointment-contact?firstContactId=<#=list[i].contact.id#>&appointmentId=<#=list[i].id#>&userId=<#=list[i].userId#>">更多</a></i>
+							<#}else{#>
+   								<span><a href="<%=request.getContextPath()%>/admin/appointment-add-contact?appointmentId=<#=list[i].id#>&userId=<#=list[i].userId#>">添加</a></span>
+                				<i><a href="<%=request.getContextPath()%>/admin/appointment-contact?appointmentId=<#=list[i].id#>&userId=<#=list[i].userId#>">更多</a></i>
+							<#}#>
    						</td>
-   						<c:choose>
-   							<c:when test="${appointment.constant==104}">
+   						
+   							<#if(list[i].constant==104){#>
    								<td>
    									已购买<br/>
-   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail?userName=${appointment.user.name}&reservationId=${appointment.id}&productName=${appointment.product.name}">详细</a></span>
-        							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=${appointment.id}&constant=${appointment.constant}&userId=${appointment.userId}&productId=${appointment.product.id}">修改</a></i>
+   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail?userName=<#=list[i].user.name#>&reservationId=<#=list[i].id#>&productName=<#=list[i].product.name#>">详细</a></span>
+        							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=<#=list[i].id#>&constant=<#=list[i].constant#>&userId=<#=list[i].userId#>&productId=<#=list[i].product.id#>">修改</a></i>
    								</td>
-   							</c:when>
-   							<c:when test="${appointment.constant==105}">
+   							<#}else if(list[i].constant==105){#>
    								<td>
    									购买中<br/>
-   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail?userName=${appointment.user.name}&reservationId=${appointment.id}&productName=${appointment.product.name}">进程</a></span>
-        							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=${appointment.id}&constant=${appointment.constant}&userId=${appointment.userId}&productId=${appointment.product.id}">修改</a></i>
+   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail?userName=<#=list[i].user.name}&reservationId=<#=list[i].id#>&productName=<#=list[i].product.name#>">进程</a></span>
+        							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=<#=list[i].id#>&constant=<#=list[i].constant#>&userId=<#=list[i].userId#>&productId=<#=list[i].product.id#>">修改</a></i>
    								</td>
-   							</c:when>
-   							<c:when test="${appointment.constant==106}">
+   							<#}else if(list[i].constant==106){#>
    								<td>
    									不购买<br/>
-   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail?userName=${appointment.user.name}&reservationId=${appointment.id}&productName=${appointment.product.name}">进程</a></span>
-        							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=${appointment.id}&constant=${appointment.constant}&userId=${appointment.userId}&productId=${appointment.product.id}">修改</a></i>
+   									<span><a href="<%=request.getContextPath()%>/admin/appointment-detail?userName=<#=list[i].user.name#>&reservationId=<#=list[i].id#>&productName=<#=list[i].product.name#>">进程</a></span>
+        							<i><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=<#=list[i].id}&constant=<#=list[i].constant#>&userId=<#=list[i].userId#>&productId=<#=list[i].product.id#>">修改</a></i>
    								</td>
-   							</c:when>
-   							<c:otherwise>
+							<#}else{#>
    								<td>
-   									<span><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=${appointment.id}&constant=${appointment.constant}&userId=${appointment.userId}&productId=${appointment.product.id}">处理</a></span>
+   									<span><a href="<%=request.getContextPath()%>/admin/appointment-deal.jsp?reservationId=<#=list[i].id#>&constant=<#=list[i].constant#>&userId=<#=list[i].userId#>&productId=<#=list[i].product.id#>">处理</a></span>
    								</td>
-   							</c:otherwise>
-   						</c:choose>
+							<#}#>
    					</tr>
-   				</c:forEach>
-   			</tbody>
-		</c:otherwise>
-	</c:choose>	
-</table>
-</div>
-</div>
-</div>
+   				<# } #>
+   			</tbody>	
+		</table>
+		</div>
+        <div class="page_menu">
+		<a class="item">  <  </a>
+		<# for(i = 0; i < pages; i++){ #> 
+			<# if(pages.pageNum == i){ #>
+				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
+			<#} else {#>
+            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
+		<# } } #>
+          <a class="item"> >  </a>
+        </div>
+</script>
+</head>
 
+<body>
+<!---TOP头部共用部份---->
+	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
+	<!---TOP结束---->
+	<!---管理左侧共用部份---->
+	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
+	<!---管理左侧共用部份结束---->
+	<div id="main_right">
+	
+		<div class="main_width">
+		
+		</div>
+	</div>
 <br class=" clear" />
 </div>
 <blockquote>&nbsp;</blockquote>

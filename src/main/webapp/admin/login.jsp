@@ -41,7 +41,7 @@
       <tr>
         <td></td>
         <td>
-          <span class="bnt_ok">立即登录</span>
+          <span class="bnt_ok" style="cursor:pointer;">立即登录</span>
         </td>
       </tr>
     </tbody>

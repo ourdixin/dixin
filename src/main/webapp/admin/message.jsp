@@ -9,22 +9,11 @@
 <title>在线留言</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/message.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
-</head>
-
-<body>
-<!---TOP头部共用部份---->
-	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
-	<!---TOP结束---->
-	<!---管理左侧共用部份---->
-	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
-	<!---管理左侧共用部份结束---->
-<div id="main_right">
-
-<div class="main_width">
+<script type="text/html" id="message">
 <div class="con_table">
-
-
 	<table>
 		<thead>
 			<tr>
@@ -36,56 +25,66 @@
 			<th>内容回复</th>
 			</tr>
  		</thead>
-		<c:choose>
-			<c:when test="${empty list}">
-			</c:when>
-			<c:otherwise>
   			<tbody>
-  				<c:forEach var="message" items="${list}">
+  				<# for(i = 0; i < list.length; i++){ #> 
   					<tr>
   						<td>
-  							<fmt:formatDate value="${message.msgTime}" pattern="yyyy-MM-dd HH:mm"/>
+  							<#=list[i].msgTime#>
   						</td>
-  						<td>${message.userVO.name}</td>
-  						<td><c:choose>
-  								<c:when test="${message.catogryId==74}">
+  						<td><#=list[i].userVO.name#></td>
+  						<td>
+  								<#if(list[i].catogryId==74){#>
   									浮动类收益产品
-  								</c:when>
-  								<c:when test="${message.catogryId==75}">
+  								<#}else if(list[i].catogryId==75){#>
   									固定类收益产品
-  								</c:when>
-  								<c:otherwise>
+  								<#}else{#>
   									其他
-  								</c:otherwise>
-  							</c:choose>
+  								<#}#>
   						</td>
-  						<td>${message.msg}</td>
-  						<c:choose>
-  							<c:when test="${message.lastMessage.userVO.userType==25}">
+  						<td><#=list[i].msg#></td>
+  							<#if(list[i].lastMessage == null || list[i].lastMessage.userVO.userType==25){#>
   								<td></td>
-  							</c:when>
-  							<c:otherwise>
-  								<td>${message.lastMessage.msg}</td>
-  							</c:otherwise>
-  						</c:choose>
-  						<c:choose>
-  							<c:when test="${message.lastMessage.userVO.userType!=25}">
-  								<td><i><a href="<%=request.getContextPath()%>/admin/MessageReply?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
-  							</c:when>
-  							<c:otherwise>
-  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/admin/MessageReply?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
-  							</c:otherwise>
-  						</c:choose>	
-  						
+  							<#}else{#>
+  								<td><#list[i].lastMessage.msg#></td>
+							<#}#>
+  							<#if(list[i].lastMessage == null || list[i].lastMessage.userVO.userType!=25){#>
+  								<td><i><a href="<%=request.getContextPath()%>/admin/MessageReply?id=<#list[i].id#>&catogryId=<#list[i].catogryId#>">回复</a></i></td>
+							<#}else{#>
+  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/admin/MessageReply?id=<#list[i].id#>&catogryId=<#list[i].catogryId#>">回复</a></i></td>
+							<#}#>
   					</tr>
-  				</c:forEach>
+  				<# } #>
   			</tbody>
-		</c:otherwise>
-	</c:choose>
 </table>
 </div>
-</div>
-</div>
+        <div class="page_menu">
+		<a class="item">  <  </a>
+		<# for(i = 0; i < pages; i++){ #> 
+			<# if(pages.pageNum == i){ #>
+				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
+			<#} else {#>
+            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
+		<# } } #>
+          <a class="item"> >  </a>
+        </div>
+
+</script>
+
+</head>
+
+<body>
+<!---TOP头部共用部份---->
+	<c:import url="/framework/adminHeader.jsp" charEncoding="utf-8" />
+	<!---TOP结束---->
+	<!---管理左侧共用部份---->
+	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
+	<!---管理左侧共用部份结束---->
+	<div id="main_right">
+	
+		<div class="main_width">
+		
+		</div>
+	</div>
 
 <br class=" clear" />
 </div>

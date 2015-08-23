@@ -9,35 +9,11 @@
 <title>我的留言</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/myreply.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
-</head>
-
-<body>
-<!---TOP头部共用部份---->
-	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
-	<!---TOP结束---->
-	<!---用户左侧共用部份---->
-	<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
-	<!---用户左侧共用部份结束---->
-<div id="main_right">
-
-<div class="main_width">
-<div class="con_table">
-<c:choose>
-	<c:when test="${empty list}">
-		<table>
-			<thead>
- 				 <tr>
-    				<th>留言时间</th>
-    				<th>问题分类</th>
-    				<th>留言内容</th>
-    				<th>客服回复</th>
-    				<th>操作</th>
-  				</tr>
-  			</thead>
-  		</table>
-	</c:when>
-	<c:otherwise>
+<script type="text/html" id="myreply">
+		<div class="con_table">
 		<table>
 			<thead>
  				 <tr>
@@ -49,54 +25,68 @@
   				</tr>
   			</thead>
   			<tbody>
-  				<c:forEach var="message" items="${list}">
+  				<# for(i = 0; i < list.length; i++){ #> 
   					<tr>
   						<td>
-  							<fmt:formatDate value="${message.msgTime}" pattern="yyyy-MM-dd HH:mm"/>
+  							<#=list[i].msgTime#>
   						</td>
-  						<td><c:choose>
-  								<c:when test="${message.catogryId==74}">
+  						<td><#if(list[i].catogryId==74){#>
   									浮动类收益产品
-  								</c:when>
-  								<c:when test="${message.catogryId==75}">
+  								<#}else if(list[i].catogryId==75){#>
   									固定类收益产品
-  								</c:when>
-  								<c:otherwise>
+								<#}else{#>
   									其他
-  								</c:otherwise>
-  							</c:choose>
+								<#}#>
   						</td>
-  						<td>${message.msg}</td>
-  						
-  						<c:choose>
-  							<c:when test="${message.lastMessage.userVO.userType==25}">
-  								<td>${message.lastMessage.msg}</td>
-  							</c:when>
-  							<c:otherwise>
-  								<td></td>
-  							</c:otherwise>
-  						</c:choose>
-  						<c:choose>
-  							<c:when test="${message.lastMessage.userVO.userType==25}">
-  								<td><i ><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=${message.id}&catogryId=${message.catogryId}">回复</a></i></td>
-  							</c:when>
-  							<c:otherwise>
-  								<td><i style="background:gray;"><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=${message.id}&catogryId=${message.catogryId}">追问</a></i></td>
-  							</c:otherwise>
-  						</c:choose>	
+  						<td><#=list[i].msg#></td>
+  						<td>
+ 							<#if(list[i].lastMessage && list[i].lastMessage.userVO.userType==25){#>
+  								<#=list[i].lastMessage.msg#>
+							<#}#>
+						</td>
+						<td>
+							<#if(list[i].lastMessage && list[i].lastMessage.userVO.userType==25){#>
+  								<i ><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=<#=list[i].id#>&catogryId=<#=list[i].catogryId#>">回复</a></i></td>
+							<#}else{#>
+								<i style="background:gray;"><a href="<%=request.getContextPath()%>/authentication/myReplybyuser?id=<#=list[i].id#>&catogryId=<#=list[i].catogryId#>">追问</a></i>
+							<#}#>
+						</td>
   					</tr>
-  				</c:forEach>
+  				<# } #>
   			</tbody>
 		</table>
-	</c:otherwise>
-</c:choose>
-</div>
-</div>
-</div>
+		</div>
+        <div class="page_menu">
+		<a class="item">  <  </a>
+		<# for(i = 0; i < pages; i++){ #> 
+			<# if(pages.pageNum == i){ #>
+				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
+			<#} else {#>
+            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
+		<# } } #>
+          <a class="item"> >  </a>
+        </div>
+</script>
 
-<br class=" clear" />
-</div>
-<blockquote>&nbsp;</blockquote>
+</head>
+
+<body>
+<!---TOP头部共用部份---->
+	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+	<!---TOP结束---->
+	<!---用户左侧共用部份---->
+	<c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
+	<!---用户左侧共用部份结束---->
+	<div id="main_right">
+	
+		<div class="main_width">
+		
+		</div>
+	</div>
+
+	<br class=" clear" />
+	</div>
+	<blockquote>&nbsp;</blockquote>
 <!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->

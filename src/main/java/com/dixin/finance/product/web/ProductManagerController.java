@@ -38,6 +38,7 @@ import com.dixin.finance.product.service.IPurchaseService;
 import com.dixin.finance.product.service.IContactRecordService;
 import com.dixin.finance.product.vo.AppointmentVO;
 import com.dixin.finance.authentication.vo.UserVO;
+import com.dixin.finance.product.vo.MessageVO;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.finance.product.vo.ContactRecordVO;
@@ -161,21 +162,28 @@ public class ProductManagerController {
 	
 	/*************************后台查询客服预约信息*******************************/
 	@RequestMapping(value="/admin/appointment")
-	public String showAppointment(Model model,HttpSession session,HttpServletRequest request){
-		logger.info("客户产品预约页面被访问！");
+	public @ResponseBody BaseWebResult showAppointment(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "admin/login";
-		}
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			return webResult;
+		}	
 		
+		PageHelper.startPage(pageNum, pageSize);
 		List<AppointmentVO> list = appointmentService.queryAllAppointmentList();
-		//String lastmsg = list.get(2).getContact().getLastContactRecordVO().getRecord();
-		/*if(lastmsg!=null){
-			logger.info("lastcontact"+lastmsg);
-		}*/
-		model.addAttribute("list", list);
-		return "/admin/appointment";
+		PageInfo<AppointmentVO> pageinfoList = new PageInfo(list);
+		webResult.setSuccess(true);
+		webResult.setResult(pageinfoList);
+		return webResult;	
 	}
 	
 	/***************************查看联系记录********************/
@@ -251,7 +259,7 @@ public class ProductManagerController {
 		}
 		
 		
-		webResult.setMsg(request.getContextPath()+"/admin/appointment");
+		webResult.setMsg(request.getContextPath()+"/admin/appointment.jsp");
 		webResult.setSuccess(true);
 		return webResult;
 	
@@ -308,7 +316,7 @@ public class ProductManagerController {
 		}
 		appointmentService.setConstant(reservationId,option);
 		
-		webResult.setMsg(request.getContextPath()+"/admin/appointment");
+		webResult.setMsg(request.getContextPath()+"/admin/appointment.jsp");
 		webResult.setSuccess(true);
 		return webResult;
 	}
@@ -557,5 +565,79 @@ public class ProductManagerController {
 		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");
 		return webResult;
 	}
+
+	//**************查看客户留言*********************************//
+	@RequestMapping(value="/admin/message")
+	public @ResponseBody BaseWebResult showMessage(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request){
+		
+		BaseWebResult webResult = new BaseWebResult();
+		
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			return webResult;
+		}		
+		
+		PageHelper.startPage(pageNum, pageSize);
+		List<MessageVO> list = messageServiceImpl.selectFirstMessage();
+		PageInfo<MessageVO> pageinfoList = new PageInfo(list);
+		webResult.setSuccess(true);
+		webResult.setResult(pageinfoList);
+		return webResult;		
+	}
+	
+	/***********************************根据初始留言ID显示相关所有留言****************************************/
+	@RequestMapping(value="/admin/MessageReply")
+	public String showMessageByInitialId(Model model,Integer id,HttpSession session,HttpServletRequest request){
+		logger.info("后台留言回复页面被访问!");
+		logger.info("id="+id);
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return "admin/login";
+		}
+		List<MessageVO> list = messageServiceImpl.selectMsgsByInitialId(id);
+		model.addAttribute("list", list);
+		return "/admin/MessageReply";
+			
+	}
+	
+	/*******************************后台用户回复普通用户留言并更新初始留言last_msg_id属性**************************/
+	@RequestMapping(value="/admin/MessageReply" ,method=RequestMethod.POST )
+	public @ResponseBody BaseWebResult replyMessageBySupporter(Model model,Integer id,String msg,Integer catogryId,HttpSession session,HttpServletRequest request){
+		logger.info("后台留言回复页面被访问+1!");
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			webResult.setSuccess(false);
+			return webResult;
+		}
+		MessageVO message = new MessageVO();
+		logger.info("id"+id);
+		logger.info("catogryId"+catogryId);
+		message.setMsgId(id);//初次留言的id作为后面同组留言的msg_id
+		Integer userId = userVO.getId();
+		message.setUserId(userId);
+		message.setCatogryId(catogryId);
+		message.setMsg(msg);
+		message.setLastMsgId(-1);
+		message.setCreateUser(userId);
+		message.setUpdateUser(userId);
+		messageServiceImpl.insertMessage(message);
+		Integer lastMsgId = message.getId();
+		messageServiceImpl.updateLastMsgId(id,lastMsgId);
+		webResult.setMsg("提交成功！");
+		webResult.setSuccess(true);
+		return webResult;	
+	}
+			
 	
 }

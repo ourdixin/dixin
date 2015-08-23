@@ -43,7 +43,7 @@
       </tr>
       <tr>
       <td width="45%" height="60"></td>
-      <td width="55%"><span class="bnt_ok">立即登录</span><br /></td>
+      <td width="55%"><span class="bnt_ok" style="cursor:pointer;">立即登录</span><br /></td>
       </tr>
     </tbody>
 </table>

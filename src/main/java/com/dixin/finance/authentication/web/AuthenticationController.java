@@ -40,6 +40,8 @@ import com.dixin.framework.constant.WebConstants;
 import com.dixin.framework.tools.MakePicture;
 import com.dixin.framework.tools.RandomValidateCode;
 import com.dixin.framework.tools.split;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 
 @Controller
@@ -443,18 +445,29 @@ public class AuthenticationController {
 	
 	/*************************************根据用户id查找所有的初始留言*************************************/
 	@RequestMapping(value="/authentication/myReply")
-	public String showMessageByUserId(Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response){
-		logger.info("前台我的留言页面被访问！");
+	public @ResponseBody BaseWebResult showMessageByUserId(Integer pageNum, Integer pageSize,Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response){
+		BaseWebResult webResult = new BaseWebResult();
+		
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "authentication/login";
-		}
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			return webResult;
+		}	
+		
+		PageHelper.startPage(pageNum, pageSize);
 		Integer id = userVO.getId();
 		List<MessageVO> list = messageServiceImpl.selectFirstMsgByUserId(id);
-		model.addAttribute("list", list);
-		return "/authentication/myReply";
-		
+		PageInfo<MessageVO> pageinfoList = new PageInfo(list);
+		webResult.setSuccess(true);
+		webResult.setResult(pageinfoList);
+		return webResult;
 	}
 	
 	/************************************根据用户初始留言id查找初始留言相关所有留言*****************/

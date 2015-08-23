@@ -107,11 +107,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<div class="page_menu">
-					<a class="item"> < </a> <a class="item">1</a> <a class="item">2</a>
-					<a class="item">3</a> <a class="item">4</a> <a class="item">5</a> <a
-						class="item">6</a> <a class="item"> > </a>
-				</div>
 			</div>
 			<div id="tab1_con_2" class="con" style="display: none; clear: both;">
 				<table class="ui compact table segment">
@@ -162,11 +157,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<div class="page_menu">
-					<a class="item"> < </a> <a class="item">1</a> <a class="item">2</a>
-					<a class="item">3</a> <a class="item">4</a> <a class="item">5</a> <a
-						class="item">6</a> <a class="item"> > </a>
-				</div>
 			</div>
 		</div>
 
@@ -202,6 +192,7 @@
 	</div>
 
 	<br class=" clear" />
+</div>
 	<!---foot底部---->
 	<c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->

@@ -9,9 +9,44 @@
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/js.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/product/assignment.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
+<script type="text/html" id="product_item">
+			<div>
+				<table class="ui compact table segment">
+					<thead>
+						<tr>
+							<th>产品名称</th>
+							<th>金额</th>
+							<th>联系人</th>
+							<th>发行时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<# for(i = 0; i < list.length; i++){ #>
+						<tr>
+							<td><#=list[i].product.name#></td>
+							<td><#=list[i].amount#></td>
+							<td><#=list[i].contactor#></td>
+							<td><#=list[i].assign_date#></td>
+						</tr>
+						<# } #>
+					</tbody>
+				</table>
+			</div>
+		<div class="page_menu">
+		<a class="item">  <  </a>
+			<# for(i = 0; i < pages; i++){ #> 
+				<# if(pages.pageNum == i){ #>
+					<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
+				<#} else {#>
+            		<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
+			<# } } #>
+        <a class="item"> >  </a>
+		</div>
+</script>
 </head>
 
 <body>
@@ -75,34 +110,7 @@
 				</table>
 			</div>
 			<div id="tab1_con_2" class="con" style="display: none; clear: both;">
-				<table class="ui compact table segment">
-					<thead>
-						<tr>
-							<th>产品名称</th>
-							<th>金额</th>
-							<th>联系人</th>
-							<th>发行时间</th>
-						</tr>
-					</thead>
-					<tbody>
-					<c:forEach var="assignment" items="${assignmentList.list}"
-						varStatus="i">
-						<tr>
-							<td>${assignment.user.name}</td>
-							<td>${assignment.product.name}</td>
-							<td><fmt:formatNumber value="${assignment.amount}"
-									pattern="#" /></td>
-							<td>${assignment.contactor}</td>
-							<td><fmt:formatDate pattern="yyyy年MM月dd日"
-									value="${assignment.assign_date}" /></td>
-							<td id="">未转让</td>
-							<td><span class="sg_tab"><a
-									href="<%=request.getContextPath()%>/admin/assignmentManagerDetail.jsp?amount=${assignment.amount}&contactor=${assignment.contactor}&tel=${assignment.tel}&assign_type=${assignment.assign_type}&pname=${assignment.product.name}&releaseDate=<fmt:formatDate pattern="yyyy年MM月dd日" value="${assignment.product.releaseDate}"/>&payType=${assignment.product.payType}">详细</a></span></td>
-							<td>删除</td>
-						</tr>
-					</c:forEach>
-					</tbody>
-				</table>
+
 			</div>
 		</form>
 </div>

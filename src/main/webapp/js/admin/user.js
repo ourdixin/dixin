@@ -17,4 +17,27 @@ $(document).ready(function(){
         
         $.post(HOST_PATH+"/authentication/uppersonaldata", $("#baseInfoForm").serialize(), success);
 	});
+	
+	function success(data){
+		if(data.success )
+		{
+			var htmlStr = template('user', data.result);
+			$('.main_width').html(htmlStr);
+		}
+
+		$("a[class='item']").click(function(){
+			$.get(HOST_PATH+"/admin/user?pageNum="+this.text, null, success);
+		});		
+		
+	};
+	
+	function searchUsers()
+	{
+		$.get(HOST_PATH+"/admin/user", null, success);
+	}
+	
+	template.config('openTag', '<#');
+	template.config('closeTag', '#>');	
+	
+	searchUsers();	
 });

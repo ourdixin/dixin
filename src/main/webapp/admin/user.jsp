@@ -9,20 +9,10 @@
 <title>用户管理</title>
 <link href="<%=request.getContextPath()%>/css/LTT_define.css"rel="stylesheet" type="text/css" />
 <script type="text/javascript"src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
-</script>
-</head>
-
-<body>
-	<!---TOP头部共用部份---->
-	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
-	<!---TOP结束---->
-	<!---用户左侧共用部份---->
-	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
-	<!---用户左侧共用部份结束---->
-		<div id="main_right">
-
-			<div class="main_width">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/user.js"></script>
+<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";</script>
+<script type="text/html" id="user">
 				<div class="con_table">
 					<table width="100%">
 						<thead>
@@ -37,30 +27,58 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach var="user" items="${userList.list}" varStatus="i">
+						<# for(i = 0; i < list.length; i++){ #>
 							<tr>
-								<td><fmt:formatDate pattern="yyyy年MM月dd日" value="${user.regDate}" /></td>
-								<td>${user.name}</td>
-								<td>${user.qq}</td>
-								<td>${user.address}</td>
-								<c:if test="${user.authType >0}"><td>通过</td></c:if>
-								<c:if test="${user.authType <=0}"><td>未通过</td></c:if>
-								<c:choose>
-									<c:when test="${user.institutionId > 0}">
-										<td width="9%">高级</td>
-									</c:when>
-									<c:otherwise>
-										<td width="9%">普通</td>
-									</c:otherwise>
-								</c:choose>
-								<td width="8%"><span><a href="<%=request.getContextPath()%>/admin/updateAuthType?id=${user.id}&authType=1">通过</a></span><i><a href="<%=request.getContextPath()%>/admin/updateAuthType?id=${user.id}&authType=0">拒绝</a></i></td>
-								<td><span><a href="<%=request.getContextPath()%>/admin/userDetail?id=${user.id}">详细</a></span></span><i><a href="<%=request.getContextPath()%>/admin/addsalesdata.jsp?userid=${user.id}">添加产品</a></i></td>
+								<td><#=list[i].regDate#></td>
+								<td><#=list[i].name#></td>
+								<td><#=list[i].qq#></td>
+								<td><#=list[i].address#></td>
+								<td>
+									<#if(list[i].authType >0){#>
+										通过
+									<#}else{#>
+										未通过
+									<#}#>
+								</td>
+								<td width="9%">
+									<#if(list[i].institutionId >0){#>
+										高级
+									<#}else{#>
+										普通
+									<#}#>
+								</td>
+								<td width="8%"><span><a href="<%=request.getContextPath()%>/admin/updateAuthType?id=<#=list[i].id#>&authType=1">通过</a></span><i><a href="<%=request.getContextPath()%>/admin/updateAuthType?id=<#=list[i].id#>&authType=0">拒绝</a></i></td>
+								<td><span><a href="<%=request.getContextPath()%>/admin/userDetail?id=<#=list[i].id#>">详细</a></span></span><i><a href="<%=request.getContextPath()%>/admin/addsalesdata.jsp?userid=<#=list[i].id#>">添加产品</a></i></td>
 							</tr>
-						</c:forEach>	
+						<# } #>
 						</tbody>
 					</table>
-
 				</div>
+        <div class="page_menu">
+		<a class="item">  <  </a>
+		<# for(i = 0; i < pages; i++){ #> 
+			<# if(pages.pageNum == i){ #>
+				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
+			<#} else {#>
+            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
+		<# } } #>
+          <a class="item"> >  </a>
+        </div>
+
+</script>
+</head>
+
+<body>
+	<!---TOP头部共用部份---->
+	<c:import url="/framework/header.jsp" charEncoding="utf-8" />
+	<!---TOP结束---->
+	<!---用户左侧共用部份---->
+	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
+	<!---用户左侧共用部份结束---->
+		<div id="main_right">
+
+			<div class="main_width">
+
 			</div>
 		</div>
 

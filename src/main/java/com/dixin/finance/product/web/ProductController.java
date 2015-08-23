@@ -465,31 +465,7 @@ public class ProductController {
 		return webResult;
 	}
 	
-	//**************查看客户留言*********************************//
-	@RequestMapping(value="/admin/message")
-	public String showMessage(Model model,HttpSession session,HttpServletRequest request){
-		logger.info("在线留言页面被访问！");
-		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
-		if(userVO == null)
-		{
-			return "authentication/login";
-		}
-		List<MessageVO> list = messageServiceImpl.selectFirstMessage();
-		//String msg = list.get(0).getLastMessage().getMsg();
-		//logger.info(msg);
-		//Integer userType = list.get(0).getLastMessage().getUserVO().getUserType();
-		//logger.info("userType"+userType);
-		/*MessageVO message = list.get(1).getLastMessage();
-		if(message==null){
-			logger.info("message为空");
-		}*/
-		/*Integer i= list.size();
-		logger.info(i.toString());
-		*/
-		model.addAttribute("list", list);
-		return "/admin/message";
-	}
-	
+
 	@RequestMapping(value="/product/queryPurchase")
 	public @ResponseBody BaseWebResult queryPurchaseList(Integer pageNum, Integer pageSize,Integer profitType,Model model,HttpSession session,HttpServletRequest request){
 		if(pageNum == null)
@@ -539,54 +515,5 @@ public class ProductController {
 	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType,-1);
 	    return new PageInfo(purchaseList);
 	}	
-	/***********************************根据初始留言ID显示相关所有留言****************************************/
-	
-	
-	@RequestMapping(value="/admin/MessageReply")
-	public String showMessageByInitialId(Model model,Integer id,HttpSession session,HttpServletRequest request){
-		logger.info("后台留言回复页面被访问!");
-		logger.info("id="+id);
-		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
-		if(userVO == null)
-		{
-			return "authentication/login";
-		}
-		List<MessageVO> list = messageServiceImpl.selectMsgsByInitialId(id);
-		model.addAttribute("list", list);
-		return "/admin/MessageReply";
-			
-	}
-	
-	/*******************************后台用户回复普通用户留言并更新初始留言last_msg_id属性**************************/
-	@RequestMapping(value="/admin/MessageReply" ,method=RequestMethod.POST )
-	public @ResponseBody BaseWebResult replyMessageBySupporter(Model model,Integer id,String msg,Integer catogryId,HttpSession session,HttpServletRequest request){
-		logger.info("后台留言回复页面被访问+1!");
-		BaseWebResult webResult = new BaseWebResult();
-		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
-		if(userVO==null){
-			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
-			webResult.setSuccess(false);
-			return webResult;
-		}
-		MessageVO message = new MessageVO();
-		logger.info("id"+id);
-		logger.info("catogryId"+catogryId);
-		message.setMsgId(id);//初次留言的id作为后面同组留言的msg_id
-		Integer userId = userVO.getId();
-		message.setUserId(userId);
-		message.setCatogryId(catogryId);
-		message.setMsg(msg);
-		message.setLastMsgId(-1);
-		message.setCreateUser(userId);
-		message.setUpdateUser(userId);
-		messageServiceImpl.insertMessage(message);
-		Integer lastMsgId = message.getId();
-		messageServiceImpl.updateLastMsgId(id,lastMsgId);
-		webResult.setMsg("提交成功！");
-		webResult.setSuccess(true);
-		return webResult;	
-	}
-	
-
 	
 }
