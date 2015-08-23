@@ -29,7 +29,7 @@
 	<div class="wrap">
 		<div class="maintitle">
 			<div id="title_font">产品转让详细</div>
-			<div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>">首页</a> &gt; 产品转让详细</div>
+			<div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; 产品转让详细</div>
 		</div>
 			<div class="tab1">
 				<div class="user_title">${param.pname}</div>

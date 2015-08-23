@@ -71,7 +71,7 @@
 
     	<div class="maintitle">
       	<div id="title_font">产品转让</div>
-      	<div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>">首页</a> &gt; 产品转让</div>
+      	<div class="dqwz">当前位置：<a href="<%=request.getContextPath()%>/">首页</a> &gt; 产品转让</div>
     	</div>
 		<div id="content">
 		

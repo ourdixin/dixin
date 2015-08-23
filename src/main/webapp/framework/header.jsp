@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="logobar">
-    <div class="logo"><a href="<%=request.getContextPath() %>"><img src="<%=request.getContextPath()%>/images/logo.png"></a><img src="<%=request.getContextPath()%>/images/sloga.png"></div>
+    <div class="logo"><a href="<%=request.getContextPath() %>/"><img src="<%=request.getContextPath()%>/images/logo.png"></a><img src="<%=request.getContextPath()%>/images/sloga.png"></div>
     <div class="topsearch">
         <table width="304" border="0" cellspacing="0" cellpadding="0">
         <form name="form1" method="post" action="<%=request.getContextPath() %>/product/product.jsp">
