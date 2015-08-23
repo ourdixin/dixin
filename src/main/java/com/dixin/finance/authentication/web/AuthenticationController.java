@@ -229,6 +229,7 @@ public class AuthenticationController {
 		}
 		userServiceImpl.resetPassword(password,user_id);
 		webResult.setMsg("修改成功！");
+		webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
 		webResult.setSuccess(true);
 		return webResult;
 		
@@ -499,7 +500,7 @@ public class AuthenticationController {
 		Integer thisLastMsgId = message.getId();
 		messageServiceImpl.updateLastMsgId(id,thisLastMsgId);//设置初始留言
 		webResult.setMsg("提交成功！");
-		webResult.setUrl(request.getContextPath()+"/authentication/myReply");
+		webResult.setUrl(request.getContextPath()+"/authentication/myReplybyuser?id="+id+"&catogryId="+catogryId);
 		webResult.setSuccess(true);
 		return webResult;	
 	}

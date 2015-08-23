@@ -10,7 +10,7 @@
 			<c:if test="${null == user}">
 				<a href="<%=request.getContextPath()%>/admin/login.jsp">登录</a>
 			</c:if> 
-			<c:if test="${null != user}"> 
+			<c:if test="${null != user && (user.userType==30 || user.userType==25)}"> 
   					${user.secUserName}【管理员】&nbsp;&nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/authentication/logout">安全退出</a>
 			</c:if>
 	  </div>

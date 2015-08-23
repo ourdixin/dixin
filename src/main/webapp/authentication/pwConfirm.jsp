@@ -45,7 +45,7 @@
 				</tr>
 				<tr>
 					<td height="25" colspan="2" align="right"><font
-						style="font-size: 12px; color: #999">密码6-12位数字组成，区分大小写，不含空格。</font></td>
+						style="font-size: 12px; color: #999">密码6-10位数字组成，区分大小写，不含空格。</font></td>
 				</tr>
 				<tr>
 					<td height="50" align="right">确认新密码：</td>

@@ -64,7 +64,7 @@ $(document).ready(function(){
          }	
             
          var password = $("input[name='password']").val();
-         var regex =/^(\w){6,20}$/;  
+         var regex =/^(\w){6,10}$/;  
          if (!regex.exec(password)) {
         	 alert("密码输入不合法");
         	 return;

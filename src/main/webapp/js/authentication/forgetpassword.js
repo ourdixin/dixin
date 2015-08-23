@@ -1,9 +1,8 @@
-$(document).ready(
-		function() {
-
+$(document).ready(function() {
 			function success(data) {
-				if(data.result) {
-					alert("修改成功!");
+				if(data.success) {
+					alert(data.msg)
+					location.href = data.url;
 				} else {
 					alert(data.msg);
 				}
@@ -20,7 +19,7 @@ $(document).ready(
 						}
 
 						var password = $("input[name='password']").val();
-						var regex = /^(\w){6,20}$/;
+						var regex = /^(\w){6,10}$/;
 						if (!regex.exec(password)) {
 							alert("密码输入不合法");
 							return;
