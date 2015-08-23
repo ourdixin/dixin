@@ -41,11 +41,11 @@
 						name="mobile" id="mobile" type="text" /></td>
 				</tr>
 				<tr>
-		            <td class="t" height="50">设置密码：</td>
+		            <td class="t" height="50">设置密码(6-10位字符)：</td>
 		            <td colspan="2"><input maxlength="12" class="itstyle lt it" name="password" id="password" type="password"></td>
 	            </tr>
 	            <tr>
-		            <td class="t" height="50">确认密码：</td>
+		            <td class="t" height="50">确认密码(6-10位字符)：</td>
 		            <td colspan="2"><input maxlength="12" class="itstyle lt it" name="rpassword" id="rpassword" value="" type="password"></td>
 	            </tr>
 	            <tr>

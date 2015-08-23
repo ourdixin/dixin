@@ -43,11 +43,7 @@
         <td height="52" align="right">请重置您的登录密码：</td>
         <td><input maxlength="12" class="itstyle lt it" name="password" id="pass" type="password" />
           <div class="input-r-tips"></div>
-          密码由6-12位字符组成，区分大小写。</td>
-      </tr>
-      <tr>
-        <td height="52" align="right">密码强度：</td>
-        <td id="level" class="pw-defule"><div class="pw-bar"></div></td>
+          密码由6-10位字符组成，区分大小写。</td>
       </tr>
       <tr>
         <td height="52" align="right">重新输入：</td>

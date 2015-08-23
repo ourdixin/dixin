@@ -40,17 +40,11 @@
 	            <td><input maxlength="6" class="itstyle lt it" id="verifyCode" name="verifyCode" style="width:100px;" type="text"><div class="dis_getcode lt" id="getVerifyCode"><label>获取验证码</label></div><div class="input-r-tips lt"></div></td>
 	          </tr>
 	          <tr>
-        		<td height="52" align="right" class="t">登录密码：</td>
+        		<td height="52" align="right" class="t">登录密码(6-10位字符)：</td>
 	            <td><input maxlength="12" class="itstyle lt it" name="password" id="password" type="password"><div class="input-r-tips"></div></td>
 	          </tr>
 	          <tr>
-        		<td height="52" align="right" class="t">密码强度：</td>
-	            <td id="level" class="pw-defule">
-	              <div class="pw-bar"></div>
-	            </td>
-	          </tr>
-	          <tr>
-        <td height="52" align="right" class="t">确认密码：</td>
+        <td height="52" align="right" class="t">确认密码(6-10位字符)：</td>
 	            <td><input maxlength="12" class="itstyle lt it" name="rpassword" id="rpassword" value="" type="password"><div class="input-r-tips"></div></td>
 	          </tr>
 	          <tr>

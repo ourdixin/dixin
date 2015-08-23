@@ -44,8 +44,7 @@
 								<th>联系人</th>
 								<th>发布时间</th>
 								<th>有效性</th>
-								<th>&nbsp;</th>
-								<th>操作</th>
+								<th>查看详情;</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -61,8 +60,8 @@
 											value="${assignment.assign_date}" /></td>
 									<td id="">未转让</td>
 									<td><span class="sg_tab"><a
-											href="<%=request.getContextPath()%>/admin/assignmentManagerDetail.jsp?amount=${assignment.amount}&contactor=${assignment.contactor}&tel=${assignment.tel}&assign_type=${assignment.assign_type}&pname=${assignment.product.name}&releaseDate=<fmt:formatDate pattern="yyyy年MM月dd日" value="${assignment.product.releaseDate}"/>&payType=${assignment.product.payType}">详细</a></span></td>
-									<td>删除</td>
+											href="<%=request.getContextPath()%>/admin/assignmentManagerDetail.jsp?amount=${assignment.amount}&contactor=${assignment.contactor}&tel=${assignment.tel}&assign_type=${assignment.assign_type}&pname=${assignment.product.name}&releaseDate=<fmt:formatDate pattern="yyyy年MM月dd日" value="${assignment.product.releaseDate}"/>&payType=${assignment.product.payType}">详细</a></span>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
