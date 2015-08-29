@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	success: function success(data){
 		if(data.success){
-			location.href = data.msg;
+			location.href = data.url;
 		}else{
 			alert(data.msg);
 		}

@@ -22,7 +22,7 @@
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/boughtproduct.jsp"><img src="<%=request.getContextPath()%>/images/ico_03.png" width="12" height="12" />我购买的产品</a>
 				</dd>
-	
+				<dd><a href="<%=request.getContextPath()%>/authentication/orders.jsp""><img src="<%=request.getContextPath()%>/images/ico_18.png" width="15" height="15">对帐单</a></dd>	
 				<dd>
 					<a href="<%=request.getContextPath()%>/product/appointmentShow.jsp"><img src="<%=request.getContextPath()%>/images/ico_18.png" width="15" height="15" />我的预约</a>
 				</dd>

@@ -162,7 +162,7 @@ public class AuthenManagerController {
 			webResult.setResult(userInfo);
 			if(backurl == null || backurl=="")
 				backurl=request.getContextPath()+"/admin";
-			webResult.setMsg(backurl);
+			webResult.setUrl(backurl);
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		}
 		else
@@ -201,7 +201,7 @@ public class AuthenManagerController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/admin/login.jsp");
 			return webResult;
 		}	
 		

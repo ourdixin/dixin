@@ -128,7 +128,7 @@ public class AuthenticationController {
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 			webResult.setSuccess(true);
 			webResult.setResult(userVO);
-			webResult.setMsg(backurl);
+			webResult.setUrl(backurl);
 		}
 		
 		return webResult;
@@ -149,7 +149,7 @@ public class AuthenticationController {
 			webResult.setResult(userInfo);
 			if(backurl == null || backurl=="")
 				backurl=request.getContextPath()+"/";
-			webResult.setMsg(backurl);
+			webResult.setUrl(backurl);
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		}
 		else
@@ -407,7 +407,7 @@ public class AuthenticationController {
 		UserVO userVO = userServiceImpl.findUserById(user.getId());//通过id重新加载用户信息
 		session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);//添加到session
 		model.addAttribute("user", userVO);
-		webResult.setMsg(request.getContextPath()+"/authentication/accountSetting.jsp");
+		webResult.setUrl(request.getContextPath()+"/authentication/accountSetting.jsp");
 		webResult.setSuccess(true);
 		return webResult;
 	}
@@ -438,7 +438,7 @@ public class AuthenticationController {
 		smsServiceImpl.sendSms(strMsg, phoneList);
 		session.setAttribute("vCode", strMsg);//验证码
 		BaseWebResult webResult = new BaseWebResult();
-		webResult.setMsg(request.getContextPath()+"/authentication/mobileConfirm.jsp");
+		webResult.setUrl(request.getContextPath()+"/authentication/mobileConfirm.jsp");
 		webResult.setSuccess(true);
 		return webResult;
 	}
@@ -457,7 +457,7 @@ public class AuthenticationController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
 			return webResult;
 		}	
 		

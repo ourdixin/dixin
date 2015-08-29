@@ -33,12 +33,14 @@ import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IAssignmentService;
 import com.dixin.finance.product.service.IMessageService;
+import com.dixin.finance.product.service.IProductInfoService;
 import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.service.IPurchaseService;
 import com.dixin.finance.product.service.IContactRecordService;
 import com.dixin.finance.product.vo.AppointmentVO;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.vo.MessageVO;
+import com.dixin.finance.product.vo.ProductInfoVO;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.finance.product.vo.ContactRecordVO;
@@ -84,6 +86,9 @@ public class ProductManagerController {
 	
 	@Resource(name="productServiceImpl")
 	private IProductService productService;
+	
+	@Resource(name="productInfoServiceImpl")
+	private IProductInfoService productInfoService;
 	
 	@Resource
 	private IUserService userServiceImpl;
@@ -174,7 +179,7 @@ public class ProductManagerController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/admin/login.jsp");
 			return webResult;
 		}	
 		
@@ -227,7 +232,7 @@ public class ProductManagerController {
 		BaseWebResult webResult = new BaseWebResult();
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO==null){
-			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
 			webResult.setSuccess(false);
 			return webResult;
 		}
@@ -259,7 +264,7 @@ public class ProductManagerController {
 		}
 		
 		
-		webResult.setMsg(request.getContextPath()+"/admin/appointment.jsp");
+		webResult.setUrl(request.getContextPath()+"/admin/appointment.jsp");
 		webResult.setSuccess(true);
 		return webResult;
 	
@@ -274,7 +279,7 @@ public class ProductManagerController {
 		BaseWebResult webResult = new BaseWebResult();
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO==null){
-			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/admin/login.jsp");
 			webResult.setSuccess(false);
 			return webResult;
 		}
@@ -316,7 +321,7 @@ public class ProductManagerController {
 		}
 		appointmentService.setConstant(reservationId,option);
 		
-		webResult.setMsg(request.getContextPath()+"/admin/appointment.jsp");
+		webResult.setUrl(request.getContextPath()+"/admin/appointment.jsp");
 		webResult.setSuccess(true);
 		return webResult;
 	}
@@ -512,14 +517,14 @@ public class ProductManagerController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/admin/login.jsp");
 			return webResult;
 		}
 		
 		productService.deleteProduct(productId);
 		
 		webResult.setSuccess(true);
-		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");
+		webResult.setUrl(request.getContextPath()+"/admin/manage.jsp");
 		return webResult;
 	}		
 	
@@ -536,14 +541,14 @@ public class ProductManagerController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/admin/login.jsp");
 			return webResult;
 		}
 		
 		SetProductRecommendState(productId,1);
 		
 		webResult.setSuccess(true);
-		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");
+		webResult.setUrl(request.getContextPath()+"/admin/manage.jsp");
 		return webResult;
 	}
 	
@@ -555,14 +560,14 @@ public class ProductManagerController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/admin/login.jsp");
 			return webResult;
 		}
 		
 		SetProductRecommendState(productId,0);
 		
 		webResult.setSuccess(true);
-		webResult.setMsg(request.getContextPath()+"/admin/manage.jsp");
+		webResult.setUrl(request.getContextPath()+"/admin/manage.jsp");
 		return webResult;
 	}
 
@@ -581,7 +586,7 @@ public class ProductManagerController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/admin/login.jsp");
 			return webResult;
 		}		
 		
@@ -616,7 +621,7 @@ public class ProductManagerController {
 		BaseWebResult webResult = new BaseWebResult();
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO==null){
-			webResult.setMsg(request.getContextPath()+"/admin/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/admin/login.jsp");
 			webResult.setSuccess(false);
 			return webResult;
 		}
@@ -640,5 +645,24 @@ public class ProductManagerController {
 		return webResult;	
 	}
 			
-	
+	///////////////////////////////
+	@RequestMapping(value="/productinfo/add",method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult adminAddProductInfo(ProductInfoVO productInfo,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("请先登录！");
+			webResult.setUrl(request.getContextPath()+"/admin/login.jsp");
+			return webResult;
+		}
+		
+		productInfoService.addProductInfo(productInfo);
+		
+		webResult.setSuccess(true);
+
+		return webResult;
+	}	
 }
