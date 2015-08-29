@@ -3713,8 +3713,12 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (111, '转让', 12),
 (112, '赎回', 12),
 (120, '存续期', 13),
-(121, '到期', 13);
-
+(121, '到期', 13),
+(200, '派息', 15),
+(201, '净值', 15),
+(202, '分红', 15),
+(203, '期限', 15);
+(203, '期限', 15);
 -- --------------------------------------------------------
 
 --
@@ -3749,7 +3753,8 @@ INSERT INTO `dict` (`id`, `name`) VALUES
 (11, '金融机构分类'),
 (12, '用户产品期限状态'),
 (13, '产品期限状态'),
-(14, '产品购买状态');
+(14, '产品购买状态'),
+(15, '产品信息类型派息，分红，净值');
 -- --------------------------------------------------------
 
 --
@@ -3894,7 +3899,9 @@ CREATE TABLE IF NOT EXISTS `product` (
   `sell_fee` varchar(256) DEFAULT NULL COMMENT '退出费用',
   `status` tinyint(4) NOT NULL DEFAULT '120' COMMENT '产品期限状态',
   `info` text NOT NULL COMMENT '资管要素HTML文件',
-  `view_num` int(11) NOT NULL COMMENT '查看次数',
+  `view_num` int(11) COMMENT '查看次数',
+  `value_date` date DEFAULT NULL COMMENT '产品起息日',
+  `due_date` date DEFAULT NULL COMMENT '产品到期日',
   `recommend` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否在首页被推荐,1位推荐，0为默认未推荐',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
