@@ -7,7 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link href="<%=request.getContextPath() %>/weixin/css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath() %>/weixin/js/product.js"></script>
 	<script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 <title>产品详情</title>

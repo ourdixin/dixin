@@ -10,6 +10,8 @@
 <title>我购买的产品</title>
 <link href="<%=request.getContextPath() %>/weixin/css/style.css"
 	rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/weixin/js/appointment.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
