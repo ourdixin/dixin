@@ -6,7 +6,7 @@ $(document).ready(function(){
 			location.href=data.url;
 		}else{
 			alert("请重新登录！");
-			location.href=data.msg;
+			location.href=data.url;
 		}
 	};
 	

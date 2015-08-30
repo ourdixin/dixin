@@ -276,6 +276,20 @@ public class ProductVO extends BaseVO {
 	private Integer status = ProductStatusConstant.Status_Duration;	
 	
 	/**
+	 * 产品起息日
+	 */	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+	private Date valueDate = getDefalutInvalidDate();
+	
+	/**
+	 * 产品到期日
+	 */	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+	private Date dueDate = getDefalutInvalidDate();
+	
+	/**
 	 * 是否推荐产品到首页，1为推荐到首页显示，0为默认不推荐
 	 */	
 	private Integer recommend = 0;
@@ -1094,6 +1108,22 @@ public class ProductVO extends BaseVO {
 		}
 		
 		return bRet;
+	}	
+	
+	public Date getValueDate() {
+		return valueDate;
+	}
+	
+	public void setValueDate(Date valueDate) {
+		this.valueDate = valueDate;
+	}
+	
+	public Date getDueDate() {
+		return dueDate;
+	}
+	
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}	
 	
 }

@@ -324,7 +324,7 @@ public class ProductController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
 			return webResult;
 		}		
 		
@@ -336,7 +336,7 @@ public class ProductController {
 		
 		webResult.setSuccess(true);
 		webResult.setResult(assignment);
-		webResult.setMsg(request.getContextPath()+"/product/assignmentShow.jsp");
+		webResult.setUrl(request.getContextPath()+"/product/assignmentShow.jsp");
 		return webResult;
 	}
 	
@@ -347,7 +347,7 @@ public class ProductController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
 			return webResult;
 		}
 		
@@ -390,7 +390,7 @@ public class ProductController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
 			return webResult;
 		}			
 		
@@ -406,7 +406,7 @@ public class ProductController {
 		appointment.setUserId(userVO.getId());
 		appointmentService.insertAppointment(appointment);
 		webResult.setSuccess(true);
-		webResult.setMsg(request.getContextPath()+"/product/appointmentShow.jsp");
+		webResult.setUrl(request.getContextPath()+"/product/appointmentShow.jsp");
 		return webResult;
 	}
 	
@@ -417,7 +417,7 @@ public class ProductController {
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
 			return webResult;
 		}
 		
@@ -477,7 +477,7 @@ public class ProductController {
 		
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO==null){
-			webResult.setMsg(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
 			webResult.setSuccess(false);
 			return webResult;
 		}	

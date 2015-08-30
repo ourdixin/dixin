@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dixin.finance.product.dao.ProductInfoMapper">
+
+  <!--  cache /  如果加缓存的话，手动改动数据后就不会显示了 -->
+
+  <select id="queryProductInfoList" parameterType="map" resultType="com.dixin.finance.product.vo.ProductInfoVO" useCache="false" >
+		select id id,
+			product_id productID, 
+			info_date infoDate, 
+			info_type infoType,
+			value value,
+			create_user createUser, 
+			create_time createTime, 
+			update_user updateUser, 
+			update_time updateTime
+		from product_info
+		 WHERE
+		<if test="productID != null and productID != -1">  
+            <![CDATA[  
+               and product_id=#{productID} 
+            ]]>  
+        </if>  
+		<if test="infoType != null and infoType != -1">
+            <![CDATA[  
+               and info_type=#{infoType} 
+            ]]>  
+        </if>
+                     
+        order by info_date desc
+  </select>
+	
+  <insert id="addProductInfo" parameterType="com.dixin.finance.product.vo.ProductInfoVO" >
+    insert into product_info(
+		product_id,
+		info_date,
+		info_type,
+		value,
+		create_user,
+		create_time,
+		update_user,
+		update_time)
+	values(
+		#{productID},
+		#{infoDate},
+		#{infoType},
+		#{value},
+		0,
+		SYSDATE(),
+		0,
+		SYSDATE()
+	)
+  </insert>	
+	
+	
+	<delete id="deleteProductInfo" parameterType="int">
+			DELETE FROM product_info WHERE id = #{Id}
+	</delete>
+
+	<update id="updateProductInfo" parameterType="com.dixin.finance.product.vo.ProductInfoVO" >
+   	UPDATE product SET
+		product_id = #{productID},
+		info_date = #{infoDate},
+		info_type = #{infoType},
+		value = #{value},
+		update_user = 0,
+		update_time = SYSDATE()
+	WHERE id=#{id}
+  </update>	
+	
+	
+</mapper>
