@@ -15,15 +15,15 @@ textarea, select, input[type="text"], input[type="password"] {background:#fff;fo
 .head{text-align:center;height:80px; background:#c91e22;font-size:180%;color:#FFF;line-height:80px;}
 .center{}
 .zy{height:550px;}
-.hot,.hb{display:block; background:url(hot.png);width:111px;height:110px;overflow:hidden; position:absolute;right:0px;}
-.hb{background:url(hb.png);}
+.hot,.hb{display:block; background:url(../images/hot.png);width:111px;height:110px;overflow:hidden; position:absolute;right:0px;}
+.hb{background:url(../images/hb.png);}
 .zy h2{font-size:24px;text-align:center;padding-top:36px;line-height:60px;}
 .zy_yq{background:url(../images/zybg.png);width:323px;height:246px;overflow:hidden;margin:0 auto;font-size:24px;text-align:center;padding-top:75px;line-height:60px;}
 .zy_yq p span{font-size:60px;color:#c91e22;padding-bottom:50px;font-weight:bold;}
 .zy_yq p a{display:block;padding-top:36px;}
 
 .zy ul{padding:16px 0px 0px 60px;}
-.zy ul li{float:left;font-size:21px;color:#888888;padding:0px 30px;background:url(icon.png) no-repeat;line-height:30px;margin:4px 0px;}
+.zy ul li{float:left;font-size:21px;color:#888888;padding:0px 30px;background:url(../images/icon.png) no-repeat;line-height:30px;margin:4px 0px;}
 .zy ul li span{padding:0px 2px;color:#000000;}
 .zy ul li.zy_qx{background-position:0px 3px;}
 .zy ul li.zy_qg{background-position:0px -72px;}
