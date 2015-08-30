@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -294,6 +295,10 @@ public class ProductVO extends BaseVO {
 	 */	
 	private Integer recommend = 0;
 
+	private Double totalValue = 0d; //产品的最新总市值 
+	
+	private Double unitNet = 1d;	//产品的最新净值
+	
 	private String createUser=""; // 创建人',
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")//存日期时使用 
@@ -1119,11 +1124,38 @@ public class ProductVO extends BaseVO {
 	}
 	
 	public Date getDueDate() {
+		GregorianCalendar gc=new GregorianCalendar();
+		gc.setTime(valueDate);
+		if(termUnit== 63) //年
+			gc.add(GregorianCalendar.YEAR,term);
+		else if(termUnit== 64) //月
+			gc.add(GregorianCalendar.MONTH,term);
+		else
+			gc.add(GregorianCalendar.DATE,term); //天
+		
+		dueDate = gc.getTime();
+		
 		return dueDate;
 	}
 	
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}	
+
+	public Double getTotalValue() {
+		return totalValue;
+	}
+	
+	public void setTotalValue(Double totalValue) {
+		this.totalValue = totalValue;
+	}
+	
+	public Double getUnitNet() {
+		return unitNet;
+	}
+	
+	public void setUnitNet(Double unitNet) {
+		this.unitNet = unitNet;
+	}
 	
 }

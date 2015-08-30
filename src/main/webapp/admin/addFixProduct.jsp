@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>产品管理</title>
-<link href="<%=request.getContextPath()%>/css/LTT_define.css"
-	rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath()%>/css/LTT_define.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 <script type="text/javascript" charset="utf-8"
 	src="<%=request.getContextPath()%>/js/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8"
@@ -17,9 +17,7 @@
 <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 <script type="text/javascript" charset="utf-8"
 	src="<%=request.getContextPath()%>/js/ueditor/lang/zh-cn/zh-cn.js"></script>
-
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/admin/addproduct.js"></script>
 <script type="text/javascript"
@@ -118,12 +116,17 @@
 										<option value="64" selected>月</option>
 										<option value="65">天</option>
 								</select></td>
-								<td hidden class="t">收益类型：</td>
-								<td hidden ><select class="itstyle"
+								<td class="t">起息日：</td>
+								<td>
+								<input class="itstyle lt it" id="valueDate"
+									name="valueDate" value="2100-01-01" type="text" />(格式：yyyy-MM-dd)
+								
+								<select hidden class="itstyle"
 									name="profitId" id="profitId">
 										<option value="42" selected>固定</option>
 										<!-- option value="43">浮动</option -->
-								</select></td>
+								</select>
+								</td>
 							</tr>
 							<tr>
 								<td class="t">产品类别：</td>

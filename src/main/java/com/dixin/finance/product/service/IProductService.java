@@ -1,6 +1,7 @@
 package com.dixin.finance.product.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.dixin.finance.product.vo.ProductQueryParameter;
 import com.dixin.finance.product.vo.ProductVO;
@@ -16,6 +17,7 @@ public interface IProductService {
 	public abstract List<ProductVO> readProductListFromExcel(String fileName); 
 	public abstract void deleteProduct(int productId);
 	public abstract void recommendProduct(int productId,int recommend);
-	public abstract void updateProduct(ProductVO product);	
-	
+	public abstract void updateProduct(ProductVO product);		
+	public abstract void updateProductUnitNet(int productId,float unitNet);
+	public abstract void updateProductTotalValue(int productId,double totalValue);		
 }

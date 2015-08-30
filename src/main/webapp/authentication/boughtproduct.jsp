@@ -6,25 +6,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>用户中心-已购买的产品</title>
-<link href="<%=request.getContextPath() %>/css/LTT_define.css" 
-    rel="stylesheet" type="text/css" />
-<script type="text/javascript" 
-     src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" 
-     src="<%=request.getContextPath()%>/js/js.js"></script>
+<link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/js.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/authentication/boughtproduct.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 <script type="text/html" id="product_item">
 	<table border="0" cellpadding="0" cellspacing="0" class="ui compact table segment">
       <thead>
       <tr>
+		<# if(id == 42) {#> 
+		 <th>购买日期</th>
          <th>产品名称</th>
          <th>购买金额</th>
+		 <th>昨日预估收益</th>
+		 <th>派息日</th>
+		 <th>到期日</th>
+		 <th>已派利息</th>
+		<#}#>
 		<# if(id == 43) {#> 
-		 <th>购买份额</th>
-		<#}#> 
-         <th>浮动盈亏</th>
+			<th>产品名称</th>
+			<th>净值</th>
+			<th>总市值</th>
+			<th>浮动盈亏</th>
+		<#}#>
          <th>操作</th>
       </tr>
       </thead>
@@ -32,7 +39,11 @@
       
 		    <# for(i = 0; i < purchaseList.list.length; i++){ #> 
             <tr>
-              <td><#=purchaseList.list[i].product.name#></td>
+			  <# if(id == 42) {#> 
+			  	<td><#=purchaseList.list[i].buyDate#></td>
+			  <#}#>
+              <td><a href="<%=request.getContextPath()%>/product/view?productId=<#=purchaseList.list[i].product.id#>" ><#=purchaseList.list[i].product.name#></a></td>
+			  <# if(id == 42) {#>
 			  <td>
 				<#if(purchaseList.list[i].amount>10000) {#>
 				 <#=purchaseList.list[i].amount/10000#>万元
@@ -40,12 +51,20 @@
 				 <#=purchaseList.list[i].amount#>元
 				<#}#>
 			  </td>
+				<td><#=purchaseList.list[i].pnl#>元</td>
+			  	<td><#=purchaseList.list[i].product.valueDate#>元</td> 
+			  	<td><#=purchaseList.list[i].product.dueDate#></td>
+				<td><#=purchaseList.list[i].interest#>元</td>
+			  <#}#>   
+
 			  <# if(id == 43) {#> 
-			  	<td><#=purchaseList.list[i].volume#></td>
+			  	<td><#=purchaseList.list[i].product.unitNet#></td>
+				<td><#=purchaseList.list[i].product.totalValue#></td>
+				<td><#=purchaseList.list[i].pnl#>元</td>
 			  <#}#> 
-			  <td><#=purchaseList.list[i].pnl#>元</td>
-              <td><span style="padding: 3px 15px; background: #F90">
-				<a href="<%=request.getContextPath()%>/product/view?productId=<#=purchaseList.list[i].product.id#>" >详细</a></span>
+
+				
+              <td>
 				<span name="reservation" style="padding: 3px 15px; background: #F90"><a	href="<%=request.getContextPath()%>/product/assignment.jsp?productId=<#=purchaseList.list[i].product.id#>&productName=<#=purchaseList.list[i].product.name#>">转让</a></span>
 				</td>
             </tr>

@@ -8,7 +8,8 @@
 <title>风险评测调查结果</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css"
      rel="stylesheet" type="text/css" />
-<script src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 <script type="<%=request.getContextPath() %>/text/javascript" src="js/js.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>

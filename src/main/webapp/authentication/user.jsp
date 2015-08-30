@@ -7,13 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>用户中心</title>
-<link href="<%=request.getContextPath() %>/css/LTT_define.css"
-	rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/template-native.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/authentication/user.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/user.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 <script type="text/html" id="product_item">
 
@@ -104,43 +102,22 @@
 					style="color: #F00; text-decoration: underline">请点击此处完善您的信息</a>。我们会根据您提供的个人信息，提供专属客户服务。
 			</div>
 			</c:if>
-			<div class="jg2">
-				<img src="<%=request.getContextPath()%>/images/ico_22.png"
-					width="11" height="11" />正在发行的产品
+			<div class="jg"><span style="padding: 3px 5px;" ></span> <span ><strong> 我的财富</strong></span></div>
+			
+			<div class="grzx">
+
+			<div class="grzx_icon"><img src="<%=request.getContextPath()%>/images/icon_grzx.png" width="100" height="102" /></div>
+			
+			<div class="grzx_jdms">
+			
+			  <div class="grzx_zrsy">昨日收益：<span>9.6</span> 万元</div>
+			  
+			  <div class="grzx_zzc">总金额：<span>100</span> 万元</div>
+			
 			</div>
-			<div class="con_table" style="display: block">
-
-				<!--  table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<thead>
-						<tr>
-							<th width="13%">产品名称</th>
-							<th width="12%">期限/月</th>
-							<th width="10%">总规模（元）</th>
-							<th width="17%">预期年化收益率（%）</th>
-							<th width="17%">了解更多</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>衡阳城投二期</td>
-							<td>12个月</td>
-							<td>1000万元</td>
-							<td>9%-9.3%</td>
-							<td><span name="view" style="padding: 3px 15px; background: #F90"><a
-									href="javascript:void(0)">详细</a></span><span name="reservation" style="padding: 3px 15px; background: #F90"><a
-									href="javascript:void(0)">预约</a></span></td>
-						</tr>
-
-					</tbody>
-				</table>
-				<div class="page_menu">
-					<a class="item"> < </a> <a class="item">1</a> <a class="item">2</a>
-					<a class="item">3</a> <a class="item">4</a> <a class="item">5</a> <a
-						class="item">6</a> <a class="item"> > </a>
-				</div -->
-				
+			
 			</div>
-
+			</div>
 		</div>
 
 		<br class=" clear" />

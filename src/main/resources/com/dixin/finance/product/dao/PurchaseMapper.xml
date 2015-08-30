@@ -156,7 +156,23 @@
             <![CDATA[  
                and purchase.product_id = #{productId} 
             ]]>  
-        </if> 				
+        </if> 	
+		<if test="status == 0">  
+            <![CDATA[  
+               and purchase.status = 110 
+            ]]>
+        </if>
+		<if test="status == 1">  
+            <![CDATA[  
+               and (purchase.status = 111 or purchase.status = 112 ) 
+            ]]> 
+        </if>
+		<if test="status != null and status != -1 and status != 0 and status != 1 ">  
+            <![CDATA[  
+               and purchase.status = #{status} 
+            ]]> 
+        </if>
+        
 		order by purchase.buy_date desc
   </select>
 	

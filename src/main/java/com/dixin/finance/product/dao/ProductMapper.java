@@ -67,5 +67,17 @@ public interface ProductMapper {
 	 * @return
 	 */	
 	void updateProduct(ProductVO product);		
+	
+	/**
+	 * 更新产品净值
+	 * @return
+	 */		
+	void updateProductUnitNet(Map<String, Object> map);
+	
+	/**
+	 * 更新产品市值
+	 * @return
+	 */		
+	void updateProductTotalValue(Map<String, Object> map);	
 }
 

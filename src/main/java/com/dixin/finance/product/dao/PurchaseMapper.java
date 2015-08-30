@@ -15,4 +15,5 @@ public interface PurchaseMapper {
 	public void addPurchase(PurchaseVO purchaseVo);
 	public List<PurchaseStatisticsVO> queryPurchaseStatistics();
 	public List<PurchaseVO> queryPurchaseDetails(int productId);
+	public List<PurchaseVO> queryOrderList(int userId,int productId);
 }
