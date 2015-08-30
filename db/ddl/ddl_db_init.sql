@@ -3717,8 +3717,8 @@ INSERT INTO `catogry` (`id`, `name`, `type`) VALUES
 (200, '派息', 15),
 (201, '净值', 15),
 (202, '分红', 15),
-(203, '期限', 15);
-(203, '期限', 15);
+(203, '市值', 15),
+(204, '期限', 15);
 -- --------------------------------------------------------
 
 --
@@ -3754,7 +3754,7 @@ INSERT INTO `dict` (`id`, `name`) VALUES
 (12, '用户产品期限状态'),
 (13, '产品期限状态'),
 (14, '产品购买状态'),
-(15, '产品信息类型派息，分红，净值');
+(15, '产品信息类型派息，分红，净值,市值,期限等');
 -- --------------------------------------------------------
 
 --
@@ -3902,6 +3902,8 @@ CREATE TABLE IF NOT EXISTS `product` (
   `view_num` int(11) COMMENT '查看次数',
   `value_date` date DEFAULT NULL COMMENT '产品起息日',
   `due_date` date DEFAULT NULL COMMENT '产品到期日',
+  `unit_net` float NOT NULL DEFAULT '1' COMMENT '浮动产品的最新单位净值',
+  `total_value` double NOT NULL DEFAULT '0' COMMENT '浮动产品最新市值',
   `recommend` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否在首页被推荐,1位推荐，0为默认未推荐',
   `create_user` int(11) NOT NULL COMMENT '创建人',
   `create_time` datetime NOT NULL COMMENT '创建时间',
