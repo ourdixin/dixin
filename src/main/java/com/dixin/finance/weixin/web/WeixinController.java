@@ -2,7 +2,6 @@ package com.dixin.finance.weixin.web;
 
 import java.io.IOException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -23,27 +22,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dixin.finance.authentication.constant.UserTypeConstant;
 import com.dixin.finance.authentication.service.IAreaService;
 import com.dixin.finance.authentication.service.IAsmService;
 import com.dixin.finance.authentication.service.IFinService;
 import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
-import com.dixin.finance.authentication.vo.UserInfo;
-import com.dixin.finance.authentication.vo.UserVO;
-import com.dixin.finance.product.constant.ProfitTypeConstant;
+import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IMessageService;
+import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.service.IPurchaseService;
-import com.dixin.finance.product.vo.AssignmentVO;
-import com.dixin.finance.product.vo.MessageVO;
+import com.dixin.finance.product.vo.AppointmentVO;
+import com.dixin.finance.product.vo.ContactRecordVO;
+import com.dixin.finance.product.vo.ProductQueryParameter;
+import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.finance.weixin.constant.WeixinConstant;
 import com.dixin.framework.base.web.BaseWebResult;
-import com.dixin.framework.constant.WebConstants;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 
 /**
  * 微信后台
@@ -78,6 +74,28 @@ public class WeixinController {
 
 	@Resource
 	private IPurchaseService PurchaseServiceImpl;
+	
+	@Resource(name="appointmentServiceImpl")
+	private IAppointmentService appointmentService;
+	
+	@Resource(name="productServiceImpl")
+	private IProductService productService;
+
+	public IProductService getProductService() {
+		return productService;
+	}
+
+	public void setProductService(IProductService productService) {
+		this.productService = productService;
+	}
+
+	public IAppointmentService getAppointmentService() {
+		return appointmentService;
+	}
+
+	public void setAppointmentService(IAppointmentService appointmentService) {
+		this.appointmentService = appointmentService;
+	}
 
 	public IPurchaseService getPurchaseServiceImpl() {
 		return PurchaseServiceImpl;
@@ -248,6 +266,97 @@ public class WeixinController {
 		}
 		String mySign = bytesToHexString(digest);
 		return signature.equals(mySign);
+	}
+	
+	
+			
+	
+	/***********************************产品列表**********************************************/
+	@RequestMapping(value="weixin/product/productlist")
+	public  String queryProductList(String type,ProductQueryParameter parameter,Model model, HttpSession session){
+		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
+			return webResult;
+		}	*/	
+		parameter.setRecommend(1);
+		parameter.setPageNum(1);
+		parameter.setPageSize(8);
+		//parameter.setProfitType(63);
+		
+		List<ProductVO> products = productService.queryProductList(parameter);
+		logger.info("queryProductList 查询产品列表完成");
+		model.addAttribute("firstProduct", products.get(0));//爆款
+		products.remove(0);
+		model.addAttribute("products", products);
+		model.addAttribute("state", type);
+		return "weixin/product/product";
+	}
+	
+	
+	
+	/***********************************产品详情**********************************************/
+	@RequestMapping(value="weixin/product/productdetail")
+	public  String productDetail(String productid,Model model, HttpSession session,HttpServletRequest request,HttpServletResponse response){
+		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
+			return webResult;
+		}	*/	
+		ProductVO product = productService.queryProduct(Integer.parseInt(productid));
+		logger.info("queryProductList 查询产品列表完成");
+		model.addAttribute("product", product);
+		return "weixin/product/productShow";
+	}
+
+	
+	
+	/***********************************产品预约**********************************************/
+	@RequestMapping(value="weixin/product/appointment")
+	public @ResponseBody BaseWebResult appointment(AppointmentVO appointment,int productId,HttpSession session,HttpServletRequest request,HttpServletResponse response){
+		BaseWebResult webResult = new BaseWebResult();
+		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
+			return webResult;
+		}	*/		
+		
+		ProductVO product = new ProductVO();
+		PurchaseVO purchase = new PurchaseVO();
+		ContactRecordVO contact = new ContactRecordVO();
+		contact.setId(-1);
+		purchase.setId(-1);
+		product.setId(String.valueOf(productId));
+		appointment.setProduct(product);
+		appointment.setPurchase(purchase);
+		appointment.setContact(contact);
+		//appointment.setUserId(userVO.getId());
+		appointmentService.insertAppointment(appointment);
+		webResult.setSuccess(true);
+		webResult.setUrl(request.getContextPath()+"/weixin/product/appointmentdetail");
+		return webResult;
+	}
+	
+	/***********************************查看购买产品**********************************************/
+	@RequestMapping(value="weixin/product/appointmentdetail")
+	public String appointmentShow(HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
+		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
+			return webResult;
+		}	*/		
+		String userid = "2";
+		List<AppointmentVO> appointments = appointmentService.queryUserAppointmentList(Integer.parseInt(userid));
+		model.addAttribute("appointments", appointments);
+		return "weixin/product/appointmentShow";
 	}
 	
 }
