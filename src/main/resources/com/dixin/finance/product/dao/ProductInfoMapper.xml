@@ -17,7 +17,7 @@
 			update_user updateUser, 
 			update_time updateTime
 		from product_info
-		 WHERE
+		 WHERE 1=1 
 		<if test="productID != null and productID != -1">  
             <![CDATA[  
                and product_id=#{productID} 

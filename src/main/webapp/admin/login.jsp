@@ -28,19 +28,19 @@
 <input type="hidden" name="backurl" value="${backurl}" />
 <table>
       <tbody><tr>
-        <td class="t" width="15%">管理员帐号： </td>
-        <td width="85%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ></td>
+        <td height="60" class="t" align="right">管理员帐号： </td>
+        <td height="60" width="55%"><input maxlength="11" id="username" name="username" class="itstyle lt it log_user" type="text"  value="请输入手机号或会员名" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" ></td>
       </tr>
       <tr>
-        <td class="t">登录密码：</td>
-        <td>
+        <td height="60" class="t" align="right">登录密码：</td>
+        <td height="60" >
         	<input maxlength="12" class="itstyle lt it" name="password" id="pass" type="password">
             <a href="<%=request.getContextPath()%>/admin/forgetpassword.jsp" class="blue" style="font-size:12px;line-height:26px;">忘记密码？</a></td>
         </td>
       </tr>
       <tr>
-        <td></td>
-        <td>
+        <td height="60" ></td>
+        <td height="60" >
           <span class="bnt_ok" style="cursor:pointer;">立即登录</span>
         </td>
       </tr>
@@ -48,14 +48,16 @@
 </table>
 </form>
 </div>
-
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
 </div>
 
 <br class=" clear" />
 
 </div>
-
-
+<blockquote>&nbsp;</blockquote>	
+<blockquote>&nbsp;</blockquote>	
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 <!---foot底部结束---->

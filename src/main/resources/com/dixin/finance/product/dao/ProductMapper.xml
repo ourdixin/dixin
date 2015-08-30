@@ -54,6 +54,8 @@
 			view_num viewNum,
 			value_date valueDate,
 			due_date dueDate,
+			unit_net unitNet,
+			total_value totalValue,
 			recommend recommend,
 			create_user createUser, 
 			create_time createTime, 
@@ -234,6 +236,8 @@
 			view_num viewNum,
 			value_date valueDate,
 			due_date dueDate,
+			unit_net unitNet,
+			total_value totalValue,
 			recommend recommend,
 			create_user createUser, 
 			create_time createTime, 
@@ -296,6 +300,8 @@
 			view_num viewNum,
 			value_date valueDate,
 			due_date dueDate,
+			unit_net unitNet,
+			total_value totalValue,
 			recommend recommend,
 			create_user createUser, 
 			create_time createTime, 
@@ -361,6 +367,8 @@
 		bonus_type,
 		value_date,
 		due_date,
+		unit_net,
+		total_value,
 		create_user,
 		create_time,
 		update_user,
@@ -413,6 +421,8 @@
 		#{bonusType},	
 		#{valueDate},
 		#{dueDate},
+		#{unitNet},
+		#{totalValue},
 		0,
 		SYSDATE(),
 		0,
@@ -470,6 +480,8 @@
 		bonus_type,
 		value_date,
 		due_date,
+		unit_net,
+		total_value,
 		create_user,
 		create_time,
 		update_user,
@@ -524,6 +536,8 @@
 			#{product.bonusType},	
 			#{product.valueDate},
 			#{product.dueDate},
+			#{product.unitNet},
+			#{product.totalValue},			
 			0,
 			SYSDATE(),
 			0,
@@ -536,13 +550,27 @@
 			DELETE FROM product WHERE id = #{productId}
 	</delete>
 
-	<delete id="recommendProduct" parameterType="map">
+	<update id="recommendProduct" parameterType="map">
 			UPDATE product SET
 			recommend=#{recommend},
 			update_time = SYSDATE()
 			WHERE id = #{productId}
-	</delete>
-
+	</update>
+	
+	<update id="updateProductUnitNet" parameterType="map">
+			UPDATE product SET
+			unit_net=#{unitNet},
+			update_time = SYSDATE()
+			WHERE id = #{productId}
+	</update>
+	
+	<update id="updateProductTotalValue" parameterType="map">
+			UPDATE product SET
+			total_value=#{totalValue},
+			update_time = SYSDATE()
+			WHERE id = #{productId}
+	</update>	
+	
 	<update id="updateProduct" parameterType="com.dixin.finance.product.vo.ProductVO" >
    	UPDATE product SET
 		code = #{code},
@@ -592,6 +620,8 @@
 		bonus_type = #{bonusType},
 		value_date = #{valueDate},
 		due_date = #{dueDate},
+		unit_net = #{unitNet},
+		total_value = #{totalValue},
 		update_user = 0,
 		update_time = SYSDATE()
 	WHERE id=#{id}

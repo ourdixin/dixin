@@ -142,4 +142,11 @@ public class ProductInfoVO extends BaseVO {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	public String getInfoName() {
+		if(infoType >= InfoTypeConstant.INFOTYPE_DIVIDEND && infoType <=  InfoTypeConstant.INFOTYPE_TERM )
+			return InfoTypeConstant.InfoTypeString[infoType - InfoTypeConstant.INFOTYPE_DIVIDEND];
+		
+		return "";
+	}
 }

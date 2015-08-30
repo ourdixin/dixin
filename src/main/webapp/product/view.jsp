@@ -201,9 +201,31 @@
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong><fmt:formatNumber value="${product.manageFee}"  minFractionDigits="0"/>%</strong></td>
         <td width="0%" align="center" bgcolor="#FFFFFF">退出费用</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.sellFee}</strong></td>
-      </c:if>
+      </c:if>  
     </tbody>
   </table>
+  <div id="productInfo" >
+	   <table width="100%">
+		<thead>
+	      <tr>
+	         <th>日期</th>
+	         <th>信息</th>
+			 <th>数据</th>
+	      </tr>
+	      </thead>   
+	    <tbody>
+	    	<c:forEach var="item" items="${info}">
+		      <tr>
+		       <td width="20%" align="center" bgcolor="#FFFFFF" >
+		       <fmt:formatDate value="${item.infoDate}" pattern="yyyy年MM月dd日 "/>   
+		       </td>
+		       <td width="20%" align="center" bgcolor="#FFFFFF">${item.infoName}</td>
+		       <td width="60%" align="center" bgcolor="#FFFFFF">${item.value}</td>
+		      <tr>
+	      </c:forEach>
+	    </tbody>
+	  </table>       
+  </div>
 </div>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

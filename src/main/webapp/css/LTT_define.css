@@ -872,3 +872,15 @@ li {
 .window_s span{
 	width:80px;
 	text-align:right;}
+
+
+
+.grzx{padding:20px 40px;margin:10px 0px; background:#fffae9;border:1px solid #e6d9ad;min-height:280px;}
+.grzx_icon{float:left;width:240px;padding-top:18px;text-align:right;padding-right:60px;}
+.grzx_jdms{float:left;font-size:14px;font-weight:bold;}
+.grzx_zrsy{padding:15px 0px;}
+.grzx_zrsy span{font-family:"Microsoft YaHei";font-size:36px;color:#b61b1f;}
+.grzx_zzc{padding:5px 0px;font-weight:normal;}
+.grzx_zzc span{font-family:"Microsoft YaHei";font-size:18px;color:#b61b1f;}
+
+#openbox{border:6px solid #dddddd;padding:10px;width:400px; position:absolute; z-index:10;top:25%;left:50%;margin-left:-220px; background:#FFF; visibility:hidden;}

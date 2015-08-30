@@ -264,5 +264,21 @@ public class ProductServiceImpl implements IProductService{
 		map.put("recommend", recommend);
 		productMapper.recommendProduct(map);
 	}
+
+	@Override
+	public void updateProductUnitNet(int productId, float unitNet) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("productId", productId);	
+		map.put("unitNet", unitNet);
+		productMapper.updateProductUnitNet(map);	
+	}
+
+	@Override
+	public void updateProductTotalValue(int productId, double totalValue) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("productId", productId);	
+		map.put("totalValue", totalValue);
+		productMapper.updateProductTotalValue(map);
+	}
     
 }

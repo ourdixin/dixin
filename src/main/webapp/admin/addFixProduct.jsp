@@ -118,12 +118,17 @@
 										<option value="64" selected>月</option>
 										<option value="65">天</option>
 								</select></td>
-								<td hidden class="t">收益类型：</td>
-								<td hidden ><select class="itstyle"
+								<td class="t">起息日：</td>
+								<td>
+								<input class="itstyle lt it" id="valueDate"
+									name="valueDate" value="2100-01-01" type="text" />(格式：yyyy-MM-dd)
+								
+								<select hidden class="itstyle"
 									name="profitId" id="profitId">
 										<option value="42" selected>固定</option>
 										<!-- option value="43">浮动</option -->
-								</select></td>
+								</select>
+								</td>
 							</tr>
 							<tr>
 								<td class="t">产品类别：</td>

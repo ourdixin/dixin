@@ -47,6 +47,7 @@
 										<option value="201" selected>净值</option>
 										<option value="200">派息</option>
 										<option value="202">分红</option>
+										<option value="203">市值</option>
 										<!-- option value="203">期限</option -->
 									</select>
 								</td>

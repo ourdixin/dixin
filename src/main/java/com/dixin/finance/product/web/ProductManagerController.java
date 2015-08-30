@@ -47,6 +47,7 @@ import com.dixin.finance.product.vo.ContactRecordVO;
 import com.dixin.finance.product.vo.ReservationProcessVO;
 import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
+import com.dixin.finance.product.constant.InfoTypeConstant;
 import com.dixin.finance.product.constant.ProfitTypeConstant;
 import com.dixin.finance.product.constant.appointmentConstant;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -660,6 +661,11 @@ public class ProductManagerController {
 		}
 		
 		productInfoService.addProductInfo(productInfo);
+		
+		if(productInfo.getInfoType() == InfoTypeConstant.INFOTYPE_UNITNET)
+			productService.updateProductUnitNet(productInfo.getProductID(), productInfo.getValue());
+		else if(productInfo.getInfoType() == InfoTypeConstant.INFOTYPE_TOTAL_VALUE)
+			productService.updateProductTotalValue(productInfo.getProductID(), productInfo.getValue());		
 		
 		webResult.setSuccess(true);
 

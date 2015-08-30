@@ -27,7 +27,7 @@
 							<th>销售金额</th>
 							<th>状态</th>
 							<th>备注</th>
-							<th width=100>操作</th>
+							<th width=250>操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -53,8 +53,9 @@
 							</td>
 							<td>无</td>
 							<td>
-								<span><a href="<%=request.getContextPath()%>/admin/SalesData-detail.jsp?id=<#=list[i].productId#>">明细</a></span>
-								<span><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=<#=list[i].productId#>">修改</a></span>
+								<span><a href="<%=request.getContextPath()%>/admin/SalesData-detail.jsp?id=<#=list[i].productId#>">销售明细</a></span>
+								<span><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=<#=list[i].productId#>">修改产品</a></span>
+								<span><a href="<%=request.getContextPath()%>/admin/addProductInfo.jsp?productId=<#=list[i].productId#>&code=<#=list[i].product.code#>&name=<#=list[i].product.name#>">添加产品信息</a></span>
 							</td>
 						</tr>
 					<# } #>

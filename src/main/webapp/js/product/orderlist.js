@@ -12,18 +12,17 @@ $(document).ready(function(){
 			if(data.result.length == 1 )
 			{
 				var htmlStr = template('product_item', data.result[0]);
-				$('#tab1_con_' + data.result[0].id).html(htmlStr);
+				$('#tab1_con_1').html(htmlStr);
 				//$('.index_serch').after(htmlStr);
 			}
 			else
 			{
 				var htmlStr = template('product_list', data);
-				//$('.con').remove();
 				$('.ul_1').after(htmlStr);
 			}
 					
 			$("a[class='item']").click(function(){
-				$.get(HOST_PATH+"/product/queryPurchase?status=0&pageNum="+this.text+"&profitType="+this.name, null, success);
+				$.get(HOST_PATH+"/product/orderlist?pageNum="+this.text+"&productId="+productId+"&profitType="+profitType, null, success);
 			});		
 		}
 		else
@@ -34,6 +33,6 @@ $(document).ready(function(){
 	};
 	
 	// 加载产品信息
-	$.get(HOST_PATH+"/product/queryPurchase?status=0&profitType=-1", null, success);	
+	$.get(HOST_PATH+"/product/orderlist?productId="+productId+"&profitType="+profitType, null, success);	
 	
 });

@@ -37,8 +37,10 @@ public class PurchaseVO extends BaseVO {
 
 	private Integer institutionId; //营销机构
 	
-	private Double pnl;	//浮动盈亏
+	private Double pnl;	//浮动盈亏，固定的是昨日预估收益
 	
+	private Double interest=0d;	//固定的已派利息
+
 	private Boolean hasReceipt = false; //是否已经有回执
 	
 	private	Integer status = PurchaseStatusConstant.Status_Buy;		//产品是否持有，转让或者赎回
@@ -182,5 +184,12 @@ public class PurchaseVO extends BaseVO {
 		this.updateTime = updateTime;
 	}
 
+	public Double getInterest() {
+		return interest;
+	}
+
+	public void setInterest(Double interest) {
+		this.interest = interest;
+	}
 	
 }

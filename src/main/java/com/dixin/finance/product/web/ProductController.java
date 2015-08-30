@@ -34,12 +34,14 @@ import com.dixin.finance.product.constant.ProductTypeConstant;
 import com.dixin.finance.product.constant.ProfitTypeConstant;
 import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IAssignmentService;
+import com.dixin.finance.product.service.IProductInfoService;
 import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.service.IPurchaseService;
 import com.dixin.finance.product.vo.AppointmentVO;
 import com.dixin.finance.product.vo.AssignmentVO;
 import com.dixin.finance.product.vo.ContactRecordVO;
 import com.dixin.finance.product.vo.PageDataItem;
+import com.dixin.finance.product.vo.ProductInfoVO;
 import com.dixin.finance.product.vo.ProductQueryParameter;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.vo.PurchaseVO;
@@ -51,6 +53,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.dixin.finance.product.vo.MessageVO;
 import com.dixin.finance.product.service.IMessageService;
+import com.dixin.finance.product.service.impl.ProductInfoServiceImpl;
 import com.dixin.finance.product.constant.CustomerConstant;
 /**
  * @author Administrator
@@ -63,6 +66,9 @@ public class ProductController {
 	
 	@Resource(name="productServiceImpl")
 	private IProductService productService;
+	
+	@Resource(name="productInfoServiceImpl")
+	private IProductInfoService productInfoService;
 	
 	@Resource(name="assignmentServiceImpl")
 	private IAssignmentService assignmentService;
@@ -310,8 +316,10 @@ public class ProductController {
 		
 		productService.updateViewNum(productId);
 		ProductVO product = productService.queryProduct(productId);
+		List<ProductInfoVO> info =  productInfoService.queryProductInfoList(productId, -1);
 		model.addAttribute("product", product);
 		model.addAttribute("user", userVO);
+		model.addAttribute("info", info);
 		
 		return "product/view";
 	}
@@ -467,7 +475,7 @@ public class ProductController {
 	
 
 	@RequestMapping(value="/product/queryPurchase")
-	public @ResponseBody BaseWebResult queryPurchaseList(Integer pageNum, Integer pageSize,Integer profitType,Model model,HttpSession session,HttpServletRequest request){
+	public @ResponseBody BaseWebResult queryPurchaseList(Integer pageNum, Integer pageSize,Integer profitType,Integer status,Model model,HttpSession session,HttpServletRequest request){
 		if(pageNum == null)
 			pageNum = 1;
 		if(pageSize == null)
@@ -483,23 +491,23 @@ public class ProductController {
 		}	
 		int userId = userVO.getId();
 		List<PageDataItem> result = new ArrayList<PageDataItem>();
-		if(profitType != ProfitTypeConstant.FixProduct || profitType != ProfitTypeConstant.FloatProduct)
+		if(profitType != ProfitTypeConstant.FixProduct && profitType != ProfitTypeConstant.FloatProduct)
 		{
 			PageDataItem item = new PageDataItem();
 			item.setId(ProfitTypeConstant.FixProduct);
-			item.setPurchaseList(GetPurchaseList(userId,pageNum,pageSize,ProfitTypeConstant.FixProduct));
+			item.setPurchaseList(GetPurchaseList(userId,pageNum,pageSize,ProfitTypeConstant.FixProduct,status));
 		    result.add(item);
 		    
 			item = new PageDataItem();
 			item.setId(ProfitTypeConstant.FloatProduct);
-			item.setPurchaseList(GetPurchaseList(userId,pageNum,pageSize,ProfitTypeConstant.FloatProduct));
+			item.setPurchaseList(GetPurchaseList(userId,pageNum,pageSize,ProfitTypeConstant.FloatProduct,status));
 		    result.add(item);
 		}
-		else 
+		else
 		{
 			PageDataItem item = new PageDataItem();
-			item.setId(ProfitTypeConstant.FixProduct);
-			item.setPurchaseList(GetPurchaseList(userId,pageNum,pageSize,profitType));
+			item.setId(profitType);
+			item.setPurchaseList(GetPurchaseList(userId,pageNum,pageSize,profitType,status));
 		    result.add(item);			
 		}
 		
@@ -510,10 +518,43 @@ public class ProductController {
 		return webResult;		
 	}	
 	
-	public PageInfo<PurchaseVO> GetPurchaseList(Integer userId, Integer pageNum, Integer pageSize,Integer profitType){
+	public PageInfo<PurchaseVO> GetPurchaseList(Integer userId, Integer pageNum, Integer pageSize,Integer profitType,Integer status){
 	    PageHelper.startPage(pageNum, pageSize);
-	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType,-1);
+	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType,status,-1);
 	    return new PageInfo(purchaseList);
 	}	
+	
+	@RequestMapping(value="product/orderlist")
+	public @ResponseBody BaseWebResult queryOrderList(Integer pageNum, Integer pageSize,Integer productId,Integer profitType,Model model,HttpSession session,HttpServletRequest request){
+		if(pageNum == null)
+			pageNum = 1;
+		if(pageSize == null)
+			pageSize = 10;
+		
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO==null){
+			webResult.setUrl(request.getContextPath()+"/authentication/login.jsp");
+			webResult.setSuccess(false);
+			return webResult;
+		}	
+		int userId = userVO.getId();		
+			
+		//不需要分页
+		PageHelper.startPage(pageNum,pageSize);
+		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,-1,-1,productId);
+		
+		List<PageDataItem> result = new ArrayList<PageDataItem>();
+		
+		PageDataItem item = new PageDataItem();
+		item.setId(profitType);
+		item.setPurchaseList(new PageInfo(purchaseList));
+	    result.add(item);		
+		
+		webResult.setSuccess(true);
+		webResult.setResult(result);			
+		return webResult;
+	}
+	
 	
 }
