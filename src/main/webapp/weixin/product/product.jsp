@@ -7,6 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>已发行</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<meta name="format-detection" content="address=no">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<script>
+  var _w,_zoom,_hd,_orientationChange,_doc=document,__style=_doc.getElementById("_zoom");__style||(_hd=_doc.getElementsByTagName("head")[0],__style=_doc.createElement("style"),_hd.appendCHild(_style)),_orientationChange=function(){_w=_doc.documentElement.clientWidth||_doc.body.clientWidth,_zoom=_w/640,__style.innerHTML=".zoom {zoom:"+_zoom+";-webkit-text-size-adjust:auto!important;}"},_orientationChange(),window.addEventListener("resize",_orientationChange,!1);
+</script>
 <link href="<%=request.getContextPath() %>/weixin/css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
@@ -15,6 +24,8 @@
 </head>
 
 <body>
+<div class="act_wrapper zoom ">
+  <div class="act_content">
 	<div class="head">
 	<c:if test="${state==1}">待发行</c:if>
 	<c:if test="${state==2}">正发行</c:if>
@@ -101,5 +112,7 @@
 			<li><a href="#">登 录</a></li>
 		</ul>
 	</div>
+	 </div>
+</div>
 </body>
 </html>
