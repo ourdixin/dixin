@@ -179,7 +179,14 @@ public class ProductVO extends BaseVO {
 	 * 其它利益分配方式，文字保存
 	 */
 	private String payTypeInfo="";
-		
+
+	/**
+	 * 付息日期
+	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+	private Date payDate = getDefalutInvalidDate();	
+
 	/**
 	 * 文件
 	 */
@@ -476,6 +483,92 @@ public class ProductVO extends BaseVO {
 		if(payTypeInfo != null)
 			this.payTypeInfo = payTypeInfo;
 	}
+	
+	public Date getPayDate() {
+		
+		GregorianCalendar gc=new GregorianCalendar();
+		gc.setTime(valueDate);
+		
+		if(payType == PayTypeConstant.CALENDAR_QUARTER) //"自然季度付息"
+		{
+			if(gc.get(GregorianCalendar.MONTH) < 3 || (gc.get(GregorianCalendar.MONTH) ==3 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			{
+				gc.set(GregorianCalendar.MONTH, 3);
+			}
+			else if(gc.get(GregorianCalendar.MONTH) < 6 || (gc.get(GregorianCalendar.MONTH) ==6 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			{
+				gc.set(GregorianCalendar.MONTH, 6);
+			}
+			else if(gc.get(GregorianCalendar.MONTH) < 9 || (gc.get(GregorianCalendar.MONTH) ==9 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			{
+				gc.set(GregorianCalendar.MONTH, 9);
+			}			
+			else if(gc.get(GregorianCalendar.MONTH) < 12 || (gc.get(GregorianCalendar.MONTH) ==12 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			{
+				gc.set(GregorianCalendar.MONTH, 12);
+			}
+			else
+			{
+				gc.add(GregorianCalendar.YEAR,1);
+				gc.set(GregorianCalendar.MONTH, 3);
+			}
+			
+			gc.set(GregorianCalendar.DAY_OF_MONTH, 20);			
+		}
+		else if(payType == PayTypeConstant.CALENDAR_HALFYEAR) //"自然半年度付息"
+		{
+			if(gc.get(GregorianCalendar.MONTH) < 6 || (gc.get(GregorianCalendar.MONTH) ==6 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			{
+				gc.set(GregorianCalendar.MONTH, 6);
+			}			
+			else if(gc.get(GregorianCalendar.MONTH) < 12 || (gc.get(GregorianCalendar.MONTH) ==12 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			{
+				gc.set(GregorianCalendar.MONTH, 12);
+			}
+			else
+			{
+				gc.add(GregorianCalendar.YEAR,1);
+				gc.set(GregorianCalendar.MONTH, 6);
+			}
+			gc.set(GregorianCalendar.DAY_OF_MONTH, 20);
+		}
+		else if(payType == PayTypeConstant.CALENDAR_YEAR) //"自然年度付息"
+		{
+			gc.set(GregorianCalendar.MONTH, 12);
+			gc.set(GregorianCalendar.DAY_OF_MONTH, 20);
+			if(gc.get(GregorianCalendar.MONTH) ==12 && gc.get(GregorianCalendar.DAY_OF_MONTH) >= 20 )
+			{
+				gc.add(GregorianCalendar.YEAR,1);
+			}
+		}		
+		else if(payType == PayTypeConstant.QUARTER) //"季度付息"
+		{
+			gc.add(GregorianCalendar.MONTH,3);
+		}		
+		else if(payType == PayTypeConstant.HALFYEAR) //"半年度付息"
+		{
+			gc.add(GregorianCalendar.MONTH,6);
+		}		
+		else if(payType == PayTypeConstant.YEAR) //"年度付息"
+		{
+			gc.add(GregorianCalendar.YEAR,1);
+		}
+		
+		payDate = gc.getTime();	
+		
+		if(payType == PayTypeConstant.DEBT_MATURITY) //"到期还本付息"
+		{
+			payDate = this.getDueDate();
+		}	
+	
+		
+		return payDate;
+	}	
+	
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
+	}
+	
 	public String getAdFile() {
 		return adFile;
 	}
