@@ -3,6 +3,7 @@ package com.dixin.finance.weixin.web;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import com.dixin.finance.authentication.service.IFinService;
 import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
+import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IMessageService;
 import com.dixin.finance.product.service.IProductService;
@@ -39,6 +41,7 @@ import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.finance.product.web.ProductController;
 import com.dixin.finance.weixin.constant.WeixinConstant;
 import com.dixin.framework.base.web.BaseWebResult;
+import com.dixin.framework.constant.WebConstants;
 
 /**
  * 微信后台
@@ -273,13 +276,13 @@ public class WeixinController {
 	/***********************************产品列表**********************************************/
 	@RequestMapping(value="weixin/product/productlist")
 	public  String queryProductList(Integer type,ProductQueryParameter parameter,Model model, HttpSession session){
-		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
-			return webResult;
-		}	*/	
+			//webResult.setSuccess(false);
+			//webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
+			//return webResult;
+		}
 		int state = 62 + type;
 		parameter.setState(state);
 		parameter.setRecommend(1);
@@ -341,8 +344,8 @@ public class WeixinController {
 		return webResult;
 	}
 	
-	/***********************************查看购买产品**********************************************/
-	@RequestMapping(value="weixin/product/appointmentdetail")
+	/***********************************查看购买产品列表**********************************************/
+	@RequestMapping(value="weixin/product/appointmentlist")
 	public String appointmentShow(HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
 		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
@@ -355,6 +358,25 @@ public class WeixinController {
 		List<AppointmentVO> appointments = appointmentService.queryUserAppointmentList(Integer.parseInt(userid));
 		model.addAttribute("appointments", appointments);
 		return "weixin/product/appointmentShow";
+	}
+	
+	/***********************************查看购买产品详细信息**********************************************/
+	@RequestMapping(value="weixin/product/appointmentdetail")
+	public String appointmentDetail(int appointmentId,HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
+		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
+			return webResult;
+		}	*/		
+		int userid = 2;
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("id", appointmentId);
+		map.put("userId", userid);
+		AppointmentVO appointment = appointmentService.queryUserAppointment(map);
+		model.addAttribute("appointment", appointment);
+		return "weixin/product/appointmentDetail";
 	}
 	
 }

@@ -2,6 +2,7 @@ package com.dixin.finance.product.dao;
 
 import java.util.List;
 import java.util.Map;
+
 import org.mybatis.spring.annotation.MapperScan;
 
 import com.dixin.finance.product.vo.AppointmentVO;
@@ -25,6 +26,14 @@ public interface AppointmentMapper {
 	 * @return 
 	 */
 	public List<AppointmentVO> queryUserAppointmentList(int userId);
+	
+	/**
+	 * 查询用户产品预定详细信息
+	 * @param map
+	 * @return
+	 */
+	public AppointmentVO queryUserAppointment(Map<String, Integer> map);
+	
 	/**
 	 * 后台查看所有产品预定信息
 	 */

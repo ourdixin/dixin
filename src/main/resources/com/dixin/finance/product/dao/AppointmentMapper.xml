@@ -42,6 +42,11 @@
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
 		<result column="code" property="code"/>
+		<result column="value_date" property="valueDate"/>
+		<result column="due_date" property="dueDate"/>
+		<result column="profit_id" property="profitId"/>  
+		<result column="pay_type" property="payType"/>
+		<result column="pay_type_info" property="payTypeInfo"/>
   </resultMap>
   
   <resultMap id="appointmentResult" type="com.dixin.finance.product.vo.AppointmentVO">  
@@ -92,6 +97,29 @@
 			reservation.update_user updateUser, 
 			reservation.update_time updateTime
 		from reservation,product where reservation.product_id = product.id and user_id = #{userId}
+  </select>
+  
+  <!-- 查看购买详细信息 -->
+  <select id="queryUserAppointment" parameterType="map" resultMap="appointmentResult" useCache="false" >
+		select reservation.id id,
+			reservation.user_id user_id,
+			reservation.reserve_date reserve_date,
+			reservation.amount amount,
+			product.id product_id,
+			product.name name,
+			product.pay_type pay_type,
+			product.value_date value_date,
+			product.due_date due_date,
+			product.profit_id profit_id,
+			product.pay_type_info pay_type_info,
+			product.term term,
+			reservation.tel tel,
+			reservation.msg msg,
+			reservation.create_user createUser, 
+			reservation.create_time createTime, 
+			reservation.update_user updateUser, 
+			reservation.update_time updateTime
+		from reservation,product where reservation.product_id = product.id and user_id = #{userId} and reservation.id = #{id}
   </select>
   
   <!-- ************************************whb**************************************** -->

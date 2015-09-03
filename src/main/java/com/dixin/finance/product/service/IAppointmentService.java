@@ -1,6 +1,7 @@
 package com.dixin.finance.product.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.dixin.finance.product.vo.AppointmentVO;
 
@@ -23,6 +24,14 @@ public interface IAppointmentService {
 	 * @return
 	 */
 	public List<AppointmentVO> queryUserAppointmentList(int userId);
+	
+	/**
+	 * 查询用户产品预定详细信息
+	 * @return
+	 */
+	public AppointmentVO queryUserAppointment(Map<String,Integer> map);
+	
+	
 	/**
 	 * 后台查询所有预约信息
 	 */

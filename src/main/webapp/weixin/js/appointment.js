@@ -4,6 +4,7 @@ $(document).ready(function(){
 		location.href = data.url;
 	};
 	
+	//购买
 	$('.btn_red').click(function(){
 		var phone = $("input[name='tel']").val();
         var regex = /^1[3,4,5,7,8]\d{9}$/;
@@ -19,5 +20,10 @@ $(document).ready(function(){
             return;
         }	
 		$.post(HOST_PATH + "/weixin/product/appointment", $("#appointForm").serialize(), success);
+	});
+	
+	//购买产品详情
+	$('.linkk').click(function(){
+		location.href = HOST_PATH + "/weixin/product/appointmentdetail?appointmentId="+this.id
 	});
 });
