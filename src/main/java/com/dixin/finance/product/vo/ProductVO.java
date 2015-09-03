@@ -556,7 +556,7 @@ public class ProductVO extends BaseVO {
 		
 		payDate = gc.getTime();	
 		
-		if(payType == PayTypeConstant.DEBT_MATURITY) //"到期还本付息"
+		if(payDate.getTime() - getDueDate().getTime() > 0  || payType == PayTypeConstant.DEBT_MATURITY) //"到期还本付息"
 		{
 			payDate = this.getDueDate();
 		}	

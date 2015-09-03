@@ -157,6 +157,14 @@
 								<td><input class="itstyle lt it" id="sellFee" name="sellFee"
 									value="${product.sellFee}" type="text" />(文本型描述)</td>
 							</tr>
+							</tr>
+								<tr>
+								<td class="t" width="100">成立日：</td>
+								<td><input class="itstyle lt it" id="valueDate"
+									name="valueDate" value="<fmt:formatDate value="${product.valueDate}" pattern="yyyy-MM-dd"/>" type="text" />(格式：yyyy-MM-dd)</td>
+								<td class="t" width="100"></td>
+								<td></td>
+							</tr>
 							<tr>
 								<td class="t">产品推介单页：</td>
 								<td>

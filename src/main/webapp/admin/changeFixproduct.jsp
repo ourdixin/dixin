@@ -123,7 +123,11 @@
 										<option value="64" <c:if test="${product.appendTermUnit==64}">selected</c:if> >月</option>
 										<option value="65" <c:if test="${product.appendTermUnit==65}">selected</c:if> >天</option>
 								</select></td>
-								<td hidden class="t">收益类型：</td>
+								<td class="t">起息日：</td>
+								<td>
+								<input class="itstyle lt it" id="valueDate"
+									name="valueDate" value="<fmt:formatDate value="${product.valueDate}" pattern="yyyy-MM-dd"/>" type="text" />(格式：yyyy-MM-dd)
+									
 								<td hidden ><select class="itstyle"
 									name="profitId" id="profitId">
 										<option value="42" selected>固定</option>
