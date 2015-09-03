@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dixin.finance.authentication.service.IAreaService;
@@ -273,7 +272,7 @@ public class WeixinController {
 	
 	/***********************************产品列表**********************************************/
 	@RequestMapping(value="weixin/product/productlist")
-	public  String queryProductList(String type,ProductQueryParameter parameter,Model model, HttpSession session){
+	public  String queryProductList(Integer type,ProductQueryParameter parameter,Model model, HttpSession session){
 		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
@@ -281,17 +280,16 @@ public class WeixinController {
 			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
 			return webResult;
 		}	*/	
+		int state = 62 + type;
+		parameter.setState(state);
 		parameter.setRecommend(1);
-		parameter.setPageNum(1);
-		parameter.setPageSize(8);
-		//parameter.setProfitType(63);
 		
 		List<ProductVO> products = productService.queryProductList(parameter);
 		logger.info("queryProductList 查询产品列表完成");
 		model.addAttribute("firstProduct", products.get(0));//爆款
 		products.remove(0);
 		model.addAttribute("products", products);
-		model.addAttribute("state", type);
+		model.addAttribute("state", state);
 		return "weixin/product/product";
 	}
 	
