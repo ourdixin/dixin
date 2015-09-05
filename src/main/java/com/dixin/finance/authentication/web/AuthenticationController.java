@@ -136,40 +136,7 @@ public class AuthenticationController {
 		
 		return webResult;
 	}
-
-	@RequestMapping(value="/weixin/user", method=RequestMethod.POST)
-	public @ResponseBody BaseWebResult registerFromWeixin(UserVO userVO, String rpassword,String verifyCode,String backurl, HttpSession session,HttpServletRequest request){
-		
-		if(backurl == null || backurl=="")
-			backurl=request.getContextPath()+"/weixin/product/product.jsp";
-		userVO.setUserName(userVO.getMobile());
-		userVO.setName(userVO.getMobile());
-		userVO.setEnabled(1);
-		logger.info("用户" + userVO.getUserName() + "注册开始");
-		BaseWebResult webResult = new BaseWebResult();
-		if(!rpassword.equals(userVO.getPassword()))
-		{
-			webResult.setSuccess(false);
-			webResult.setMsg("两次密码输入不一致!");			
-		}
-		else if(userServiceImpl.checkWithTel(userVO.getMobile()) > 0)
-		{
-			webResult.setSuccess(false);
-			webResult.setMsg("此手机号码已被注册!");
-		} else if("".equals(verifyCode) || !verifyCode.equals(session.getAttribute(userVO.getMobile()))){
-			webResult.setSuccess(false);
-			webResult.setMsg("手机验证码输入有误!");
-		}else {
-			userServiceImpl.register(userVO);
-			logger.info("用户" + userVO.getUserName() + "注册成功");
-			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
-			webResult.setSuccess(true);
-			webResult.setResult(userVO);
-			webResult.setUrl(backurl);
-		}
-		
-		return webResult;
-	}	
+	
 	
 	@RequestMapping(value="/authentication/login", method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult login(String username,String password,String backurl, HttpSession session,HttpServletRequest request){
@@ -196,7 +163,7 @@ public class AuthenticationController {
 			webResult.setSuccess(false);
 		}
 		
-		webResult.setResult(userVO);	
+		//webResult.setResult(userVO);	
 		
 		return webResult;
 	}	
@@ -235,30 +202,7 @@ public class AuthenticationController {
 		}
 		return webResult;
 	}
-	
-	//获取短信验证码
-	@RequestMapping(value="/weixin/sendsms")
-	public @ResponseBody BaseWebResult weixinsendsms(String mobile, HttpSession session,HttpServletRequest request){
-		BaseWebResult webResult = new BaseWebResult();
-		Calendar cal = Calendar.getInstance();
-		TimeZone zone = TimeZone.getTimeZone("GMT+8");
-		cal.setTimeZone(zone);
-		Date time = cal.getTime();
-		if(session.getAttribute("sendsms") == null || time.getTime() - ((Date)session.getAttribute("sendsms")).getTime() > 60*1000 )
-		{
-			session.setAttribute("sendsms",time);
-			webResult.setSuccess(true);
-			String smsCode = smsServiceImpl.getSMSCode(mobile);
-			session.setAttribute(mobile, smsCode);
-		}
-		else
-		{
-			webResult.setSuccess(false);
-			webResult.setMsg("请等待60秒后再获取验证码！");
-		}
-		
-		return webResult;
-	}	
+
 	
 	//检查图像验证码
 	@RequestMapping(value="/authentication/randcode")

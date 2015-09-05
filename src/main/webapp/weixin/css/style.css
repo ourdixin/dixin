@@ -31,7 +31,7 @@ textarea, select, input[type="text"], input[type="password"] {background:#fff;fo
 .zy_yq p a{display:block;padding-top:8px;}
 
 .zy ul{padding:20px 0px 0px 20px;}
-.zy ul li{float:left;font-size:21px;color:#888888;padding:0px 30px;background:url(../images/icon.png) no-repeat;line-height:30px;margin:4px 0px;}
+.zy ul li{float:left;font-size:21px;color:#888888;padding:0px 15px 0px 30px;background:url(../images/icon.png) no-repeat;line-height:30px;margin:4px 0px;}
 .zy ul li span{padding:0px 2px;color:#000000;}
 .zy ul li.zy_qx{background-position:0px 3px;}
 .zy ul li.zy_qg{background-position:0px -72px;}

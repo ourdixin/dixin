@@ -225,7 +225,35 @@
 	    left join area  on u.area_id = area.id 
 	    WHERE u.id = #{userId}
 	</select>
-  	
+	
+	<!-- 通过手机 查找用户 -->
+	<select id="findUserByMobile" parameterType="String" resultMap="userResult" useCache="false">
+		SELECT 
+		u.id uid,
+	    u.user_name userName,
+	    u.password password,
+	    u.user_type userType,
+	    u.name uname,
+	    u.mobile mobile,
+	    u.address address,
+	    u.zip_code zipCode,
+	    u.qq qq,
+	    u.account account,
+	    financialInstitution.id id,
+	    financialInstitution.name name,
+	    financialInstitution.tel tel,
+	    area.id aid,
+	    area.name aname,
+	    u.start_date startDate,
+	    u.reg_date regDate,
+	    u.term term,
+	    u.is_risk_tested isRiskTested
+		FROM
+	    user u left join financial_institution financialInstitution on u.institution_id = financialInstitution.id 
+	    left join area  on u.area_id = area.id 
+	    WHERE u.mobile = #{mobile}
+	</select>
+	  	
   	<!-- 更改用户密码 -->
   	<update id="updatePassword" parameterType="map">
   			UPDATE user SET password = PASSWORD(#{password}) WHERE id=#{user_id}

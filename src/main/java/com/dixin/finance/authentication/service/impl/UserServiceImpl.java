@@ -88,6 +88,12 @@ public class UserServiceImpl implements IUserService {
 		userMapper.updateUser(userVO);
 	}
 
+	@Override
+	public UserVO findUserByMobile(String mobile) {
+		return userMapper.findUserByMobile(mobile);
+	}
+	
+	
 	public UserMapper getUserMapper() {
 		return userMapper;
 	}
@@ -95,4 +101,5 @@ public class UserServiceImpl implements IUserService {
 	public void setUserMapper(UserMapper userMapper) {
 		this.userMapper = userMapper;
 	}
+
 }

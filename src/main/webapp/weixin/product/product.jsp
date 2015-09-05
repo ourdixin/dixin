@@ -48,11 +48,11 @@
 			</div>
 			<ul>
 				<li class="zy_qx">期限<span>
-								<c:if test="${product.profitId==42}">
-									${product.term}
+								<c:if test="${firstProduct.profitId==42}">
+									${firstProduct.term}
 									<c:choose>
-										<c:when test="${product.termUnit==63}">年</c:when>
-										<c:when test="${product.termUnit==64}">月</c:when>
+										<c:when test="${firstProduct.termUnit==63}">年</c:when>
+										<c:when test="${firstProduct.termUnit==64}">月</c:when>
 										<c:otherwise>天</c:otherwise>
 									</c:choose>
 								</c:if>
@@ -60,10 +60,10 @@
 		    	<li class="zy_qg"><span>
 							<c:choose>
 								   <c:when test="${firstProduct.minAmount>10000}">  
-								         ${firstProduct.minAmount/10000} 万元      
+								         <fmt:formatNumber value="${firstProduct.minAmount/10000}"  minFractionDigits="0"/>万元      
 								   </c:when>
 								   <c:otherwise> 
-								  	  ${firstProduct.minAmount} 元
+								  	  <fmt:formatNumber value="${firstProduct.minAmount}"  minFractionDigits="0"/>元
 								   </c:otherwise>
 							 </c:choose>
 							 </span>起购</li>
@@ -92,12 +92,12 @@
 						<li>
 							<c:choose>
 							    <c:when test="${product.minAmount>10000}">  
-								         ${product.minAmount/10000} 万元      
+								    <fmt:formatNumber value="${product.minAmount/10000}"  minFractionDigits="0"/>万元 
 								</c:when>
 							   <c:otherwise> 
-							    ${product.minAmount} 元
+							   	<fmt:formatNumber value="${product.minAmount}"  minFractionDigits="0"/>元
 							   </c:otherwise>
-							 </c:choose>
+							 </c:choose>起购
 						</li>
 						<li><fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${product.releaseDate}"/>发行</li>
 					</ul>
@@ -105,12 +105,12 @@
 			</div>
 		</c:forEach>
 	</div>
-	<div class="nav">
+	<div class="nav" style="position:fixed; bottom:0;width:100%">
 		<ul>
-			<li><a href="#">待发行</a></li>
-			<li><a href="#">正发行</a></li>
-			<li><a href="#">已发行</a></li>
-			<li><a href="#">登 录</a></li>
+			<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=1">待发行</a></li>
+			<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=2">正发行</a></li>
+			<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=3">已发行</a></li>
+			<li><a href="<%=request.getContextPath() %>/weixin/login.jsp">登 录</a></li>
 		</ul>
 	</div>
 	 </div>

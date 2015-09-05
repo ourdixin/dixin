@@ -47,6 +47,12 @@ public interface UserMapper {
 	 * @return
 	 */
 	UserVO findUserById(int userId);
+	/**
+	 * 通过用户手机号查询用户信息
+	 * @param mobile
+	 * @return
+	 */
+	UserVO findUserByMobile(String mobile);	
 	
 	/**
 	 * *@param map

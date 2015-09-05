@@ -2,20 +2,21 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>产品详情</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="email=no">
 <meta name="format-detection" content="address=no">
 <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
-<style type="text/css" id="_zoom">.zoom {zoom:1.0625;-webkit-text-size-adjust:auto!important;}</style><script>
+<link href="<%=request.getContextPath() %>/weixin/css/style.css" rel="stylesheet" type="text/css">
+<style type="text/css" id="_zoom">.zoom {zoom:1.0625;-webkit-text-size-adjust:auto!important;}</style>
+<script>
   var _w,_zoom,_hd,_orientationChange,_doc=document,__style=_doc.getElementById("_zoom");__style||(_hd=_doc.getElementsByTagName("head")[0],__style=_doc.createElement("style"),_hd.appendCHild(_style)),_orientationChange=function(){_w=_doc.documentElement.clientWidth||_doc.body.clientWidth,_zoom=_w/640,__style.innerHTML=".zoom {zoom:"+_zoom+";-webkit-text-size-adjust:auto!important;}"},_orientationChange(),window.addEventListener("resize",_orientationChange,!1);
 </script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link href="<%=request.getContextPath() %>/weixin/css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/weixin/js/product.js"></script>
@@ -24,6 +25,8 @@
 </head>
 
 <body>
+<div class="act_wrapper zoom ">
+  <div class="act_content">
 <div class="head">产品详情</div>
 <div class="center">
   <span class="hb" style="margin-top:20px;"></span>
@@ -47,10 +50,10 @@
          <li>
 					<c:choose>
 						<c:when test="${product.minAmount>10000}">  
-							${product.minAmount/10000} 万元      
+							<fmt:formatNumber value="${product.minAmount/10000}"  minFractionDigits="0"/>万元      
 						</c:when>
 						<c:otherwise> 
-							${product.minAmount} 元
+							<fmt:formatNumber value="${product.minAmount}"  minFractionDigits="0"/>元
 						</c:otherwise>
 					</c:choose>起购
 		  </li>
@@ -62,7 +65,7 @@
   <div class="listable">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <th width="100">发行截止</th>
+        <th width="120">发行截止</th>
         <td><fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${product.endDate}"/></td>
       </tr>
       <tr>
@@ -73,19 +76,19 @@
         <th>投资起点</th>
         <td><c:choose>
 				<c:when test="${product.minAmount>10000}">  
-					${product.minAmount/10000} 万元      
+					<fmt:formatNumber value="${product.minAmount/10000}"  minFractionDigits="0"/>万元      
 				</c:when>
 				<c:otherwise> 
-					${product.minAmount} 元
+					<fmt:formatNumber value="${product.minAmount}"  minFractionDigits="0"/>元
 				</c:otherwise>
 			</c:choose>
 			+
 			<c:choose>
 				<c:when test="${product.appendAmount>10000}">  
-					${product.appendAmount/10000} 万元      
+					<fmt:formatNumber value="${product.appendAmount/10000}"  minFractionDigits="0"/>万元      
 				</c:when>
 				<c:otherwise> 
-					${product.appendAmount} 元
+					<fmt:formatNumber value="${product.appendAmount}"  minFractionDigits="0"/>元
 				</c:otherwise>
 			</c:choose>
 			整数倍
@@ -110,13 +113,16 @@
   </div>
   
 </div>
-<div class="nav">
+<div class="nav" style="position:fixed; bottom:0;width:100%">
   <ul>
-    <li><a href="#">待发行</a></li>
-    <li><a href="#">正发行</a></li>
-    <li><a href="#">已发行</a></li>
-    <li><a href="#">登 录</a></li>
+	<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=1">待发行</a></li>
+	<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=2">正发行</a></li>
+	<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=3">已发行</a></li>
+	<li><a href="<%=request.getContextPath() %>/weixin/login.jsp">登 录</a></li>
   </ul>
+</div>
+
+</div>
 </div>
 </body>
 </html>

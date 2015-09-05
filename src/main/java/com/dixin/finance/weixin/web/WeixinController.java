@@ -3,11 +3,14 @@ package com.dixin.finance.weixin.web;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletInputStream;
@@ -20,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dixin.finance.authentication.service.IAreaService;
@@ -28,6 +32,7 @@ import com.dixin.finance.authentication.service.IFinService;
 import com.dixin.finance.authentication.service.IFmrService;
 import com.dixin.finance.authentication.service.ISmsService;
 import com.dixin.finance.authentication.service.IUserService;
+import com.dixin.finance.authentication.vo.UserInfo;
 import com.dixin.finance.authentication.vo.UserVO;
 import com.dixin.finance.product.service.IAppointmentService;
 import com.dixin.finance.product.service.IMessageService;
@@ -379,4 +384,111 @@ public class WeixinController {
 		return "weixin/product/appointmentDetail";
 	}
 	
+	
+	//获取短信验证码
+	@RequestMapping(value="/weixin/sendsms")
+	public @ResponseBody BaseWebResult weixinsendsms(String mobile, HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		Calendar cal = Calendar.getInstance();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		cal.setTimeZone(zone);
+		Date time = cal.getTime();
+		if(session.getAttribute("sendsms") == null || time.getTime() - ((Date)session.getAttribute("sendsms")).getTime() > 60*1000 )
+		{
+			session.setAttribute("sendsms",time);
+			webResult.setSuccess(true);
+			String smsCode = smsServiceImpl.getSMSCode(mobile);
+			session.setAttribute(mobile, smsCode);
+		}
+		else
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("请等待60秒后再获取验证码！");
+		}
+		
+		return webResult;
+	}		
+
+
+	@RequestMapping(value="/weixin/user", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult registerFromWeixin(UserVO userVO, String rpassword,String verifyCode,String backurl, HttpSession session,HttpServletRequest request){
+		
+		if(backurl == null || backurl=="")
+			backurl=request.getContextPath()+"/weixin/product/productlist?type=1";
+		userVO.setUserName(userVO.getMobile());
+		userVO.setName(userVO.getMobile());
+		userVO.setEnabled(1);
+		logger.info("用户" + userVO.getUserName() + "注册开始");
+		BaseWebResult webResult = new BaseWebResult();
+		if(!rpassword.equals(userVO.getPassword()))
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("两次密码输入不一致!");			
+		}
+		else if(userServiceImpl.checkWithTel(userVO.getMobile()) > 0)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("此手机号码已被注册!");
+		} else if("".equals(verifyCode) || !verifyCode.equals(session.getAttribute(userVO.getMobile()))){
+			webResult.setSuccess(false);
+			webResult.setMsg("手机验证码输入有误!");
+		}else {
+			userServiceImpl.register(userVO);
+			logger.info("用户" + userVO.getUserName() + "注册成功");
+			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
+			webResult.setSuccess(true);
+			webResult.setResult(userVO);
+			webResult.setUrl(backurl);
+		}
+		
+		return webResult;
+	}	
+	
+	@RequestMapping(value="/weixin/login", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult login(Integer type,String mobile,String password,String verifyCode,String backurl, HttpSession session,HttpServletRequest request){
+		
+		BaseWebResult webResult = new BaseWebResult();
+		logger.info("用户" + mobile + "登陆开始");
+		UserVO userVO = null;
+		String msg = "";
+		if(type == 0)
+		{
+			userVO = userServiceImpl.login(mobile,password);
+			if(userVO == null)
+			{
+				msg= "用户" + mobile + "不存在或密码错误！";
+			}
+		}
+		else
+		{
+			if(verifyCode.equals(session.getAttribute(mobile))){
+				userVO = userServiceImpl.findUserByMobile(mobile);
+			}
+
+			if(userVO == null)
+			{
+				msg="用户" + mobile + "不存在或验证码输入有误!";			
+			}
+		}
+		
+		if(userVO != null)
+		{
+			UserInfo userInfo = new UserInfo(userVO);
+			logger.info("用户" + mobile + "登录成功");
+			webResult.setSuccess(true);
+			webResult.setResult(userInfo);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/weixin/product/productlist?type=1";
+			webResult.setUrl(backurl);
+			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
+		}
+		else
+		{
+			logger.info(msg);
+			webResult.setMsg(msg);
+			webResult.setSuccess(false);
+		}
+		
+		return webResult;
+	}		
 }

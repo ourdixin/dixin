@@ -77,12 +77,12 @@
     <p>&nbsp;</p>
   </div>
 </div>
-<div class="nav">
+<div class="nav" style="position:fixed; bottom:0;width:100%">
   <ul>
-    <li><a href="#">待发行</a></li>
-    <li><a href="#">正发行</a></li>
-    <li><a href="#">已发行</a></li>
-    <li><a href="#">登 录</a></li>
+	<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=1">待发行</a></li>
+	<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=2">正发行</a></li>
+	<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=3">已发行</a></li>
+	<li><a href="<%=request.getContextPath() %>/weixin/login.jsp">登 录</a></li>
   </ul>
 </div>
 </div>

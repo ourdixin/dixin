@@ -31,7 +31,14 @@ public interface IUserService {
 	 * @return
 	 */
 	UserVO findUserById(int user_id);
-	
+
+	/**
+	 * 通过用户id查找用户信息
+	 * @param id
+	 * @return
+	 */
+	UserVO findUserByMobile(String mobile);
+		
 	/**
 	 * 查找所有用户
 	 * @return

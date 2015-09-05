@@ -43,9 +43,17 @@
         	待定
         </c:if>
         </strong></td>
-        <td width="0%" align="center" bgcolor="#FFFFFF">查看次数</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.viewNum}</strong></td>
+
         <c:if test="${product.profitId == 42}">
+        <td width="0%" align="center" bgcolor="#FFFFFF">起息日</td>
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>        
+        <c:if test="${product.valueDate < product.invalidDate}">
+        	<fmt:formatDate value="${product.valueDate}" pattern="yyyy年MM月dd日  HH:mm"/>      
+        </c:if>
+        <c:if test="${product.valueDate >= product.invalidDate}">
+        	待定
+        </c:if>
+        </strong></td>        
         <td width="0%" align="center" bgcolor="#FFFFFF">产品期限</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
         <c:if test="${product.term > 0}">
@@ -76,7 +84,16 @@
         </c:if> 
         </strong></td>
         </c:if>
-        <c:if test="${product.profitId == 43}">
+        <c:if test="${product.profitId == 43}">    
+        <td width="0%" align="center" bgcolor="#FFFFFF">成立日</td>
+        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>        
+        <c:if test="${product.valueDate < product.invalidDate}">
+        	<fmt:formatDate value="${product.valueDate}" pattern="yyyy年MM月dd日  HH:mm"/>      
+        </c:if>
+        <c:if test="${product.valueDate >= product.invalidDate}">
+        	待定
+        </c:if>
+        </strong></td> 
 			<td width="0%" align="center" bgcolor="#FFFFFF">封闭期限</td>
         	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>
         		${product.closeTerm}
@@ -132,7 +149,7 @@
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.directionInfo}</strong></td>
         <c:if test="${product.profitId == 42}">
         <td width="0%" height="50" align="center" bgcolor="#FFFFFF">预期年化收益率</td>
-        <td colspan="3" align="center" bgcolor="#FFFFFF">
+        <td align="center" bgcolor="#FFFFFF">
         <div>
         
         		<c:if test="${0 != product.partA and 0 == product.partB}">
@@ -183,6 +200,8 @@
           	 </c:if>          	 
           	 </div>
           </td>
+          <td width="0%" align="center" bgcolor="#FFFFFF">查看次数</td>
+      	  <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.viewNum}</strong></td>
           </c:if>
           <c:if test="${product.profitId == 43}">
 			<td width="0%" align="center" bgcolor="#FFFFFF">业绩报酬</td>
@@ -203,6 +222,7 @@
         <td width="0%" align="center" bgcolor="#FFFFFF">退出费用</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.sellFee}</strong></td>
       </c:if>  
+
     </tbody>
   </table>
   <div id="productInfo" >
