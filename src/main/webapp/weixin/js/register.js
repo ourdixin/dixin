@@ -104,6 +104,6 @@ $(document).ready(function(){
              return;
          }         
 		
-		$.post(HOST_PATH+"/weixin/user", $("#regForm").serialize(), success);
+		$.post(HOST_PATH+"/weixin/register", $("#regForm").serialize(), success);
 	});
 });

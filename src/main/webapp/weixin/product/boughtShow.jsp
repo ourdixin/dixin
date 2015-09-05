@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>我的预约</title>
+<title>我购买的产品</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
@@ -21,7 +21,7 @@
 <link href="<%=request.getContextPath() %>/weixin/css/style.css"rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/weixin/js/appointment.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/weixin/js/bought.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
 
@@ -29,17 +29,28 @@
 
 <div class="act_wrapper zoom ">
   <div class="act_content">
-<div class="head">我的预约</div>
- <c:forEach var="appointment" items="${appointments}">
+<div class="head">我购买的产品</div>
+ <c:forEach var="purchase" items="${purchaseList}">
 <div class="cplb">
-	<h2>${appointment.product.name}</h2>
-  <div class="linkk" id=${appointment.id}>
-  	
+  <h2>${purchase.product.name}</h2>
+  <div class="linkk" id=${purchase.id}>
+    <h1>${purchase.pnl}</h1>
+    <p>利息收益(元)</p>
   </div>
   <div class="cplb_zy">
     <ul>
-      <li class="cplb_red">预约金额:${appointment.amount}万元</li>
-      <li><fmt:formatDate pattern="yyyy-MM-dd" value="${appointment.reserve_date}"/> 预约</li>
+      <li class="cplb_red">购买
+		<c:choose>
+			<c:when test="${purchase.amount>10000}">  
+				<fmt:formatNumber value="${purchase.amount/10000}"  minFractionDigits="2"/>万元      
+			</c:when>
+			<c:otherwise> 
+				<fmt:formatNumber value="${purchase.amount}"  minFractionDigits="2"/>元
+			</c:otherwise>
+		</c:choose>
+	  </li>
+      <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.payDate}"/> 派息</li>
+      <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.dueDate}"/> 到期</li>
     </ul>
   </div>
 </div>

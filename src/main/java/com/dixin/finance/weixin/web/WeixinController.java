@@ -212,7 +212,6 @@ public class WeixinController {
 	        logger.info(xmlMsg.toString());
 	        
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
 		
@@ -268,7 +267,6 @@ public class WeixinController {
 			md = MessageDigest.getInstance("SHA-1");
 			digest = md.digest(s.getBytes("utf-8"));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			logger.info("check_signature Exception:" + e.toString());
 		}
 		String mySign = bytesToHexString(digest);
@@ -294,10 +292,14 @@ public class WeixinController {
 		
 		List<ProductVO> products = productService.queryProductList(parameter);
 		logger.info("queryProductList 查询产品列表完成");
-		model.addAttribute("firstProduct", products.get(0));//爆款
-		products.remove(0);
+		if(products.size() > 0)
+		{
+			model.addAttribute("firstProduct", products.get(0));//爆款
+			products.remove(0);
+		}
+
 		model.addAttribute("products", products);
-		model.addAttribute("state", state);
+		model.addAttribute("state", type);
 		return "weixin/product/product";
 	}
 	
@@ -306,13 +308,13 @@ public class WeixinController {
 	/***********************************产品详情**********************************************/
 	@RequestMapping(value="weixin/product/productdetail")
 	public  String productDetail(String productid,Model model, HttpSession session,HttpServletRequest request,HttpServletResponse response){
-		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		/*
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
-			return webResult;
-		}	*/	
+			return "weixin/login";
+		}
+		*/
 		ProductVO product = productService.queryProduct(Integer.parseInt(productid));
 		logger.info("queryProductList 查询产品列表完成");
 		model.addAttribute("product", product);
@@ -349,41 +351,64 @@ public class WeixinController {
 		return webResult;
 	}
 	
-	/***********************************查看购买产品列表**********************************************/
+	/***********************************查看预约产品列表**********************************************/
 	@RequestMapping(value="weixin/product/appointmentlist")
 	public String appointmentShow(HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
-		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
-			return webResult;
-		}	*/		
-		String userid = "2";
-		List<AppointmentVO> appointments = appointmentService.queryUserAppointmentList(Integer.parseInt(userid));
+			return "weixin/login";
+		}
+		
+		Integer userid = userVO.getId();
+		List<AppointmentVO> appointments = appointmentService.queryUserAppointmentList(userid);
 		model.addAttribute("appointments", appointments);
 		return "weixin/product/appointmentShow";
 	}
-	
-	/***********************************查看购买产品详细信息**********************************************/
-	@RequestMapping(value="weixin/product/appointmentdetail")
-	public String appointmentDetail(int appointmentId,HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
-		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+
+	/***********************************查看购买产品列表**********************************************/
+	@RequestMapping(value="weixin/product/boughtlist")
+	public String boughtShow(HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			webResult.setSuccess(false);
-			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
-			return webResult;
-		}	*/		
-		int userid = 2;
-		Map<String,Integer> map = new HashMap<String,Integer>();
-		map.put("id", appointmentId);
-		map.put("userId", userid);
-		AppointmentVO appointment = appointmentService.queryUserAppointment(map);
-		model.addAttribute("appointment", appointment);
-		return "weixin/product/appointmentDetail";
+			return "weixin/login";
+		}
+		
+		Integer userid = userVO.getId();
+		List<PurchaseVO> purchaseList = PurchaseServiceImpl.queryPurchaseList(userid, -1, -1, -1);
+		model.addAttribute("purchaseList", purchaseList);
+		return "weixin/product/boughtShow";
+	}	
+	
+	/***********************************查看购买产品详细信息**********************************************/
+	@RequestMapping(value="weixin/product/boughtdetail")
+	public String boughtDetail(int id,HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return request.getContextPath()+"/weixin/login";
+		}		
+
+		PurchaseVO purchase = PurchaseServiceImpl.queryPurchase(id);
+		model.addAttribute("purchase", purchase);
+		return "weixin/product/boughtdetail";
 	}
 	
+	/***********************************对账单列表**********************************************/
+	@RequestMapping(value="weixin/product/orderlist")
+	public String orderlist(HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			return "weixin/login";
+		}
+		
+		Integer userid = userVO.getId();
+		List<PurchaseVO> purchaseList = PurchaseServiceImpl.queryPurchaseList(userid, -1, -1, -1);
+		model.addAttribute("purchaseList", purchaseList);
+		return "weixin/product/orderlist";
+	}
 	
 	//获取短信验证码
 	@RequestMapping(value="/weixin/sendsms")
@@ -410,11 +435,11 @@ public class WeixinController {
 	}		
 
 
-	@RequestMapping(value="/weixin/user", method=RequestMethod.POST)
+	@RequestMapping(value="/weixin/register", method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult registerFromWeixin(UserVO userVO, String rpassword,String verifyCode,String backurl, HttpSession session,HttpServletRequest request){
 		
 		if(backurl == null || backurl=="")
-			backurl=request.getContextPath()+"/weixin/product/productlist?type=1";
+			backurl=request.getContextPath()+"/weixin/authentication/user.jsp";
 		userVO.setUserName(userVO.getMobile());
 		userVO.setName(userVO.getMobile());
 		userVO.setEnabled(1);
@@ -478,7 +503,7 @@ public class WeixinController {
 			webResult.setSuccess(true);
 			webResult.setResult(userInfo);
 			if(backurl == null || backurl=="")
-				backurl=request.getContextPath()+"/weixin/product/productlist?type=1";
+				backurl=request.getContextPath()+"/weixin/authentication/user.jsp";
 			webResult.setUrl(backurl);
 			session.setAttribute(WebConstants.SESSION_KEY_USER, userVO);
 		}
