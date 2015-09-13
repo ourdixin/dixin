@@ -40,7 +40,7 @@
 				<form action="<%=request.getContextPath() %>/weixin/product/appointment" method="post" id="appointForm">
 					<input name="productId" id="productId" value="${param.productid}" type="hidden" />
 					<tr>
-						<th width="100">预约产品</th>
+						<th width="120">预约产品</th>
 						<td>第一创业证券·稳定收益第6期</td>
 					</tr>
 					<tr>

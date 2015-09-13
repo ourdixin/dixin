@@ -32,7 +32,7 @@ textarea, select, input[type="text"], input[type="password"] {background:#fff;fo
 
 .zy ul{padding:20px 0px 0px 20px;}
 .zy ul li{float:left;font-size:21px;color:#888888;padding:0px 15px 0px 30px;background:url(../images/icon.png) no-repeat;line-height:30px;margin:4px 0px;}
-.zy ul li span{padding:0px 2px;color:#000000;}
+.zy ul li span{padding:0px 0px;color:#000000;}
 .zy ul li.zy_qx{background-position:0px 3px;}
 .zy ul li.zy_qg{background-position:0px -72px;}
 .zy ul li.zy_fx{background-position:0px -152px;}
@@ -42,7 +42,7 @@ textarea, select, input[type="text"], input[type="password"] {background:#fff;fo
 .linkk{background:url(../images/jt.png) no-repeat right center;line-height:1.5em;font-size:28px; cursor:pointer;}
 .linkk h1{font-size:66px;color:#c91e22;line-height:1.2em;}
 .cplb_zy{height:32px;margin:15px 0px; clear:both;}
-.cplb_zy ul li{float:left;margin-right:20px;display:block; background:#999999;color:#FFF;padding:0px 20px;line-height:32px;font-size:21px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
+.cplb_zy ul li{float:left;margin-right:10px;display:block; background:#999999;color:#FFF;padding:0px 6px;line-height:32px;font-size:21px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
 .cplb_zy ul li.cplb_red{background:#c91e22;}
 
 .nav{height:60px;line-height:60px;overflow:hidden; background:#434343;}
