@@ -1000,7 +1000,7 @@ public class ProductVO extends BaseVO {
 					float value = Float.valueOf(getFloatFromString(strValue));
 					if(value < 1)
 						value *= 100;
-					setRateC(Float.valueOf(getFloatFromString(strValue)));
+					setRateC(value);
 				}
 			break;	
 			case 9:
@@ -1009,7 +1009,7 @@ public class ProductVO extends BaseVO {
 					float value = Float.valueOf(getFloatFromString(strValue));
 					if(value < 1)
 						value *= 100;
-					setRateD(Float.valueOf(getFloatFromString(strValue)));
+					setRateD(value);
 				}
 			break;				
 			case 10:

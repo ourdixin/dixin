@@ -69,11 +69,11 @@
 								<td class="t">利益分配方式：</td>
 								<td><select class="itstyle" name="payType" id="payType">
 										<option value="66" selected>自然季度付息</option>
-										<option value="67">自然半年度付息</option>
-										<option value="68">自然年度付息</option>
+										<option value="67">自然半年付息</option>
+										<option value="68">自然年付息</option>
 										<option value="69">季度付息</option>
-										<option value="70">半年度付息</option>
-										<option value="71">年度付息</option>
+										<option value="70">半年付息</option>
+										<option value="71">年付息</option>
 										<option value="72">到期还本付息</option>
 										<option value="73">其他付息方式</option>
 								</select> <input id="payTypeInfo" name="payTypeInfo" value="" type="text"
@@ -88,14 +88,10 @@
 								<td><select class="itstyle"
 									name="direction" id="direction">
 										<option value="49" selected>金融市场</option>
-										<option value="50">公益</option>
-										<option value="51">金融机构</option>
 										<option value="52">房地产</option>
 										<option value="53">工商企业</option>
 										<option value="54">基础设施</option>
-										<option value="55">实业企业</option>
-										<option value="56">保障房</option>
-										<option value="57">酒店类</option>
+										<option value="57">资金池</option>
 										<option value="58">其它</option>
 								</select></td>
 							</tr>

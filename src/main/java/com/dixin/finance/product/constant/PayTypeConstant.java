@@ -3,7 +3,7 @@ package com.dixin.finance.product.constant;
 
 public interface PayTypeConstant {
 	
-	final String[] PayTypeString = new String[]{"自然季度付息","自然半年度付息","自然年度付息","季度付息","半年度付息","年度付息","到期还本付息","其他付息方式"};
+	final String[] PayTypeString = new String[]{"自然季度付息","自然半年付息","自然年付息","季度付息","半年付息","年付息","到期还本付息","其他付息方式"};
 	/**
 	 * 债券
 	 */

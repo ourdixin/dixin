@@ -76,11 +76,11 @@
 								<td class="t">利益分配方式：</td>
 								<td><select class="itstyle" name="payType" id="payType">
 										<option value="66" <c:if test="${product.payType==66}">selected</c:if> >自然季度付息</option>
-										<option value="67" <c:if test="${product.payType==67}">selected</c:if> >自然半年度付息</option>
-										<option value="68" <c:if test="${product.payType==68}">selected</c:if> >自然年度付息</option>
+										<option value="67" <c:if test="${product.payType==67}">selected</c:if> >自然半年付息</option>
+										<option value="68" <c:if test="${product.payType==68}">selected</c:if> >自然年付息</option>
 										<option value="69" <c:if test="${product.payType==69}">selected</c:if> >季度付息</option>
-										<option value="70" <c:if test="${product.payType==70}">selected</c:if> >半年度付息</option>
-										<option value="71" <c:if test="${product.payType==71}">selected</c:if> >年度付息</option>
+										<option value="70" <c:if test="${product.payType==70}">selected</c:if> >半年付息</option>
+										<option value="71" <c:if test="${product.payType==71}">selected</c:if> >年付息</option>
 										<option value="72" <c:if test="${product.payType==72}">selected</c:if> >到期还本付息</option>
 										<option value="73" <c:if test="${product.payType==73}">selected</c:if> >其他付息方式</option>
 								</select> <input id="payTypeInfo" name="payTypeInfo" value="${product.payTypeInfo}" type="text"
@@ -95,14 +95,10 @@
 								<td><select class="itstyle"
 									name="direction" id="direction">
 										<option value="49"  <c:if test="${product.direction==49}">selected</c:if> >金融市场</option>
-										<option value="50"  <c:if test="${product.direction==50}">selected</c:if> >公益</option>
-										<option value="51"  <c:if test="${product.direction==51}">selected</c:if> >金融机构</option>
 										<option value="52"  <c:if test="${product.direction==52}">selected</c:if> >房地产</option>
 										<option value="53"  <c:if test="${product.direction==53}">selected</c:if> >工商企业</option>
 										<option value="54"  <c:if test="${product.direction==54}">selected</c:if> >基础设施</option>
-										<option value="55"  <c:if test="${product.direction==55}">selected</c:if> >实业企业</option>
-										<option value="56"  <c:if test="${product.direction==56}">selected</c:if> >保障房</option>
-										<option value="57"  <c:if test="${product.direction==57}">selected</c:if> >酒店类</option>
+										<option value="57"  <c:if test="${product.direction==57}">selected</c:if> >资金池</option>
 										<option value="58"  <c:if test="${product.direction==58}">selected</c:if> >其它</option>
 								</select></td>
 							</tr>

@@ -95,11 +95,11 @@
 								<td>
 								<c:choose>
 									<c:when test="${fixProduct.product.payType==66}">自然季度付息</c:when>
-									<c:when test="${fixProduct.product.payType==67}">自然半年度付息</c:when>
-									<c:when test="${fixProduct.product.payType==68}">自然年度付息</c:when>
+									<c:when test="${fixProduct.product.payType==67}">自然半年付息</c:when>
+									<c:when test="${fixProduct.product.payType==68}">自然年付息</c:when>
 									<c:when test="${fixProduct.product.payType==69}">季度付息</c:when>
-									<c:when test="${fixProduct.product.payType==70}">半年度付息</c:when>
-									<c:when test="${fixProduct.product.payType==71}">年度付息</c:when>
+									<c:when test="${fixProduct.product.payType==70}">半年付息</c:when>
+									<c:when test="${fixProduct.product.payType==71}">年付息</c:when>
 									<c:when test="${fixProduct.product.payType==72}">到期还本付息</c:when>
 									<c:when test="${fixProduct.product.payType==73}">其他付息方式</c:when>
 								</c:choose>
@@ -145,11 +145,11 @@
 								<td>
 								<c:choose>
 									<c:when test="${proProduct.product.payType==66}">自然季度付息</c:when>
-									<c:when test="${proProduct.product.payType==67}">自然半年度付息</c:when>
-									<c:when test="${proProduct.product.payType==68}">自然年度付息</c:when>
+									<c:when test="${proProduct.product.payType==67}">自然半年付息</c:when>
+									<c:when test="${proProduct.product.payType==68}">自然年付息</c:when>
 									<c:when test="${proProduct.product.payType==69}">季度付息</c:when>
-									<c:when test="${proProduct.product.payType==70}">半年度付息</c:when>
-									<c:when test="${proProduct.product.payType==71}">年度付息</c:when>
+									<c:when test="${proProduct.product.payType==70}">半年付息</c:when>
+									<c:when test="${proProduct.product.payType==71}">年付息</c:when>
 									<c:when test="${proProduct.product.payType==72}">到期还本付息</c:when>
 									<c:when test="${proProduct.product.payType==73}">其他付息方式</c:when>
 								</c:choose>

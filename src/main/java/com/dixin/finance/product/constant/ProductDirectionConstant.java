@@ -32,9 +32,14 @@ public interface ProductDirectionConstant {
 			Id = id;
 		}
 	};
-	
+	/*
 	final DirectionTypeItem[] DirectionTypeString = new DirectionTypeItem[]{
 			new DirectionTypeItem("金融市场",49),new DirectionTypeItem("公益",50),new DirectionTypeItem("金融机构",51),new DirectionTypeItem("房地产",52),new DirectionTypeItem("工商企业",53),new DirectionTypeItem("基础设施",54),new DirectionTypeItem("实业企业",55),new DirectionTypeItem("保障房",56),new DirectionTypeItem("酒店类",57),new DirectionTypeItem("其它",58)
+			,new DirectionTypeItem("货币型",77),new DirectionTypeItem("债券型",78),new DirectionTypeItem("股票型",79),new DirectionTypeItem("私募股权",80),new DirectionTypeItem("定向增发",81),new DirectionTypeItem("海外市场",82),new DirectionTypeItem("量化对冲",83),new DirectionTypeItem("指数型",84),new DirectionTypeItem("新三版",85),new DirectionTypeItem("结构型",86),new DirectionTypeItem("混合型",87),new DirectionTypeItem("FOF",88)
+			};
+	*/
+	final DirectionTypeItem[] DirectionTypeString = new DirectionTypeItem[]{
+			new DirectionTypeItem("金融市场",49),new DirectionTypeItem("房地产",52),new DirectionTypeItem("工商企业",53),new DirectionTypeItem("基础设施",54),new DirectionTypeItem("资金池",57),new DirectionTypeItem("其它",58)
 			,new DirectionTypeItem("货币型",77),new DirectionTypeItem("债券型",78),new DirectionTypeItem("股票型",79),new DirectionTypeItem("私募股权",80),new DirectionTypeItem("定向增发",81),new DirectionTypeItem("海外市场",82),new DirectionTypeItem("量化对冲",83),new DirectionTypeItem("指数型",84),new DirectionTypeItem("新三版",85),new DirectionTypeItem("结构型",86),new DirectionTypeItem("混合型",87),new DirectionTypeItem("FOF",88)
 			};
 	/**
