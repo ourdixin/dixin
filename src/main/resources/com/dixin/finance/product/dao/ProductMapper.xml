@@ -93,9 +93,9 @@
                and date(release_date) > date(current_timestamp())
             ]]>  
         </if>    
- 		<if test="state == 64">  <!-- 正发行，当天发行的产品 -->
+ 		<if test="state == 64">  <!-- 正发行，当天发行的产品,包含已发行 -->
             <![CDATA[  
-               and curdate() = date(release_date) and current_timestamp() <= end_date
+               and release_date < '2100-01-01' and curdate() >= date(release_date) and current_timestamp() <= end_date
             ]]>  
         </if>         
   		<if test="state == 65">  <!-- 已发行 -->

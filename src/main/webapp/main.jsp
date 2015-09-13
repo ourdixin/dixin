@@ -156,7 +156,7 @@ var HOST_PATH = "<%=request.getContextPath() %>";
       <ul class="ind_tab">
         <li class="over" id="one1" onmouseover="setTab('one',1,3)">待发行</li>
         <li id="one2" onmouseover="setTab('one',2,3)">正发行</li>
-        <li id="one3" onmouseover="setTab('one',3,3)">已发行</li>
+        <!-- li id="one3" onmouseover="setTab('one',3,3)">已发行</li -->
       </ul>
       <div id="con_one_1" class="hometable">
 		 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -166,10 +166,10 @@ var HOST_PATH = "<%=request.getContextPath() %>";
 		 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 		 </table>
       </div>
-      <div id="con_one_3" class="hometable" style="display:none;">
+      <!-- div id="con_one_3" class="hometable" style="display:none;">
 		 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 		 </table>
-      </div>
+      </div -->
     </div>
   </div>  
   <div class="ind_table">
@@ -183,7 +183,7 @@ var HOST_PATH = "<%=request.getContextPath() %>";
       <ul class="ind_tab">
         <li class="over" id="two1" onmouseover="setTab('two',1,3)">待发行</li>
         <li id="two2" onmouseover="setTab('two',2,3)">正发行</li>
-        <li id="two3" onmouseover="setTab('two',3,3)">已发行</li>
+        <!-- li id="two3" onmouseover="setTab('two',3,3)">已发行</li -->
       </ul>
       <div id="con_two_1" class="hometable">
 		 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -193,10 +193,10 @@ var HOST_PATH = "<%=request.getContextPath() %>";
 		 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 		 </table>
       </div>
-      <div id="con_two_3" class="hometable" style="display:none;">
+      <!-- div id="con_two_3" class="hometable" style="display:none;">
 		 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 		 </table>
-      </div>
+      </div -->
     </div>
   </div>
   
