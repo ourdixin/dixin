@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>登录</title>
+<title>9点财讯</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/weixin/css/reg_style.css">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
