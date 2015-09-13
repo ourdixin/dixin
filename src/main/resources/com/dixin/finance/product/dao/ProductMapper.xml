@@ -184,8 +184,14 @@
                 and recommend = #{recommend} 
             ]]>
         </if>  
-                     
-        order by release_date desc
+         order by 
+ 		<if test="state == 63 or state == 64">
+            <![CDATA[  
+               min_amount asc ,
+            ]]>  
+        </if>  
+                             
+       release_date desc
   </select>
   
   <select id="findProductList" parameterType="com.dixin.finance.product.vo.ProductVO" resultType="com.dixin.finance.product.vo.ProductVO" useCache="false" >
