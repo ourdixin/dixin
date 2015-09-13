@@ -106,7 +106,7 @@
 		</c:forEach>
 	</div>
 	<!---foot底部---->
-	<c:import url="nav.jsp" charEncoding="utf-8" />
+	<c:import url="../nav.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->
 	 </div>
 </div>
