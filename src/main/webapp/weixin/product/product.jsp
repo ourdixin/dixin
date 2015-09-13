@@ -40,7 +40,7 @@
 			<div class="zy_yq">
 				<p>预计年化收益率</p>
 				<p>
-					<span>${firstProduct.rate}</span>
+					<span>${firstProduct.rateA}%</span>
 				</p>
 				<p>
 					<a id = "detail" href="<%=request.getContextPath()%>/weixin/product/productdetail?productid=${firstProduct.id}">查看详情&gt;</a>
@@ -105,14 +105,9 @@
 			</div>
 		</c:forEach>
 	</div>
-	<div class="nav" style="position:fixed; bottom:0;width:100%">
-		<ul>
-			<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=1">待发行</a></li>
-			<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=2">正发行</a></li>
-			<li><a href="<%=request.getContextPath() %>/weixin/product/productlist?type=3">已发行</a></li>
-			<li><a href="<%=request.getContextPath() %>/weixin/login.jsp">登 录</a></li>
-		</ul>
-	</div>
+	<!---foot底部---->
+	<c:import url="nav.jsp" charEncoding="utf-8" />
+	<!---foot底部结束---->
 	 </div>
 </div>
 </body>
