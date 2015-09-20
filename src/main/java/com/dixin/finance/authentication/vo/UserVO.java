@@ -298,6 +298,9 @@ public class UserVO extends BaseVO {
 			amount += userPnl.get("amount");
 		}   
 		
+		if(amount < 0 )
+			amount = 0d;
+		
 		userPnl.put("pnl", pnl);
 		userPnl.put("amount", amount);
 		

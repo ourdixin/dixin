@@ -49,6 +49,7 @@ import com.dixin.framework.base.web.BaseWebResult;
 import com.dixin.framework.constant.WebConstants;
 import com.dixin.finance.product.constant.InfoTypeConstant;
 import com.dixin.finance.product.constant.ProfitTypeConstant;
+import com.dixin.finance.product.constant.PurchaseStatusConstant;
 import com.dixin.finance.product.constant.appointmentConstant;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.dixin.finance.product.vo.ProductQueryParameter;
@@ -353,7 +354,16 @@ public class ProductManagerController {
 		}			
 		
 		purchaseVo.setUserId(userId);
-		purchaseVo.setAmount(purchaseVo.getAmount() * 10000);
+		if(purchaseVo.getStatus() == PurchaseStatusConstant.Status_Buy)
+		{
+			purchaseVo.setAmount(purchaseVo.getAmount() * 10000);
+		}
+		else
+		{
+			purchaseVo.setVolume(purchaseVo.getVolume() * -1);
+			purchaseVo.setAmount(purchaseVo.getAmount() * -10000);
+		}
+		
 		purchaseVo.setPnl(0d);
 		purchaseServiceImpl.addPurchase(purchaseVo);
 		

@@ -13,5 +13,6 @@ public interface IProductInfoService {
 	public abstract void deleteProductInfo(int Id);
 	public abstract void updateProductInfo(ProductInfoVO productInfo);	
 	public abstract ProductInfoVO queryProductInfoFromDate(int productId,int infoType,String date);
-	public abstract ProductInfoVO queryLastProductInfo(int productId,int infoType);	
+	public abstract ProductInfoVO queryLastProductInfo(int productId,int infoType);
+	public abstract List<ProductInfoVO> queryProductInfoListAfterDate(int productId,int infoType,String date);	
 }

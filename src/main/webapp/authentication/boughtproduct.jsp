@@ -46,12 +46,12 @@
 			  <# if(id == 42) {#>
 			  <td>
 				<#if(purchaseList.list[i].amount>10000) {#>
-				 <#=purchaseList.list[i].amount/10000#>万元
+				 <#=purchaseList.list[i].amount/10000.0#>万元
 				<#}else{#>
 				 <#=purchaseList.list[i].amount#>元
 				<#}#>
 			  </td>
-				<td><#=purchaseList.list[i].pnl#>元</td>
+				<td><#=purchaseList.list[i].product.uPnl#>元</td>
 			  	<td><#=purchaseList.list[i].product.valueDate#>元</td> 
 			  	<td><#=purchaseList.list[i].product.dueDate#></td>
 				<td><#=purchaseList.list[i].interest#>元</td>
@@ -59,8 +59,8 @@
 
 			  <# if(id == 43) {#> 
 			  	<td><#=purchaseList.list[i].product.unitNet#></td>
-				<td><#=purchaseList.list[i].product.totalValue#></td>
-				<td><#=purchaseList.list[i].pnl#>元</td>
+				<td><#=purchaseList.list[i].product.uPnl + purchaseList.list[i].product.uAmount#></td>
+				<td><#=purchaseList.list[i].product.uPnl#>元</td>
 			  <#}#> 
 
 				

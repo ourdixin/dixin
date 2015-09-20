@@ -63,4 +63,15 @@ public class PurchaseServiceImpl implements IPurchaseService {
 		return purchaseMapper.queryOrderList(userId,productId);
 	}
 
+	@Override
+	public List<PurchaseVO> queryPurchaseProductList(int userId,
+			int profitType, int status, int productId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);	
+		map.put("productId", productId);	
+		map.put("profitType", profitType);
+		map.put("status", status);
+		return purchaseMapper.queryPurchaseProductList(map);
+	}
+
 }

@@ -480,6 +480,8 @@ public class ProductController {
 			pageNum = 1;
 		if(pageSize == null)
 			pageSize = 10;
+		if(status == null)
+			status = -1;	
 		
 		BaseWebResult webResult = new BaseWebResult();
 		
@@ -520,7 +522,12 @@ public class ProductController {
 	
 	public PageInfo<PurchaseVO> GetPurchaseList(Integer userId, Integer pageNum, Integer pageSize,Integer profitType,Integer status){
 	    PageHelper.startPage(pageNum, pageSize);
-	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId,profitType,status,-1);
+	    List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseProductList(userId,profitType,status,-1);
+	    for(int i=0; i< purchaseList.size(); ++i)
+	    {
+	    	PurchaseVO PurchaseItem = purchaseList.get(i);
+	    	PurchaseItem.getProduct().getUserPnl(userId);
+	    }
 	    return new PageInfo(purchaseList);
 	}	
 	

@@ -87,4 +87,13 @@ public class ProductInfoServiceImpl implements IProductInfoService{
 		return productInfoMapper.queryLastProductInfo(map);		
 	}
 
+	@Override
+	public List<ProductInfoVO> queryProductInfoListAfterDate(int productId,	int infoType, String date) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("productID", productId);	
+		map.put("infoType", infoType);	
+		map.put("infoDate", date);
+		return productInfoMapper.queryProductInfoListAfterDate(map);
+	}
+
 }

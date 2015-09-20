@@ -333,6 +333,10 @@ public class ProductVO extends BaseVO {
 	
 	private Double unitNet = 1d;	//产品的最新净值
 	
+	private Double uPnl = 0d;
+	
+	private Double uAmount = 0d;
+	
 	private String createUser=""; // 创建人',
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")//存日期时使用 
@@ -1299,11 +1303,26 @@ public class ProductVO extends BaseVO {
 	}
 	
 	public Map<String,Double> getUserPnl(int userId) {
-		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryOrderList(userId, Integer.parseInt(id));
+		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId, -1, -1, Integer.parseInt(id));//(userId, Integer.parseInt(id));
+		Map<String,Double> userPnl = getUserPnlByPurchaseList(userId,purchaseList);
+		uPnl = userPnl.get("pnl");
+		uAmount = userPnl.get("amount");
 		
-		return getUserPnlByPurchaseList(userId,purchaseList);
+		return userPnl;
 	}
 
+	public Double getuPnl() {
+		return uPnl;
+	}
+	public void setuPnl(Double uPnl) {
+		this.uPnl = uPnl;
+	}
+	public Double getuAmount() {
+		return uAmount;
+	}
+	public void setuAmount(Double uAmount) {
+		this.uAmount = uAmount;
+	}
 	public Map<String,Double> getFixProductPnl(List<PurchaseVO> purchaseList)
 	{
 		Map<String,Double> userPnl = new HashMap<String,Double>();
@@ -1313,16 +1332,8 @@ public class ProductVO extends BaseVO {
 		{
 			PurchaseVO PurchaseItem = purchaseList.get(i);
 			
-			if(PurchaseItem.getStatus() == PurchaseStatusConstant.Status_Buy)
-			{
-				pnl += PurchaseItem.getAmount() * getRateFromAmount(PurchaseItem.getAmount()) * getDaysByNow(PurchaseItem.getBuyDate(),null) /36000;
-				amount += PurchaseItem.getAmount();
-			}
-			else
-			{
-				pnl -= PurchaseItem.getAmount() * getRateFromAmount(PurchaseItem.getAmount()) * getDaysByNow(PurchaseItem.getBuyDate(),PurchaseItem.getBuyDate()) /36000;
-				amount -= PurchaseItem.getAmount();				
-			}
+			pnl += PurchaseItem.getAmount() * getRateFromAmount(PurchaseItem.getAmount()) * getDaysByNow(PurchaseItem.getBuyDate(),null) /36000;
+			amount += PurchaseItem.getAmount();
 		}	
 		
 		userPnl.put("pnl", pnl);
@@ -1334,6 +1345,7 @@ public class ProductVO extends BaseVO {
 	public Map<String,Double> getFloatProductPnl(List<PurchaseVO> purchaseList)
 	{
 		Map<String,Double> userPnl = new HashMap<String,Double>();
+		
 		Double pnl = 0d;
 		Double amount = 0d;
 		Float nowUnitNet = getLastUnitnet();
@@ -1345,17 +1357,21 @@ public class ProductVO extends BaseVO {
 			PurchaseVO PurchaseItem = purchaseList.get(i);
 			Float unitNet = getUnitnetFromDate(PurchaseItem.getBuyDate());
 
-			if(PurchaseItem.getStatus() == PurchaseStatusConstant.Status_Buy)
-			{
-				pnl += (nowUnitNet - unitNet) * PurchaseItem.getVolume();
-				amount += PurchaseItem.getVolume();
-			}
-			else
-			{
-				pnl -= (nowUnitNet - unitNet) * PurchaseItem.getVolume();
-				amount -= PurchaseItem.getVolume();
-			}
+			pnl += (nowUnitNet - unitNet) * PurchaseItem.getVolume();
+			amount += PurchaseItem.getVolume();
+		}
+		
+		List<ProductInfoVO> dayBonus = null;
+		if(purchaseList.size() > 0)
+			dayBonus = getDayBonus(purchaseList.get(0).getBuyDate());
+		
+		for(int i =0; i < dayBonus.size();++i)
+		{
+			ProductInfoVO bonus = dayBonus.get(i);
+			int volume = getVolumeFromDate(bonus.getInfoDate(),purchaseList);
 			
+			pnl += volume * bonus.getValue();
+			amount -= volume * bonus.getValue();
 		}
 		
 		userPnl.put("pnl", pnl);
@@ -1363,6 +1379,21 @@ public class ProductVO extends BaseVO {
 		
 		return userPnl;
 	}	
+	
+	public int getVolumeFromDate(Date date,List<PurchaseVO> purchaseList)
+	{
+		int volume = 0;
+		for(int i =0; i < purchaseList.size();++i)
+		{
+			PurchaseVO PurchaseItem = purchaseList.get(i);
+			if(date.after(PurchaseItem.getBuyDate()))
+				break;
+
+			volume += PurchaseItem.getVolume();
+		}
+		
+		return volume;
+	}
 	
 	public Float getRateFromAmount(Double amount)
 	{
@@ -1416,6 +1447,18 @@ public class ProductVO extends BaseVO {
 		
 		
 		return dayUnitNetMap;
+	}
+	
+	public List<ProductInfoVO> getDayBonus(Date date)
+	{
+		DateFormat format = new SimpleDateFormat("yyyyMMdd");  
+		format = DateFormat.getDateInstance(DateFormat.MEDIUM);  
+		String strDate = format.format(date); 
+
+		
+		List<ProductInfoVO> ProductInfo = productInfoService.queryProductInfoListAfterDate(Integer.parseInt(id), InfoTypeConstant.INFOTYPE_BONUS,strDate);
+				
+		return ProductInfo;
 	}
 	
 	public Float getUnitnetFromDate(Date date)

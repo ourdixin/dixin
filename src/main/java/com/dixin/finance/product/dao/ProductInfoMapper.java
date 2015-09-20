@@ -46,6 +46,12 @@ public interface ProductInfoMapper {
 	 * 查询最新的产品信息
 	 * @return
 	 */	
-	ProductInfoVO queryLastProductInfo(Map<String, Object> map);		
+	ProductInfoVO queryLastProductInfo(Map<String, Object> map);
+
+	/**
+	 * 查询指定日期之后的信息
+	 * @return
+	 */	
+	List<ProductInfoVO> queryProductInfoListAfterDate(Map<String, Object> map);		
 }
 

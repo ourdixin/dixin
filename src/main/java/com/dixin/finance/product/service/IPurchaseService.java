@@ -13,6 +13,7 @@ import com.dixin.finance.product.vo.PurchaseVO;
 public interface IPurchaseService {
 
 	public abstract List<PurchaseVO> queryPurchaseList(int userId,int profitType,int status,int productId);
+	public abstract List<PurchaseVO> queryPurchaseProductList(int userId,int profitType,int status,int productId);
 	public abstract PurchaseVO queryPurchase(int Id);
 	public abstract void addPurchase(PurchaseVO purchaseVo);
 	public abstract List<PurchaseStatisticsVO> queryPurchaseStatistics();

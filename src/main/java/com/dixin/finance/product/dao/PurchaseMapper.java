@@ -16,4 +16,5 @@ public interface PurchaseMapper {
 	public List<PurchaseStatisticsVO> queryPurchaseStatistics();
 	public List<PurchaseVO> queryPurchaseDetails(int productId);
 	public List<PurchaseVO> queryOrderList(int userId,int productId);
+	public List<PurchaseVO> queryPurchaseProductList(Map<String, Object> map);
 }
