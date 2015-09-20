@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -110,15 +111,19 @@
 			
 			<div class="grzx_jdms">
 			
-			  <div class="grzx_zrsy">昨日收益：<span>9.6</span> 万元</div>
+			  <div class="grzx_zrsy">昨日收益：<span>
+			  	<fmt:formatNumber value="${user.pnl['pnl']}" type="currency" pattern="#,#00.00元"/> 
+			  </span>元</div>
 			  
-			  <div class="grzx_zzc">总金额：<span>100</span> 万元</div>
+			  <div class="grzx_zzc">总金额：<span>
+			  	<fmt:formatNumber value="${user.pnl['amount']}" type="currency" pattern="#,#00.00元"/> 
+			  </span>元</div>
 			
 			</div>
 			
 			</div>
 			</div>
-		</div>
+		</div>`
 
 		<br class=" clear" />
 	</div>

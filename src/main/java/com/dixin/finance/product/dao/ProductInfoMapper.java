@@ -34,6 +34,18 @@ public interface ProductInfoMapper {
 	 * 修改产品
 	 * @return
 	 */	
-	void updateProductInfo(ProductInfoVO productInfo);		
+	void updateProductInfo(ProductInfoVO productInfo);
+
+	/**
+	 * 查询指定时间的产品信息
+	 * @return
+	 */	
+	ProductInfoVO queryProductInfoFromDate(Map<String, Object> map);
+
+	/**
+	 * 查询最新的产品信息
+	 * @return
+	 */	
+	ProductInfoVO queryLastProductInfo(Map<String, Object> map);		
 }
 

@@ -1,19 +1,37 @@
 package com.dixin.finance.authentication.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
+import com.dixin.finance.product.service.IPurchaseService;
+import com.dixin.finance.product.vo.PurchaseVO;
 import com.dixin.framework.base.vo.BaseVO;
+import com.dixin.framework.tools.ApplicationUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+@Component
 public class UserVO extends BaseVO {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	@Autowired
+	@Resource(name="PurchaseServiceImpl")
+	private IPurchaseService purchaseServiceImpl = (IPurchaseService) ApplicationUtil.getBean("PurchaseServiceImpl");		
+	
 	private int id; // 内部唯一ID
 	private String userName; // 用户名
 	private String secUserName;
@@ -50,6 +68,8 @@ public class UserVO extends BaseVO {
 	
 	private int createUser; // 创建人
 	
+	private Double pnl=0d; //计算本人的盈利情况
+
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date createTime; // 创建时间
@@ -250,4 +270,42 @@ public class UserVO extends BaseVO {
 	public void setIsRiskTested(int isRiskTested) {
 		this.isRiskTested = isRiskTested;
 	}
+	
+	public Map<String,Double> getPnl() {
+		Map<String,Double> userPnl = new HashMap<String,Double>();
+		Double pnl = 0d;
+		Double amount = 0d;
+		
+		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(id, -1, -1, -1);
+		Map<String,List<PurchaseVO>> productMap=new HashMap<String,List<PurchaseVO>>();
+		
+		for(int i =0; i < purchaseList.size();++i)
+		{
+			PurchaseVO PurchaseItem = purchaseList.get(i);
+			String key = PurchaseItem.getProduct().getId();
+			if(!productMap.containsKey(key))
+			{
+				List<PurchaseVO> PurchaseList= new ArrayList<PurchaseVO>();
+				productMap.put(key, PurchaseList);
+			}
+			
+			productMap.get(key).add(PurchaseItem);
+		}
+		
+		for(Map.Entry<String, List<PurchaseVO>> entry:productMap.entrySet()){    
+			userPnl = entry.getValue().get(0).getProduct().getUserPnlByPurchaseList(id,entry.getValue());
+			pnl += userPnl.get("pnl");
+			amount += userPnl.get("amount");
+		}   
+		
+		userPnl.put("pnl", pnl);
+		userPnl.put("amount", amount);
+		
+		return userPnl;
+	}
+
+	public void setPnl(Double pnl) {
+		this.pnl = pnl;
+	}
+
 }

@@ -61,13 +61,30 @@ public class ProductInfoServiceImpl implements IProductInfoService{
 	}
 
 	@Override
-	public void deleteProduct(int Id) {
+	public void deleteProductInfo(int Id) {
 		productInfoMapper.deleteProductInfo(Id);
 	}
 
 	@Override
 	public void updateProductInfo(ProductInfoVO productInfo) {
 		productInfoMapper.updateProductInfo(productInfo);
+	}
+
+	@Override
+	public ProductInfoVO queryProductInfoFromDate(int productId, int infoType,String date) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("productID", productId);	
+		map.put("infoType", infoType);	
+		map.put("infoDate", date);
+		return productInfoMapper.queryProductInfoFromDate(map);
+	}
+
+	@Override
+	public ProductInfoVO queryLastProductInfo(int productId, int infoType) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("productID", productId);	
+		map.put("infoType", infoType);		
+		return productInfoMapper.queryLastProductInfo(map);		
 	}
 
 }

@@ -1,20 +1,37 @@
 package com.dixin.finance.product.vo;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+
+import com.dixin.finance.product.constant.InfoTypeConstant;
 import com.dixin.finance.product.constant.PayTypeConstant;
 import com.dixin.finance.product.constant.ProductDirectionConstant;
 import com.dixin.finance.product.constant.ProductSellStateConstant;
 import com.dixin.finance.product.constant.ProductStatusConstant;
 import com.dixin.finance.product.constant.ProductTypeConstant;
+import com.dixin.finance.product.constant.ProfitTypeConstant;
+import com.dixin.finance.product.constant.PurchaseStatusConstant;
+import com.dixin.finance.product.service.IProductInfoService;
+import com.dixin.finance.product.service.IPurchaseService;
+import com.dixin.finance.product.service.impl.PurchaseServiceImpl;
 import com.dixin.framework.base.vo.BaseVO;
+import com.dixin.framework.tools.ApplicationUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
@@ -23,12 +40,22 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author Administrator
  * 
  */
+
+@Component
 public class ProductVO extends BaseVO {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	@Autowired
+	@Resource(name="PurchaseServiceImpl")
+	private IPurchaseService purchaseServiceImpl = (IPurchaseService)ApplicationUtil.getBean("PurchaseServiceImpl");
+	
+	@Autowired
+	@Resource(name="productInfoServiceImpl")
+	private IProductInfoService productInfoService = (IProductInfoService) ApplicationUtil.getBean("productInfoServiceImpl");		
+	
 	/**
 	 * 
 	 */
@@ -307,7 +334,7 @@ public class ProductVO extends BaseVO {
 	private Double unitNet = 1d;	//产品的最新净值
 	
 	private String createUser=""; // 创建人',
-
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")//存日期时使用 
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")//取日期时使用 
 	private Date createTime = new Date(); // 创建时间',
@@ -485,6 +512,9 @@ public class ProductVO extends BaseVO {
 	}
 	
 	public Date getPayDate() {
+		Date invalidDate = getDefalutInvalidDate();
+		if(valueDate.equals(invalidDate) || valueDate.after(invalidDate))
+			return invalidDate;
 		
 		GregorianCalendar gc=new GregorianCalendar();
 		gc.setTime(valueDate);
@@ -1217,7 +1247,13 @@ public class ProductVO extends BaseVO {
 	}
 	
 	public Date getDueDate() {
+		Date invalidDate = getDefalutInvalidDate();
+		if(valueDate.equals(invalidDate) || valueDate.after(invalidDate))
+			return invalidDate;		
+		
 		GregorianCalendar gc=new GregorianCalendar();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		gc.setTimeZone(zone);
 		gc.setTime(valueDate);
 		if(termUnit== 63) //年
 			gc.add(GregorianCalendar.YEAR,term);
@@ -1251,4 +1287,156 @@ public class ProductVO extends BaseVO {
 		this.unitNet = unitNet;
 	}
 	
+	public Map<String,Double> getUserPnlByPurchaseList(int userId,List<PurchaseVO> purchaseList) {
+		Map<String,Double> userPnl;
+		
+		if(profitId == ProfitTypeConstant.FixProduct)
+			userPnl = getFixProductPnl(purchaseList);
+		else
+			userPnl = getFloatProductPnl(purchaseList);
+		
+		return userPnl;		
+	}
+	
+	public Map<String,Double> getUserPnl(int userId) {
+		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryOrderList(userId, Integer.parseInt(id));
+		
+		return getUserPnlByPurchaseList(userId,purchaseList);
+	}
+
+	public Map<String,Double> getFixProductPnl(List<PurchaseVO> purchaseList)
+	{
+		Map<String,Double> userPnl = new HashMap<String,Double>();
+		Double pnl = 0d;
+		Double amount = 0d;
+		for(int i =0; i < purchaseList.size();++i)
+		{
+			PurchaseVO PurchaseItem = purchaseList.get(i);
+			
+			if(PurchaseItem.getStatus() == PurchaseStatusConstant.Status_Buy)
+			{
+				pnl += PurchaseItem.getAmount() * getRateFromAmount(PurchaseItem.getAmount()) * getDaysByNow(PurchaseItem.getBuyDate(),null) /36000;
+				amount += PurchaseItem.getAmount();
+			}
+			else
+			{
+				pnl -= PurchaseItem.getAmount() * getRateFromAmount(PurchaseItem.getAmount()) * getDaysByNow(PurchaseItem.getBuyDate(),PurchaseItem.getBuyDate()) /36000;
+				amount -= PurchaseItem.getAmount();				
+			}
+		}	
+		
+		userPnl.put("pnl", pnl);
+		userPnl.put("amount", amount);
+		
+		return userPnl;
+	}
+	
+	public Map<String,Double> getFloatProductPnl(List<PurchaseVO> purchaseList)
+	{
+		Map<String,Double> userPnl = new HashMap<String,Double>();
+		Double pnl = 0d;
+		Double amount = 0d;
+		Float nowUnitNet = getLastUnitnet();
+		if(nowUnitNet <= 0f)
+			return userPnl;
+		
+		for(int i =0; i < purchaseList.size();++i)
+		{
+			PurchaseVO PurchaseItem = purchaseList.get(i);
+			Float unitNet = getUnitnetFromDate(PurchaseItem.getBuyDate());
+
+			if(PurchaseItem.getStatus() == PurchaseStatusConstant.Status_Buy)
+			{
+				pnl += (nowUnitNet - unitNet) * PurchaseItem.getVolume();
+				amount += PurchaseItem.getVolume();
+			}
+			else
+			{
+				pnl -= (nowUnitNet - unitNet) * PurchaseItem.getVolume();
+				amount -= PurchaseItem.getVolume();
+			}
+			
+		}
+		
+		userPnl.put("pnl", pnl);
+		userPnl.put("amount", amount);		
+		
+		return userPnl;
+	}	
+	
+	public Float getRateFromAmount(Double amount)
+	{
+		if(partB == 0 || amount < partB)
+		{
+			return rateA;
+		}
+		else if(partC == 0 || (amount >= partB && amount < partC))
+		{
+			return rateB;
+		}
+		else if(partD == 0 || (amount >= partC && amount < partD))
+		{
+			return rateC;
+		}
+		else if(amount >= partD )
+		{
+			return rateD;
+		}
+		
+		return rateA;
+	}
+	
+	public int getDaysByNow(Date buyDate,Date nowDate)
+	{
+		int days = 0;
+		Calendar cal = Calendar.getInstance();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		cal.setTimeZone(zone);
+		if(nowDate == null)
+			nowDate = cal.getTime();
+		
+		Date invalidDate = getDefalutInvalidDate();
+		if(valueDate.equals(invalidDate) || valueDate.after(invalidDate))
+			cal.setTime(buyDate);
+		else
+			cal.setTime(valueDate);
+		
+		long millis = nowDate.getTime() - cal.getTime().getTime() ;
+		
+		days = (int) (millis/(1000 * 3600 * 24));
+		
+		return days;
+	}
+	
+	public Map<String,Float> getDayUnitnet()
+	{
+		Map<String,Float> dayUnitNetMap=new HashMap<String,Float>();
+		
+		List<ProductInfoVO> ProductInfo = productInfoService.queryProductInfoList(Integer.parseInt(id), InfoTypeConstant.INFOTYPE_UNITNET);
+		
+		
+		return dayUnitNetMap;
+	}
+	
+	public Float getUnitnetFromDate(Date date)
+	{
+		DateFormat format = new SimpleDateFormat("yyyyMMdd");  
+		format = DateFormat.getDateInstance(DateFormat.MEDIUM);  
+		String strDate = format.format(date);  
+
+		ProductInfoVO ProductInfo = productInfoService.queryProductInfoFromDate(Integer.parseInt(id), InfoTypeConstant.INFOTYPE_UNITNET,strDate);
+		if(ProductInfo == null)
+			return 0f;
+		
+		return ProductInfo.getValue();
+	}
+	
+	public Float getLastUnitnet()
+	{	
+		ProductInfoVO ProductInfo = productInfoService.queryLastProductInfo(Integer.parseInt(id), InfoTypeConstant.INFOTYPE_UNITNET);
+		if(ProductInfo == null)
+			return 0f;
+		
+		return ProductInfo.getValue();
+	}	
 }

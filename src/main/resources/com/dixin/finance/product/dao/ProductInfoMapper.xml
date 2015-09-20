@@ -31,6 +31,62 @@
                      
         order by info_date desc
   </select>
+  
+  <select id="queryLastProductInfo" parameterType="map" resultType="com.dixin.finance.product.vo.ProductInfoVO" useCache="false" >
+		select id id,
+			product_id productID, 
+			info_date infoDate, 
+			info_type infoType,
+			value value,
+			create_user createUser, 
+			create_time createTime, 
+			update_user updateUser, 
+			update_time updateTime
+		from product_info
+		 WHERE 1=1 
+		<if test="productID != null and productID != -1">  
+            <![CDATA[  
+               and product_id=#{productID} 
+            ]]>  
+        </if>  
+		<if test="infoType != null and infoType != -1">
+            <![CDATA[  
+               and info_type=#{infoType} 
+            ]]>  
+        </if>
+                     
+        order by info_date desc limit 0,1
+  </select>
+  
+  <select id="queryProductInfoFromDate" parameterType="map" resultType="com.dixin.finance.product.vo.ProductInfoVO" useCache="false" >
+		select id id,
+			product_id productID, 
+			info_date infoDate, 
+			info_type infoType,
+			value value,
+			create_user createUser, 
+			create_time createTime, 
+			update_user updateUser, 
+			update_time updateTime
+		from product_info
+		 WHERE 1=1 
+		<if test="productID != null and productID != -1">  
+            <![CDATA[  
+               and product_id=#{productID} 
+            ]]>  
+        </if>  
+		<if test="infoType != null and infoType != -1">
+            <![CDATA[  
+               and info_type=#{infoType} 
+            ]]>  
+        </if>
+		<if test="infoDate != null and infoDate != ''">
+            <![CDATA[  
+               and info_date <= #{infoDate}
+            ]]>  
+        </if>
+        order by info_date desc limit 0,1
+  </select>  
 	
   <insert id="addProductInfo" parameterType="com.dixin.finance.product.vo.ProductInfoVO" >
     insert into product_info(
