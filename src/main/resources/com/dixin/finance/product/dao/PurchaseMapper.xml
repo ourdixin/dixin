@@ -282,6 +282,12 @@
         	]]> 
         </if>
         
+        <if test="status == 1"> 
+        	<![CDATA[  
+        		having sum(purchase.volume) == 0
+        	]]> 
+        </if>
+        
 		order by purchase.buy_date desc
   </select>
   	
