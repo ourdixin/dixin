@@ -33,7 +33,7 @@
   <span class="hb" style="margin-top:20px;"></span>
   <div class="cplb">
     <h2>${product.name}</h2>
-    <div class="linkk" style="background:none;">
+    <div style="background:none;">
       <p style="float:left;padding-top:30px;padding-right:20px;">预计年化收益率</p><h1 style="float:left;">${product.rate}</h1>
     </div>
     <div class="cplb_zy">
@@ -58,7 +58,14 @@
 						</c:otherwise>
 					</c:choose>起购
 		  </li>
-          <li><fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${product.releaseDate}"/>发行</li>
+          <li>
+			<c:if test="${product.releaseDate < product.invalidDate}">
+				<fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${product.releaseDate}"/>发行    
+			</c:if>
+			<c:if test="${product.releaseDate >= product.invalidDate}">
+				待定
+			</c:if>
+		  </li>
       </ul>
     </div>
   </div>
@@ -66,11 +73,7 @@
   <div class="listable">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <th width="120">发行截止</th>
-        <td><fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${product.endDate}"/></td>
-      </tr>
-      <tr>
-        <th>产品规模</th>
+        <th width="120">产品规模</th>
         <td>${product.amount/100000000}亿</td>
       </tr>
       <tr>
@@ -104,16 +107,75 @@
         <td>${product.directionInfo}</td>
       </tr>
       <tr>
-        <th>产品详情</th>
-        <td>&nbsp;</td>
+        <th>收益说明</th>
+        <td>
+        
+        
+        		<c:if test="${0 != product.partA and 0 == product.partB}">
+        		${product.partA/10000}万元以上,
+        		</c:if>
+        
+        		<c:if test="${0 != product.partA and 0 != product.partB}">
+        		${product.partA/10000}万元≤X＜${product.partB/10000}万元,
+        		</c:if>
+        		
+        		 
+	        	 <fmt:formatNumber value="${product.rateA}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
+		       	 <c:if test="${0 == product.partB and 0 == product.partA}"> 
+		        	 - <fmt:formatNumber value="${product.rateB}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
+	          	 </c:if>	        	 
+	       	 <c:if test="${0 != product.partB and 0 == product.partC}"> 
+	        	 <br />
+	          	 ${product.partB/10000}万元及以上,
+	          	 <fmt:formatNumber value="${product.rateB}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 %
+          	 </c:if>	        	 
+	       	 <c:if test="${0 != product.partB and 0 != product.partC}"> 
+	        	 <br />
+	          	 ${product.partB/10000}万元≤X＜${product.partC/10000}万元,
+	          	 <fmt:formatNumber value="${product.rateB}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 %
+          	 </c:if>
+          	 
+          	 <c:if test="${0 != product.partC and 0 == product.partD}"> 
+	          	 <br />
+	          	 ${product.partC/10000}万元及以上,
+	          	 <fmt:formatNumber value="${product.rateC}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 %
+          	 </c:if>
+          	 
+           	 <c:if test="${0 != product.partC and 0 != product.partD}"> 
+	          	 <br />
+	          	 ${product.partC/10000}万元≤X<${product.partD/10000}万元,
+	          	 <fmt:formatNumber value="${product.rateC}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 %
+          	 </c:if>         	 
+          	 
+          	 <c:if test="${0 != product.partD}"> 
+	          	 <br />
+	          	 ${product.partD/10000}万元及以上,
+	          	 <fmt:formatNumber value="${product.rateD}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
+	          	 %
+          	 </c:if>         
+        
+        
+        </td>
+      </tr> 
+
+      <tr>
+        <th >产品详情</th >
+		<td>&nbsp;</td>
+      </tr>     
+      <tr border="0">
+        <td colspan="2">${product.info}</td>
       </tr>
       <tr>
         <td colspan="2"><a href="<%=request.getContextPath() %>/weixin/product/appointment.jsp?productid=${product.id}" class="btn_red">我要购买</a></td>
       </tr>
     </table>
   </div>
-  
 </div>
+<br class=" clear" />
 	<!---foot底部---->
 	<c:import url="../nav.jsp" charEncoding="utf-8" />
 	<!---foot底部结束---->

@@ -148,7 +148,7 @@
         <td width="0%" align="center" bgcolor="#FFFFFF">资金投向</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.directionInfo}</strong></td>
         <c:if test="${product.profitId == 42}">
-        <td width="0%" height="50" align="center" bgcolor="#FFFFFF">预期年化收益率</td>
+        <td width="0%" height="50" align="center" bgcolor="#FFFFFF">收益说明</td>
         <td align="center" bgcolor="#FFFFFF">
         <div>
         

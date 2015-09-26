@@ -67,7 +67,15 @@
 								   </c:otherwise>
 							 </c:choose>
 							 </span>起购</li>
-				<li class="zy_fx"><span><fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${firstProduct.releaseDate}"/>发行</span></li>
+				<li class="zy_fx"><span>
+				<c:if test="${product.releaseDate < product.invalidDate}">
+					<fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${product.releaseDate}"/>发行    
+				</c:if>
+				<c:if test="${product.releaseDate >= product.invalidDate}">
+					待定
+				</c:if>				
+				</span>
+				</li>
 			</ul>
 		</div>
 		
@@ -99,7 +107,14 @@
 							   </c:otherwise>
 							 </c:choose>起购
 						</li>
-						<li><fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${product.releaseDate}"/>发行</li>
+						<li>
+						<c:if test="${product.releaseDate < product.invalidDate}">
+							<fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${product.releaseDate}"/>发行    
+						</c:if>
+						<c:if test="${product.releaseDate >= product.invalidDate}">
+							待定
+						</c:if>						
+						</li>
 					</ul>
 				</div>
 			</div>
