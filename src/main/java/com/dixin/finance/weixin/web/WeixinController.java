@@ -327,13 +327,13 @@ public class WeixinController {
 	@RequestMapping(value="weixin/product/appointment")
 	public @ResponseBody BaseWebResult appointment(AppointmentVO appointment,int productId,HttpSession session,HttpServletRequest request,HttpServletResponse response){
 		BaseWebResult webResult = new BaseWebResult();
-		/*UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
 			webResult.setSuccess(false);
 			webResult.setMsg(request.getContextPath()+"/weixin/login.jsp");
 			return webResult;
-		}	*/		
+		}	
 		
 		ProductVO product = new ProductVO();
 		PurchaseVO purchase = new PurchaseVO();
@@ -344,10 +344,10 @@ public class WeixinController {
 		appointment.setProduct(product);
 		appointment.setPurchase(purchase);
 		appointment.setContact(contact);
-		//appointment.setUserId(userVO.getId());
+		appointment.setUserId(userVO.getId());
 		appointmentService.insertAppointment(appointment);
 		webResult.setSuccess(true);
-		webResult.setUrl(request.getContextPath()+"/weixin/product/appointmentdetail");
+		webResult.setUrl(request.getContextPath()+"/weixin/product/appointmentlist");
 		return webResult;
 	}
 	
@@ -357,7 +357,7 @@ public class WeixinController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "weixin/login";
+			return request.getContextPath()+"/weixin/login";
 		}
 		
 		Integer userid = userVO.getId();
@@ -372,11 +372,16 @@ public class WeixinController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return "weixin/login";
+			return request.getContextPath()+"/weixin/login";
 		}
 		
 		Integer userid = userVO.getId();
 		List<PurchaseVO> purchaseList = PurchaseServiceImpl.queryPurchaseList(userid, -1, -1, -1);
+	    for(int i=0; i< purchaseList.size(); ++i)
+	    {
+	    	PurchaseVO PurchaseItem = purchaseList.get(i);
+	    	PurchaseItem.getProduct().getUserPnl(userid);
+	    }
 		model.addAttribute("purchaseList", purchaseList);
 		return "weixin/product/boughtShow";
 	}	
@@ -391,6 +396,7 @@ public class WeixinController {
 		}		
 
 		PurchaseVO purchase = PurchaseServiceImpl.queryPurchase(id);
+		purchase.getProduct().getUserPnl(userVO.getId());
 		model.addAttribute("purchase", purchase);
 		return "weixin/product/boughtdetail";
 	}
@@ -406,6 +412,11 @@ public class WeixinController {
 		
 		Integer userid = userVO.getId();
 		List<PurchaseVO> purchaseList = PurchaseServiceImpl.queryPurchaseList(userid, -1, -1, -1);
+	    for(int i=0; i< purchaseList.size(); ++i)
+	    {
+	    	PurchaseVO PurchaseItem = purchaseList.get(i);
+	    	PurchaseItem.getProduct().getUserPnl(userid);
+	    }		
 		model.addAttribute("purchaseList", purchaseList);
 		return "weixin/product/orderlist";
 	}

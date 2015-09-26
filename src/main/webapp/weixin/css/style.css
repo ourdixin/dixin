@@ -16,7 +16,7 @@ a{text-decoration:none;color:#333}
 body{margin:0 auto;background:#FFF;font-size:24px;font-family:Helvetica,STHeiti STXihei,Microsoft JhengHei,Microsoft YaHei,Arial;line-height:1.5;color:#333;-webkit-text-size-adjust:100%!important;-webkit-user-select:none;user-select:none}
 ul { list-style:none outside; z-index:0; }
 input[type="radio"], input[type="checkbox"] { margin:0 2px 0 10px; }
-textarea, select, input[type="text"], input[type="password"] {background:#fff;font-size:16px; border:1px solid #dddddd; padding:2px 8px; -webkit-box-sizing:border-box; -webkit-appearance:none; -webkit-border-radius:5px;line-height:32px;}
+textarea, select, input[type="text"], input[type="password"] {background:#fff;font-size:28px; border:1px solid #dddddd; padding:2px 8px; -webkit-box-sizing:border-box; -webkit-appearance:none; -webkit-border-radius:5px;line-height:32px;}
 .red{color:#c91e22;}
 .clear{font-size:0;height:1px;overflow:hidden; clear:both;}
 

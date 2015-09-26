@@ -33,9 +33,11 @@
  <c:forEach var="purchase" items="${purchaseList}">
 <div class="cplb">
   <h2>${purchase.product.name}</h2>
-  <div class="linkk" id=${purchase.id}>
-    <h1>${purchase.pnl}</h1>
-    <p>利息收益(元)</p>
+  <div id=${purchase.id}>
+    <h1><font size="66px" color="#c91e22">
+    <fmt:formatNumber value="${purchase.product.uPnl}" type="currency" pattern="#,#00.00"/> 
+    </font></h1>
+    <p>昨日预估收益(元)</p>
   </div>
   <div class="cplb_zy">
     <ul>

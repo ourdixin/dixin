@@ -116,7 +116,7 @@
 			  </span>元</div>
 			  
 			  <div class="grzx_zzc">总金额：<span>
-			  	<fmt:formatNumber value="${user.pnl['amount']}" type="currency" pattern="#,#00.00"/> 
+			  	<fmt:formatNumber value="${user.pnl['amount']/10000.0}" type="currency" pattern="#,#00.00"/> 
 			  </span>元</div>
 			
 			</div>

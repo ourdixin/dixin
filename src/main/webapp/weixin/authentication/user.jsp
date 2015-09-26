@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,18 +30,18 @@
 <div class="head">个人中心</div>
 <div class="center">
   <div class="cplb">
-    <div class="linkk" style="background:none;font-size:24px;">
+    <div style="background:none;font-size:24px;">
     	<c:if test="${null != user}"> 
       		<p style="border-bottom:1px solid #dddddd;padding-bottom:10px;">您好，${user.secUserName}	
 			<a href="<%=request.getContextPath()%>/authentication/logout?backurl=/weixin/product/productlist?type=1">[退出登录]</a></p>
 		</c:if>
-      <p style="padding-top:10px;">昨日收益（元）</p>
+      <p style="padding-top:10px;">昨日收益（元）：</p>
       <h1 style="border-bottom:1px solid #dddddd;padding-bottom:10px;margin-bottom:10px;">
      	<fmt:formatNumber value="${user.pnl['pnl']}" type="currency" pattern="#,#00.00"/>
       </h1>
-      <p style="padding-top:10px;float:left;">总资产（元）：</p>
+      <p style="padding-top:10px;float:left;">总资产（万元）：</p>
       <h1 style="float:left;padding-left:10px;font-size:40px;font-weight:normal;">
-      	<fmt:formatNumber value="${user.pnl['amount']}" type="currency" pattern="#,#00.00"/> 
+      	<fmt:formatNumber value="${user.pnl['amount']/10000.0}" type="currency" pattern="#,#00.00"/> 
 	  </h1>
     </div>
     <div class="clear"></div>

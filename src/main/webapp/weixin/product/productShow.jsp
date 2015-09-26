@@ -170,7 +170,7 @@
         <td colspan="2">${product.info}</td>
       </tr>
       <tr>
-        <td colspan="2"><a href="<%=request.getContextPath() %>/weixin/product/appointment.jsp?productid=${product.id}" class="btn_red">我要购买</a></td>
+        <td colspan="2"><a href="<%=request.getContextPath() %>/weixin/product/appointment.jsp?productid=${product.id}&name=${product.name}" class="btn_red">我要购买</a></td>
       </tr>
     </table>
   </div>

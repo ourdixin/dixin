@@ -29,7 +29,7 @@
 	<div class="head">我要购买</div>
 	<div class="center">
 		<div class="cplb" style="margin-top: 0px;">
-			<div class="linkk" style="background: none; font-size: 21px;">
+			<div class="linkk" style="background: none; font-size: 28px;">
 				<p>
 					为了确保您预约成功，请正确填写以下信息（<span class="red">*</span> 为必填项）
 				</p>
@@ -41,21 +41,21 @@
 					<input name="productId" id="productId" value="${param.productid}" type="hidden" />
 					<tr>
 						<th width="120">预约产品</th>
-						<td>第一创业证券·稳定收益第6期</td>
+						<td>${param.name}</td>
 					</tr>
 					<tr>
 						<th>预约金额</th>
 						<td><input type="text" name="amount" id="amount"
-							style="width: 72%;"> 万元</td>
+							style="width: 50%;"> 万元</td>
 					</tr>
 					<tr>
 						<th>预计打款</th>
 						<td><input type="text" name="reserve_date" id="reserve_date"
-							style="width: 72%;"> 预计打款时间</td>
+							style="width: 50%;"> 预计打款时间</td>
 					</tr>
 					<tr>
 						<th>手机号码</th>
-						<td><input type="text" name="tel" id="tel" style="width: 72%;"></td>
+						<td><input type="text" name="tel" id="tel" style="width: 50%;"></td>
 					</tr>
 					<tr>
 						<th>备注信息</th>
@@ -71,7 +71,7 @@
 
 	</div>
 	<!---foot底部---->
-	<c:import url="../nav.jsp" charEncoding="utf-8" />
+	<!---c:import url="../nav.jsp" charEncoding="utf-8" /---->
 	<!---foot底部结束---->
 	</div>
 </div>

@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>产品详情</title>
+<title>产品购买详情</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
@@ -25,11 +25,11 @@
 <body>
 <div class="act_wrapper zoom ">
   <div class="act_content">
-<div class="head">产品详情</div>
+<div class="head">产品购买详情</div>
 <div class="cplb">
   <h2>${purchase.product.name}</h2>
   <div>
-    <h1>${purchase.pnl}</h1>
+    <h1>${purchase.product.uPnl}</h1>
     <p>利息收益(元)</p>
   </div>
   <div class="cplb_zy">
