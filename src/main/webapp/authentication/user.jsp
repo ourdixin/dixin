@@ -111,13 +111,13 @@
 			
 			<div class="grzx_jdms">
 			
-			  <div class="grzx_zrsy">昨日收益：<span>
+			  <div class="grzx_zrsy">昨日预估收益：<span>
 			  	<fmt:formatNumber value="${user.pnl['pnl']}" type="currency" pattern="#,#00.00"/> 
 			  </span>元</div>
 			  
 			  <div class="grzx_zzc">总金额：<span>
 			  	<fmt:formatNumber value="${user.pnl['amount']/10000.0}" type="currency" pattern="#,#00.00"/> 
-			  </span>元</div>
+			  </span>万元</div>
 			
 			</div>
 			

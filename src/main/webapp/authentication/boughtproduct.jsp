@@ -51,7 +51,7 @@
 				 <#=purchaseList.list[i].amount#>元
 				<#}#>
 			  </td>
-				<td><#=purchaseList.list[i].product.uPnl#>元</td>
+				<td><#=purchaseList.list[i].product.uPnl.toFixed(2)#>元</td>
 			  	<td>
 					<#=purchaseList.list[i].product.payDate#>
 				</td> 
