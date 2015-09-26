@@ -17,14 +17,14 @@
 <div id="main_body">
 <div class="wrap">
     <div class="maintitle">
-     <div id="title_font">九点财讯注册协议</div>
-     <div class="dqwz">当前位置：<a href="<%=request.getContextPath() %>/">首页</a> &gt; 九点财讯注册协议</div>
+     <div id="title_font">9点财讯协议</div>
+     <div class="dqwz">当前位置：<a href="<%=request.getContextPath() %>/">首页</a> &gt; 9点财讯协议</div>
    </div>
 <div class="body_text">
   <div class="agreement">
 
 <p style="margin-left: 0;text-indent: 0;padding: 0;line-height: 19px;">
-    <span style="font-family: Arial;letter-spacing: 0;font-weight: bold;font-size: 14px">用户注册协议</span>
+    <span style="font-family: Arial;letter-spacing: 0;font-weight: bold;font-size: 14px">用户协议</span>
 </p>
 <p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
     <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">（</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">www.9diancaixun.com</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">）所提供的各项服务的所有权和运作权均归</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的信金融信息服务（上海）有限</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">公司（以下简称“</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">”）所有。</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">用户使用协议（以下简称“本协议”）系由</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">用户与</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">就</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的各项服务所订立的相关权利义务规范。用户</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">一经注册</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">或使用本网站，即表示接受并同意本协议的所有条件和条款。</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的信金融作</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">为</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">（</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">www.9diancaixun.com</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">）的运营者依据本协议为用户提供服务。不愿接受本协议条款的，不得访问或使用本网站。</span>

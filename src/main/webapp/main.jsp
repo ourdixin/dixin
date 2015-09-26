@@ -206,10 +206,10 @@ var HOST_PATH = "<%=request.getContextPath() %>";
   <div class="linksbox">
     <h2>合作伙伴</h2>
     <ul style="display:table;margin:0 auto;">
-      <li><a href="#" target="_blank"><img src="images/zxzq.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/fzdyxt.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/gmxt.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/ztxt.jpg"></a></li>
+      <li><a href="http://trust.ecitic.com/" target="_blank"><img src="images/zxzq.jpg"></a></li>
+      <li><a href="http://www.fd-trust.com/" target="_blank"><img src="images/fzdyxt.jpg"></a></li>
+      <li><a href="http://www.natrust.cn/home/cn/" target="_blank"><img src="images/gmxt.jpg"></a></li>
+      <li><a href="http://www.zhongtaitrust.com/cn/index.jsp" target="_blank"><img src="images/ztxt.jpg"></a></li>
     </ul>
   </div>
   <div class="clear">

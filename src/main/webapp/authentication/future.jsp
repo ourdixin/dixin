@@ -44,7 +44,7 @@
     <span style="white-space: nowrap;">&nbsp;</span>
 </p>
 <p>
-    <span style="white-space: nowrap;">公司网址:www.citicsf.com</span>
+    <span style="white-space: nowrap;">公司网址:<a href="http://www.citics.com.hk" target="_blank">www.citicsf.com</a></span>
 </p>
 <p>
     <span style="white-space: nowrap;"><br/></span>

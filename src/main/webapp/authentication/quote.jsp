@@ -35,14 +35,18 @@
     <span >第一创业证券是经中国证监会批准，由华熙昕宇投资有限公司、北京首都创业集团等多家股东投资设立的综合性证券公司。公司注册地为深圳市，注册资本为人民币19.7亿元。公司全资子公司分别为第一创业期货有限责任公司、第一创业投资管理有限公司，拥有第一创业摩根大通66.7%的股权和银华基金29%的股权。</span>
 </p>
 <p>
-    <span style="white-space: nowrap;">公司网址:www.fcsc.cn &nbsp; &nbsp;&nbsp;</span>
+    <span style="white-space: nowrap;">公司网址:<a href="http://www.fcsc.cn" target="_blank">www.fcsc.cn</a></span>
 </p>
 <p>
-    <span style="white-space: nowrap;">网上开户网址：kh.fcsc.com:889/osoa/views/index.html?r=0.23619042476920565</span>
+    <span style="white-space: nowrap;">网上开户网址：<a href="http://kh.fcsc.com:889/osoa/views/index.html?r=0.23619042476920565" target="_blank">kh.fcsc.com</a></span>
+</p>
+<p>
+    <span style="white-space: nowrap;">手机开户，请扫描二维码：<img src="../images/dycymobile.png"></span>
 </p>
 <p>
     <span style="white-space: nowrap;"><br/></span>
 </p>
+
 <p>
     <span >中信证券股份有限公司于1995年10月25日在北京成立。2003年1月6日在上海证券交易所挂牌上市交易，股票简称“中信证券”，股票代码“600030”。 2011年10月6日在香港联合交易所上市交易，股票代码为”6030”。截至2013年12月31日，公司总资产2714亿元，净资产877亿元，净资本348亿元，是国内规模最大的证券公司。</span>
 </p>
@@ -50,13 +54,16 @@
     <span style="white-space: nowrap;"><br/></span>
 </p>
 <p>
-    <span style="white-space: nowrap;">公司网址：www.cs.ecitic.com</span>
+    <span style="white-space: nowrap;">公司网址：<a href="http://www.cs.ecitic.com" target="_blank">www.cs.ecitic.com</a></span>
 </p>
 <p>
     <span style="white-space: nowrap;"><br/></span>
 </p>
 <p>
-    <span style="white-space: nowrap;">网上开户网址：kh.cs.ecitic.com/webtrade/zxkh/index.html</span>
+    <span style="white-space: nowrap;">网上开户网址：<a href="http://kh.cs.ecitic.com/webtrade/zxkh/index.html" target="_blank">kh.cs.ecitic.com/webtrade/zxkh/index.html</a></span>
+</p>
+<p>
+    <span style="white-space: nowrap;">手机开户，请扫描二维码：<img src="../images/zxzqmobile.jpg"></span>
 </p>
 </div>
 </div>

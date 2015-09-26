@@ -58,7 +58,7 @@
 </p>
 
 <p>
-    <span >公司网址:www.citics.com.hk&nbsp;</span>
+    <span >公司网址:<a href="http://www.citics.com.hk" target="_blank">www.citics.com.hk</a></span>
 </p>
 <p>
     <span >开户咨询&nbsp;400-6262-121</span>
