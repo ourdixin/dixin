@@ -52,8 +52,12 @@
 				<#}#>
 			  </td>
 				<td><#=purchaseList.list[i].product.uPnl#>元</td>
-			  	<td><#=purchaseList.list[i].product.valueDate#>元</td> 
-			  	<td><#=purchaseList.list[i].product.dueDate#></td>
+			  	<td>
+					<#=purchaseList.list[i].product.payDate#>
+				</td> 
+			  	<td>
+					<#=purchaseList.list[i].product.dueDate#>
+				</td>
 				<td><#=purchaseList.list[i].interest#>元</td>
 			  <#}#>   
 

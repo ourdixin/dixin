@@ -1332,7 +1332,7 @@ public class ProductVO extends BaseVO {
 		{
 			PurchaseVO PurchaseItem = purchaseList.get(i);
 			
-			pnl += PurchaseItem.getAmount() * getRateFromAmount(PurchaseItem.getAmount()) * getDaysByNow(PurchaseItem.getBuyDate(),null) /36000;
+			pnl += PurchaseItem.getAmount() * getRateFromAmount(PurchaseItem.getAmount()) * getDaysByNow(PurchaseItem.getBuyDate(),null) /36500;
 			amount += PurchaseItem.getAmount();
 		}	
 		

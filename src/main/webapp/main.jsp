@@ -91,7 +91,7 @@ var HOST_PATH = "<%=request.getContextPath() %>";
         <div class="bd">
             <ul>
                 <li _src="url(images/01.jpg)" style="background:#fde9a4 center 0 no-repeat;"><a href="<%=request.getContextPath() %>/product/product.jsp"></a></li>
-                <li _src="url(images/02.jpg)" style="background:#c20d02 center 0 no-repeat;"><a href="<%=request.getContextPath() %>/authentication/regarding.jsp"></a></li>
+                <li _src="url(images/02.jpg)" style="background:#c20d02 center 0 no-repeat;"><a href="<%=request.getContextPath() %>/authentication/quote.jsp"></a></li>
                 <li _src="url(images/03.jpg)" style="background:#5ac6ea center 0 no-repeat;"><a href="<%=request.getContextPath() %>/authentication/transfer.jsp"></a></li>
             </ul>
         </div>
@@ -133,7 +133,7 @@ var HOST_PATH = "<%=request.getContextPath() %>";
         <p>长期稳定高收益产品</p>
       </li>
       <li>
-        <h2><a href="<%=request.getContextPath() %>/authentication/regarding.jsp">金融折扣</a></h2>
+        <h2><a href="<%=request.getContextPath() %>/authentication/quote.jsp">金融折扣</a></h2>
         <p>短期高回报产品</p>
         <p>长期稳定高收益产品</p>
       </li>
@@ -205,13 +205,11 @@ var HOST_PATH = "<%=request.getContextPath() %>";
 <div class="links">
   <div class="linksbox">
     <h2>合作伙伴</h2>
-    <ul>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
-      <li><a href="#" target="_blank"><img src="images/links.jpg"></a></li>
+    <ul style="display:table;margin:0 auto;">
+      <li><a href="#" target="_blank"><img src="images/zxzq.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/fzdyxt.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/gmxt.jpg"></a></li>
+      <li><a href="#" target="_blank"><img src="images/ztxt.jpg"></a></li>
     </ul>
   </div>
   <div class="clear">

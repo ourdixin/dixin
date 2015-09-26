@@ -7,10 +7,6 @@
 
 <title>注册</title>
 <link href="<%=request.getContextPath() %>/css/LTT_define.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/register.css">
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/authentication/register.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath() %>";</script>
 </head>
 
@@ -18,135 +14,102 @@
 <!---TOP头部共用部份---->
 <c:import url="/framework/header.jsp" charEncoding="utf-8" />
 <!---TOP结束---->
-<div class="main">
+<div id="main_body">
+<div class="wrap">
+    <div class="maintitle">
+     <div id="title_font">九点财讯注册协议</div>
+     <div class="dqwz">当前位置：<a href="<%=request.getContextPath() %>/">首页</a> &gt; 九点财讯注册协议</div>
+   </div>
+<div class="body_text">
   <div class="agreement">
-  <h3>九点财讯注册协议</h3>
-  <h4>尊敬的用户，欢迎您免费申请成为九点财讯的注册用户！</h4>
-  <p>
-    目前九点财讯暂不提供网上交易业务，本注册过程并非基金交易功能的申请过程。详情可咨询 (周一至周五8:30-19:30)    </p>
-  <p>为了确保九点财讯能够顺利正常地运行，并维护广大注册用户的正当利益，注册成为会员前请您务必仔细阅读以下服务条款。</p>
-  <h4>一、服务内容</h4>
-  <p>
-    
-    九点财讯网根据本服务条款通过九点财讯网提供各类网络服务，其服务内容可包括网上注册和登记、用户网上查 询、金融市场信息发布等。</p>
-  <p> 本公司有权决定并不时修改服务内容，包括（但不限于）               &nbsp;&nbsp;    </p>
-  <p>(1) 在任何时候扩展、修改、减少或停止服务内容；    </p>
-  <p>(2) 对服务内容加以限制或对这种限制进行修改；    </p>
-  <p>(3) 规定或改变提供全部或部分服务内容的服务时间。    </p>
-  <p>上述对服务内容的修改无须向用户或任何第三方作特别告知或专门通知，自本公司作出修改决定之时起自动更新并生效。本公司行使修改或中断服务 的权利，不需对用户或任
-    何第三方承担任何责任，也不对其做任何赔偿。</p>
-    <h4>二、用户资料</h4>
-  <p> 
-    
-    基于九点财讯所提供的网络服务的重要性，用户应同意：    </p>
-  <p>(1) 提供详尽、准确的个人资料；    </p>
-  <p>(2) 不断更新注册资料，符合及时、详尽、准确的要求。如果用户提供的资料包含有不正确的信息，九点财讯保留结束用户使用该网络服务资格的权利。 </p>
-    <h4>三、网站链接政策</h4>
-  <p>
-    
-    用户应详细阅读本公司网站的网站链接政策，用户使用本公司网站的任何服务应视为同意并遵守本公司网站的网站链接政策。 </p>
-    <h4>四、用户隐私</h4>
-  <p>
-    
-    九点财讯网将根据行业标准严格保密您注册时所填写的个人信息，使您的信息处于安全状态，未经您的同意我们不会提供您的信息给第三者（公司或个人）。    </p>
-  <p>用户应详细阅读本公司网站的隐私条款，用户使用本公司网站的任何服务应视为同意并遵守本公司网站的隐私条款。九点财讯确保用户个人隐私得到尊重 ，保证不会在未经用 
-    户合法授权时公开、编辑或透露用户注册资料及保存在九点财讯中的非公开内容。但以下情况除外：    </p>
-  <p>(1) 用户授权九点财讯公开、透露这些信息；    </p>
-  <p>(2) 相关的法律法规或监管机构、司法机构要求九点财讯提供用户的个人资料；国家司法机关符合法律规定并经法定程序的检查及其他操作；    </p>
-  <p>(3) 任何第三方盗用、冒用或未经许可擅自披露、使用或对外公开用户的个人隐私资料。 </p>
-  <p>(4)注册会员自己要求网站提供特定服务时，需要把注册会员的姓名和地址提供给第三者的。    </p>
-  <p>(5)在适合的情况下，并在您同意的前提下，我们会利用您的信息来联络您，为您发送信息。</p>
-    <h4>五、风险提示</h4>
-  <p> 
-    
-    用户应详细阅读本公司网站的风险提示条款，用户使用本公司网站的任何服务应视为同意并遵守本公司网站的风险提示条款。此外，用户应已充分了解和认识到九点财讯网络
-    服务包含以下风险：    </p>
-  <p>(1)由于电子设备、电子网络、通讯系统受到干扰、侵袭、破坏或出现故障、错误，以及其他任何可能的原因，网络服务可能会出现中断、停顿、延迟 、数据错误等情况；    </p>
-  <p>(2) 用户账号或密码可能泄露或用户身份可能被仿冒；    </p>
-  <p>(3) 用户的上网设备与本公司系统不相匹配，可能造成无法进行网络服务；    </p>
-  <p>(4) 用户可能因泄露其登录密码而造成其信息资料外泄及被盗用。
-    用户应充分意识到上述风险可能会导致其发生损失，并且同意就上述风险或损失不向本公司提出任何追索。 </p>
-    <h4>六、用户的账号，密码和安全性</h4>
-  <p>
-    
-    用户一旦注册成功，成为九点财讯的合法用户，将得到一个密码和用户名。用户将对用户名和密码的安全负全部责任。另外，每个用户都要对以其用户名进行的所有活动和事
-    件负全责。用户可随时更改密码，但任何更改均须经九点财讯接纳，方为有效。在任何时候及情况下，用户均不得向任何第三方透露用户名及/或密码且对因  此产生的不利
-    后果自行承担全部责任。一旦用户知悉或怀疑用户名及密码为任何第三方所知悉，或有人未经授权而使用此服务，用户须尽快通知九点财讯，或按九点财讯指定的电话号 
-    码以电话通知（用户可能被要求对其提供的个人资料做出书面确认），而在九点财讯确认上述通知的有效性之前，用户须就任何第三方使用服务或服务被用作未经授权用途自行承 
-    担全部责任并不得向九点财讯索赔。 发生下列情况时本网站不承担任何责任：    </p>
-  <p>(1)由于您将用户密码告知他人或与他人共享注册帐户，由此导致的任何个人资料泄露。    </p>
-  <p>(2)任何黑客政击、计算机病毒侵入或发作、政府部门管制和其他不可抗力等造成的个人资料泄露、丢失、被盗用或被窜改等。    </p>
-  <p>(3)因与本网站链接的其它网站造成个人资料泄露及由此而导致的任何法律争议和后果。 </p>
-    <h4>七、电子邮件通讯</h4>
-  <p>    
-    
-    本公司向用户发送的邮件及其附件可能载有机密内容，仅供邮件抬头指定收件人打开、阅读和参考。非指定收件人不得打开、阅读、复制、修改 、传递、转发、打印邮件  
-    及其附件或依赖邮件及其附件的内容而采取任何行动。若误收到邮件,请立即通知发送者和/或本公司并立即删除邮件及其附 件。严格禁止对邮件及其附件之部分或整体未经许
-    可或授权的使用、复制、修改、传递或转发。本公司发送的邮件通过公共互联网发送并未经加密。发送者和/或本公司不保证邮件及其附件中所含内容的安全性、保密性、完整
-    性、及时性、正确性 和准确性。发送者和/或本公司不保证邮件及其附件免于病毒侵袭及其他干扰、损害、篡改、破坏等任何情形。发送者和/或本公司对邮件及其附件在 生成
-    、发送、使用过程中可能产生的错误、漏失或误发送不承担任何责任。发送者和/或本公司对邮件及其附件的任何不当使用、复制、修改、传递、 转发、打印等行为不承担任何责任。</p>
-    <h4>八、拒绝提供担保</h4>
-  <p> 
-    
-    用户个人对网络服务的使用自行承担风险。九点财讯对此不作任何明示、暗示或其它形式的担保。九点财讯有权调整服务的范围或对服务做出限制，该调整或变化不担保服务一定
-    能满足用户的要求，也不担保服务不会被中断，对服务的及时性、安全性能、差错发生不作任何明示或暗示担保；所有行情数据仅供参考，对行情数据的准确性、即时性和稳
-    定性不作任何明示或暗示担保；本公司不承担任何检验或证实在网络服务中进行和发生的信息或资 料的传输、发送、查询的真实性和准确性之义务且不对该信息资料外泄、盗
-    用及相应损失承担任何责任以及进行任何赔偿，对信息、资料的可靠信、 真实性与正确性不作任何明示或暗示担保；本公司对网络服务是否会受病毒影响或其他任何损害不作
-    任何明示或暗示的担保。    </p>
-    <h4>九、用户责任</h4>
-  <p>
-    
-    用户需对自己在网上的行为承担法律责任。用户必须遵守中华人民共和国的各项法律、法规和法令，遵守网上一般道德规范及操守。用户须承诺不传输或发送任何违反法律法规
-    、危害国家安全、以及具有骚扰性、辱骂性、恐吓性和庸俗淫秽的信息资料,用户不得干扰或扰乱九点财讯网站的网络服务 ，用户不得试图修改、变更、增加、减少、删除或
-    以其它任何方式改变九点财讯网站及其网络服务的内容、信息、数据、记录或其内在软件，用户不得有其它有损九点财讯利益之行为。若用户的行为不符合以上提到的服务条款，
-    九点财讯将有权独立判断取消该用户的服务账号。</p>
-    <h4>十、结束服务和身份的取消</h4>
-  <p> 
-    
-    若用户对任何服务条款的内容、以后的条款修改有异议，或对九点财讯网服务不满，则用户有以下权利：</p>
-  <p> (1) 不再使用九点财讯网服务。    </p>
-  <p>(2) 通知九点财讯网停止对该用户的服务。结束服务后，用户使用九点财讯网服务的权利即刻中止。此后，九点财讯网不再对该用户承担任何义务。
-    任何用户有如下行为而导致其账户被取消，责任自负：    </p>
-  <p>(1)有违反服务条款的行为；    </p>
-  <p>(2)滥用所享受的权利；    </p>
-  <p>(3)提供虚假注册信息；    </p>
-  <p>(4)通过不正当手段参与九点财讯网活动；    </p>
-  <p>(5)有损害其他用户的行为；    </p>
-  <p>(6)违反中国的法律、法规。
-    九点财讯可随时根据实际情况中断一项或多项网络服务。九点财讯中断服务不需对任何个人或第三方负责。 </p>
-    <h4>十一、内容的所有权</h4>
-  <p>
-    
-    九点财讯网络服务内容包括但不限于：文字、软件、声音、图片、录像、图表、广告中的全部内容；电子邮件的全部内容；九点财讯为用户提供的其他信息。 所有这些内容受版权 
-    、商标、标签和其它财产所有权法律的保护    </p>
-    <h4>十二、免责</h4>
-  <p>
-    九点财讯网将尽力提供一切可能的技术和设备维护用户的资料安全，并努力提供最好的服务。但出现下列情形之一的，本公司对客户可能产生 任何损失不承担责任，也 
-    不承担其它连带责任：    </p>
-  <p>(1)本公司因任何自然灾害、政府公告的传染性疾病、战争、恐怖主义袭击、社会动乱、骚乱、罢工、紧急状态或任何政府机关的强制性行政行为无法 提供网络服务或履行其相 
-    关义务；    </p>
-  <p>(2)本公司因其他本公司不能预见、不能控制、不能避免的事件无法提供网络服务或履行其相关义务；    </p>
-  <p>(3)由于非故意或不可抗拒的原因（含系统维护和升级），导致的用户数据损失、服务停止； </p>
-  <p>(4)由于电子设备、电子网络、通讯系统等原因，网络服务出现中断、停顿、延迟、数据错误等情况的；    </p>
-  <p>(5)用户授权九点财讯公开、透露用户的信息或资料；    </p>
-  <p>(6)相关的法律法规或监管机构、司法机构要求九点财讯提供用户的信息或资料；    </p>
-  <p>(7)用户身份被仿冒，账号或密码被窃取、盗用，或在任何其他情况下任何第三方盗用、冒用或未经许可擅自披露、使用或对外公开用户的信息或资料 ，以致用户信息资料外泄  
-    及被盗用；    </p>
-  <p>(8)用户未遵守业务规则或其他本公司规定的程序，包括但不限于隐瞒、伪造身份、提供虚假资料等；    </p>
-  <p>(9)法律、法规、法令限制或禁止网络服务进行的；    </p>
-  <p>(10)用户的上网设备与本公司系统不相匹配，造成无法进行网络服务；    </p>
-  <p>(11)其他任何妨碍本公司正常地提供网络服务的情形。 </p>
-    <h4>十三、法律</h4>
-  <p>
-    
-    (1)本公司提供的网络服务及用户接受和使用该等服务的行为也将受制于本公司不时发布或修改的业务规则。用户确认已经详细阅读上述各项规则 、条款、提示等内容，并已完 
-    全理解这些规则、条款、提示等内容的词语和其法律含义。用户同意严格遵守上述各项规则、条款和提示。    </p>
-  <p>(2)九点财讯网保留对九点财讯网的最终解释权。    </p>
-  <p>(3)九点财讯网保留在任何时刻，变动或更新本服务条款全部或部分内容的权利。该等修改无须向用户或任何第三方作特别告知或专门通知，自本公司作出修改决定之时起自动更新
-    并生效。    </p>
-  <p>(4)九点财讯网服务条款应与国家法律解析一致。若有任何服务条款与法律相抵触，以国家法律法规及司法解释为准。</p>
+
+<p style="margin-left: 0;text-indent: 0;padding: 0;line-height: 19px;">
+    <span style="font-family: Arial;letter-spacing: 0;font-weight: bold;font-size: 14px">用户注册协议</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">（</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">www.9diancaixun.com</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">）所提供的各项服务的所有权和运作权均归</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的信金融信息服务（上海）有限</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">公司（以下简称“</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">”）所有。</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">用户使用协议（以下简称“本协议”）系由</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">用户与</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">就</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的各项服务所订立的相关权利义务规范。用户</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">一经注册</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">或使用本网站，即表示接受并同意本协议的所有条件和条款。</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的信金融作</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">为</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">（</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">www.9diancaixun.com</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">）的运营者依据本协议为用户提供服务。不愿接受本协议条款的，不得访问或使用本网站。</span>
+</p>
+<h2 style="margin-top:50px;margin-right:0;margin-bottom:60px;margin-left:0;text-align:center">
+    <span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 19px">第一章&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 19px">9点财讯</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 19px">服务</span>
+</h2>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第一条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务是</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">通过</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">平台（网址：</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">www.9diancaixun.com</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">）向个人会员提供的服务，具体服务内容主要包括：</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">理财产品</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">信息发布、提供客户服务等，具体详情以</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">当时提供的服务内容为准。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第二条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;为了保障您的权益，您在自愿注册使用</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务前，必须仔细阅读并充分理解知悉本服务协议所有条款。一经注册或使用</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务即视为对本服务协议的充分理解和接受，如有违反而导致任何法律后果的发生，您将以自己的名义独立承担相应的法律责任。</span>
+</p>
+<p style="margin-top:0;margin-right:0;margin-bottom:16px;padding:0 0 0 0 ;line-height:20px">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第三条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);letter-spacing: 0;font-size: 14px">的信金融</span><span style="font-family: Arial;color: rgb(51, 51, 51);letter-spacing: 0;font-size: 14px">有权对本协议条款进行修改，修改后的协议一旦公布即有效代替原来的协议。用户可随时查阅最新协议。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第四条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">对于个人会员的通知及任何其他的协议、告示或其他关于个人会员使用会员账户及服务的通知，个人会员同意</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">可通过</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">平台公告、电子邮件、手机短信、无线通讯装置等电子方式或常规的信件传递等方式进行，该等通知于发送之日视为已送达收件人。因信息传输等原因导致个人会员未在前述通知发出当日收到该等通知的，</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">不承担责任。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第五条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">可以依其对判断暂时停止提供、限制或改变</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务，只要个人会员仍然使用</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯服务</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">，即表示个人会员仍然同意本服务协议。</span>
+</p>
+<h2 style="margin-top:50px;margin-right:0;margin-bottom:60px;margin-left:0;text-align:center">
+    <span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 19px">第二章&nbsp;个人会员</span>
+</h2>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第六条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的个人会员是指符合中华人民共和国法律规定的具有完全民事权利和民事行为能力，能够独立承担民事责任的自然人。在使用</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务前，个人会员必须先在</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">上进行注册。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第七条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;个人会员承诺以下事项：</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">1、个人会员必须依陆金所要求提示提供个人会员真实、最新、有效及完整的资料。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">2、个人会员有义务维持并更新个人会员的资料，确保其为真实、最新、有效及完整。若个人会员提供任何错误、虚假、过时或不完整的资料，或者</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">依其独立判断怀疑资料为错误、虚假、过时或不完整，陆金所有权暂停或终止个人会员的会员账户，并拒绝个人会员使用</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯服务</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的部份或全部功能。在此情况下，</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">不承担任何责任，并且个人会员同意负担因此所产生的直接或间接的任何支出或损失。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">3、如因个人会员未及时更新基本资料，导致</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">9点财讯服务</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">无法提供或提供时发生任何错误，个人会员不得将此作为取消交易或拒绝付款的理由，</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">亦不承担任何责任，所有后果应由个人会员承担。</span>
+</p>
+<h2 style="margin-top:50px;margin-right:0;margin-bottom:60px;margin-left:0;text-align:center">
+    <span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 19px">第三章&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 19px">9点财讯</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 19px">服务的内容</span>
+</h2>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第八条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务内容主要包括根据个人会员需求发布</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">理财产品</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">信息、提供客户服务等，具体详情以</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">当时提供的服务内容为准。</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务的部分内容需要个人会员根据</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">要求完成身份认证，未进行身份认证的个人会员将无法使用该部分</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务。因未能完成认证而无法享受</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务造成的损失，</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">不承担任何责任。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第九条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">将为个人会员提供信息发布服务。</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">向个人会员提供的各种信息及资料仅为参考，个人会员应依其独立判断做出决策。个人会员据此进行交易的，产生的风险由个人会员自行承担，个人会员无权据此向</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">提出任何法律主张。</span>
+</p>
+<h2 style="margin-top:50px;margin-right:0;margin-bottom:60px;margin-left:0;text-align:center">
+    <span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 19px">第五章&nbsp;服务费用</span>
+</h2>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第十条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;当个人会员使用</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯服务</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">时，</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">会向个人会员收取相关服务费用。各项服务费用详见个人会员使用</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">服务时</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">上所列之收费方式说明。</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">保留单方面制定及调整服务费用的权利。</span>
+</p>
+<h2 style="margin-top:50px;margin-right:0;margin-bottom:60px;margin-left:0;text-align:center">
+    <span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 19px">第六章&nbsp;账户安全及管理</span>
+</h2>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第十</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">一</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;个人会员了解并同意，确保会员账户及密码的机密安全是个人会员的责任。个人会员将对利用该会员账户及密码所进行的一切行动及言论，负完全的责任，并同意以下事项：</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">(1)&nbsp;个人会员不对其他任何人泄露账户或密码，亦不可使用其他任何人的账户或密码。因黑客、病毒或个人会员的保管疏忽等非陆金所原因导致个人会员的会员账户遭他人非法使用的，</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">不承担任何责任。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">(3)&nbsp;冒用他人账户及密码的，</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">及其合法授权主体保留追究实际使用人连带责任的权利。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px;margin-left:0">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">(4)&nbsp;个人会员应根</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">的相关规则以及</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">9<span style="font-family:宋体">点财讯的</span></span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">相关提示创建一个安全密码，应避免选择过于明显的单词或日期，比如个人会员的姓名、昵称或者生日等。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第十</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">二</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;个人会员如发现有第三人冒用或盗用个人会员账户及密码，或其他任何未经合法授权的情形，应立即以有效方式通知</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">，要求</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">暂停相关服务，否则由此产生的一切责任由个人会员本人承担。同时，个人会员理解</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">对个人会员的请</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">。</span>
+</p>
+<p style="margin-top:20px;margin-right:0;margin-bottom:40px">
+    <span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">第十</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">三</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-weight: bold;font-size: 14px">条</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">&nbsp;求采取行动需要合理期限，在此之前，</span><span style="font-family: 宋体;color: rgb(51, 51, 51);font-size: 14px">的信金融</span><span style="font-family: 微软雅黑;color: rgb(51, 51, 51);font-size: 14px">对第三人使用该服务所导致的损失不承担任何责任。</span>
+</p>
+<p style="margin: 20px 0 40px">
+    <span style=";font-family:&#39;Times New Roman&#39;;font-size:14px">&nbsp;</span>
+</p>
+
   </div>
-</div><!--main end-->
+  </div>
+</div>
+</div>
+<br class="clear" />
 <!---foot底部---->
 <c:import url="/framework/footer.jsp" charEncoding="utf-8" />
 <!---foot底部结束---->
