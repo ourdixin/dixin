@@ -28,10 +28,11 @@
       <tr>
         <td width="0%" height="50" align="center" bgcolor="#f2f2f2"><strong>资管计划名称</strong></td>
         <td colspan="5" align="center" bgcolor="#f2f2f2"><font style="color:#F90; font-size:18px; font-weight:bold;">${product.name}
-        <c:if test='${product.code != null && product.code !="" }'>
-        	(${product.code})
-        </c:if>
-        </font></td>
+	        <c:if test='${product.code != null && product.code !="" }'>
+	        	(${product.code})
+	        </c:if>
+	        </font>
+        </td>
       </tr>
       <tr>
         <td width="0%" height="35" align="center" bgcolor="#FFFFFF">发行时间</td>
@@ -204,9 +205,11 @@
           	</c:if>         	 
           </div>
           </td>
+          
           <td width="0%" align="center" bgcolor="#FFFFFF">查看次数</td>
       	  <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.viewNum}</strong></td>
           </c:if>
+          
           <c:if test="${product.profitId == 43}">
 			<td width="0%" align="center" bgcolor="#FFFFFF">业绩报酬</td>
         	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>
@@ -216,7 +219,9 @@
         	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.openDay}</strong></td>         	        
           </c:if>
       </tr>
+      
       <c:if test="${product.profitId == 43}">
+      <tr>
         <td width="0%" align="center" bgcolor="#FFFFFF">认购费</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>
         ${product.buyFee}
@@ -225,8 +230,9 @@
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong><fmt:formatNumber value="${product.manageFee}"  minFractionDigits="0"/>%</strong></td>
         <td width="0%" align="center" bgcolor="#FFFFFF">退出费用</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.sellFee}</strong></td>
+        </tr>
       </c:if>  
-
+	  
     </tbody>
   </table>
   <div id="productInfo" >

@@ -109,7 +109,10 @@
       <tr>
         <th>收益说明</th>
         <td>
-        
+        	<c:if test="${null != product.rateNote and '' != product.rateNote}">
+        		${product.rateNote}
+        	</c:if>
+        	<c:if test="${null == product.rateNote or '' == product.rateNote}">             
         
         		<c:if test="${0 != product.partA and 0 == product.partB}">
         		${product.partA/10000}万元以上,
@@ -121,7 +124,7 @@
         		
         		 
 	        	 <fmt:formatNumber value="${product.rateA}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
-		       	 <c:if test="${0 == product.partB and 0 == product.partA}"> 
+		       	 <c:if test="${0 != product.rateB and 0 == product.partB and 0 == product.partA}"> 
 		        	 - <fmt:formatNumber value="${product.rateB}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
 	          	 </c:if>	        	 
 	       	 <c:if test="${0 != product.partB and 0 == product.partC}"> 
@@ -157,8 +160,7 @@
 	          	 <fmt:formatNumber value="${product.rateD}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
 	          	 %
           	 </c:if>         
-        
-        
+        	</c:if> 
         </td>
       </tr> 
 
