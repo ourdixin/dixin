@@ -27,6 +27,7 @@
 		<result column="rate_b" property="rateB"/>
 		<result column="rate_c" property="rateC"/>
 		<result column="rate_d" property="rateD"/>
+		<result column="rate_note" property="rateNote"/>		
 		<result column="amount" property="amount"/>
 		<result column="min_amount" property="minAmount"/>
 		<result column="append_amount" property="appendAmount"/>
@@ -119,6 +120,7 @@
 			,product.rate_c
 			,product.part_d
 			,product.rate_d
+			,product.rate_note
 			,product.amount
 			,product.min_amount
 			,product.append_amount
@@ -226,6 +228,7 @@
 			,product.rate_c
 			,product.part_d
 			,product.rate_d
+			,product.rate_note
 			,product.amount
 			,product.min_amount
 			,product.append_amount

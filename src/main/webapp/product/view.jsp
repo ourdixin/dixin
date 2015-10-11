@@ -151,7 +151,10 @@
         <td width="0%" height="50" align="center" bgcolor="#FFFFFF">收益说明</td>
         <td align="center" bgcolor="#FFFFFF">
         <div>
-        
+        	<c:if test="${null != product.rateNote and '' != product.rateNote}">
+        		${product.rateNote}
+        	</c:if>
+        	<c:if test="${null == product.rateNote or '' == product.rateNote}">        
         		<c:if test="${0 != product.partA and 0 == product.partB}">
         		${product.partA/10000}万元以上认购/参与金额（A1类）
         		</c:if>
@@ -162,7 +165,7 @@
         		
         		 
 	        	 <fmt:formatNumber value="${product.rateA}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
-		       	 <c:if test="${0 == product.partB and 0 == product.partA}"> 
+		       	 <c:if test="${0 != product.rateB and 0 == product.partB and 0 == product.partA}"> 
 		        	 - <fmt:formatNumber value="${product.rateB}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>%
 	          	 </c:if>	        	 
 	       	 <c:if test="${0 != product.partB and 0 == product.partC}"> 
@@ -197,8 +200,9 @@
 	          	 ${product.partD/10000}万元及以上认购/参与金额（A4类）
 	          	 <fmt:formatNumber value="${product.rateD}" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber>  
 	          	 %
-          	 </c:if>          	 
-          	 </div>
+          	 </c:if> 
+          	</c:if>         	 
+          </div>
           </td>
           <td width="0%" align="center" bgcolor="#FFFFFF">查看次数</td>
       	  <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.viewNum}</strong></td>

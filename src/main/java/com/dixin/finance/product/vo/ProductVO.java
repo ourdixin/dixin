@@ -181,6 +181,10 @@ public class ProductVO extends BaseVO {
 	 */
 	private Float rateD = 0f;	
 	
+	/**
+	 * 产品收益说明
+	 */	
+	private String rateNote;
 	
 	/**
 	 * 产品规模
@@ -723,6 +727,15 @@ public class ProductVO extends BaseVO {
 		if(rateD != null)
 			this.rateD = rateD;
 	}
+	
+	public String getRateNote() {
+		return rateNote;
+	}
+	
+	public void setRateNote(String rateNote) {
+		this.rateNote = rateNote;
+	}	
+	
 	public int getViewNum() {
 		return viewNum;
 	}
