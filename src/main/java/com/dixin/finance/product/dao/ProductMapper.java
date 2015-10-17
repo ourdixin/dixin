@@ -36,6 +36,17 @@ public interface ProductMapper {
 	 */		
 	void updateViewNum(int productId);
 	
+	/**
+	 * 添加下载次数
+	 * @return
+	 */		
+	void updateDownNum(int productId);	
+
+	/**
+	 * 添加预约次数
+	 * @return
+	 */		
+	void updateReservationNum(int productId);		
 	
 	/**
 	 * 添加产品

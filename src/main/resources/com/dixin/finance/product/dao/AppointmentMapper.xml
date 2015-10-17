@@ -9,6 +9,7 @@
   <insert id="insert" parameterType="com.dixin.finance.product.vo.AppointmentVO" >
     insert into reservation(
 		user_id,
+		name,
 		reserve_date,
 		amount,
 		product_id,
@@ -23,6 +24,7 @@
 		update_time)
 	values(
 		#{userId},
+		#{name},
 		#{reserve_date},
 		#{amount},
 		#{product.id},
@@ -52,6 +54,7 @@
   <resultMap id="appointmentResult" type="com.dixin.finance.product.vo.AppointmentVO">  
 		<id column="id" property="id"/>
 		<result column="user_id" property="userId"/>
+		<result column="reserv_name" property="name"/>
 		<result column="reserve_date" property="reserve_date"/>
 		<result column="amount" property="amount"/>
 		<result column="tel" property="tel"/>
@@ -72,6 +75,7 @@
 			product.name name,
 			product.pay_type payType,
 			product.term term,
+			reservation.name reservation_name,
 			reservation.tel tel,
 			reservation.msg msg,
 			reservation.create_user createUser, 
@@ -84,6 +88,7 @@
    <select id="queryUserAppointmentList" parameterType="int" resultMap="appointmentResult" useCache="false" >
 		select reservation.id id,
 			reservation.user_id user_id,
+			reservation.name reservation_name,
 			reservation.reserve_date reserve_date,
 			reservation.amount amount,
 			product.id product,
@@ -103,6 +108,7 @@
   <select id="queryUserAppointment" parameterType="map" resultMap="appointmentResult" useCache="false" >
 		select reservation.id id,
 			reservation.user_id user_id,
+			reservation.name reservation_name,
 			reservation.reserve_date reserve_date,
 			reservation.amount amount,
 			product.id product_id,
@@ -158,6 +164,7 @@
   <resultMap id="appointmentMap" type="com.dixin.finance.product.vo.AppointmentVO">  
 		<id column="a_id" property="id"/>
 		<result column="a_user_id" property="userId"/>
+		<result column="a_reservation_name" property="name"/>		
 		<result column="a_reserve_date" property="reserve_date"/>
 		<result column="a_amount" property="amount"/>
 		<result column="a_tel" property="tel"/>
@@ -178,6 +185,7 @@
 		select 	
 				a.id as a_id,
 				a.user_id as a_user_id,
+				a.name as a_reservation_name,
 				a.reserve_date as a_reserve_date,
 				a.product_id as a_product_id,
 				a.amount as a_amount,

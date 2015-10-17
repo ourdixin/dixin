@@ -884,3 +884,24 @@ li {
 .grzx_zzc span{font-family:"Microsoft YaHei";font-size:18px;color:#b61b1f;}
 
 #openbox{border:6px solid #dddddd;padding:10px;width:400px; position:absolute; z-index:10;top:25%;left:50%;margin-left:-220px; background:#FFF; visibility:hidden;}
+/**--------------------------------------2015-10-15详情页新加样式-----------------------------------*/
+
+.showbox{border:1px solid #e2e2e2;margin-bottom:30px;}
+.showbox div.table_c{width:880px;float:left;padding:20px;overflow:hidden;}
+.showright{float:left;width:240px; background:#ff6633;overflow:hidden;padding:8px 15px;color:#FFF;}
+.showright table{width:240px;}
+.showright h2{font-family:"Microsoft YaHei";font-size:18px;font-weight:normal;line-height:40px;}
+.showright input[type=text]{border:1px solid #FFF; background:#fff url(../images/20151015_02.png) no-repeat;padding-left:34px;font-size:14px;height:32px;line-height:32px;width:204px;color:#666;}
+.showright input.ch{background-position:8px 6px;}
+.showright input.sjhm{background-position:8px -45px;}
+.showright input.je{background-position:8px -98px;}
+.showright textarea{font-size:14px;color:#666;width:98%;border:1px solid #FFF;height:100px;margin:8px 0px;}
+.showright input[type=button]{border:0px solid #cc3300; background:#cc3300;height:36px;width:240px;font-family:"Microsoft YaHei";font-size:18px;color:#FFF;margin:12px 0px;}
+.showcz{margin:0px 20px;width:880px; border-top:1px dashed #e2e2e2;padding:12px 0px; text-align:right;}
+
+.showcen .showtit{background:#eeeeee;height:46px;margin-bottom:12px;}
+.showcen .showtit h2{background:#bb190c;font-family:"Microsoft YaHei";font-size:18px;font-weight:normal;line-height:46px;color:#FFF;float:left;padding:0px 30px;}
+.showcen .showtit p{padding:8px;float:right;}
+.showtext{border:1px solid #e2e2e2;padding:50px 30px;font-size:14px;line-height:30px;}
+.show{padding:8px;float:right;}
+

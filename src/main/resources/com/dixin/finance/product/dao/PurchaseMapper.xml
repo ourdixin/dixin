@@ -52,6 +52,8 @@
 		<result column="status" property="status"/>
 		<result column="info" property="info"/>
 		<result column="view_num" property="viewNum"/>
+		<result column="down_num" property="downNum"/>
+		<result column="reservation_num" property="reservationNum"/>
 		<result column="recommend" property="recommend"/>
 		<result column="ad_file" property="adFile"/>
 		<result column="guide_file" property="guideFile"/>

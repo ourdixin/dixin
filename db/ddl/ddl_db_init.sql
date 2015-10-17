@@ -3901,6 +3901,8 @@ CREATE TABLE IF NOT EXISTS `product` (
   `status` tinyint(4) NOT NULL DEFAULT '120' COMMENT '产品期限状态',
   `info` text NOT NULL COMMENT '资管要素HTML文件',
   `view_num` int(11) COMMENT '查看次数',
+  `down_num` int(11) NOT NULL DEFAULT '0' COMMENT '附件下载数量',
+  `reservation_num` int(11) NOT NULL DEFAULT '0' COMMENT '产品预约数量',
   `value_date` date DEFAULT NULL COMMENT '产品起息日',
   `due_date` date DEFAULT NULL COMMENT '产品到期日',
   `unit_net` float NOT NULL DEFAULT '1' COMMENT '浮动产品的最新单位净值',
@@ -3968,6 +3970,7 @@ CREATE TABLE IF NOT EXISTS `purchase` (
 CREATE TABLE IF NOT EXISTS `reservation` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '内部唯一ID',
   `user_id` int(11) NOT NULL COMMENT '预约用户',
+  `name` varchar(64) NOT NULL COMMENT '预约人称呼',
   `reserve_date` date NOT NULL COMMENT '预约日期',
   `product_id` int(11) NOT NULL COMMENT '预约产品',
   `tel` varchar(16) NOT NULL COMMENT '预约手机号码',

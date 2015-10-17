@@ -5,8 +5,7 @@
 <div id="header">
   <div class="topbar">
     <div class="topnav">
-      <div class="tel">免费专业顾问：400-6262-121</div>
-      
+      <div class="tel">免费专业顾问：400-9922-519</div>
       <div class="subnav">
       	<c:if test="${null == user}">
       		<a href="<%=request.getContextPath() %>/authentication/login.jsp">登录</a> | <a href="<%=request.getContextPath() %>/authentication/register.jsp">免费注册</a> | <a href="<%=request.getContextPath() %>/authentication/regarding.jsp">关于我们</a>
@@ -31,7 +30,7 @@
     <div class="logo"><a href="<%=request.getContextPath() %>/"><img src="<%=request.getContextPath()%>/images/logo.png"></a><img src="<%=request.getContextPath()%>/images/sloga.png"></div>
     <div class="topsearch">
         <table width="304" border="0" cellspacing="0" cellpadding="0">
-        <form name="form1" method="post" action="<%=request.getContextPath() %>/product/product.jsp">
+          <form name="form1" method="post" action="<%=request.getContextPath() %>/product/product.jsp">
 	          <tr>
 	            <td width="242"><input type="text" name="search_text" id="search_text">
 	            <input type="submit" name="button" id="button" value="提交"></td>

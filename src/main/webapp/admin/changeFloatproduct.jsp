@@ -166,6 +166,12 @@
 								<td></td>
 							</tr>
 							<tr>
+								<td class="t">产品收益说明：</td>
+								<td colspan="3">
+								<input class="itstyle lt it" id="rateNote" name="rateNote" value="${product.rateNote}" type="text" style="width:80%;"/>(文本)
+								</td>
+							</tr>
+							<tr>
 								<td class="t">产品推介单页：</td>
 								<td>
 									<input readonly="readonly"  class="itstyle lt it" id="adFile" name="adFile" value="${product.adFile}" type="text" />

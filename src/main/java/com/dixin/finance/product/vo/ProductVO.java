@@ -260,6 +260,16 @@ public class ProductVO extends BaseVO {
 	private Integer viewNum = 0;
 	
 	/**
+	 * 下载次数
+	 */
+	private Integer downNum = 0;
+	
+	/**
+	 * 预约次数
+	 */
+	private Integer reservationNum = 0;
+
+	/**
 	 * 产品认购费
 	 */	
 	private String buyFee ;
@@ -1336,6 +1346,23 @@ public class ProductVO extends BaseVO {
 	public void setuAmount(Double uAmount) {
 		this.uAmount = uAmount;
 	}
+	
+	public Integer getDownNum() {
+		return downNum;
+	}
+	
+	public void setDownNum(Integer downNum) {
+		this.downNum = downNum;
+	}
+	
+	public Integer getReservationNum() {
+		return reservationNum;
+	}
+	
+	public void setReservationNum(Integer reservationNum) {
+		this.reservationNum = reservationNum;
+	}
+	
 	public Map<String,Double> getFixProductPnl(List<PurchaseVO> purchaseList)
 	{
 		Map<String,Double> userPnl = new HashMap<String,Double>();

@@ -80,10 +80,19 @@ public class ProductServiceImpl implements IProductService{
 
 	@Override
 	public void updateViewNum(int productId) {
-		
 		productMapper.updateViewNum(productId);
 	}
 
+	@Override
+	public void updateDownNum(int productId) {
+		productMapper.updateDownNum(productId);
+	}
+
+	@Override
+	public void updateReservationNum(int productId) {
+		productMapper.updateReservationNum(productId);
+	}
+	
 	@Override
 	public void addProduct(ProductVO product) {
 		productMapper.addProduct(product);
@@ -280,5 +289,5 @@ public class ProductServiceImpl implements IProductService{
 		map.put("totalValue", totalValue);
 		productMapper.updateProductTotalValue(map);
 	}
-    
+
 }

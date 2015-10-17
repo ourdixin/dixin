@@ -36,7 +36,7 @@
    							<#=list[i].createTime#>
    						</td>
    						<td>
-   							<#=list[i].user.name#>
+   							<#=list[i].name#>(<#=list[i].user.name#>)
    						</td>
    						<td>
    							<#=list[i].product.name#>

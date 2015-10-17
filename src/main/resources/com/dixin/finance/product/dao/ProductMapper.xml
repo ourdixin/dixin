@@ -53,6 +53,8 @@
 			status status,
 			info info,
 			view_num viewNum,
+			down_num downNum,
+			reservation_num reservationNum,			
 			value_date valueDate,
 			due_date dueDate,
 			unit_net unitNet,
@@ -242,6 +244,8 @@
 			status status,
 			info info,
 			view_num viewNum,
+			down_num downNum,
+			reservation_num reservationNum,		
 			value_date valueDate,
 			due_date dueDate,
 			unit_net unitNet,
@@ -307,6 +311,8 @@
 			status status,
 			info info, 
 			view_num viewNum,
+			down_num downNum,
+			reservation_num reservationNum,	
 			value_date valueDate,
 			due_date dueDate,
 			unit_net unitNet,
@@ -327,6 +333,20 @@
 		WHERE id=#{productId}
 	</update>	
 	
+	<!-- 更新 产品查看次数-->
+	<update id="updateDownNum" parameterType="int" >
+		UPDATE product SET 
+		down_num = down_num + 1
+		WHERE id=#{productId}
+	</update>		
+	
+	<!-- 更新 产品查看次数-->
+	<update id="updateReservationNum" parameterType="int" >
+		UPDATE product SET 
+		reservation_num = reservation_num + 1
+		WHERE id=#{productId}
+	</update>	
+		
   <insert id="addProduct" parameterType="com.dixin.finance.product.vo.ProductVO" >
     insert into product(
 		code,
@@ -425,6 +445,8 @@
 		#{status},
 		#{info},
 		#{viewNum},
+		#{downNum},
+		#{reservationNum},
 		#{recommend},
 		#{adFile},
 		#{guideFile},
@@ -542,6 +564,8 @@
 			#{product.status},
 			#{product.info},
 			#{product.viewNum},
+			#{product.downNum},
+			#{product.reservationNum},
 			#{product.recommend},
 			#{product.adFile},
 			#{product.guideFile},
@@ -627,6 +651,8 @@
 		status = #{status},
 		info = #{info},
 		view_num = #{viewNum},
+		down_num = #{downNum},
+		reservation_num = #{reservationNum},
 		recommend = #{recommend},
 		ad_file = #{adFile},
 		guide_file = #{guideFile},

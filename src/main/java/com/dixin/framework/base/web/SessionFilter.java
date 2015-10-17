@@ -3,6 +3,7 @@ package com.dixin.framework.base.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,15 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.dixin.finance.authentication.constant.UserTypeConstant;
 import com.dixin.finance.authentication.vo.UserVO;
+import com.dixin.finance.product.service.IProductService;
+import com.dixin.finance.product.service.IPurchaseService;
+import com.dixin.framework.tools.ApplicationUtil;
 
 
 public class SessionFilter extends OncePerRequestFilter {
 
 	private static final Logger logger = LoggerFactory.getLogger(OncePerRequestFilter.class);
+	private IProductService productService = null;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -37,8 +43,6 @@ public class SessionFilter extends OncePerRequestFilter {
 
 		// 请求的uri
 		String uri = request.getRequestURI();
-		
-		
 		
 		// uri中包含background时才进行过滤
 		if (uri.indexOf("admin/") != -1 && (uri.indexOf(".") == -1 || uri.indexOf(".jsp") != -1 )) {
@@ -79,7 +83,18 @@ public class SessionFilter extends OncePerRequestFilter {
 				// 如果不执行过滤，则继续
 				filterChain.doFilter(request, response);
 			}
-		} else {
+		} 
+		/*else if(uri.indexOf("/upload/") != -1 ){
+			
+			Integer productId = (Integer) request.getAttribute("productId");
+			if(productId != null)
+			{
+				if(productService == null)
+					productService = (IProductService) ApplicationUtil.getBean("productServiceImpl");
+				productService.updateDownNum(productId);
+			}
+		}*/
+		else {
 			// 如果uri中不包含background，则继续
 			filterChain.doFilter(request, response);
 		}

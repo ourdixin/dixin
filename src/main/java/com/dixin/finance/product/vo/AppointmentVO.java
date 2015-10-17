@@ -19,6 +19,8 @@ public class AppointmentVO extends BaseVO {
 	
 	private int userId;
 	
+	private String name; //联系人
+
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date reserve_date; //预计打款时间
@@ -28,7 +30,7 @@ public class AppointmentVO extends BaseVO {
 	
 	private ProductVO product; 
 	
-	private String msg; //联系人
+	private String msg; //备注
 	
 	private String tel;  //电话
 	
@@ -56,6 +58,12 @@ public class AppointmentVO extends BaseVO {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public Date getReserve_date() {
 		return reserve_date;

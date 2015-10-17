@@ -402,6 +402,8 @@ public class ProductController {
 			return webResult;
 		}			
 		
+		productService.updateReservationNum(productId);
+		
 		ProductVO product = new ProductVO();
 		PurchaseVO purchase = new PurchaseVO();
 		ContactRecordVO contact = new ContactRecordVO();
@@ -415,6 +417,16 @@ public class ProductController {
 		appointmentService.insertAppointment(appointment);
 		webResult.setSuccess(true);
 		webResult.setUrl(request.getContextPath()+"/product/appointmentShow.jsp");
+		return webResult;
+	}
+	
+	@RequestMapping(value="/product/downadfile",method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult downadfile(int productId,String backurl, HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		
+		productService.updateDownNum(productId);
+		
+		webResult.setSuccess(true);
 		return webResult;
 	}
 	
