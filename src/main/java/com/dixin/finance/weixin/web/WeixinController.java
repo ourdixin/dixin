@@ -345,6 +345,10 @@ public class WeixinController {
 		appointment.setPurchase(purchase);
 		appointment.setContact(contact);
 		appointment.setUserId(userVO.getId());
+		Calendar cal = Calendar.getInstance();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		cal.setTimeZone(zone);
+		appointment.setReserve_date(cal.getTime());
 		appointmentService.insertAppointment(appointment);
 		webResult.setSuccess(true);
 		webResult.setUrl(request.getContextPath()+"/weixin/product/appointmentlist");
@@ -352,12 +356,33 @@ public class WeixinController {
 	}
 	
 	/***********************************查看预约产品列表**********************************************/
+	@RequestMapping(value="weixin/product/goappointment")
+	public String goappointment(Integer productid,String name,HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "weixin/login";
+		}
+		
+		model.addAttribute("productId", productid);
+		model.addAttribute("productName", name);
+		return "weixin/product/appointment";
+	}	
+	
 	@RequestMapping(value="weixin/product/appointmentlist")
 	public String appointmentShow(HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return request.getContextPath()+"/weixin/login";
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "weixin/login";
 		}
 		
 		Integer userid = userVO.getId();
@@ -372,7 +397,11 @@ public class WeixinController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return request.getContextPath()+"/weixin/login";
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "weixin/login";
 		}
 		
 		Integer userid = userVO.getId();
@@ -392,7 +421,11 @@ public class WeixinController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
-			return request.getContextPath()+"/weixin/login";
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "weixin/login";
 		}		
 
 		PurchaseVO purchase = PurchaseServiceImpl.queryPurchase(id);
@@ -407,6 +440,10 @@ public class WeixinController {
 		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
 		if(userVO == null)
 		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
 			return "weixin/login";
 		}
 		

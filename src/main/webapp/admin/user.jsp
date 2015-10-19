@@ -77,7 +77,10 @@
 	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
 	<!---用户左侧共用部份结束---->
 		<div id="main_right">
-
+			<div >
+			<span style="background: #d9b36a;"> <a class="item"  href="<%=request.getContextPath()%>/admin/addUser.jsp"  >添加用户</a></span>
+			</div>
+			<br>
 			<div class="main_width">
 
 			</div>

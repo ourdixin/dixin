@@ -129,13 +129,13 @@ var HOST_PATH = "<%=request.getContextPath() %>";
     <ul>
       <li>
         <h2><a href="<%=request.getContextPath() %>/product/product.jsp">金融超市</a></h2>
-        <p>短期高回报产品</p>
-        <p>长期稳定高收益产品</p>
+        <p>债券 银行理财 基金</p>
+        <p>券商理财 信托  资管</p>
       </li>
       <li>
         <h2><a href="<%=request.getContextPath() %>/authentication/quote.jsp">金融折扣</a></h2>
-        <p>短期高回报产品</p>
-        <p>长期稳定高收益产品</p>
+        <p>A股开户 期货开户 港股开户</p>
+        <p>交易费最低</p>
       </li>
       <li>
         <h2><a href="<%=request.getContextPath() %>/authentication/transfer.jsp">产品转让</a></h2>
@@ -147,10 +147,10 @@ var HOST_PATH = "<%=request.getContextPath() %>";
   
   <div class="ind_table">
     <div class="gdsy">
-      <p>标准化金融产品</p>
-      <p>实力公司背景</p>
-      <p>本金金额全保障</p>
-      <p>锁定极端亏损</p>
+      <p>合规金融产品</p>
+      <p>远离非法集资</p>
+      <p>本金金额保障</p>
+      <p>固定期限收益</p>
     </div>
     <div class="ind_tablebox">
       <ul class="ind_tab">
@@ -174,10 +174,10 @@ var HOST_PATH = "<%=request.getContextPath() %>";
   </div>  
   <div class="ind_table">
     <div class="fdsy">
-      <p>标准化金融产品</p>
-      <p>实力公司背景</p>
-      <p>本金金额全保障</p>
-      <p>锁定极端亏损</p>
+      <p>合规金融产品</p>
+      <p>远离全权委托</p>
+      <p>投资风险很低</p>
+      <p>专业基金经理</p>
     </div>
     <div class="ind_tablebox">
       <ul class="ind_tab">

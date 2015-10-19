@@ -38,10 +38,10 @@
 		<div class="listable">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<form action="<%=request.getContextPath() %>/weixin/product/appointment" method="post" id="appointForm">
-					<input name="productId" id="productId" value="${param.productid}" type="hidden" />
+					<input name="productId" id="productId" value="${productId}" type="hidden" />
 					<tr>
 						<th width="120">预约产品</th>
-						<td>${param.name}</td>
+						<td>${name}</td>
 					</tr>
 					<tr>
 						<th>预约金额</th>

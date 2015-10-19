@@ -1473,8 +1473,10 @@ public class ProductVO extends BaseVO {
 			cal.setTime(valueDate);
 		
 		long millis = nowDate.getTime() - cal.getTime().getTime() ;
-		
-		days = (int) (millis/(1000 * 3600 * 24));
+		if(millis < 0 )
+			days = 0;
+		else
+			days = (int) (millis/(1000 * 3600 * 24));
 		
 		return days;
 	}

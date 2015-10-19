@@ -25,7 +25,9 @@ $(document).ready(function(){
 	
 	function updateDownNum(){
 		$.post(HOST_PATH + "/product/downadfile", $('#adFile').attr("name"), null);
-		window.open($('#adFileSrc').val(),'_blank');		
+		var filename = $('#adFileSrc').val();
+		if(filename != null && filename != "")
+			window.open($('#adFileSrc').val(),'_blank');		
 	}
 	
 	$('#adFile').click(function(){

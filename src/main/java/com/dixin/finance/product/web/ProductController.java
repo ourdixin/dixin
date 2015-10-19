@@ -6,10 +6,12 @@ package com.dixin.finance.product.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -414,6 +416,10 @@ public class ProductController {
 		appointment.setPurchase(purchase);
 		appointment.setContact(contact);
 		appointment.setUserId(userVO.getId());
+		Calendar cal = Calendar.getInstance();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		cal.setTimeZone(zone);
+		appointment.setReserve_date(cal.getTime());
 		appointmentService.insertAppointment(appointment);
 		webResult.setSuccess(true);
 		webResult.setUrl(request.getContextPath()+"/product/appointmentShow.jsp");

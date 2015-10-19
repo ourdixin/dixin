@@ -68,10 +68,10 @@
 							 </c:choose>
 							 </span>起购</li>
 				<li class="zy_fx"><span>
-				<c:if test="${product.releaseDate < product.invalidDate}">
-					<fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${product.releaseDate}"/>发行    
+				<c:if test="${firstProduct.releaseDate < firstProduct.invalidDate}">
+					<fmt:formatDate pattern="yyyy/MM/dd hh:mm" value="${firstProduct.releaseDate}"/>发行    
 				</c:if>
-				<c:if test="${product.releaseDate >= product.invalidDate}">
+				<c:if test="${firstProduct.releaseDate >= firstProduct.invalidDate}">
 					待定
 				</c:if>				
 				</span>

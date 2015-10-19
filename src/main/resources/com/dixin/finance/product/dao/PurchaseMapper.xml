@@ -143,6 +143,8 @@
 			,product.status
 			,product.info
 			,product.view_num
+			,product.down_num
+			,product.reservation_num
 			,product.ad_file
 			,product.guide_file
 			,product.profit_id
@@ -251,6 +253,8 @@
 			,product.status
 			,product.info
 			,product.view_num
+			,product.down_num
+			,product.reservation_num
 			,product.ad_file
 			,product.guide_file
 			,product.profit_id

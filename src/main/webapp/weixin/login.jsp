@@ -110,6 +110,7 @@ header {
     </div>
     <div class="box">
     	<form action="<%=request.getContextPath() %>/authentication/user" method="post" id="loginForm">
+    	<input type="hidden" name="backurl" value="${backurl}" />
     	<section class="box-content box-reg">
  			<p class="box-inp">
 				<span class="icon"></span> <input class="inp" type="text"

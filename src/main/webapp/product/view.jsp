@@ -312,7 +312,7 @@
        	<form id="appointForm" name="appointForm" method="post" action="">
          <tr>
            <td><h2>在线预约</h2></td>
-           <td align="right">咨询热线：400-9922-519</td>
+           <td align="right" style="font-size: 14px;">咨询热线：400-9922-519</td>
          </tr>
          <tr>
            <td height="50" colspan="2">
@@ -356,27 +356,40 @@
        	</c:if>
        />
      	<div class="show">
-     		<div>
+     		<div style="float:left;">
 		     	<a id="adFile" name="productId=${product.id}" href="javascript:void(0)" target="_blank" >
 					<img src="<%=request.getContextPath()%>/images/20151015_06.gif" width="115" height="30" />
 				</a>
 			</div>
-			<div class="bdsharebuttonbox"> 
+			<div class="bdsharebuttonbox"  style="float:left;"> 
 		      	<a href="<%=request.getContextPath()%>/weixin/product/productdetail?productid=${product.id}" class="bds_weixin" data-cmd="weixin"
-		      		style="background-image:url('<%=request.getContextPath()%>/images/20151015_07.gif');background-position:center;height:30px;width:87px;margin: 8px 0px 6px 0px;"
+		      		style="background-image:url('<%=request.getContextPath()%>/images/20151015_07.gif');background-position:center;height:30px;width:87px;margin: 0px 0px 0px 8px;"
 		      	></a>
 	      	</div>
-      		<script>window._bd_share_config={"common":{bdUrl:'<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/weixin/product/productdetail?productid=${product.id}',"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>     	
+      		<!-- script>window._bd_share_config={"common":{bdUrl:'<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/weixin/product/productdetail?productid=${product.id}',"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script -->     	
 		</div>     
      </div>
      <div class="showtext">
 		${product.info}
 	 </div>
-     <div class="show">
+     <!-- div class="show">
      	<a id="adFile2" name="productId=${product.id}" href="javascript:void(0)">
 		<img src="<%=request.getContextPath()%>/images/20151015_06.gif" width="115" height="30" /></a>
      	<a href="#"><img src="<%=request.getContextPath()%>/images/20151015_07.gif" width="87" height="30" /></a>
-     </div>
+     </div -->
+    <div class="show">
+    	<div style="float:left;">
+	     	<a id="adFile2" name="productId=${product.id}" href="javascript:void(0)" target="_blank" >
+				<img src="<%=request.getContextPath()%>/images/20151015_06.gif" width="115" height="30" />
+			</a>
+		</div>
+		<div class="bdsharebuttonbox"  style="float:left;"> 
+	      	<a href="<%=request.getContextPath()%>/weixin/product/productdetail?productid=${product.id}" class="bds_weixin" data-cmd="weixin"
+	      		style="background-image:url('<%=request.getContextPath()%>/images/20151015_07.gif');background-position:center;height:30px;width:87px;margin: 0px 0px 0px 8px;"
+	      	></a>
+      	</div>
+     		<script>window._bd_share_config={"common":{bdUrl:'<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/weixin/product/productdetail?productid=${product.id}',"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>     	
+	</div>
    </div>
 <br class=" clear" />
 </div>

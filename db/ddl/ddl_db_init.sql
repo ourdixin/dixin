@@ -3876,7 +3876,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `rate_c` float NOT NULL COMMENT 'C类年华收益率',
   `part_d` int(11) NOT NULL COMMENT 'D类份额',
   `rate_d` float NOT NULL COMMENT 'D类收益率',
-  `rate_note` varchar(256) NOT NULL DEFAULT '' COMMENT '产品收益率说明',
+  `rate_note` varchar(256) DEFAULT '' COMMENT '产品收益率说明',
   `amount` double NOT NULL COMMENT '产品规模',
   `min_amount` double NOT NULL COMMENT '投资起点',
   `append_amount` double NOT NULL COMMENT '投资起点递增金额',

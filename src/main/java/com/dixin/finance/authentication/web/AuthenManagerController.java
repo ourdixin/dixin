@@ -261,4 +261,25 @@ public class AuthenManagerController {
 		model.addAttribute("messageList", messageList);
 		return "/admin/userDetail";
 	}
+	
+	@RequestMapping(value="/admin/adduser", method=RequestMethod.POST)
+	public @ResponseBody BaseWebResult addUser(UserVO user,String backurl, HttpSession session,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		user.setUserName(user.getMobile());
+		user.setEnabled(1);
+		if(user.getName() == null || user.getName().isEmpty())
+			user.setName(user.getMobile());
+		
+		if(userServiceImpl.checkWithTel(user.getMobile()) > 0)
+		{
+			webResult.setSuccess(false);
+			webResult.setMsg("此手机号码已被注册!");
+		}else {
+			userServiceImpl.register(user);
+			webResult.setSuccess(true);
+		}
+		
+		return webResult;
+	}		
+	
 }
