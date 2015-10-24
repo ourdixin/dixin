@@ -9,7 +9,7 @@
 <meta name="format-detection" content="email=no">
 <meta name="format-detection" content="address=no">
 <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
-<title>登录</title>
+<title>9点财讯</title>
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/weixin/js/login.js"></script>

@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>我购买的产品</title>
+<title>9点财讯</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
@@ -37,9 +37,9 @@
     <h1><font size="66px" color="#c91e22">
     <fmt:formatNumber value="${purchase.product.uPnl}" type="currency" pattern="#,#00.00"/> 
     </font></h1>
-    <p>昨日预估收益(元)</p>
+    <p>累计预估收益(元)</p>
   </div>
-  <div class="cplb_zy">
+  <div class="cplb_zy" style="display:list-item">
     <ul>
       <li class="cplb_red">购买
 		<c:choose>
@@ -51,9 +51,13 @@
 			</c:otherwise>
 		</c:choose>
 	  </li>
-      <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.payDate}"/> 派息</li>
-      <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.dueDate}"/> 到期</li>
+	  <li ><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.valueDate}"/> 起息</li>
     </ul>
+	
+    <ul>
+      <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.payDate}"/> 派息</li>
+	  <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.dueDate}"/> 到期</li>
+    </ul>	
   </div>
 </div>
  </c:forEach>

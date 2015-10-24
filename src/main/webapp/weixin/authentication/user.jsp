@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>个人中心</title>
+<title>9点财讯</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
@@ -27,7 +27,7 @@
 <body>
 <div class="act_wrapper zoom ">
   <div class="act_content">
-<div class="head">个人中心</div>
+<div class="head">我的财富</div>
 <div class="center">
   <div class="cplb">
     <div style="background:none;font-size:24px;">
@@ -55,19 +55,19 @@
         <td width="30" align="right"><a href="<%=request.getContextPath()%>/weixin/product/boughtlist">
         <img src="<%=request.getContextPath()%>/weixin/images/jtx.png" width="11" height="18" vspace="11"></a></td>
       </tr>
-      <tr>
+      <tr hidden>
         <td><img src="<%=request.getContextPath()%>/weixin/images/Credit-card-1png.png" width="30" height="20"></td>
         <td><a href="<%=request.getContextPath()%>/weixin/product/orderlist">对账单</a></td>
         <td align="right"><a href="<%=request.getContextPath()%>/weixin/product/orderlist">
         <img src="<%=request.getContextPath()%>/weixin/images/jtx.png" width="11" height="18" vspace="11"></a></td>
       </tr>
-      <tr>
+      <tr hidden>
         <td><img src="<%=request.getContextPath()%>/weixin/images/Cofee.png" width="24" height="23"></td>
         <td><a href="<%=request.getContextPath()%>/weixin/product/appointmentlist"> 我的预约   </a></td>
         <td align="right"><a href="<%=request.getContextPath()%>/weixin/product/appointmentlist">
         <img src="<%=request.getContextPath()%>/weixin/images/jtx.png" width="11" height="18" vspace="11"></a></td>
       </tr>
-      <tr>
+      <tr hidden>
         <td><img src="<%=request.getContextPath()%>/weixin/images/Settings.png" width="30" height="30"></td>
         <td><a href="<%=request.getContextPath()%>/weixin/authentication/account.jsp">帐户设置</a></td>
         <td align="right"><a href="<%=request.getContextPath()%>/weixin/authentication/account.jsp">

@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>产品详情</title>
+<title>9点财讯</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -171,7 +171,7 @@
       <tr border="0">
         <td colspan="2">${product.info}</td>
       </tr>
-      <tr>
+      <tr hidden>
         <td colspan="2"><a href="<%=request.getContextPath() %>/weixin/product/goappointment?productid=${product.id}&name=${product.name}" class="btn_red">我要购买</a></td>
       </tr>
     </table>

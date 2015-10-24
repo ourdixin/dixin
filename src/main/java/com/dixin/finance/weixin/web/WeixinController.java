@@ -413,7 +413,23 @@ public class WeixinController {
 	    }
 		model.addAttribute("purchaseList", purchaseList);
 		return "weixin/product/boughtShow";
-	}	
+	}
+	
+	/***********************************个人财富中心**********************************************/
+	@RequestMapping(value="weixin/authentication/usercenter")
+	public String userCenter(HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "weixin/login";
+		}
+		
+		return "weixin/authentication/user";
+	}
 	
 	/***********************************查看购买产品详细信息**********************************************/
 	@RequestMapping(value="weixin/product/boughtdetail")
