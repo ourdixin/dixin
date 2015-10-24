@@ -35,13 +35,13 @@
       		<p style="border-bottom:1px solid #dddddd;padding-bottom:10px;">您好，${user.secUserName}	
 			<a href="<%=request.getContextPath()%>/authentication/logout?backurl=/weixin/product/productlist?type=1">[退出登录]</a></p>
 		</c:if>
- 	<p style="padding-top:20px;float:left;">昨日预估收益（元）：</p>
+ 	<p style="padding-top:20px;float:left;">累计预估收益（元）：</p>
       <h1 style="border-bottom:1px solid #dddddd;padding-bottom:10px;margin-bottom:10px;">
      	<font size="66px" color="#c91e22"><fmt:formatNumber value="${user.pnl['pnl']}" type="currency" pattern="#,#00.00"/></font>
       </h1>
-      <p style="padding-top:20px;float:left;">总资产（万元）：</p>
+      <p style="padding-top:20px;float:left;">总资产（元）：</p>
       <h1 style="float:left;padding-left:10px;font-size:40px;font-weight:normal;">
-      	<font size="66px" color="#c91e22"><fmt:formatNumber value="${user.pnl['amount']/10000.0}" type="currency" pattern="#,#00.00"/></font>
+      	<font size="66px" color="#c91e22"><fmt:formatNumber value="${user.pnl['amount']+user.pnl['pnl']}" type="currency" pattern="#,#00.00"/></font>
 	  </h1>
     </div>
     <div class="clear"></div>

@@ -532,59 +532,69 @@ public class ProductVO extends BaseVO {
 	public Date getPayDate() {
 		Date invalidDate = getDefalutInvalidDate();
 		if(valueDate.equals(invalidDate) || valueDate.after(invalidDate))
-			return invalidDate;
+			return invalidDate;	
 		
+		GregorianCalendar now = new GregorianCalendar();
+		payDate = getNextPayDate(valueDate);
+		while((now.getTime().getTime() - payDate.getTime() > 0 ) && (payDate.getTime() - getDueDate().getTime() < 0 ))
+		{
+			payDate = getNextPayDate(valueDate);
+		}
+
+		return payDate;
+	}
+	
+	public Date getNextPayDate(Date date) {
 		GregorianCalendar gc=new GregorianCalendar();
-		gc.setTime(valueDate);
+		gc.setTime(date);
 		
 		if(payType == PayTypeConstant.CALENDAR_QUARTER) //"自然季度付息"
-		{
-			if(gc.get(GregorianCalendar.MONTH) < 3 || (gc.get(GregorianCalendar.MONTH) ==3 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+		{	
+			if(gc.get(GregorianCalendar.MONTH) < 2 || (gc.get(GregorianCalendar.MONTH) ==2 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
 			{
-				gc.set(GregorianCalendar.MONTH, 3);
+				gc.set(GregorianCalendar.MONTH, 2);
 			}
-			else if(gc.get(GregorianCalendar.MONTH) < 6 || (gc.get(GregorianCalendar.MONTH) ==6 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			else if(gc.get(GregorianCalendar.MONTH) < 5 || (gc.get(GregorianCalendar.MONTH) ==5 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
 			{
-				gc.set(GregorianCalendar.MONTH, 6);
+				gc.set(GregorianCalendar.MONTH, 5);
 			}
-			else if(gc.get(GregorianCalendar.MONTH) < 9 || (gc.get(GregorianCalendar.MONTH) ==9 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			else if(gc.get(GregorianCalendar.MONTH) < 8 || (gc.get(GregorianCalendar.MONTH) ==8 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
 			{
-				gc.set(GregorianCalendar.MONTH, 9);
+				gc.set(GregorianCalendar.MONTH, 8);
 			}			
-			else if(gc.get(GregorianCalendar.MONTH) < 12 || (gc.get(GregorianCalendar.MONTH) ==12 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			else if(gc.get(GregorianCalendar.MONTH) < 11 || (gc.get(GregorianCalendar.MONTH) ==11 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
 			{
-				gc.set(GregorianCalendar.MONTH, 12);
+				gc.set(GregorianCalendar.MONTH, 11);
 			}
 			else
 			{
 				gc.add(GregorianCalendar.YEAR,1);
-				gc.set(GregorianCalendar.MONTH, 3);
+				gc.set(GregorianCalendar.MONTH, 2);
 			}
-			
-			gc.set(GregorianCalendar.DAY_OF_MONTH, 20);			
+			gc.set(GregorianCalendar.DAY_OF_MONTH, 20);
 		}
 		else if(payType == PayTypeConstant.CALENDAR_HALFYEAR) //"自然半年度付息"
 		{
-			if(gc.get(GregorianCalendar.MONTH) < 6 || (gc.get(GregorianCalendar.MONTH) ==6 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			if(gc.get(GregorianCalendar.MONTH) < 5 || (gc.get(GregorianCalendar.MONTH) ==5 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
 			{
-				gc.set(GregorianCalendar.MONTH, 6);
+				gc.set(GregorianCalendar.MONTH, 5);
 			}			
-			else if(gc.get(GregorianCalendar.MONTH) < 12 || (gc.get(GregorianCalendar.MONTH) ==12 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
+			else if(gc.get(GregorianCalendar.MONTH) < 11 || (gc.get(GregorianCalendar.MONTH) ==11 && gc.get(GregorianCalendar.DAY_OF_MONTH) < 20) )
 			{
-				gc.set(GregorianCalendar.MONTH, 12);
+				gc.set(GregorianCalendar.MONTH, 11);
 			}
 			else
 			{
 				gc.add(GregorianCalendar.YEAR,1);
-				gc.set(GregorianCalendar.MONTH, 6);
+				gc.set(GregorianCalendar.MONTH, 5);
 			}
 			gc.set(GregorianCalendar.DAY_OF_MONTH, 20);
 		}
 		else if(payType == PayTypeConstant.CALENDAR_YEAR) //"自然年度付息"
 		{
-			gc.set(GregorianCalendar.MONTH, 12);
+			gc.set(GregorianCalendar.MONTH, 11);
 			gc.set(GregorianCalendar.DAY_OF_MONTH, 20);
-			if(gc.get(GregorianCalendar.MONTH) ==12 && gc.get(GregorianCalendar.DAY_OF_MONTH) >= 20 )
+			if(gc.get(GregorianCalendar.MONTH) ==11 && gc.get(GregorianCalendar.DAY_OF_MONTH) >= 20 )
 			{
 				gc.add(GregorianCalendar.YEAR,1);
 			}

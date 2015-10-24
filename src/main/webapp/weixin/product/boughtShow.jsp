@@ -39,7 +39,35 @@
     </font></h1>
     <p>累计预估收益(元)</p>
   </div>
-  <div class="cplb_zy" style="display:list-item">
+  <div class="cplb_zy" >
+  <table  width="100%" height="56" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td height="32" style="margin:5px;">
+<ul>
+      <li class="cplb_red">购买
+		<c:choose>
+			<c:when test="${purchase.amount>10000}">  
+				<fmt:formatNumber value="${purchase.amount/10000}"  minFractionDigits="2"/>万元      
+			</c:when>
+			<c:otherwise> 
+				<fmt:formatNumber value="${purchase.amount}"  minFractionDigits="2"/>元
+			</c:otherwise>
+		</c:choose>
+	  </li>
+	  <li ><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.valueDate}"/> 起息</li>
+    </ul>
+  </td>
+  </tr>
+  <tr>
+   <td height="32" style="margin:5px;">
+      <ul>
+      <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.payDate}"/> 派息</li>
+	  <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.dueDate}"/> 到期</li>
+    </ul>
+  </td>
+  </tr>
+  </table>
+	<div hidden>
     <ul>
       <li class="cplb_red">购买
 		<c:choose>
@@ -53,11 +81,13 @@
 	  </li>
 	  <li ><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.valueDate}"/> 起息</li>
     </ul>
-	
+	</div>
+	<div hidden>
     <ul>
       <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.payDate}"/> 派息</li>
 	  <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.dueDate}"/> 到期</li>
-    </ul>	
+    </ul>
+	</div>	
   </div>
 </div>
  </c:forEach>
