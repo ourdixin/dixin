@@ -538,7 +538,12 @@ public class ProductVO extends BaseVO {
 		payDate = getNextPayDate(valueDate);
 		while((now.getTime().getTime() - payDate.getTime() > 0 ) && (payDate.getTime() - getDueDate().getTime() < 0 ))
 		{
-			payDate = getNextPayDate(valueDate);
+			GregorianCalendar nextDate=new GregorianCalendar();
+			TimeZone zone = TimeZone.getTimeZone("GMT+8");
+			nextDate.setTimeZone(zone);
+			nextDate.setTime(payDate);
+			
+			payDate = getNextPayDate(nextDate.getTime());
 		}
 
 		return payDate;
@@ -546,6 +551,8 @@ public class ProductVO extends BaseVO {
 	
 	public Date getNextPayDate(Date date) {
 		GregorianCalendar gc=new GregorianCalendar();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		gc.setTimeZone(zone);
 		gc.setTime(date);
 		
 		if(payType == PayTypeConstant.CALENDAR_QUARTER) //"自然季度付息"
