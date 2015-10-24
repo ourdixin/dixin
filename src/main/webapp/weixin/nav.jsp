@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="head" style="position:fixed; bottom:0;width:100%">
-	咨询电话:400-9922-519
+	<a href="tel:4009-922-519" class="ft_btn ft_btn_1"><span class="txt">咨询电话:400-9922-519</span></a>
 </div>
