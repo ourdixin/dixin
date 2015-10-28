@@ -33,8 +33,8 @@
   <span class="hb" style="margin-top:20px;"></span>
   <div class="cplb">
     <h2>${product.name}</h2>
-    <div class="linkk" style="background:none;">
-      <p style="float:left;padding-top:30px;padding-right:20px;">预计年化收益率</p><h1 style="float:left;">${product.rate}</h1>
+	<div style="line-height:1.5em;font-size:28px;background:none;">
+      <p style="float:left;padding-top:30px;padding-right:20px;">预计年化收益率</p><h1 style="font-size:66px;color:#c91e22;line-height:1.2em;float:left;">${product.rate}</h1>
     </div>
     <div class="cplb_zy">
       <ul>
