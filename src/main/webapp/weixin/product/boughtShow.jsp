@@ -54,13 +54,22 @@
 			</c:otherwise>
 		</c:choose>
 	  </li>
-	  <li ><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.valueDate}"/> 起息</li>
+	  <li class="cplb_red">年化利率
+	  <c:choose>
+		<c:when test="${purchase.product.partA == 0 || purchase.amount <= purchase.product.partA}">${purchase.product.rateA}%</c:when>
+		<c:when test="${purchase.amount <= purchase.product.partB}">${purchase.product.rateB}%</c:when>
+		<c:when test="${purchase.amount <= purchase.product.partC}">${purchase.product.rateC}%</c:when>
+		<c:otherwise>${purchase.product.rateD}%</c:otherwise>
+	  </c:choose>
+	  </li>
+	  
     </ul>
   </td>
   </tr>
   <tr>
-   <td height="32" style="margin:5px;">
+   <td height="32" style="padding-top:5px;">
       <ul>
+	  <li ><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.valueDate}"/> 起息</li>
       <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.payDate}"/> 派息</li>
 	  <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.dueDate}"/> 到期</li>
     </ul>

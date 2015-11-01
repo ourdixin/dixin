@@ -38,6 +38,7 @@
     </div>
     <div class="cplb_zy">
       <ul>
+		<c:if test="${product.profitId == 42}">
           <li class="cplb_red">期限
 					<c:if test="${product.profitId==42}">
 						${product.term}
@@ -48,6 +49,7 @@
 						</c:choose>
 					</c:if>
 		 </li>
+		 </c:if>
          <li>
 					<c:choose>
 						<c:when test="${product.minAmount>10000}">  
@@ -72,6 +74,7 @@
   
   <div class="listable">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<c:if test="${product.profitId == 42}">
       <tr>
         <th width="120">产品规模</th>
         <td>${product.amount/100000000}亿</td>
@@ -163,7 +166,70 @@
         	</c:if> 
         </td>
       </tr> 
-
+	</c:if>
+	<c:if test="${product.profitId == 43}">
+      <tr width="120">
+        <th>基金经理</th>
+        <td><c:out value="${product.fundManagerHtml}" escapeXml="false" /></td>
+      </tr>
+      <tr>
+        <th>投资方向</th>
+        <td>${product.directionInfo}</td>
+      </tr>
+      </tr>
+      <tr>
+        <th>投资起点</th>
+        <td>
+		<c:if test="${product.minAmount < 10000}">
+	        	 <fmt:formatNumber value="${product.minAmount}"  minFractionDigits="0"/>元
+	        </c:if>
+	        <c:if test="${product.minAmount > 10000}">
+	        	<fmt:formatNumber value="${product.minAmount/10000}"  minFractionDigits="0"/> 万元
+	        </c:if>
+	        <c:if test="${product.appendAmount >= 10000}">
+	        	+<fmt:formatNumber value="${product.appendAmount/10000}"  minFractionDigits="0"/>万元的整数倍
+	        </c:if>        
+	        <c:if test="${product.appendAmount < 10000 && product.appendAmount > 0}">
+	        	+<fmt:formatNumber value="${product.appendAmount}"  minFractionDigits="0"/>元的整数倍
+	        </c:if>
+		</td>
+      </tr>	 
+      <tr>
+        <th>封闭期限</th>
+        <td>
+			${product.closeTerm}
+			<c:if test="${product.closeTermUnit == 63}">
+				年
+			</c:if>
+			<c:if test="${product.closeTermUnit == 64}">
+				个月
+			</c:if>        
+			<c:if test="${product.closeTermUnit == 65}">
+				天
+			</c:if>
+		</td>
+      </tr>
+      <tr>
+        <th>开放日</th>
+        <td>${product.openDay}</td>
+      </tr>
+      <tr>
+        <th>认购费</th>
+        <td>${product.buyFee}</td>
+      </tr>
+      <tr>
+        <th>退出费用</th>
+        <td>${product.sellFee}</td>
+      </tr>
+      <tr>
+        <th>管理费</th>
+        <td><fmt:formatNumber value="${product.manageFee}"  minFractionDigits="0"/>%</td>
+      </tr>	
+      <tr>
+        <th width="120">业绩报酬</th>
+        <td>${product.bonus}</td>
+      </tr>	  
+	</c:if>
       <tr>
         <th >产品详情</th >
 		<td>&nbsp;</td>

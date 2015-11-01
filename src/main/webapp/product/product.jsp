@@ -71,14 +71,20 @@
       </tbody>
 </table> 
         <div class="page_menu">
-		<a class="item">  <  </a>
-		<# for(i = 0; i < products.pages; i++){ #> 
-			<# if(products.pages.pageNum == i){ #>
-				<a class="item" name="<#=id#>" href="javascript:void(0)"  ><#=i+1#></a>
+		<a class="item" name="1" href="javascript:void(0)"> <  </a>
+		<# if( 0 < (products.pageNum-6) ){ #>
+		  ...
+		<# } #>
+		<# for(i = 0>(products.pageNum-6)?0:(products.pageNum-6); i < ((products.pageNum+6)<products.pages?(products.pageNum+6):products.pages); i++){ #> 
+			<# if(products.pageNum == i){ #>
+				<a class="item" name="<#=i+1#>" href="javascript:void(0)" ><#=i+1#></a>
 			<#} else {#>
-            	<a class="item" name="<#=id#>" href="javascript:void(0)" ><#=i+1#></a>
-		<# } } #>
-          <a class="item"> >  </a>
+            	<a class="item" name="<#=i+1#>" href="javascript:void(0)" ><#=i+1#></a>
+		<# } }#>
+		<# if((products.pageNum+6)<products.pages){ #>
+		  ...
+		<# } #>
+          <a class="item" name="<#=products.pages#>" href="javascript:void(0)"> >  </a>
         </div>
 </script>
 

@@ -23,7 +23,7 @@ $(document).ready(function(){
 		*/	
 		$("a[class='item']").click(function(){
 			//$.post(basePath+"/products/advance?pageNum="+this.text+"&productType="+this.name, null, success);
-			searchProducts(this.text);
+			searchProducts(this.name);
 		});		
 		
 	};

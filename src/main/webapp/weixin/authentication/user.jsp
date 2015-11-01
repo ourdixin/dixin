@@ -67,7 +67,7 @@
         <td align="right"><a href="<%=request.getContextPath()%>/weixin/product/appointmentlist">
         <img src="<%=request.getContextPath()%>/weixin/images/jtx.png" width="11" height="18" vspace="11"></a></td>
       </tr>
-      <tr hidden>
+      <tr>
         <td><img src="<%=request.getContextPath()%>/weixin/images/Settings.png" width="30" height="30"></td>
         <td><a href="<%=request.getContextPath()%>/weixin/authentication/account.jsp">帐户设置</a></td>
         <td align="right"><a href="<%=request.getContextPath()%>/weixin/authentication/account.jsp">
