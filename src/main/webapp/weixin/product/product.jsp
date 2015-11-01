@@ -40,13 +40,21 @@
 			<div class="zy_yq">
 				<p>预计年化收益率</p>
 				<p>
-					<span>${firstProduct.rateA}%</span>
+					<span>
+					<c:if test="${firstProduct.profitId == 42}">
+						${firstProduct.rateA}%
+					</c:if>
+					<c:if test="${firstProduct.profitId == 43}">
+						浮动
+					</c:if>
+					</span>
 				</p>
 				<p>
 					<a id = "detail" href="<%=request.getContextPath()%>/weixin/product/productdetail?productid=${firstProduct.id}">查看详情&gt;</a>
 				</p>
 			</div>
 			<ul>
+				<c:if test="${firstProduct.profitId == 42}">
 				<li class="zy_qx">期限<span>
 								<c:if test="${firstProduct.profitId==42}">
 									${firstProduct.term}
@@ -56,7 +64,9 @@
 										<c:otherwise>天</c:otherwise>
 									</c:choose>
 								</c:if>
-							</span></li>
+							</span>
+				</li>
+				</c:if>
 		    	<li class="zy_qg"><span>
 							<c:choose>
 								   <c:when test="${firstProduct.minAmount>10000}">  
