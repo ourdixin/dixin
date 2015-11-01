@@ -98,15 +98,16 @@
 				</div>
 				<div class="cplb_zy">
 					<ul>
+						<c:if test="${product.profitId == 42}">
 						<li class="cplb_red">期限
-							<c:if test="${product.profitId==42}">
 								${product.term}
 								<c:choose>
 									<c:when test="${product.termUnit==63}">年</c:when>
 									<c:when test="${product.termUnit==64}">月</c:when>
 									<c:otherwise>天</c:otherwise>
 								</c:choose>
-							</c:if>
+						</li>
+						</c:if>
 						<li>
 							<c:choose>
 							    <c:when test="${product.minAmount>10000}">  
