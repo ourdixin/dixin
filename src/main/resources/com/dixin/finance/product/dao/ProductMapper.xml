@@ -188,12 +188,15 @@
             ]]>
         </if>  
          order by 
+         <if test="recommend != -1">  
+         	profit_id asc,
+         </if> 
  		<if test="state == 63 or state == 64">
             <![CDATA[  
                min_amount asc ,
             ]]>  
         </if>  
-                             
+                     
        release_date desc
   </select>
   

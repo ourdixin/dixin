@@ -25,10 +25,10 @@
 
 <div class=" table_c">
 	<form action="<%=request.getContextPath() %>/admin/appointment-deal"   id="dealForm">
-		<input type="hidden" id="a1" name="reservationId" value="${param.reservationId}"/>
-		<input type="hidden" id="a2" name="userId" value="${param.userId}"/>
-		<input type="hidden" id="a3" name="productId" value="${param.productId}"/>
-		<input type="hidden" id="a4" name="constant" value="${param.constant}"/>
+		<input type="hidden" id="a1" name="reservationId" value="${param.reservationId}" style="display: none;" />
+		<input type="hidden" id="a2" name="userId" value="${param.userId}" style="display: none;" />
+		<input type="hidden" id="a3" name="productId" value="${param.productId}" style="display: none;" />
+		<input type="hidden" id="a4" name="constant" value="${param.constant}" style="display: none;" />
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 	   		<tr>
 	       		<c:choose>

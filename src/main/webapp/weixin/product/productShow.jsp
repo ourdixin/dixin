@@ -50,6 +50,11 @@
 					</c:if>
 		 </li>
 		 </c:if>
+		<c:if test="${product.profitId == 43}">
+          <li class="cplb_red">基金经理
+				${product.fundManager}
+		  </li>
+		 </c:if>
          <li>
 					<c:choose>
 						<c:when test="${product.minAmount>10000}">  
@@ -168,10 +173,6 @@
       </tr> 
 	</c:if>
 	<c:if test="${product.profitId == 43}">
-      <tr width="120">
-        <th>基金经理</th>
-        <td><c:out value="${product.fundManagerHtml}" escapeXml="false" /></td>
-      </tr>
       <tr>
         <th>投资方向</th>
         <td>${product.directionInfo}</td>
@@ -237,7 +238,7 @@
       <tr border="0">
         <td colspan="2">${product.info}</td>
       </tr>
-      <tr hidden>
+      <tr hidden  style="display: none;" >
         <td colspan="2"><a href="<%=request.getContextPath() %>/weixin/product/goappointment?productid=${product.id}&name=${product.name}" class="btn_red">我要购买</a></td>
       </tr>
     </table>

@@ -24,7 +24,7 @@
 <div class="user_title">产品名称：${param.productName}</div>
 <div class="user_title">客户姓名：${param.userName}</div>
 <div class="con_table">
-  	<input type="hidden" name="reservationId" id="a1" value="${param.reservationId }"/>
+  	<input type="hidden" name="reservationId" id="a1" value="${param.reservationId }" style="display: none;" />
   	<table width="1200">
     	<thead>
      	 	<tr>

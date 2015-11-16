@@ -69,6 +69,10 @@
 										<option value="82">海外市场</option>
 										<option value="83">量化对冲</option>
 										<option value="84">指数型</option>
+										<option value="85">新三板</option>
+										<option value="86">结构型</option>
+										<option value="87">混合型</option>
+										<option value="88">FOF</option>
 										<option value="58">其它</option>
 								</select></td>
 							</tr>
@@ -80,7 +84,7 @@
 								<td><input class="itstyle lt it" id="appendAmount"
 									name="appendAmount" value="" type="text" />(单位:万元)</td>
 							</tr>
-							<tr hidden>
+							<tr hidden  style="display: none;" >
 								<!--  td class="t">续存：</td>
 								<td><input class="itstyle lt it" id="appendTerm" name="appendTerm"
 									value="" type="text" width="80" /> <select class="itstyle"
@@ -89,8 +93,8 @@
 										<option value="64" selected>月</option>
 										<option value="65">天</option>
 								</select></td -->
-								<td hidden class="t">收益类型：</td>
-								<td hidden><select class="itstyle"
+								<td hidden class="t"  style="display: none;" >收益类型：</td>
+								<td hidden  style="display: none;" ><select class="itstyle"
 									name="profitId" id="profitId">
 										<option value="43" selected>浮动</option>
 								</select></td>
@@ -164,14 +168,14 @@
 							<tr>
 								<td class="t">产品推介单页：</td>
 								<td>
-									<input hidden class="itstyle lt it" id="adFile" name="adFile" value="" type="text" />
+									<input hidden class="itstyle lt it" id="adFile" name="adFile" value="" type="text"  style="display: none;" />
 									<input class="itstyle lt it" id="uploadadfile" name="uploadadfile" value="" type="file" />
 									<input id="submitad" type="button" value="上传文件">
 									<img id="adloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />
 								</td>
 								<td class="t" nowrap>定向客户指南：</td>
 								<td>
-									<input hidden class="itstyle lt it" id="guideFile" name="guideFile"	value="" type="text" />
+									<input hidden class="itstyle lt it" id="guideFile" name="guideFile"	value="" type="text"  style="display: none;" />
 									<input class="itstyle lt it" id="uploadguidefile" name="uploadguidefile" value="" type="file" />
 									<input id="submitguide" type="button" value="上传文件">
 									<img id="guideloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />

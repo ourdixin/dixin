@@ -25,7 +25,7 @@
    </div>
 <div class="table_c">
 <form id="loginForm">
-<input type="hidden" name="backurl" value="${backurl}" />
+<input type="hidden" name="backurl" value="${backurl}"  style="display: none;" />
   <table width="100%" cellpadding="0" cellspacing="0">
       <tbody>
       <tr>

@@ -42,8 +42,8 @@
       </tr>
       <c:if test="${product.profitId == 42}">
       <tr>
-        <td width="0%" height="35" align="center" bgcolor="#FFFFFF">发行时间</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF">
+        <td width="70" height="35" align="center" bgcolor="#FFFFFF">发行时间</td>
+        <td width="40%" align="center" bgcolor="#FFFFFF">
 	        <strong>
 	        <c:if test="${product.releaseDate < product.invalidDate}">
 	        	<fmt:formatDate value="${product.releaseDate}" pattern="yyyy年MM月dd日  HH:mm"/>      
@@ -53,8 +53,8 @@
 	        </c:if>
 	        </strong>
         </td>
-        <td width="0%" align="center" bgcolor="#FFFFFF">起息日期</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF">
+        <td width="70" align="center" bgcolor="#FFFFFF">起息日期</td>
+        <td width="40%" align="center" bgcolor="#FFFFFF">
 	        <strong>        
 	        <c:if test="${product.valueDate < product.invalidDate}">
 	        	<fmt:formatDate value="${product.valueDate}" pattern="yyyy年MM月dd日  HH:mm"/>      
@@ -192,8 +192,8 @@
      
      <c:if test="${product.profitId == 43}">
       <tr>
-        <td width="0%" height="35" align="center" bgcolor="#FFFFFF">发行时间</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF">
+        <td width="70" height="35" align="center" bgcolor="#FFFFFF">发行时间</td>
+        <td width="40%" align="center" bgcolor="#FFFFFF">
 	        <strong>
 	        <c:if test="${product.releaseDate < product.invalidDate}">
 	        	<fmt:formatDate value="${product.releaseDate}" pattern="yyyy年MM月dd日  HH:mm"/>      
@@ -203,8 +203,8 @@
 	        </c:if>
 	        </strong>
         </td>
-        <td width="0%" align="center" bgcolor="#FFFFFF">成立日期</td>
-       	<td width="0%" align="center" bgcolor="#FFFFFF">
+        <td width="70" align="center" bgcolor="#FFFFFF">成立日期</td>
+       	<td width="40%" align="center" bgcolor="#FFFFFF">
 	       	<strong>        
 	       	<c:if test="${product.valueDate < product.invalidDate}">
 	       	<fmt:formatDate value="${product.valueDate}" pattern="yyyy年MM月dd日  HH:mm"/>      
@@ -266,16 +266,18 @@
 		<td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.openDay}</strong></td>  
       </tr>
  	  <tr>
-        <td width="0%" align="center" bgcolor="#FFFFFF">认购费</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.buyFee}</strong></td>        
-        <td width="0%" align="center" bgcolor="#FFFFFF">退出费用</td>
-        <td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.sellFee}</strong></td> 
- 	  </tr>
- 	  <tr>
  	    <td width="0%" align="center" bgcolor="#FFFFFF">管理费</td>
         <td width="0%" align="center" bgcolor="#FFFFFF"><strong><fmt:formatNumber value="${product.manageFee}"  minFractionDigits="0"/>%</strong></td>
 		<td width="0%" align="center" bgcolor="#FFFFFF">业绩报酬</td>
        	<td width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.bonus}</strong></td>
+ 	  </tr>
+ 	  <tr>
+        <td width="0%" align="center" bgcolor="#FFFFFF">认购费</td>
+        <td colspan="3" width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.buyFee}</strong></td>        
+ 	  </tr>
+ 	  <tr>       
+        <td width="0%" align="center" bgcolor="#FFFFFF">退出费用</td>
+        <td colspan="3" width="0%" align="center" bgcolor="#FFFFFF"><strong>${product.sellFee}</strong></td> 
  	  </tr>
      </c:if>
 
@@ -316,7 +318,7 @@
          </tr>
          <tr>
            <td height="50" colspan="2">
-           	 <input  name="productId" id="productId" value="${product.id}" type="hidden" />
+           	 <input  name="productId" id="productId" value="${product.id}" type="hidden"  style="display: none;" />
              <input type="text" name="name" id="name" value="填写您的称呼" class="ch" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}"/>
            </td>
           </tr>
@@ -326,7 +328,7 @@
          <tr>
            <td height="50" colspan="2"><input name="amount" type="text" id="amount" class="je" value="填写金额(万元)" onFocus="if(value==defaultValue){value='';this.style.color='#999'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}"/></td>
           </tr>
-         <tr hidden>
+         <tr hidden style="display: none;">
            <td height="50" colspan="2"><input name="reserve_date" type="date" id="reserve_date" class="je" value="2200-10-10" />预计打款时间</td>
           </tr>
          <tr>
@@ -350,7 +352,7 @@
    <div class="showcen">
      <div class="showtit">
        <h2>产品详情</h2>
-       <input hidden name="adFileSrc" type="text" id="adFileSrc" 
+       <input hidden style="display: none;" name="adFileSrc" type="text" id="adFileSrc" 
        	<c:if test="${product.adFile != null && product.adFile !='' }">
        		value="<%=request.getContextPath()%>/${product.adFile}" 
        	</c:if>

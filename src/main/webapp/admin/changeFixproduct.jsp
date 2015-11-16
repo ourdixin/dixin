@@ -45,7 +45,7 @@
 				<form id="updateproductForm" name="updateproductForm" method="post"
 					action="<%=request.getContextPath()%>/product/update">
 					<!-- token:token/ -->
-					<input  name="id" id="id" value="${product.id}" type="hidden" />
+					<input  name="id" id="id" value="${product.id}" type="hidden"  style="display: none;" />
 					<table>
 						<tbody>
 							<tr>
@@ -124,7 +124,7 @@
 								<input class="itstyle lt it" id="valueDate"
 									name="valueDate" value="<fmt:formatDate value="${product.valueDate}" pattern="yyyy-MM-dd"/>" type="text" />(格式：yyyy-MM-dd)
 									
-								<td hidden ><select class="itstyle"
+								<td hidden  style="display: none;" ><select class="itstyle"
 									name="profitId" id="profitId">
 										<option value="42" selected>固定</option>
 										<!-- option value="43">浮动</option -->

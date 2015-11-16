@@ -38,7 +38,7 @@
 		<div class="listable">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<form action="<%=request.getContextPath() %>/weixin/product/appointment" method="post" id="appointForm">
-					<input name="productId" id="productId" value="${productId}" type="hidden" />
+					<input name="productId" id="productId" value="${productId}" type="hidden"  style="display: none;" />
 					<tr>
 						<th width="120">预约产品</th>
 						<td>${name}</td>

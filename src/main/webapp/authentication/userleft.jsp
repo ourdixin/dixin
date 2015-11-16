@@ -29,13 +29,13 @@
 				<dd>
 					<a href="<%=request.getContextPath()%>/product/assignmentShow.jsp"><img src="<%=request.getContextPath()%>/images/ico_13.png" width="20" height="16" />产品转让</a>
 				</dd>
-				<dd>
+				<dd hidden  style="display: none;" >
 					<a href="<%=request.getContextPath()%>/authentication/myselfwealthers"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的财富经理</a>
 				</dd>
 				<dd>
 					<a href="<%=request.getContextPath()%>/authentication/myReply.jsp"><img src="<%=request.getContextPath()%>/images/ico_06.png" width="13" height="20" />我的留言</a>
 				</dd>
-				<dd>
+				<dd hidden style="display: none;" >
 					<a href="<%=request.getContextPath()%>/authentication/queryRiskAppraisal"><img src="<%=request.getContextPath()%>/images/ico_10.png" width="16" height="17" />风险评估</a>
 				</dd>
 				<dd>

@@ -59,7 +59,7 @@
 <!---用户左侧共用部份结束---->
 <div id="main_right">
 	<form action="<%=request.getContextPath() %>/product/assignment" method="post" id="assiForm">
-	<input  name="productId" id="productId" value="${param.productId}" type="hidden" />
+	<input  name="productId" id="productId" value="${param.productId}" type="hidden"  style="display: none;" />
 		<ul class="ul_1">
 			<li class="tab1_1_on"  id="tab1_1" onMouseOver="set_tab('tab1', 1 ,4)">发布产品</li>
 			<li class="tab1_2_off" id="tab1_2" onMouseOver="set_tab('tab1', 2 ,4)">已发布产品</li>

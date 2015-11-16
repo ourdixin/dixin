@@ -118,7 +118,7 @@
 									name="valueDate" value="2100-01-01" type="text" />(格式：yyyy-MM-dd)
 								
 								<select hidden class="itstyle"
-									name="profitId" id="profitId">
+									name="profitId" id="profitId" style="display: none;" >
 										<option value="42" selected>固定</option>
 										<!-- option value="43">浮动</option -->
 								</select>
@@ -192,14 +192,14 @@
 							<tr>						
 							<td class="t">产品推介单页：</td>
 							<td>
-								<input hidden class="itstyle lt it" id="adFile" name="adFile" value="" type="text" />
+								<input hidden class="itstyle lt it" id="adFile" name="adFile" value="" type="text"  style="display: none;" />
 								<input class="itstyle lt it" id="uploadadfile" name="uploadadfile" value="" type="file" />
 								<input id="submitad" type="button" value="上传文件">
 								<img id="adloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />
 							</td>
 							<td class="t" nowrap>定向客户指南：</td>
 							<td>
-								<input hidden class="itstyle lt it" id="guideFile" name="guideFile"	value="" type="text" />
+								<input hidden class="itstyle lt it" id="guideFile" name="guideFile"	value="" type="text"  style="display: none;" />
 								<input class="itstyle lt it" id="uploadguidefile" name="uploadguidefile" value="" type="file" />
 								<input id="submitguide" type="button" value="上传文件">
 								<img id="guideloading" src="<%=request.getContextPath()%>/images/loading.gif" style="display:none;" />

@@ -25,7 +25,7 @@
 	<!---用户左侧共用部份结束---->
 	<div id="main_right">
 	<form action="<%=request.getContextPath() %>/authentication/user" method="post" id="forgetpasswordForm">
-		<input id="mobile" name="mobile" value="<%=((UserVO)session.getAttribute("user")).getMobile() %>" type="hidden">
+		<input id="mobile" name="mobile" value="<%=((UserVO)session.getAttribute("user")).getMobile() %>" type="hidden" style="display: none;" >
 		<div id="tab1_con_1" style="display: block; clear: both;">
 			<div class="user_title">修改密码</div>
 			<table border="0" cellspacing="0" cellpadding="0">

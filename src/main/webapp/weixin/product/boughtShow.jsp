@@ -76,7 +76,7 @@
   </td>
   </tr>
   </table>
-	<div hidden>
+	<div hidden  style="display: none;" >
     <ul>
       <li class="cplb_red">购买
 		<c:choose>
@@ -91,7 +91,7 @@
 	  <li ><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.valueDate}"/> 起息</li>
     </ul>
 	</div>
-	<div hidden>
+	<div hidden  style="display: none;" >
     <ul>
       <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.payDate}"/> 派息</li>
 	  <li><fmt:formatDate pattern="yyyy-MM-dd" value="${purchase.product.dueDate}"/> 到期</li>

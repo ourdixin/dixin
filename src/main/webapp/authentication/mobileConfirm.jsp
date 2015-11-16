@@ -25,7 +25,7 @@
 	<!---用户左侧共用部份结束---->
 	<div id="main_right">
 		<form action="" method="post" id="baseInfoForm">
-		<input name="id" id="id" type = "hidden" value="${user.id}">
+		<input name="id" id="id" type = "hidden" value="${user.id}"  style="display: none;" >
 		<div id="tab1_con_1" style="display: block; clear: both;">
 			<div class="user_title">修改手机号</div>
 			<table border="0" cellspacing="0" cellpadding="0">

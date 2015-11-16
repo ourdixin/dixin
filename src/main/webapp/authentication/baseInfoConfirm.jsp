@@ -26,7 +26,7 @@
 		<div id="tab1_con_1" style="display: block; clear: both;">
 				<div class="user_title">个人资料</div>
 				<form action="" method="post" id="baseInfoForm">
-					<input name="id" id="id" type = "hidden" value="${user.id}">
+					<input name="id" id="id" type = "hidden" value="${user.id}"  style="display: none;" >
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td width="11%" height="50" align="right">用户名：</td>

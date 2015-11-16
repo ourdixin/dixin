@@ -21,14 +21,14 @@ var HOST_PATH = "<%=request.getContextPath() %>";
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <th>产品名称</th>
-            <th>发行时间</th>
+            <th width="120">发行时间</th>
 			<# if(products.list.length > 0 && products.list[0].profitId == 42) {#>
-            <th>期限</th>
-            <th>利率</th>
+            <th width="50">期限</th>
+            <th width="116">利率</th>
 			<#}#>
-            <th>认购起点</th>
-            <th>产品类型</th>
-            <th>操作</th>
+            <th width="60">认购起点</th>
+            <th width="60">产品类型</th>
+            <th width="60">操作</th>
           </tr>
         <# for(i = 0; i < products.list.length; i++){ #> 
           <tr>
@@ -137,7 +137,7 @@ var HOST_PATH = "<%=request.getContextPath() %>";
         <p>A股开户 期货开户 港股开户</p>
         <p>交易费最低</p>
       </li>
-      <li>
+      <li hidden  style="display: none;" >
         <h2><a href="<%=request.getContextPath() %>/authentication/transfer.jsp">产品转让</a></h2>
         <p>短期高回报产品</p>
         <p>长期稳定高收益产品</p>

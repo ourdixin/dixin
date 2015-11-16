@@ -29,7 +29,7 @@
 	<form action="<%=request.getContextPath()%>/product/assignment"
 		method="post" id="assiForm">
 		<input name="productId" id="productId" value="${param.productId}"
-			type="hidden" />
+			type="hidden"  style="display: none;" />
 		<div id="main_right">
 
 			<div class="tab1">

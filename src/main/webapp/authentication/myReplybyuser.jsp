@@ -23,8 +23,8 @@
 	<!---用户左侧共用部份结束---->
 	
 <form action="<%=request.getContextPath() %>/authentication/myReplybyuser"  method ="post" id="myReplyForm">
-<input type="hidden" id="id" name="id" value="${param.id}"/>
-<input type="hidden" id="catogryId" name="catogryId" value="${param.catogryId}"/>
+<input type="hidden" id="id" name="id" value="${param.id}" style="display: none;" />
+<input type="hidden" id="catogryId" name="catogryId" value="${param.catogryId}" style="display: none;" />
 <div id="main_right">
 <div class="main_width">
 <div class="con_table">

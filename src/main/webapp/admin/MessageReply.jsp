@@ -23,8 +23,8 @@
 	<!---管理左侧共用部份结束---->
 	
 <form action="<%=request.getContextPath() %>/admin/MessageReply"  method ="post" id="messageReplyForm">
-<input type="hidden" id="id" name="id" value="${param.id}"/><br/>
-<input type="hidden" id="catogryId" name="catogryId" value="${param.catogryId}"/><br/>
+<input type="hidden" id="id" name="id" value="${param.id}" style="display: none;" /><br/>
+<input type="hidden" id="catogryId" name="catogryId" value="${param.catogryId}" style="display: none;" /><br/>
 <div id="main_right">
 <div class="main_width">
 <div class="con_table">

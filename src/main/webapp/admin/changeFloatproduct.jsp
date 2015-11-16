@@ -38,7 +38,7 @@
 			<div class="info_frm">
 				<form id="updateproductForm" name="updateproductForm" method="post"
 					action="<%=request.getContextPath()%>/product/update">
-					<input  name="id" id="id" value="${product.id}" type="hidden" />
+					<input  name="id" id="id" value="${product.id}" type="hidden"  style="display: none;" />
 					<table>
 						<tbody>
 							<tr>
@@ -73,6 +73,10 @@
 										<option value="82" <c:if test="${product.direction==82}">selected</c:if> >海外市场</option>
 										<option value="83" <c:if test="${product.direction==83}">selected</c:if> >量化对冲</option>
 										<option value="84" <c:if test="${product.direction==84}">selected</c:if> >指数型</option>
+										<option value="85" <c:if test="${product.direction==85}">selected</c:if> >新三板</option>
+										<option value="86" <c:if test="${product.direction==86}">selected</c:if> >结构型</option>
+										<option value="87" <c:if test="${product.direction==87}">selected</c:if> >混合型</option>
+										<option value="88" <c:if test="${product.direction==88}">selected</c:if> >FOF</option>
 										<option value="58" <c:if test="${product.direction==58}">selected</c:if> >其它</option>
 								</select></td>
 							</tr>
@@ -84,7 +88,7 @@
 								<td><input class="itstyle lt it" id="appendAmount"
 									name="appendAmount" value="<fmt:formatNumber value="${product.appendAmount/10000}" groupingUsed="false" minFractionDigits="0"/>" type="text" />(单位:万)</td>
 							</tr>
-							<tr hidden>
+							<tr hidden  style="display: none;" >
 								<!--  td class="t">续存：</td>
 								<td><input class="itstyle lt it" id="appendTerm" name="appendTerm"
 									value="" type="text" width="80" /> <select class="itstyle"
@@ -93,8 +97,8 @@
 										<option value="64" selected>月</option>
 										<option value="65">天</option>
 								</select></td -->
-								<td hidden class="t">收益类型：</td>
-								<td hidden><select class="itstyle"
+								<td hidden class="t"  style="display: none;" >收益类型：</td>
+								<td hidden  style="display: none;" ><select class="itstyle"
 									name="profitId" id="profitId">
 										<option value="43" selected>浮动</option>
 								</select></td>

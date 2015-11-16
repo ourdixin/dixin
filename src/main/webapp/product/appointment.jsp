@@ -22,7 +22,7 @@
 <c:import url="/authentication/userleft.jsp" charEncoding="utf-8" />
 <!---用户左侧共用部份结束---->
 <form action="<%=request.getContextPath() %>/product/appointment" method="post" id="appointForm">
-<input  name="productId" id="productId" value="${param.productId}" type="hidden" />
+<input  name="productId" id="productId" value="${param.productId}" type="hidden"  style="display: none;" />
 <div id="main_right">
   <div class="table_c">
   <table width="100%" cellpadding="0" cellspacing="0">

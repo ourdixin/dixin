@@ -35,14 +35,14 @@
 				<form id="addForm" name="addproductForm" method="post"
 					action="<%=request.getContextPath()%>/product/addsalesdata">
 					<!-- token:token/ -->
-					<input  name="userId" id="userId" value="${param.userid}" type="hidden" />
+					<input  name="userId" id="userId" value="${param.userid}" type="hidden" style="display: none;" />
 					<table>
 						<tbody>
 							<tr width="100%">
 								<td class="t"  width="80px">产品：</td>
 								<td>
 									<input id="productName" name="productName" value="" type="text" autocomplete="on" />
-									<input id="productId" name="productId" type="hidden" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input id="productId" name="productId" type="hidden" style="display: none;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								</td>
 								<td class="t"  width="80px">购买时间：</td>
 								<td><input class="itstyle lt" id="buyDate" name="buyDate" value="2100-01-01" type="text" width="100px"/>(格式：yyyy-MM-dd)</td>

@@ -25,7 +25,7 @@
    </div>
 <div class="table_c">
 <form id="loginForm">
-<input type="hidden" name="backurl" value="${backurl}" />
+<input type="hidden" name="backurl" value="${backurl}"  style="display: none;" />
 <table>
       <tbody><tr>
         <td height="60" class="t" align="right">管理员帐号： </td>

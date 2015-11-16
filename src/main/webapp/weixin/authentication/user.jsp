@@ -55,13 +55,13 @@
         <td width="30" align="right"><a href="<%=request.getContextPath()%>/weixin/product/boughtlist">
         <img src="<%=request.getContextPath()%>/weixin/images/jtx.png" width="11" height="18" vspace="11"></a></td>
       </tr>
-      <tr hidden>
+      <tr hidden  style="display: none;" >
         <td><img src="<%=request.getContextPath()%>/weixin/images/Credit-card-1png.png" width="30" height="20"></td>
         <td><a href="<%=request.getContextPath()%>/weixin/product/orderlist">对账单</a></td>
         <td align="right"><a href="<%=request.getContextPath()%>/weixin/product/orderlist">
         <img src="<%=request.getContextPath()%>/weixin/images/jtx.png" width="11" height="18" vspace="11"></a></td>
       </tr>
-      <tr hidden>
+      <tr hidden  style="display: none;" >
         <td><img src="<%=request.getContextPath()%>/weixin/images/Cofee.png" width="24" height="23"></td>
         <td><a href="<%=request.getContextPath()%>/weixin/product/appointmentlist"> 我的预约   </a></td>
         <td align="right"><a href="<%=request.getContextPath()%>/weixin/product/appointmentlist">

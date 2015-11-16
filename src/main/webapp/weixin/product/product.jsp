@@ -55,18 +55,24 @@
 			</div>
 			<ul>
 				<c:if test="${firstProduct.profitId == 42}">
-				<li class="zy_qx">期限<span>
-								<c:if test="${firstProduct.profitId==42}">
-									${firstProduct.term}
-									<c:choose>
-										<c:when test="${firstProduct.termUnit==63}">年</c:when>
-										<c:when test="${firstProduct.termUnit==64}">月</c:when>
-										<c:otherwise>天</c:otherwise>
-									</c:choose>
-								</c:if>
+				<li class="zy_qx">期限
+							<span>
+								${firstProduct.term}
+								<c:choose>
+									<c:when test="${firstProduct.termUnit==63}">年</c:when>
+									<c:when test="${firstProduct.termUnit==64}">月</c:when>
+									<c:otherwise>天</c:otherwise>
+								</c:choose>
 							</span>
 				</li>
 				</c:if>
+				<c:if test="${firstProduct.profitId == 43}">
+				<li class="zy_qx">基金经理
+							<span>
+								${firstProduct.fundManager}
+							</span>
+				</li>
+				</c:if>				
 		    	<li class="zy_qg"><span>
 							<c:choose>
 								   <c:when test="${firstProduct.minAmount>10000}">  
@@ -106,6 +112,13 @@
 									<c:when test="${product.termUnit==64}">月</c:when>
 									<c:otherwise>天</c:otherwise>
 								</c:choose>
+						</li>
+						</c:if>
+						<c:if test="${product.profitId == 43}">
+						<li class="cplb_red">基金经理
+									<span>
+										${product.fundManager}
+									</span>
 						</li>
 						</c:if>
 						<li>

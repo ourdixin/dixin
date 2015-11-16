@@ -35,7 +35,7 @@
 								<td class="t" width="100">产品代码：</td>
 								<td><%=request.getParameter("code")==null?"":request.getParameter("code")%>
 								<input hidden class="itstyle lt it" id="productID" name="productID"
-									value="<%=request.getParameter("productId")==null?"":request.getParameter("productId")%>" type="text" />	
+									value="<%=request.getParameter("productId")==null?"":request.getParameter("productId")%>" type="text"   style="display: none;" />	
 									</td>
 								<td class="t" width="100">产品名称：</td>
 								<td><%=request.getParameter("name")==null?"":request.getParameter("name")%></td>

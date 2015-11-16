@@ -73,7 +73,7 @@
   <div class="con_table">
 	<form action="<%=request.getContextPath()%>/product/assignment"
 		method="post" id="assiForm">
-		<input name="productId" id="productId" value="${param.productId}" type="hidden" />
+		<input name="productId" id="productId" value="${param.productId}" type="hidden"  style="display: none;" />
 			<div id="content">
 			
 			</div>

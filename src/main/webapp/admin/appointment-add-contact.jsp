@@ -58,9 +58,9 @@
 </div>
 </div>
 <form action="<%=request.getContextPath() %>/admin/appointment-add-contact"  method ="post" id="addcontactForm">
-	<input type="hidden" id="a1" name="firstContactId" value="${param.firstContactId}"/>
-	<input type="hidden" id="a2" name="appointmentId" value="${param.appointmentId}"/>
-	<input type="hidden" id="a3" name="userId" value="${param.userId}"/>
+	<input type="hidden" id="a1" name="firstContactId" value="${param.firstContactId}" style="display: none;" />
+	<input type="hidden" id="a2" name="appointmentId" value="${param.appointmentId}" style="display: none;" />
+	<input type="hidden" id="a3" name="userId" value="${param.userId}" style="display: none;" />
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
   		<tr>
     		<td align="center"><textarea name="record" rows="4"  class="tareastyle tarea" id="pass2"></textarea></td>
