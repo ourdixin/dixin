@@ -47,7 +47,7 @@ img{border:none;}
 /************首页主体框架************/
 #wrap{width:998px;margin:0 auto;}
 .zst{background:url(../images/imgbg.gif);height:157px;overflow:hidden;margin:20px 0px;}
-.zst ul li{padding-top:40px;padding-left:140px;width:192px;line-height:1.5em;float:left;color:#999999;font-size:14px;}
+.zst ul li{padding-top:40px;padding-left:140px;width:358px;line-height:1.5em;float:left;color:#999999;font-size:14px;}
 .zst ul li h2{font-size:18px;font-weight:normal;font-family:"Microsoft YaHei";line-height:30px;}
 
 .ind_table{height:372px;margin-bottom:24px;overflow:hidden; clear:both;}
