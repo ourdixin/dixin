@@ -56,9 +56,9 @@
 	  </li>
 	  <li class="cplb_red">年化利率
 	  <c:choose>
-		<c:when test="${purchase.product.partA == 0 || purchase.amount <= purchase.product.partA}">${purchase.product.rateA}%</c:when>
-		<c:when test="${purchase.amount <= purchase.product.partB}">${purchase.product.rateB}%</c:when>
-		<c:when test="${purchase.amount <= purchase.product.partC}">${purchase.product.rateC}%</c:when>
+		<c:when test="${purchase.product.partA == 0 || (purchase.amount >= purchase.product.partA &&(purchase.product.partB ==0  || (purchase.product.partB !=0 &&purchase.amount < purchase.product.partB)))}">${purchase.product.rateA}%</c:when>
+		<c:when test="${purchase.amount >= purchase.product.partB && (purchase.product.partC == 0 || (purchase.product.partC !=0 &&purchase.amount < purchase.product.partC))}">${purchase.product.rateB}%</c:when>
+		<c:when test="${purchase.amount <= purchase.product.partC && (purchase.product.partD ==0 || (purchase.product.partD !=0 &&purchase.amount < purchase.product.partD))}">${purchase.product.rateC}%</c:when>
 		<c:otherwise>${purchase.product.rateD}%</c:otherwise>
 	  </c:choose>
 	  </li>
