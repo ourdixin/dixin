@@ -105,7 +105,12 @@
             <![CDATA[  
                and release_date < '2100-01-01' and curdate() > date(release_date) and current_timestamp() <= end_date 
             ]]>  
-        </if>          
+        </if>  
+  		<if test="state == 66">  <!-- 未到期 -->
+            <![CDATA[  
+               and due_date < '2100-01-01' and curdate() <= date(due_date)
+            ]]>  
+        </if>         
 		<if test="direction != -1">  
             <![CDATA[  
                and direction = #{direction} 

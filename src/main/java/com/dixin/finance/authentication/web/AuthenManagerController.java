@@ -251,10 +251,10 @@ public class AuthenManagerController {
 		model.addAttribute("user", userVO);
 		//产品购买信息
 			//固定
-		List<PurchaseVO> fixProductList = PurchaseServiceImpl.queryPurchaseList(id, ProfitTypeConstant.FixProduct,-1, -1);
+		List<PurchaseVO> fixProductList = PurchaseServiceImpl.queryPurchaseList(id, ProfitTypeConstant.FixProduct,0, -1);
 		model.addAttribute("fixProductList", fixProductList);	
 		//浮动
-		List<PurchaseVO> proProductList = PurchaseServiceImpl.queryPurchaseList(id, ProfitTypeConstant.FloatProduct,-1, -1);
+		List<PurchaseVO> proProductList = PurchaseServiceImpl.queryPurchaseList(id, ProfitTypeConstant.FloatProduct,0, -1);
 		model.addAttribute("proProductList", proProductList);
 		//在线留言
 		List<MessageVO> messageList = messageServiceImpl.selectMsgsByInitialId(id);

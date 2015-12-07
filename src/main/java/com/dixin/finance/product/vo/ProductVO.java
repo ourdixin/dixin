@@ -600,11 +600,11 @@ public class ProductVO extends BaseVO {
 		else if(payType == PayTypeConstant.CALENDAR_YEAR) //"自然年度付息"
 		{
 			gc.set(GregorianCalendar.MONTH, 11);
-			gc.set(GregorianCalendar.DAY_OF_MONTH, 20);
 			if(gc.get(GregorianCalendar.MONTH) ==11 && gc.get(GregorianCalendar.DAY_OF_MONTH) >= 20 )
 			{
 				gc.add(GregorianCalendar.YEAR,1);
 			}
+			gc.set(GregorianCalendar.DAY_OF_MONTH, 20);
 		}		
 		else if(payType == PayTypeConstant.QUARTER) //"季度付息"
 		{
@@ -1343,7 +1343,7 @@ public class ProductVO extends BaseVO {
 	}
 	
 	public Map<String,Double> getUserPnl(int userId) {
-		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId, -1, -1, Integer.parseInt(id));//(userId, Integer.parseInt(id));
+		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId, -1, 0, Integer.parseInt(id));//(userId, Integer.parseInt(id));
 		Map<String,Double> userPnl = getUserPnlByPurchaseList(userId,purchaseList);
 		uPnl = userPnl.get("pnl");
 		uAmount = userPnl.get("amount");

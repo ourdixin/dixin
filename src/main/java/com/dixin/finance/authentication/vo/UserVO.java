@@ -276,7 +276,7 @@ public class UserVO extends BaseVO {
 		Double pnl = 0d;
 		Double amount = 0d;
 		
-		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(id, -1, -1, -1);
+		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(id, -1, 0, -1);
 		Map<String,List<PurchaseVO>> productMap=new HashMap<String,List<PurchaseVO>>();
 		
 		for(int i =0; i < purchaseList.size();++i)

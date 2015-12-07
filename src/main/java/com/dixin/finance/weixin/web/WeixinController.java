@@ -405,7 +405,7 @@ public class WeixinController {
 		}
 		
 		Integer userid = userVO.getId();
-		List<PurchaseVO> purchaseList = PurchaseServiceImpl.queryPurchaseList(userid, -1, -1, -1);
+		List<PurchaseVO> purchaseList = PurchaseServiceImpl.queryPurchaseList(userid, -1, 0, -1);
 	    for(int i=0; i< purchaseList.size(); ++i)
 	    {
 	    	PurchaseVO PurchaseItem = purchaseList.get(i);

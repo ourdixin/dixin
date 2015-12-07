@@ -178,7 +178,7 @@
         </if> 	
 		<if test="status == 0">  
             <![CDATA[  
-               and purchase.status = 110 
+               and (product.due_date < '2100-01-01' and curdate() <= date(product.due_date))
             ]]>
         </if>
 		<if test="status == 1">  
