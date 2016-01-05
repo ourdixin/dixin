@@ -580,6 +580,7 @@ public class ProductVO extends BaseVO {
 			
 			payDate = getNextPayDate(nextDate.getTime());
 			userPnl = getUserPnlByPurchaseList(userId,purchaseList,payDate);
+			payItem = new PnlItemVo();
 			payItem.setPayDate(payDate);
 			payItem.setPnl(userPnl.get("pnl") - lastPnl);	
 			payItem.setPnlSum(userPnl.get("pnl"));	

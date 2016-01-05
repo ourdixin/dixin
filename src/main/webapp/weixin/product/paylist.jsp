@@ -36,7 +36,9 @@
     <c:forEach var="pay" items="${payList}">
       <tr>
         <td style="text-align: center;" ><fmt:formatDate pattern="yyyy-MM-dd" value="${pay.payDate}"/></td>
-        <td style="text-align: center;" >${pay.pnl}</td>
+        <td style="text-align: center;" >
+        	<fmt:formatNumber value="${pay.pnl}"  maxFractionDigits="2"/>元
+        </td>
       </tr>
       </c:forEach>
     </table>

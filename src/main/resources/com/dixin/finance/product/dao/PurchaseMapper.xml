@@ -385,22 +385,80 @@
 
 
   <select id="queryPurchase" parameterType="int" resultMap="PurchaseResult" resultType="com.dixin.finance.product.vo.PurchaseVO" useCache="false" >
-		select id purchaseId,
-			user_id userId,
-			buy_date buyDate,
-			product_id productId,
-			volume volume,
-			amount purchaseAmount,
-			institution_id institutionId,
-			pnl pnl,
-			has_receipt hasReceipt,
-			status status,
-			create_user createUser, 
-			create_time createTime, 
-			update_user updateUser, 
-			update_time updateTime
+		select purchase.id purchaseId,
+			purchase.user_id userId,
+			purchase.buy_date buyDate,
+			purchase.product_id productId,
+			purchase.volume volume,
+			purchase.amount purchaseAmount,
+			purchase.institution_id institutionId,
+			purchase.pnl pnl,
+			purchase.has_receipt hasReceipt,
+			purchase.status status,
+			purchase.create_user createUser, 
+			purchase.create_time createTime, 
+			purchase.update_user updateUser, 
+			purchase.update_time updateTime
+			,product.id
+			,product.name
+			,product.code
+			,product.release_date
+			,product.end_date
+			,product.b_delay
+			,product.delay_condition
+			,product.delay_term
+			,product.delay_term_unit
+			,product.term
+			,product.term_unit
+			,product.append_term
+			,product.append_term_unit
+			,product.part_a
+			,product.rate_a
+			,product.part_b
+			,product.rate_b
+			,product.part_c
+			,product.rate_c
+			,product.part_d
+			,product.rate_d
+			,product.rate_note
+			,product.amount
+			,product.min_amount
+			,product.append_amount
+			,product.pay_type
+			,product.pay_type_info
+			,product.star
+			,product.catogry_id
+			,product.direction
+			,product.buy_fee
+			,product.close_term
+			,product.close_term_unit
+			,product.fund_manager
+			,product.fund_manager_url
+			,product.manage_fee
+			,product.open_day
+			,product.bonus
+			,product.sell_fee
+			,product.status
+			,product.info
+			,product.view_num
+			,product.down_num
+			,product.reservation_num
+			,product.ad_file
+			,product.guide_file
+			,product.profit_id
+			,product.bonus_type
+			,product.value_date
+			,product.due_date
+			,product.unit_net
+			,product.total_value
+			,product.recommend
+			,product.create_user
+			,product.create_time
+			,product.update_user
+			,product.update_time
 		from purchase
-			WHERE id=#{Id} 
+		join product on purchase.product_id = product.id
+			WHERE purchase.id=#{Id} 
 	</select>
 
 	
