@@ -293,7 +293,7 @@ public class UserVO extends BaseVO {
 		}
 		
 		for(Map.Entry<String, List<PurchaseVO>> entry:productMap.entrySet()){    
-			userPnl = entry.getValue().get(0).getProduct().getUserPnlByPurchaseList(id,entry.getValue());
+			userPnl = entry.getValue().get(0).getProduct().getUserPnlByPurchaseList(id,entry.getValue(),null);
 			pnl += userPnl.get("pnl");
 			amount += userPnl.get("amount");
 		}   

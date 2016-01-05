@@ -3,6 +3,7 @@ package com.dixin.finance.product.vo;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -547,6 +548,50 @@ public class ProductVO extends BaseVO {
 		}
 
 		return payDate;
+	}
+	
+	public List<PnlItemVo> getPayList(int userId) {
+		
+		List<PnlItemVo> payList = new ArrayList<PnlItemVo>();
+		Date invalidDate = getDefalutInvalidDate();
+		if(valueDate.equals(invalidDate) || valueDate.after(invalidDate))
+			return payList;	
+		
+		Double lastPnl = 0d;
+		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId, -1, 0, Integer.parseInt(id));
+		GregorianCalendar now = new GregorianCalendar();
+		payDate = getNextPayDate(valueDate);
+		Map<String,Double> userPnl = getUserPnlByPurchaseList(userId,purchaseList,payDate);
+
+		PnlItemVo payItem = new PnlItemVo();
+		payItem.setPayDate(payDate);
+		payItem.setPnl(userPnl.get("pnl") - lastPnl);	
+		payItem.setPnlSum(userPnl.get("pnl"));	
+		payItem.setAmount(userPnl.get("amount"));
+		payList.add(payItem);
+		lastPnl = userPnl.get("pnl");
+		
+		while((now.getTime().getTime() - payDate.getTime() > 0 ) && (payDate.getTime() - getDueDate().getTime() < 0 ))
+		{
+			GregorianCalendar nextDate=new GregorianCalendar();
+			TimeZone zone = TimeZone.getTimeZone("GMT+8");
+			nextDate.setTimeZone(zone);
+			nextDate.setTime(payDate);
+			
+			payDate = getNextPayDate(nextDate.getTime());
+			userPnl = getUserPnlByPurchaseList(userId,purchaseList,payDate);
+			payItem.setPayDate(payDate);
+			payItem.setPnl(userPnl.get("pnl") - lastPnl);	
+			payItem.setPnlSum(userPnl.get("pnl"));	
+			payItem.setAmount(userPnl.get("amount"));
+			payList.add(payItem);
+			lastPnl = userPnl.get("pnl");
+		}
+
+		if(payList.size() >= 1)
+			payList.remove(payList.size() - 1);
+		
+		return payList;		
 	}
 	
 	public Date getNextPayDate(Date date) {
@@ -1331,20 +1376,20 @@ public class ProductVO extends BaseVO {
 		this.unitNet = unitNet;
 	}
 	
-	public Map<String,Double> getUserPnlByPurchaseList(int userId,List<PurchaseVO> purchaseList) {
+	public Map<String,Double> getUserPnlByPurchaseList(int userId,List<PurchaseVO> purchaseList,Date nowDate) {
 		Map<String,Double> userPnl;
 		
 		if(profitId == ProfitTypeConstant.FixProduct)
-			userPnl = getFixProductPnl(purchaseList);
+			userPnl = getFixProductPnl(purchaseList,nowDate);
 		else
-			userPnl = getFloatProductPnl(purchaseList);
+			userPnl = getFloatProductPnl(purchaseList,nowDate);
 		
 		return userPnl;		
 	}
 	
 	public Map<String,Double> getUserPnl(int userId) {
 		List<PurchaseVO> purchaseList = purchaseServiceImpl.queryPurchaseList(userId, -1, 0, Integer.parseInt(id));//(userId, Integer.parseInt(id));
-		Map<String,Double> userPnl = getUserPnlByPurchaseList(userId,purchaseList);
+		Map<String,Double> userPnl = getUserPnlByPurchaseList(userId,purchaseList,null);
 		uPnl = userPnl.get("pnl");
 		uAmount = userPnl.get("amount");
 		
@@ -1380,7 +1425,7 @@ public class ProductVO extends BaseVO {
 		this.reservationNum = reservationNum;
 	}
 	
-	public Map<String,Double> getFixProductPnl(List<PurchaseVO> purchaseList)
+	public Map<String,Double> getFixProductPnl(List<PurchaseVO> purchaseList,Date nowDate)
 	{
 		Map<String,Double> userPnl = new HashMap<String,Double>();
 		Double pnl = 0d;
@@ -1389,7 +1434,7 @@ public class ProductVO extends BaseVO {
 		{
 			PurchaseVO PurchaseItem = purchaseList.get(i);
 			
-			pnl += PurchaseItem.getAmount() * getRateFromAmount(PurchaseItem.getAmount()) * getDaysByNow(PurchaseItem.getBuyDate(),null) /36500;
+			pnl += PurchaseItem.getAmount() * getRateFromAmount(PurchaseItem.getAmount()) * getDaysByNow(PurchaseItem.getBuyDate(),endDate) /36500;
 			amount += PurchaseItem.getAmount();
 		}	
 		
@@ -1399,7 +1444,7 @@ public class ProductVO extends BaseVO {
 		return userPnl;
 	}
 	
-	public Map<String,Double> getFloatProductPnl(List<PurchaseVO> purchaseList)
+	public Map<String,Double> getFloatProductPnl(List<PurchaseVO> purchaseList,Date nowDate)
 	{
 		Map<String,Double> userPnl = new HashMap<String,Double>();
 		

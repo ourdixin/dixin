@@ -40,6 +40,7 @@ import com.dixin.finance.product.service.IProductService;
 import com.dixin.finance.product.service.IPurchaseService;
 import com.dixin.finance.product.vo.AppointmentVO;
 import com.dixin.finance.product.vo.ContactRecordVO;
+import com.dixin.finance.product.vo.PnlItemVo;
 import com.dixin.finance.product.vo.ProductQueryParameter;
 import com.dixin.finance.product.vo.ProductVO;
 import com.dixin.finance.product.vo.PurchaseVO;
@@ -472,6 +473,25 @@ public class WeixinController {
 	    }		
 		model.addAttribute("purchaseList", purchaseList);
 		return "weixin/product/orderlist";
+	}
+	
+	@RequestMapping(value="weixin/product/paylist")
+	public String paylist(int id,HttpSession session,Model model,HttpServletRequest request,HttpServletResponse response){
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "weixin/login";
+		}
+		
+		PurchaseVO purchase = PurchaseServiceImpl.queryPurchase(id);
+		List<PnlItemVo> payList = purchase.getProduct().getPayList(userVO.getId());
+	
+		model.addAttribute("payList", payList);
+		return "weixin/product/paylist";
 	}
 	
 	//获取短信验证码

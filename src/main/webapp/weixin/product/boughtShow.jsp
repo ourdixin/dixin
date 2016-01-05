@@ -33,9 +33,14 @@
  <c:forEach var="purchase" items="${purchaseList}">
 <div class="cplb">
   <h2>${purchase.product.name}</h2>
+  <c:if test="${product.profitId==42}">
+  	<div class="linkk" id=${purchase.id}>
+  </c:if>
+  <c:if test="${product.profitId!=42}">
   <div id=${purchase.id}>
+  </c:if>
     <h1><font size="66px" color="#c91e22">
-    <fmt:formatNumber value="${purchase.product.uPnl}" type="currency" pattern="#,#00.00"/> 
+    	<fmt:formatNumber value="${purchase.product.uPnl}" type="currency" pattern="#,#00.00"/> 
     </font></h1>
     <p>累计预估收益(元)</p>
   </div>
@@ -100,6 +105,7 @@
   </div>
 </div>
  </c:forEach>
+<br class=" clear" />
 <br class=" clear" />
 	<!---foot底部---->
 	<c:import url="../nav.jsp" charEncoding="utf-8" />
