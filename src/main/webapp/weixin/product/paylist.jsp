@@ -30,13 +30,13 @@
   <div class="listable" style="padding:15px 20px;">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
-      <th width="210">派息日期</th>
-      <th width="210">派息金额</th>
+      <th style="text-align: center;" >派息日期</th>
+      <th style="text-align: center;" >派息金额</th>
       </tr>
     <c:forEach var="pay" items="${payList}">
       <tr>
-        <td><fmt:formatDate pattern="yyyy-MM-dd" value="${pay.payDate}"/></td>
-        <td>${pay.pnl}</td>
+        <td style="text-align: center;" ><fmt:formatDate pattern="yyyy-MM-dd" value="${pay.payDate}"/></td>
+        <td style="text-align: center;" >${pay.pnl}</td>
       </tr>
       </c:forEach>
     </table>

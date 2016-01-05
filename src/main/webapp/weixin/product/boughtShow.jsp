@@ -33,10 +33,10 @@
  <c:forEach var="purchase" items="${purchaseList}">
 <div class="cplb">
   <h2>${purchase.product.name}</h2>
-  <c:if test="${product.profitId==42}">
+  <c:if test="${purchase.product.profitId==42}">
   	<div class="linkk" id=${purchase.id}>
   </c:if>
-  <c:if test="${product.profitId!=42}">
+  <c:if test="${purchase.product.profitId!=42}">
   <div id=${purchase.id}>
   </c:if>
     <h1><font size="66px" color="#c91e22">
