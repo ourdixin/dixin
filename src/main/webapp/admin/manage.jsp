@@ -99,6 +99,7 @@
               <td>
 				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/productview?productId=<#=products.list[i].id#>" >详细</a></span>
 				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=<#=products.list[i].id#>" >修改</a></span>
+				<span class="sg_tab"><a href="<%=request.getContextPath()%>/admin/cloneproduct?productId=<#=products.list[i].id#>" >复制</a></span>
 				<#if(products.list[i].recommend == 0){#>
 					<span class="sg_tab"><a href="javascript:void(0)" onclick="recommendproduct('<#=products.list[i].name#>',<#=products.list[i].id#>)" >首推</a></span>
 				<#}else{#>

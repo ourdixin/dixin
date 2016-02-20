@@ -519,6 +519,29 @@ public class ProductManagerController {
 		
 		return "admin/changeFloatproduct";
 	}	
+
+	@RequestMapping(value="/admin/cloneproduct")
+	public String adminCloneProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
+	
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			String url = request.getRequestURI();
+			 if(request.getQueryString()!=null)   
+				   url+="?"+request.getQueryString(); 
+			model.addAttribute("backurl", url);
+			return "admin/login";
+		}
+		
+
+		ProductVO product = productService.queryProduct(productId);
+		model.addAttribute("product", product);
+		model.addAttribute("user", userVO);
+		if(product.getProfitId() == ProfitTypeConstant.FixProduct)
+			return "admin/cloneFixproduct";
+		
+		return "admin/cloneFloatproduct";
+	}		
 	
 	@RequestMapping(value="/admin/delproduct",method=RequestMethod.POST)
 	public @ResponseBody BaseWebResult adminDeleteProduct(int productId,HttpSession session,Model model,HttpServletRequest request){
