@@ -1520,6 +1520,40 @@ public class ProductVO extends BaseVO {
 		return rateA;
 	}
 	
+	public int getDaysNowToDueDate()
+	{
+		int days = 0;
+		Calendar cal = Calendar.getInstance();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		cal.setTimeZone(zone);
+		Date nowDate = cal.getTime();
+		
+		long millis = dueDate.getTime() - nowDate.getTime();
+		if(millis < 0 )
+			days = 0;
+		else
+			days = (int) (millis/(1000 * 3600 * 24));
+		
+		return days;
+	}
+	
+	public int getDaysNowToPayDate()
+	{
+		int days = 0;
+		Calendar cal = Calendar.getInstance();
+		TimeZone zone = TimeZone.getTimeZone("GMT+8");
+		cal.setTimeZone(zone);
+		Date nowDate = cal.getTime();
+		
+		long millis = getPayDate().getTime() - nowDate.getTime();
+		if(millis < 0 )
+			days = 0;
+		else
+			days = (int) (millis/(1000 * 3600 * 24));
+		
+		return days;
+	}	
+	
 	public int getDaysByNow(Date buyDate,Date nowDate)
 	{
 		int days = 0;

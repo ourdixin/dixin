@@ -29,8 +29,9 @@
 					<input name="id" id="id" type = "hidden" value="${user.id}"  style="display: none;" >
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td width="11%" height="50" align="right">用户名：</td>
-							<td colspan="2">${user.name}</td>
+							<td width="11%" height="50" align="right">姓名：</td>
+							<td colspan="2"><input maxlength="12" class="itstyle lt it"
+								name="name" id="name" type="text" value="${user.name}"></td>
 						</tr>
 						<tr>
 							<td height="50" align="right">QQ：</td>

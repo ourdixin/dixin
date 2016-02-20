@@ -38,8 +38,8 @@
 			<div class="user_table">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td width="11%" align="right">用户名：</td>
-						<td colspan="2">${user.userName}</td>
+						<td width="11%" align="right">姓名：</td>
+						<td colspan="2">${user.name}</td>
 					</tr>
 					<tr>
 						<td align="right">QQ：</td>

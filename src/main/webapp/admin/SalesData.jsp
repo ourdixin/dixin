@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,17 +22,22 @@
 						<tr>
 							<th>产品名称</th>
 							<th>类型</th>
+							<th>派息日</th>
+							<th>到期日</th>
 							<th>购买人数</th>
 							<th>购买份额</th>
 							<th>销售金额</th>
 							<th>状态</th>
-							<th>备注</th>
 							<th width=250>操作</th>
 						</tr>
 					</thead>
 					<tbody>
 					<# for(i = 0; i < list.length; i++){ #> 
-						<tr>
+						<tr 
+						<#if(list[i].product.daysNowToPayDate <= 7 || list[i].product.daysNowToDueDate <= 7) {#>						
+							style="background:red;" 
+						<# } #>
+						>
 							<td><#=list[i].product.name#></td>
 							<td>
 								<#if(list[i].product.profitId == 42) {#>
@@ -39,6 +45,20 @@
 								<# } else { #>
 									浮动
 								<# } #>
+							</td>
+							<td>
+							<#if(list[i].product.payDate < list[i].product.invalidDate) {#>
+								<#=list[i].product.payDate#>  
+							<# } else { #>
+								待定
+							<# } #>	
+							</td>
+							<td>
+							<#if(list[i].product.dueDate < list[i].product.invalidDate) {#>
+								<#=list[i].product.dueDate#>  
+							<# } else { #>
+								待定
+							<# } #>								
 							</td>
 							<td><#=list[i].userNum#></td>
 							<td><#=list[i].volume#></td>
@@ -50,7 +70,6 @@
 									存续期
 								<# } #>
 							</td>
-							<td>无</td>
 							<td>
 								<span><a href="<%=request.getContextPath()%>/admin/SalesData-detail.jsp?id=<#=list[i].productId#>">销售明细</a></span>
 								<span><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=<#=list[i].productId#>">修改产品</a></span>

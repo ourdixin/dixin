@@ -334,7 +334,7 @@
 			product.*
 		FROM purchase join product on purchase.product_id= product.id  
 		group by product.id 
-		order by product.end_date desc 
+		order by product.due_date 
   </select>
   
 	<resultMap id="userResult" type="com.dixin.finance.authentication.vo.UserVO">  
