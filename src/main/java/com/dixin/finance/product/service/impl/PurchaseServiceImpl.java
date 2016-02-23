@@ -50,7 +50,12 @@ public class PurchaseServiceImpl implements IPurchaseService {
 	public List<PurchaseStatisticsVO> queryPurchaseStatistics() {
 		return purchaseMapper.queryPurchaseStatistics();
 	}
-
+	
+	@Override
+	public List<PurchaseStatisticsVO> queryHotPurchaseStatistics() {
+		return purchaseMapper.queryHotPurchaseStatistics();
+	}
+	
 	@Override
 	public List<PurchaseVO> queryPurchaseDetails(int productId) {
 		

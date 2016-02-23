@@ -337,6 +337,20 @@
 		order by product.due_date 
   </select>
   
+  <select id="queryHotPurchaseStatistics" resultMap="PurchaseStatistics" resultType="com.dixin.finance.product.vo.PurchaseStatisticsVO" useCache="false" >
+		SELECT 
+			count(purchase.user_id) as usernum,
+			sum(purchase.volume) as purchasevolume,
+			sum(purchase.amount) as purchaseamount,
+			product.* 
+		FROM purchase join product on 
+		<![CDATA[ 
+		(purchase.product_id = product.id and datediff(product.due_date,date(now())) <= 7 ) 
+		]]> 
+		group by product.id 
+		order by product.due_date 
+  </select>
+  
 	<resultMap id="userResult" type="com.dixin.finance.authentication.vo.UserVO">  
 		<id column="uid" property="id"/>
 		<result column="user_name" property="userName"/>

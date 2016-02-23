@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
@@ -418,6 +419,44 @@ public class ProductManagerController {
 		
 		return webResult;
 	}
+	
+	List<PurchaseStatisticsVO> getHotProducts(List<PurchaseStatisticsVO> purchaseList)
+	{
+		List<PurchaseStatisticsVO> hotList = new ArrayList();
+		for(PurchaseStatisticsVO purchase : purchaseList)
+		{
+			if(purchase.getProduct().getDaysNowToPayDate() <= 7 || purchase.getProduct().getDaysNowToDueDate() <= 7)
+			{
+				hotList.add(purchase);
+			}
+		}
+		
+		return hotList;
+	}
+	
+	@RequestMapping(value="/admin/gethotpurchasestatistics")
+	public @ResponseBody BaseWebResult getHotPurchaseStatistics(String backurl,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setUrl(backurl);
+			webResult.setMsg("请先登录！");
+			return webResult;
+		}
+		
+		List<PurchaseStatisticsVO> PurchaseStatisticsList = purchaseServiceImpl.queryHotPurchaseStatistics();
+		List<PurchaseStatisticsVO> hotList = getHotProducts(PurchaseStatisticsList);
+		//PageInfo<PurchaseStatisticsVO> result = new PageInfo(PurchaseStatisticsList);
+		webResult.setResult(hotList);
+		webResult.setSuccess(true);
+		
+		return webResult;
+	}	
+	
 	@RequestMapping(value="/admin/SalesDataDetail")
 	public @ResponseBody BaseWebResult getSalesDataDetail(Integer id,String backurl,Integer pageNum,Integer pageSize,HttpSession session,Model model,HttpServletRequest request){
 		BaseWebResult webResult = new BaseWebResult();

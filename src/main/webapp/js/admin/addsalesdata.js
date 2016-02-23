@@ -21,12 +21,12 @@ $(document).ready(function(){
             return;
         }	
         
-		var amount = $("input[name='amount']").val();
-        var regex = /^[0-9]*[1-9][0-9]*$/;
-        if(!regex.exec(amount)) {
-       	 alert("金额必须为正整数");
-            return;
-        }	
+		//var amount = $("input[name='amount']").val();
+        //var regex = /^[0-9]*[1-9][0-9]*$/;
+        //if(!regex.exec(amount)) {
+       	// alert("金额必须为正整数");
+        //    return;
+        //}	
 		$.post(HOST_PATH+"/admin/addsalesdata", $("#addForm").serialize(), addsuccess);
 	});
 	

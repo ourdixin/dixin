@@ -20,7 +20,7 @@
 <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath()%>/js/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/admin/addproduct.js"></script>
+	src="<%=request.getContextPath()%>/js/admin/cloneproduct.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/ajaxfileupload.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";</script>

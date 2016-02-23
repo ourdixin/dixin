@@ -14,6 +14,78 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/purchasestatistics.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
 </script>
+<script type="text/html" id="hotproducts">
+			<div class="con_table">
+				<table width="1200">
+					<thead>
+						<tr>
+							<th>产品名称</th>
+							<th>类型</th>
+							<th>派息日</th>
+							<th>到期日</th>
+							<th>购买人数</th>
+							<th>购买份额</th>
+							<th>销售金额</th>
+							<th>状态</th>
+							<th width=250>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+				<#if(result != null) {#>
+					<# for(i = 0; i < result.length; i++){ #> 
+						<#if(result[i].product.daysNowToPayDate <= 7 || result[i].product.daysNowToDueDate <= 7) {#>						
+							<tr 
+							<#if(result[i].product.daysNowToDueDate <= 7) {#>
+								style="background:red;" 
+							<# } else { #>
+								style="background:yellow;" 
+							<# } #>
+							>
+							<td><#=result[i].product.name#></td>
+							<td>
+								<#if(result[i].product.profitId == 42) {#>
+									固定
+								<# } else { #>
+									浮动
+								<# } #>
+							</td>
+							<td>
+							<#if(result[i].product.payDate < result[i].product.invalidDate) {#>
+								<#=result[i].product.payDate#>  
+							<# } else { #>
+								待定
+							<# } #>	
+							</td>
+							<td>
+							<#if(result[i].product.dueDate < result[i].product.invalidDate) {#>
+								<#=result[i].product.dueDate#>  
+							<# } else { #>
+								待定
+							<# } #>								
+							</td>
+							<td><#=result[i].userNum#></td>
+							<td><#=result[i].volume#></td>
+							<td><#=result[i].amount#></td>
+							<td>
+								<#if(result[i].product.profitId == 42 && result[i].product.status == 121 ) { #>
+									到期
+								<# } else { #>
+									存续期
+								<# } #>
+							</td>
+							<td>
+								<span><a href="<%=request.getContextPath()%>/admin/SalesData-detail.jsp?id=<#=result[i].productId#>">销售明细</a></span>
+								<span><a href="<%=request.getContextPath()%>/admin/changeproduct?productId=<#=result[i].productId#>">修改产品</a></span>
+								<span><a href="<%=request.getContextPath()%>/admin/addProductInfo.jsp?productId=<#=result[i].productId#>&code=<#=result[i].product.code#>&name=<#=result[i].product.name#>">添加产品信息</a></span>
+							</td>
+						</tr>
+						<# } #>
+					<# } #>
+					<# } #>
+					</tbody>
+				</table>
+			</div>
+</script>
 <script type="text/html" id="products">
 
 			<div class="con_table">
@@ -34,9 +106,13 @@
 					<tbody>
 					<# for(i = 0; i < list.length; i++){ #> 
 						<tr 
-						<#if(list[i].product.daysNowToPayDate <= 7 || list[i].product.daysNowToDueDate <= 7) {#>						
-							style="background:red;" 
-						<# } #>
+
+							<#if(list[i].product.daysNowToDueDate <= 7) {#>
+								style="background:red;" 
+							<# } else if(list[i].product.daysNowToPayDate <= 7 ) { #>
+								style="background:yellow;" 
+							<# } #>
+
 						>
 							<td><#=list[i].product.name#></td>
 							<td>
@@ -104,11 +180,10 @@
 	<c:import url="/admin/customerleft.jsp" charEncoding="utf-8" />
 	<!---管理左侧共用部份结束---->
 	<div id="main_right">
-
+		<div class="hot_main_width">
+		</div>
+		
 		<div class="main_width">
-
-
-
 		</div>
 	</div>
 
