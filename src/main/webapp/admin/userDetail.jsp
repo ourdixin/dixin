@@ -11,6 +11,7 @@
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/js.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/userDetail.js"></script>
 <script type="text/javascript">	var HOST_PATH = "<%=request.getContextPath()%>";
 </script>
 </head>
@@ -70,6 +71,7 @@
 							<th>利率</th>
 							<th>认购起点</th>
 							<th>付息方式</th>
+							<th>转让</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -104,6 +106,7 @@
 									<c:when test="${fixProduct.product.payType==73}">其他付息方式</c:when>
 								</c:choose>
 								</td>
+								<td><a class="item" href="javascript:void(0)" name="userid=${user.id}&productid=${fixProduct.product.id}">转让</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -120,6 +123,7 @@
 							<th>利率</th>
 							<th>认购起点</th>
 							<th>付息方式</th>
+							<th>转让</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -154,6 +158,7 @@
 									<c:when test="${proProduct.product.payType==73}">其他付息方式</c:when>
 								</c:choose>
 								</td>
+								<td><a class="item" href="javascript:void(0)" name="<%=request.getContextPath()%>/admin/transferred?userid=${user.id}&productid=${proProduct.product.id}">转让</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

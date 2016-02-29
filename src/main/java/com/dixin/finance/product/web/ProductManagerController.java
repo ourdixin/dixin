@@ -484,6 +484,28 @@ public class ProductManagerController {
 		
 		return webResult;
 	}
+
+	@RequestMapping(value="/admin/transferred")
+	public @ResponseBody BaseWebResult transferredUserProduct(Integer userid,Integer productid,String backurl,HttpSession session,Model model,HttpServletRequest request){
+		BaseWebResult webResult = new BaseWebResult();
+		UserVO userVO = (UserVO) session.getAttribute(WebConstants.SESSION_KEY_USER);
+		if(userVO == null)
+		{
+			webResult.setSuccess(false);
+			if(backurl == null || backurl=="")
+				backurl=request.getContextPath()+"/admin/login.jsp";
+			webResult.setUrl(backurl);
+			webResult.setMsg("请先登录！");
+			return webResult;
+		}
+
+		purchaseServiceImpl.setUserProductStatus(userid,productid,PurchaseStatusConstant.Status_Assignment);
+		webResult.setMsg("设置成功！");
+		webResult.setSuccess(true);
+		
+		return webResult;
+	}	
+	
 	
 	/***********************************产品转让管理**********************************************/
 	@RequestMapping(value="/admin/assignment")

@@ -178,7 +178,7 @@
         </if> 	
 		<if test="status == 0">  
             <![CDATA[  
-               and (product.due_date < '2100-01-01' and curdate() <= date(product.due_date))
+               and (product.due_date < '2100-01-01' and curdate() <= date(product.due_date) and purchase.status = 110)
             ]]>
         </if>
 		<if test="status == 1">  
@@ -507,6 +507,12 @@
 		SYSDATE()
 	)
   </insert>	
-	
+  
+	<!-- 更新 产品状态-->
+	<update id="setUserProductStatus" parameterType="map" >
+		UPDATE purchase SET 
+		status = #{status}
+		WHERE product_id=#{productId} and user_id=#{userId}
+	</update>		
 	
 </mapper>

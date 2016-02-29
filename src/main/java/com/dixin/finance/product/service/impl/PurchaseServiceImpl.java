@@ -79,4 +79,13 @@ public class PurchaseServiceImpl implements IPurchaseService {
 		return purchaseMapper.queryPurchaseProductList(map);
 	}
 
+	@Override
+	public void setUserProductStatus(int userId, int productId,int status) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);	
+		map.put("productId", productId);	
+		map.put("status", status);
+		purchaseMapper.setUserProductStatus(map);
+	}
+
 }
